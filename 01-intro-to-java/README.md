@@ -1,4 +1,9 @@
-# Подготовка
+# Подготовка на инструментите и някои tips & tricks
+
+* [Инсталиране на Java и среда за разработка](#Инсталиране-на-java-и-среда-за-разработка)
+* [Полезни Eclipse shortcuts](#Полезни-eclipse-shortcuts)
+* [Дебъгване в Eclipse](#Дебъгване-в-eclipse)
+* [Online Auto Grader](#online-auto-grader)
 
 ## Инсталиране на Java и среда за разработка
 
@@ -9,7 +14,40 @@
 Трите най-популярни IDE-та за Java разработка са [Eclipse](https://www.eclipse.org/downloads/eclipse-packages/), [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) и [NetBeans](https://netbeans.org/downloads/).
 Може да ползвате което и да е от тях, друго IDE или любимия ви текстов редактор. Демонстрациите по време на лекциите и упражненията ще правим с Eclipse.
 
-## Online (Auto) Grader
+## Полезни Eclipse shortcuts
+
+Ще ви спестят огромно време и усилие, инвестицията определено си струва.
+Някои от най-полезните:
+
+###### Редактиране
+
+      Ctrl + space                   auto-complete-ва имена на променливи и методи по първитете няколко букви
+      Ctlr + Shift + F               форматира ви кода
+      Ctrl + O                       организира ви import-ите
+      Ctrl + D                       изтрива текущия ред
+      Alt  + стрелка нагоре/надолу   премества текущия ред (или цялата селекция) нагоре/надолу
+      Ctrl + или Ctrl -              коментира / разкоментира редове и блокове
+
+###### Навигиране
+
+      Ctrl + N                       oтваря New Type wizard, с който може да създадете нов проект, клас, интерфейс
+      Ctrl + T                       oтваря тип: най-бързия начин да отворите клас или интерфейс, ваш или от JDK-то
+      Ctrl + F7                      превключва между различните view-та
+      Ctrl + F8                      превключва между различните перспективи (например от Java към Debug и обратно)
+      Ctrl + Q                       прехвърля ви в позицията на последна редакция на сорса
+
+###### Run & Debug
+
+      Ctrl + F11                     стартира приложението
+      F11                            стартира приложението в дебъг режим
+
+Изчерпателен списък може да намерите тук: [Eclipse cheatsheet](https://github.com/pellaton/eclipse-cheatsheet).
+
+## Дебъгване в Eclipse
+
+Чудесно [ръководство по debugging](https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php) за начинаещи.
+
+## Online Auto Grader
 
 Онлайн системата за автоматично тестване e [grader.sapera.org](http://grader.sapera.org).
 
