@@ -14,16 +14,23 @@
 public interface Susi {
 	
 	/**
-	* Registers a student in the system
+	* Registers a student in the system.
+	* Returns true, if the operation is successful and false, if the student
+	* is already registered
 	*/
-	void registerStudent(Student student);
+	boolean registerStudent(Student student);
+
+	/**
+	 * Returns the number of registered students
+	 */
+	int getStudentsCount();
 	
 	/**
 	* Sets a grade for the student for the specified course and adds the credits of the
-	* course to the total credits of
-	* the student
+	* course to the total credits of the student.
+	* Returns true, if the operation is successful and false, if the student is not found
 	*/
-	void setGrade(Student student, Course course, double grade);
+	boolean setGrade(Student student, Course course, double grade);
 	
 	/**
 	* Returns the total sum of credits for this student
@@ -61,7 +68,7 @@ public interface Subject {
 }
 ```
 
-Имайте предвид, че, за щастие, всеки студент може да запише не повече от 50 курса за цялото си следване.
+Имайте предвид, че, за щастие, всеки студент може да запише не повече от 50 курса за цялото си следване. Също, капацитетът на университета не е безграничен: могат да бъдат регистрирани не повече от 1000 студента.
 
 Всеки от класовете `SusiCockpit`, `Student` и `Course` трябва да имат конструктор по подразбиране.
 
