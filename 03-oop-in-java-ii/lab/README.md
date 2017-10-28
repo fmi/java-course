@@ -52,7 +52,7 @@ public interface Susi {
   * Returns the sum of credits per course type accumulated by the specified student
   * @throws StudentNotFoundException, if the student is not found
   */
-  public int getCreditsPerType(Student student, CourseType type) throws StudentNotFoundException;
+  public double getCreditsPerType(Student student, CourseType type) throws StudentNotFoundException;
 
 }
 ```
