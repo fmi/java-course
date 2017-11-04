@@ -121,6 +121,8 @@ public Movie(String name, int duration, MovieGenre genre)
 
 ### Забележки
 
+* Валидациите и евентуалното хвърляне на съответни изключения трябва да се случва в логична последователност за съответната операция в методите `bookTicket` и `cancelTicket`. Например, няма логика да проверявате първо дали дадено място е невалидно, ако въобще не съществува такава прожекция в системата.
+
 * Класовете `Projection`, `Movie`, `Ticket`, `Hall` и `Seat` трябва да се намират в пакет с име `bg.uni.sofia.fmi.mjt.cinema.reservation.system.core`
 
 * Класът `CinemaCity`, както и интерфейсът `CinemaReservationSystem` трябва да се намират в пакет с име `bg.uni.sofia.fmi.mjt.cinema.reservation.system`
