@@ -35,9 +35,9 @@ public interface ShoppingCart {
     Collection<Item> getUniqueItems();
 
     /**
-     * Returns the unique items sorted by quantity in the cart
+     * Returns the unique items sorted by quantity in the cart in descending order
      * 
-     * @return the unique items sorted by quantity in the cart
+     * @return the unique items sorted by quantity in the cart in descending order
      */
     Collection<Item> getSortedItems();
 
@@ -57,6 +57,7 @@ public interface ShoppingCart {
      * 
      * @param item
      *            the item to be removed
+     * @throws ItemNotFoundException in case the item is not found in the cart or is null
      */
     void removeItem(Item item) throws ItemNotFoundException;
 
