@@ -18,7 +18,7 @@ public interface Item {
 
 Два предмета са еднакви, ако всичките им характеристики са еднакви.
 
-С цел да можем автоматично да тестваме кода ви, създайте две имплементаци на `Item`: `Apple` и `Chocolate`, съответно с публични конструктори `Apple(String name, String description, double price)` и `Chocolate(String name, String description, doule price)`.
+С цел да можем автоматично да тестваме кода ви, създайте две имплементаци на `Item`: `Apple` и `Chocolate`, съответно с публични конструктори `Apple(String name, String description, double price)` и `Chocolate(String name, String description, double price)`.
 
 Създайте класовете `ListShoppingCart` и `MapShoppingCart`, които имплементират интерфейса `ShoppingCart`, използвайки съответно `List` и `Map` за съхранение на предметите в количката.
 
