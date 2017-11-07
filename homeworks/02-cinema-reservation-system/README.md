@@ -110,7 +110,7 @@ public Movie(String name, int duration, MovieGenre genre)
 * *duration* - дължината на филма в минути
 * *genre* - жанр на филма
 
-`МоvieGenre` е `enum` със следните стойности:
+`MovieGenre` е `enum` със следните стойности:
 * *ACTION*
 * *ADVENTURE*
 * *COMEDY*
