@@ -15,8 +15,8 @@ public interface Cache<K, V> {
 
     /**
      * Returns the value associated with the key, if it is present in the cache and
-     * is not stale, or null otherwise. If the value is present in the cache but is
-     * stale, it is also removed from the cache
+     * is not expired, or null otherwise. If the value is present in the cache but is
+     * expired, it is also removed from the cache
      */
     V get(K key);
 
@@ -51,9 +51,7 @@ public interface Cache<K, V> {
 
     /**
      * Returns a Collection of all actual (expired or not) items stored currently in
-     * the cache. public Collection<V> getItems();
-     * 
-     * /** Returns the number of actual (expired or not) values in the cache
+     * the cache.
      */
     long size();
 
@@ -79,8 +77,7 @@ public interface Cache<K, V> {
 
 ```java
     /**
-     * Constructs a new Cache with the specified maximum capacity (in number of
-     * stored items) and default expiration (in seconds)
+     * Constructs a new Cache with the specified maximum capacity
      */
     public MemCache(long capacity);
 
