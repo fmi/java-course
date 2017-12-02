@@ -60,7 +60,7 @@ public double avgAscentsTopN(int n);
 public long getPositionByProminence(double prominence);
 ```
 
-4. Най-високият връх, изкачен през дадена година. Ако няма върхове, изкачени през тази година, да се хвърля `java.lang.IllegalArgumentException`.
+4. Най-високият връх, изкачен за пръв път през дадена година. Ако няма върхове, изкачени през тази година, да се хвърля `java.lang.IllegalArgumentException`.
 
 ```java
 public Peak getHighestAscentPerYear(int year);
