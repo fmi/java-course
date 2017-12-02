@@ -97,12 +97,12 @@ public interface SentimentAnalyzer {
     /**
      * Returns a collection of the n most positive words in the reviews
      */
-    public Collection<String> getMostPositiveWords(int n);
+    Collection<String> getMostPositiveWords(int n);
 
     /**
      * Returns a collection of the n most negative words in the reviews
      */
-    public Collection<String> getMostNegativeWords(int n);
+    Collection<String> getMostNegativeWords(int n);
 
     /**
      * Returns the total number of words with known sentiment score
