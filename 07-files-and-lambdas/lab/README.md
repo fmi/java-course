@@ -48,7 +48,7 @@ public PeakStats(String datasetPath)
 public double shortestNotAscended();
 ```
 
-2. Колко пъти средно е бил изкачван връх от топ N (включително)? Да се върне 0.0, ако няма изкачен връх в интервала.
+2. Какъв е средният брой изкачвания на върховете в топ N (включително)? Да се върне 0.0, ако няма изкачен връх в интервала.
 
 ```java
 public double avgAscentsTopN(int n);
