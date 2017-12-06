@@ -78,7 +78,9 @@ public interface SentimentAnalyzer {
      * @param review
      *            the text of the review
      * @return the review sentiment as a name: "negative", "somewhat negative",
-     *         "neutral", "somewhat positive", "positive"
+     *         "neutral", "somewhat positive", "positive" or "unknown". Standard
+     *         rounding rules apply, e.g. 1.49 is "somewhat negative" while 1.50 is
+     *         "neutral"
      */
     String getReviewSentimentAsName(String review);
 
