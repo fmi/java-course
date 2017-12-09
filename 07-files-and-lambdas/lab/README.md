@@ -159,6 +159,6 @@ public String listPeaks(int from, int to);
 public void replicate(Path sourceDir, Path targetDir)
 ```
 
-В случай че `sourceDir` и/или `targetDir` не съществуват или не са директории, методът да хвърля `IllegalArgumentException`.
+В случай че `sourceDir` и/или `targetDir` не съществуват или не са директории, методът да хвърля `java.lang.IllegalArgumentException`.
 
 Създайте JUnit тестове за имплементацията.
