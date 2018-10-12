@@ -1,4 +1,4 @@
-## 2. Pattern Matcher
+## Pattern Matcher
 
 ### Условие
 
