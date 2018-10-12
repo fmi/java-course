@@ -72,7 +72,7 @@ Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11+28, mixed mode)
 
 Чудесно [ръководство по debugging](https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php) за начинаещи.
 
-#### JUnit Тестове в Eclipse
+#### JUnit Тестове
 
 Към условието на всяка задача са прикачени и тестове за примерния вход и изход от условието. Ако след като сложите файлът с тестовете в проекта си виждате грешки от вида `the import org.junit cannot be resolved`, ще необходимо да добавите _JUnit_ в _Build Path_ на проекта. Бихте могли ръчно да добавите `JUnit` в `Build Path` като следвате стъпките [тук](https://www.tutorialspoint.com/junit/junit_plug_with_eclipse.htm).
 
@@ -85,7 +85,7 @@ Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11+28, mixed mode)
 
 За целите на курса безплатната (Community) версия на [Intellij IDEA](https://www.jetbrains.com/idea/download/) ще ни бъде достатъчна.
 
-#### Инсталация и Hello World
+#### Инсталация на Intellij IDEA и Hello World
 
 - официалната документация на _Intellij IDEA_ има подробни [стъпки за инсталация](https://www.jetbrains.com/help/idea/install-and-set-up-product.html)
 
