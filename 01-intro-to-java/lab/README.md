@@ -3,21 +3,10 @@
 - [Java Development Kit](#java-development-kit)
 - [Integrated Development Environment](#integrated-development-environment)
     - [Eclipse](#eclipse)
-        - [Инсталация на Eclipse и Hello World](#Инсталация-на-Eclipse-и-Hello-World)
-        - [Полезни Eclipse Shortcuts](#Полезни-Eclipse-Shortcuts)
-        - [Дебъгване в Eclipse](#Дебъгване-в-Eclipse)
-        - [JUnit Тестове в Eclipse](#Junit-Тестове-в-Eclipse)
-    - [Intellij IDEA](#Intellij-IDEA)
-        - [Инсталация и Hello World](#Инсталация-и-Hello-World-1)
-        - [Полезни Intellij IDEA Shortcuts](#Полезни-Intellij-IDEA-Shortcuts)
-        - [Дебъгване в Intellij IDEA](#Дебъгване-в-Intellij-IDEA)
-        - [JUnit тестове](#Junit-Тестове)
+    - [Intellij IDEA](#intellij-idea)
 - [Online Auto Grader](#online-auto-grader)
     - [Eclipse Plugin за Grader](#eclipse-plugin-за-grader)
-        - [Инсталация](#инсталация)
-        - [Конфигурация](#конфигурация)
-        - [Употреба](#употреба)
-
+       
 ## Java Development Kit
 
 - [Инсталация на Windows](https://docs.oracle.com/javase/8/docs/technotes/guides/install/windows_jdk_install.html#CHDEBCCJ)
