@@ -3,7 +3,7 @@
 - [Java Development Kit](#java-development-kit)
 - [Integrated Development Environment](#integrated-development-environment)
     - [Eclipse](#eclipse)
-    - [Intellij IDEA](#intellij-idea)
+    - [IntelliJ IDEA](#intellij-idea)
 - [Online Auto Grader](#online-auto-grader)
     - [Eclipse Plugin за Grader](#eclipse-plugin-за-grader)
        
@@ -29,7 +29,7 @@ Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11+28, mixed mode)
 
 ## Integrated Development Environment
 
-Може да използате което и да е _IDE_ или либимия ви текстов редактор. Все пак, ние бихме препоръчали _Eclipse_ или _Intellij IDEA_:
+Може да използате което и да е _IDE_ или любимия ви текстов редактор. Все пак, ние бихме препоръчали _Eclipse_ или _IntelliJ IDEA_:
 
 ### Eclipse
 
@@ -81,27 +81,27 @@ Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11+28, mixed mode)
 
 **Забележка**: Тестовете в курса поне в началото ще пишем с JUnit 4. Все пак, малко полезна информация за JUnit 5 може да намерите [тук](https://www.eclipse.org/community/eclipse_newsletter/2017/october/article5.php).
 
-### Intellij IDEA
+### IntelliJ IDEA
 
-За целите на курса безплатната (Community) версия на [Intellij IDEA](https://www.jetbrains.com/idea/download/) ще ни бъде достатъчна.
+За целите на курса безплатната (Community) версия на [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) ще ни бъде достатъчна.
 
-#### Инсталация на Intellij IDEA и Hello World
+#### Инсталация на IntelliJ IDEA и Hello World
 
-- официалната документация на _Intellij IDEA_ има подробни [стъпки за инсталация](https://www.jetbrains.com/help/idea/install-and-set-up-product.html)
+- официалната документация на _IntelliJ IDEA_ има подробни [стъпки за инсталация](https://www.jetbrains.com/help/idea/install-and-set-up-product.html)
 
 - [кратко и полезно видео](https://www.youtube.com/watch?time_continue=245&v=c0efB_CKOYo) за създаване, пускане и конфигуриране на Hello World проект
 
 - подобно на горното видео, но в текстов вариант: [създаване и стартиране на Hello World приложение](https://www.jetbrains.com/help/idea/creating-and-running-your-first-java-application.html)
 
-#### Полезни Intellij IDEA Shortcuts
+#### Полезни IntelliJ IDEA Shortcuts
 
  Най-често използваните са описани в [Mastering IntelliJ IDEA keyboard shortcuts](https://www.jetbrains.com/help/idea/mastering-keyboard-shortcuts.html#d1746384e89).
 
-Кратко описане на UI-а, както и полезни shortcut-и са включени в [Discover Intellij IDEA](https://www.jetbrains.com/help/idea/discover-intellij-idea.html).
+Кратко описане на UI-а, както и полезни shortcut-и са включени в [Discover IntelliJ IDEA](https://www.jetbrains.com/help/idea/discover-intellij-idea.html).
 
-#### Дебъгване в Intellij IDEA
+#### Дебъгване в IntelliJ IDEA
 
-Beginner's Tutorial за дебъгване в _Intellij IDEA_ може да намерите [тук](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html).
+Beginner's Tutorial за дебъгване в _IntelliJ IDEA_ може да намерите [тук](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html).
 
 #### JUnit Тестове
 
