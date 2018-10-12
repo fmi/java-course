@@ -9,14 +9,14 @@
        
 ## Java Development Kit
 
-- [Инсталация на Windows](https://docs.oracle.com/javase/8/docs/technotes/guides/install/windows_jdk_install.html#CHDEBCCJ)
+- [Инсталация на Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A740535E-9F97-448C-A141-B95BF1688E6F)
 
-- [Инсталация на Linux](https://docs.oracle.com/javase/8/docs/technotes/guides/install/linux_jdk.html#BJFGGEFG)
+- [Инсталация на Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8)
 
-- [Инсталация на Mac OS](https://docs.oracle.com/javase/8/docs/technotes/guides/install/mac_jdk.html#CHDBADCG)
+- [Инсталация на Mac OS](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE)
 
-**Забележка:** Изтеглете JDK 11 от [сайта на Oracle](
-https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html).
+**Забележка:** Изтеглете JDK 11 от [тук](
+http://jdk.java.net/11/).
 
 **Забележка:** Уверете се, че инсталацията е успешна:
 
