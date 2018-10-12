@@ -6,22 +6,22 @@ import org.junit.Test;
 public class PatternMatcherTest {
 
 	@Test
-	public void testMatch1() {
+	public void testMatch_WithoutSpecialChars() {
 		assertTrue(PatternMatcher.match("abcdef", "de"));
 	}
 
 	@Test
-	public void testMatch2() {
+	public void testMatch_WithSingleQuestionMark() {
 		assertTrue(PatternMatcher.match("abcdef", "d?"));
 	}
 
 	@Test
-	public void testMatch3() {
+	public void testMatch_WithSingleStarMark() {
 		assertTrue(PatternMatcher.match("abcdef", "*ef"));
 	}
 
 	@Test
-	public void testMatch4() {
+	public void testMatch_AllSpecialChars() {
 		assertFalse(PatternMatcher.match("abcdef", "a?cd*g"));
 	}
 }
