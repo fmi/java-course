@@ -3,15 +3,15 @@
 - [Java Development Kit](#java-development-kit)
 - [Integrated Development Environment](#integrated-development-environment)
     - [Eclipse](#eclipse)
-        - [Инсталация и Hello World](#инсталация-и-hello-world)
-        - [Полезни Eclipse shortcuts](#полезни-eclipse-shortcuts)
-        - [Дебъгване в Eclipse](#дебъгване-в-eclipse)
-        - [JUnit Тестове](#junit-тестове)
-    - [Intellij IDEA](#intellij-idea)
-        - [Инсталация и Hello World](#инсталация-и-hello-world-1)
-        - [Полезни Intellij IDEA shortcuts](#полезни-intellij-idea-shortcuts)
-        - [Дебъгване в Intellij IDEA](#дебъгване-в-intellij-idea)
-        - [JUnit тестове](#junit-тестове)
+        - [Инсталация на Eclipse и Hello World](#Инсталация-на-Eclipse-и-Hello-World)
+        - [Полезни Eclipse Shortcuts](#Полезни-Eclipse-Shortcuts)
+        - [Дебъгване в Eclipse](#Дебъгване-в-Eclipse)
+        - [JUnit Тестове в Eclipse](#Junit-Тестове-в-Eclipse)
+    - [Intellij IDEA](#Intellij-IDEA)
+        - [Инсталация и Hello World](#Инсталация-и-Hello-World-1)
+        - [Полезни Intellij IDEA Shortcuts](#Полезни-Intellij-IDEA-Shortcuts)
+        - [Дебъгване в Intellij IDEA](#Дебъгване-в-Intellij-IDEA)
+        - [JUnit тестове](#Junit-Тестове)
 - [Online Auto Grader](#online-auto-grader)
     - [Eclipse Plugin за Grader](#eclipse-plugin-за-grader)
         - [Инсталация](#инсталация)
@@ -44,13 +44,13 @@ Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11+28, mixed mode)
 
 ### Eclipse
 
-#### Инсталация и Hello World
+#### Инсталация на Eclipse и Hello World
 
 Един доста [подробен tutorial](https://www.ntu.edu.sg/home/ehchua/programming/howto/EclipseJava_HowTo.html) за подготовка на [Eclipse]((https://www.eclipse.org/downloads/eclipse-packages/)). Точка едно описва как да си инсталирате _JDK_ и _IDE_-то. Точка две показва как да направите първия си проект.  
 
 **Забележка**: Ако използвате Java 11, ще ви трябва [Eclipse 2018-09 (4.9)](https://marketplace.eclipse.org/content/java-11-support-eclipse-2018-09-49) или по-нов. За момента (към 10-10-2018) се налага и инсталация на допълнителен feature, който се намира в предния [линк](https://marketplace.eclipse.org/content/java-11-support-eclipse-2018-09-49) (за да го инсталирате просто drag-вате `Install` върху отворения workspace).
 
-#### Полезни Eclipse shortcuts
+#### Полезни Eclipse Shortcuts
 
 Ще ви спестят огромно време и усилие, инвестицията определено си струва.
 Някои от най-полезните:
@@ -83,7 +83,7 @@ Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11+28, mixed mode)
 
 Чудесно [ръководство по debugging](https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php) за начинаещи.
 
-#### JUnit Тестове
+#### JUnit Тестове в Eclipse
 
 Към условието на всяка задача са прикачени и тестове за примерния вход и изход от условието. Ако след като сложите файлът с тестовете в проекта си виждате грешки от вида `the import org.junit cannot be resolved`, ще необходимо да добавите _JUnit_ в _Build Path_ на проекта. Бихте могли ръчно да добавите `JUnit` в `Build Path` като следвате стъпките [тук](https://www.tutorialspoint.com/junit/junit_plug_with_eclipse.htm).
 
@@ -104,7 +104,7 @@ Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11+28, mixed mode)
 
 - подобно на горното видео, но в текстов вариант: [създаване и стартиране на Hello World приложение](https://www.jetbrains.com/help/idea/creating-and-running-your-first-java-application.html)
 
-#### Полезни Intellij IDEA shortcuts
+#### Полезни Intellij IDEA Shortcuts
 
  Най-често използваните са описани в [Mastering IntelliJ IDEA keyboard shortcuts](https://www.jetbrains.com/help/idea/mastering-keyboard-shortcuts.html#d1746384e89).
 
@@ -114,7 +114,7 @@ Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11+28, mixed mode)
 
 Beginner's Tutorial за дебъгване в _Intellij IDEA_ може да намерите [тук](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html).
 
-#### JUnit тестове
+#### JUnit Тестове
 
 Към условието на всяка задача са прикачени и тестове за примерния вход и изход от условието. Ако след като сложите файлът с тестовете в проекта си виждате грешки от вида `Cannot resolve symbol 'Test'`, ще е необходимо да добавите _JUnit_ в _Build Path_ на проекта. [Официалната документация](https://www.jetbrains.com/help/idea/configuring-testing-libraries.html) на _Intellij IDEA_ включва  обяснение за това как да конфигурирате JUnit 4/5 в проекта си - вместо JUnit 5.2 добавете JUnit 4 (`Alt+Enter on @Test -> Add Junit 4 to classpath`).
 
