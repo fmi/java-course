@@ -15,7 +15,9 @@
 
 Създайте публичен клас `ForestTracker` с метод
 
-    public char[][] trackForestTerrain(char[][] forest, int years)
+```java
+public char[][] trackForestTerrain(char[][] forest, int years)
+```
 който по даден двумерен масив от символи `forest` , представляващ горски терен, и цяло число `years`, намира вида на терена след `years` години.
 
 Aко years < 0, програмата трябва да върне терена без промяна.
