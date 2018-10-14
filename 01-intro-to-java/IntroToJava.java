@@ -15,16 +15,16 @@ public class IntroToJava {
 		System.out.println(literalOne == newString); // false, literalOne refers to an object in the string pools, newString refers to an object in the heap
 		System.out.println(literalOne.equals(newString)); // true: string content is the same
 
-		String intern = newString.intern(); //  String "interning" will add the string in the pool and return a reference to it
+		String intern = newString.intern(); // String "interning" will add the string in the pool and return a reference to it
 		System.out.println(literalOne == newString); // false, newString is not reassigned
 		System.out.println(literalOne == intern); // true
 
 		// 2. string concatenation and splitting
 		int year = 2018;
 		String message = "Current year is ";
-		message += 2018 + "."; // String are immutable so this will create a new String object and some garbage
+		message += 2018 + "."; // Strings are immutable so this will create a new String object and some garbage
 
-		String[] words = message.split(" "); // [Current, year, is, 2018.]
+		String[] words = message.split(" "); // {"Current", "year", "is", "2018."}
 
 		// 3. string iteration and conversion String -> char array
 		String example = "Example";
@@ -40,7 +40,7 @@ public class IntroToJava {
 		}
 
 		// 4. conversion char array -> String
-		String backToStr1 = String.valueOf(chars); // note that carr.toString() does not work as you may expect
+		String backToStr1 = String.valueOf(chars); // note that chars.toString() does not work as you may expect
 		String backToStr2 = Arrays.toString(chars); // does the same
 
 		// 5. String manipulation
@@ -79,7 +79,7 @@ public class IntroToJava {
 
 	public static void exploreArrays() {
 		int[] array; // just declaration - the array is not created, no memory is allocated
-		array = new int[5]; // initialization - now we have [0, 0, 0, 0, 0]
+		array = new int[5]; // initialization - now we have {0, 0, 0, 0, 0}
 
 		String[] stringArray = { "apple", "banana", "cherry" }; // string array with 3 elements is declared and initialized
 		char[] charArray = new char[] { 'a', 'b' }; // such initialization is also valid
