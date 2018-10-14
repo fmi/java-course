@@ -88,7 +88,7 @@ public class IntroToJava {
 		long[][] longMatrix = new long[10][10]; // 10x10 array initialized
 		double[][] doubleMatrix = new double[100][]; // array with 100 rows initialized, but all rows still uninitialized
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 100; i++) {
 			doubleMatrix[i] = new double[10]; // array now initialized. Note that rows need not be of the same length
 		}
 
