@@ -54,7 +54,7 @@ public class SampleCoffeeMachineTest {
 	@Test
 	public void testPremiumBrew_ReturnsFirstLuck() {
 		String actual = premiumMachine.brew(new Espresso()).getLuck();
-		assertEquals("If at first you don�t succeed call it version 1.0.", actual);
+		assertEquals("If at first you don't succeed call it version 1.0.", actual);
 	}
 
 }
