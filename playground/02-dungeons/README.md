@@ -99,6 +99,7 @@
 
 * конструктор, който прима следните аргументи - `char[][] map, Hero hero, Enemy[] enemies, Treasure[] treasures, Position heroPosition`
 * `char[][] getMap()` - връща текущото състояние на картата
+* `Position getHeroPosition()` - връща текущата позиция на героя
 * `String makeMove(Direction direction)` - където `direction` е посоката на движение на героя.
   - ако при извикването на метода клетката е свободна - героят се отмества на тази клетка и се връща съобщението "You moved successfully to the next position."
   - след преместване на героя на следващата позиция, позицията на която героят е бил се заменя с "."
@@ -113,5 +114,6 @@
 * Интерфейсът `Actor` и класовете `Enemy`, `Hero` и `Position` трябва да са в пакет `bg.uni.sofia.fmi.mjt.dungeon.actor`
 * Интерфейсът `Treasure` и класовете `HealthPotion`, `ManaPotion`, `Spell` и `Weapon` трябва да са в пакет `bg.uni.sofia.fmi.mjt.dungeon.treasure`
 * Класът `GameEngine` и Enum-ът `Direction` трябва да се намират в пакет `bg.uni.sofia.fmi.mjt.dungeon`
+* Добра практика за чист код и добър ООП дизайн е една функция да не променя състоянието на обекти, получила от външния свят.
 
 За всички допълнителни интерфейси и класове (т.е. неспоменати изрично в условието), които бихте добавили, пакетът е по ваша преценка.
