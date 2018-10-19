@@ -112,6 +112,6 @@
 
 * Интерфейсът `Actor` и класовете `Enemy`, `Hero` и `Position` трябва да са в пакет `bg.uni.sofia.fmi.mjt.dungeon.actor`
 * Интерфейсът `Treasure` и класовете `HealthPotion`, `ManaPotion`, `Spell` и `Weapon` трябва да са в пакет `bg.uni.sofia.fmi.mjt.dungeon.treasure`
-* Класът `GameEngine` и Enum-a Direction трябва да се намират в пакет `bg.uni.sofia.fmi.mjt.dungeon`
+* Класът `GameEngine` и Enum-a `Direction` трябва да се намират в пакет `bg.uni.sofia.fmi.mjt.dungeon`
 
 За всички допълнителни интерфейси и класове (т.е. неспоменати изрично в условието), които бихте добавили, пакетът е по ваша преценка.
