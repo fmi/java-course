@@ -66,7 +66,7 @@ public interface CoffeeMachine {
 	 public Product brew(Beverage beverage, int quantity)
 	 ```
 
-Всяка кафе машина се асоциира с контейнер, който съдържа информация за текущото наличие на отделните съставки (кафе, мляко, вода, ..). Напишете интерфейс или абстрактен клас, който съдържа следните методи:
+Всяка кафе машина се асоциира с контейнер, който съдържа информация за текущото наличие на отделните съставки (кафе, мляко, вода, ..). Напишете интерфейс или абстрактен клас `Container`, който съдържа следните методи:
 ``` java
 package bg.fmi.mjt.lab.coffee_machine.container;
 [...]
@@ -98,15 +98,16 @@ package bg.fmi.mjt.lab.coffee_machine.container;
 - `public String getName()` - връща името на напитката, която е била направено (Espresso, Cappucinno или Mochaccino)
 - `public int getQuantity()` - връща количеството напитки, които машината е направила (след извикване на метода `brew()`)
 - `public String getLuck()` - връща късметче от списъка:
-	 0. If at first you don't succeed call it version 1.0.
-	 1. Today you will make magic happen!
-	 2. Have you tried turning it off and on again?
-	 3. Life would be much more easier if you had the source code.
 
-		Масивът от късметчета се обхожда циклично от първото късметче до последното - когато прочетем и последното късметче започваме пак отначало.
-		Ако машината не поддържа функция късметче, методът връща `null`.
+	0 - If at first you don't succeed call it version 1.0.  
+	1 - Today you will make magic happen!  
+	2 - Have you tried turning it off and on again?  
+	3 - Life would be much more easier if you had the source code.  
 
-		**Note** : Индексите във вашия масив трябва да съвпадат с индексите по-горе.
+	Масивът от късметчета се обхожда циклично от първото късметче до последното - когато прочетем и последното късметче започваме пак отначало.
+	Ако машината не поддържа функция късметче, методът връща `null`.
+
+	**Note** : Индексите във вашия масив трябва да съвпадат с индексите по-горе.
 
 Създайте класове `Espresso`, `Cappuccino` и `Mochaccino`, които имплементират интерфейса `Beverage`. Те ще дават информация за това как се прави конкретната напитка.
 
@@ -162,4 +163,4 @@ src
       └─ (...)
 ```
 
-Качете архив на папката `src`.
+Качете zip на директорията `src`.
