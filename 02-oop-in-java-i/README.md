@@ -50,7 +50,7 @@ public class Main {
 		dev.sayHi();
 
 		Company company = new Company(); // with import
-		System.out.println(company);
+		System.out.println(company.toString());
 	}
 }
 ```
@@ -236,8 +236,8 @@ public class Hero extends Actor {
 		Actor actor = new Actor();
 		Actor hero = new Hero();
 
-		actor.getMana(); // 42.0
-		hero.getMana();  // 100.0
+		System.out.println(actor.getMana()); // 42.0
+		System.out.println(hero.getMana()); //100.0
 	}
 }
 ```
