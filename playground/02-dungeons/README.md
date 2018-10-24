@@ -97,7 +97,7 @@
 
 `GameEngine` класът трябва да има следните публични методи:
 
-* конструктор, който прима следните аргументи - `char[][] map, Hero hero, Enemy[] enemies, Treasure[] treasures, Position heroPosition`
+* конструктор, който прима следните аргументи - `char[][] map, Hero hero, Enemy[] enemies, Treasure[] treasures`
 * `char[][] getMap()` - връща текущото състояние на картата
 * `Position getHeroPosition()` - връща текущата позиция на героя
 * `String makeMove(Direction direction)` - където `direction` е посоката на движение на героя.

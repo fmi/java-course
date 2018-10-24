@@ -12,7 +12,7 @@ import bg.uni.sofia.fmi.mjt.dungeon.treasure.Spell;
 import bg.uni.sofia.fmi.mjt.dungeon.treasure.Treasure;
 import bg.uni.sofia.fmi.mjt.dungeon.treasure.Weapon;
 
-public class GameEngineTest implements TestUtils {
+public class GameEngineTest {
 	private Hero hero;
 	private char[][] map;
 	private Enemy[] enemies;
@@ -59,4 +59,7 @@ public class GameEngineTest implements TestUtils {
 		assertEquals("strong weapon", gameEngine.getHero().getWeapon().getName());
 		assertEquals(50, gameEngine.getHero().getWeapon().getDamage());
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 84f38e71930b7254b79f8937c7cccd3705c1349f
