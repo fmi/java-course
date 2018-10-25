@@ -32,11 +32,24 @@ public class Person implements Loveable, Likeable {
 
 ### Wrapper classes
 
-В Java всяка променлива си има свой Wrapper Class: int -> Integer, char -> CHARACTER ....
+В Java всеки примитивен тип си има свой Wrapper Class: int -> Integer, char -> Character ....
 Wrapper класовете се използват за да конвертират всеки примитив в Обект. Както всеки клас в Java,
 така и Wrapper класовете наследяват неявно java.lang.Object класа. В практиката често се използват
 при колекциите, защото те приемат само обекти(Повече за това на следващата лекция).
 Java компилаторът може автоматично да конвертира от примитив в Wrapepr Class и обратно(autoboxing и autounboxing). Поради тази възможнот, Java ни позволява да правим неща като: Integer number = 5;
+
+
+| Primitive type | Wrapper type |
+|----------------|--------------|
+| boolean        | Boolean      |
+| char           | Character    |
+| byte           | Byte         |
+| short          | Short        |
+| int            | Integer      |
+| long           | Long         |
+| float          | Float        |
+| double         | Double       |
+| void           | Void         |
 
 
 ```java
@@ -45,9 +58,9 @@ public class Main {
 		Integer firstNum = 1;
 		Integer secondNum = 1;
 		
-		System.out.println(firstNum.compareTo(secondNum)); //???
-		System.out.println(firstNum.equals(secondNum));    //???
-		System.out.println(firstNum == secondNum);         //???
+		System.out.println(firstNum.compareTo(secondNum)); //0
+		System.out.println(firstNum.equals(secondNum));    //true
+		System.out.println(firstNum == secondNum);         //true
 	}
 }
 ```
@@ -108,7 +121,8 @@ Static в Java може да стои общо взето при деклара�
 Преди Java 8 са се пазили в PermGen.
 След Java 8 се пазят в Metaspace.
 
-Това представляват късчета памет, различни от познатите ни stack и heap, които пазят всички данни асоциирани с класовете. Нуждата от промяна след Java 8 възниква, защото PermGem се е заделял автоматично преди старт на JVM-a. По този начин друдно може да се прецени нужните ресурси, които трябва да му се заделят. Metaspace представлява resizing структура, която автоматично се resize-ва при достигане на нейния капацитет.
+[тук може да прочетете повече](https://dzone.com/articles/java-8-permgen-metaspace).
+
 
 
 ```java
@@ -138,6 +152,7 @@ public class HealthPotion implements Treasure {
 3) Errors: При тях нищо не може да се направи и програмата ни се терминира(OutOfMemoryError Exception).
 
 При улавянето на Exception-и е важно в catch блока да ги редуваме от по- конкретна към по- обща.
+При наличието на finally блок, без значение развоя на събитията, кодът в него *винаги се изпълнява след try-catch секцията.
 
 ```java
 public class CustomException extends Exception{
@@ -151,18 +166,52 @@ public class CustomException extends Exception{
 
 ```java
 public void throwException() throws CustomException {
-		throw new CustomException("Bad Exception");
-	}
+	throw new CustomException("Bad Exception");
+}
 	
-	public void iDoNotKnowWhatToDoWithThisException() throws CustomException {
-		throwException();
-	}
+public void iDoNotKnowWhatToDoWithThisException() throws CustomException {
+	throwException();
+}
 	
-	public void iWillHandleTheException() {
-		try {
-			iDoNotKnowWhatToDoWithThisException();
-		} catch (CustomException e) {
-			System.out.println("The exception finally is gone");
-		}
+public void iWillHandleTheException() {
+	try {
+		iDoNotKnowWhatToDoWithThisException();
+	} catch (CustomException e) {
+		System.out.println("The exception finally is gone");
 	}
+}
+```
+
+```java
+public static int getNumber() {	
+	try {
+		throw new Exception();
+		//return 1;  -> Unreachable
+	} catch (Exception e) {
+		return 2;
+	} finally {
+		return 3;
+	}
+}
+
+public static void main(String[] args) {
+	getNumber(); // 3
+}
+```
+
+```java
+public static void terminate() {
+	try {
+		throw new Exception();
+	} catch (Exception e) {
+		System.out.println("I am in catch block");
+		System.exit(0);
+	} finally {
+		System.out.println("I am in finally block");
+	}
+}
+
+public static void main(String[] args) {
+	terminate(); // I am in catch block
+}
 ```
