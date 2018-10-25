@@ -59,7 +59,3 @@ public class GameEngineTest {
 		assertEquals("strong weapon", gameEngine.getHero().getWeapon().getName());
 		assertEquals(50, gameEngine.getHero().getWeapon().getDamage());
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> 84f38e71930b7254b79f8937c7cccd3705c1349f
