@@ -2,6 +2,9 @@
 
 ### Interfaces
 
+Когато имаме 2 интерфейса с един и същ default-ен метод, то в имплементационния клас трябва задължително да предоставим имплементация на въпросния метод. Може да извикаме конкретна default-на имплементация от даден интерфейс, използвайки синтаксиса `{Interface}.super.{method}` (например `Likeable.super.saySomething()`).
+
+
 ```java
 public interface Likeable {
 	public default void saySomething() {
@@ -11,7 +14,7 @@ public interface Likeable {
 ```
 
 ```java
-public interface Loveable {
+public interface Lovable {
 	public default void saySomething() {
 		System.out.println("I love you");
 	}
@@ -19,38 +22,34 @@ public interface Loveable {
 ```
 
 ```java
-public class Person implements Loveable, Likeable {
+public class Person implements Lovable, Likeable {
 
 	@Override
 	public void saySomething() {
 		Likeable.super.saySomething();
 	}
 }
-
 ```
-
 
 ### Wrapper classes
 
 В Java всеки примитивен тип си има свой Wrapper Class: int -> Integer, char -> Character ....
 Wrapper класовете се използват за да конвертират всеки примитив в Обект. Както всеки клас в Java,
 така и Wrapper класовете наследяват неявно java.lang.Object класа. В практиката често се използват
-при колекциите, защото те приемат само обекти(Повече за това на следващата лекция).
-Java компилаторът може автоматично да конвертира от примитив в Wrapepr Class и обратно(autoboxing и autounboxing). Поради тази възможнот, Java ни позволява да правим неща като: Integer number = 5;
+при колекциите, защото те приемат само обекти (повече за това на следващата лекция).
+Java компилаторът може автоматично да конвертира от примитив в Wrappеr Class (autoboxing) и обратно (autounboxing). Поради тази възможнот, Java ни позволява да правим неща като: `Integer number = 5;`
 
-
-| Primitive type | Wrapper type |
-|----------------|--------------|
-| boolean        | Boolean      |
-| char           | Character    |
-| byte           | Byte         |
-| short          | Short        |
-| int            | Integer      |
-| long           | Long         |
-| float          | Float        |
-| double         | Double       |
-| void           | Void         |
-
+| Примитивен тип | Wrapper клас | Пример за използване |
+| -------------- |:------------:| :-------------------:|
+| boolean        | Boolean      | new Boolean(true)    |
+| byte           | Byte         | new Byte((byte) 1)   |
+| short          | Short        | new Short((short) 1) |
+| int            | Integer      | new Integer(1)       |
+| long           | Long         | new Long(1)          |
+| float          | Float        | new Float(1.0)       |
+| double         | Double       | new Double(1.0)      |
+| char           | Character    | new Character('a')   |
+| void           | Void         | -                    |
 
 ```java
 public class Main {
@@ -58,40 +57,43 @@ public class Main {
 		Integer firstNum = 1;
 		Integer secondNum = 1;
 		
-		System.out.println(firstNum.compareTo(secondNum)); //0
-		System.out.println(firstNum.equals(secondNum));    //true
-		System.out.println(firstNum == secondNum);         //true
+		System.out.println(firstNum.compareTo(secondNum)); // 0
+		System.out.println(firstNum.equals(secondNum));    // true
+		System.out.println(firstNum == secondNum);         // true
 	}
 }
 ```
 
+### Йерархия на Wrapper класовете
+
+![hierarchy](http://tinyimg.io/i/a6BPbvk.png)
+
 ### Enums
 
 Enum-ите в Java имат функционалността да дефинират изборими множества, както Enum-ите във всеки един език за програмиране + още нещо. В Java всеки един Enum е наследник на java.lang.Enum, който от своя страна ни предоставя методи като values() и valueOf() на готово. Java Enum-ите също като всеки друг клас могат да си имат 
-член данни и конструктур. Важно е да отбележим, че всеки Enum очаква в началото, след scope-a на класа да види първо изборимите си множества.
-
+член данни и конструктор (може да бъде само package-private или private). Важно е да отбележим, че всеки Enum очаква в началото, след декларацията да види първо изброимите си множества.
 
 ```java
 public enum VirtualMachineSize {
-	
-	X_SMALL(1, 256),
-	SMALL(1, 512),
-	MEDIUM(2, 1024), 
-	LARGE(3, 2048),
-	X_LARGE(4, 4096);
-	
+
+	X_SMALL(1, 2048),
+	SMALL(2, 4096),
+	MEDIUM(4, 8192), 
+	LARGE(8, 16384),
+	X_LARGE(16, 32768);
+
 	public final int cpu;
 	public final int memory;
-	
+
 	VirtualMachineSize(int cpu, int memory) {
 		this.cpu = cpu;
 		this.memory = memory;
 	}
-	
+
 	public int getCpu() {
 		return cpu;
 	}
-	
+
 	public int getMemory() {
 		return memory;
 	}
@@ -101,36 +103,31 @@ public enum VirtualMachineSize {
 ```java
 public class Main {
 	public static void main(String[] args) {
-		VirtualMachineSize.LARGE.getCpu(); //3
+		VirtualMachineSize.LARGE.getCpu(); // 8
 		VirtualMachineSize.values()[0]; // X_SMALL
 		VirtualMachineSize.values()[2]; // MEDIUM
 		VirtualMachineSize size = VirtualMachineSize.valueOf("SMALL");
-		size.getCpu(); // 1	
+		size.getCpu(); // 2
 	}
 }
 ```
 
-### Static 
+### Static
 
-Static в Java може да стои общо взето при декларацията на член данни и методи. Static член данните(Методите) се асоциират със самия клас, а не с неговите инстанции(Много различни окръжности можем на начертаем, но всички ползват едно и също PI). Static метод може да приема само static член данни и да вика само static методи от външния свят(извън своя scope).
+Ключовата дума `static` в Java може да се използва при декларацията на член данни и методи. Static член данните/методите се асоциират със самия клас, а не с неговите инстанции (много различни окръжности можем на начертаем, но всички ползват едно и също PI, т.е PI не се обвързва с конкретна инстанция, а със самия клас Circle). Static метод може да реферира само static член данни и да вика само static методи.
 
 Къде се пазят всички static член данни?
 
 Не са нито в stack-a, нито в heap-a.
 
-Преди Java 8 са се пазили в PermGen.
-След Java 8 се пазят в Metaspace.
-
-[тук може да прочетете повече](https://dzone.com/articles/java-8-permgen-metaspace).
-
-
+Преди Java 8 се пазят в PermGen. След Java 8 се пазят в Metaspace. Може да намерите повече информация [тук](https://dzone.com/articles/java-8-permgen-metaspace).
 
 ```java
 public class HealthPotion implements Treasure {
 	private static final String HEALTH_POTION_FOUND_MESSAGE = "Health potion found! %d health points added to your hero!";
 	private static final String HERO_IS_NOT_ALIVE_MESSAGE = "Hero is not alive";
 
-	---------------------------------------------
+	// omitted
 
 	public String collect(Hero hero) {
 		if (hero.isAlive()) {
@@ -143,42 +140,42 @@ public class HealthPotion implements Treasure {
 }
 ```
 
-###Exceptions
+### Exceptions
 
-Всеки Exception в Java е наследник на класа Throwable. Съществуват 3 групи Exception-и.
+Всеки Exception в Java е наследник на класа Throwable. Съществуват 2 групи изключения:
 
-1) Checked Exceptions(Compile time Exceptions): Компилаторът ни задължава да ги обработим или прехвърлим нагоре по веригата(IOException).
-2) Unchecked Exceptions(Runtime Exceptions): Невидими за компилаторът и доста често подсказват, че кодът ни не работи правилно в определени сценарии(IndexOutOfBoundsException).
-3) Errors: При тях нищо не може да се направи и програмата ни се терминира(OutOfMemoryError Exception).
+1) Exceptions
+  - Checked Exceptions (Compile time Exceptions) - компилаторът ни задължава да ги обработим или прехвърлим нагоре по веригата (например java.io.IOException).
+  - Unchecked Exceptions (Runtime Exceptions) - невидими за компилатора и доста често подсказват, че в кода ни има бъг (например java.lang.IndexOutOfBoundsException). Не е добра практика runtime exception-ите да бъдат прихващани. Хубаво е да си debug-нем кода и да си отстраним бъговете.
+2) Errors - при тях нищо не може да се направи и програмата ни се терминира (например java.lang.OutOfMemoryError).
 
-При улавянето на Exception-и е важно в catch блока да ги редуваме от по- конкретна към по- обща.
-При наличието на finally блок, без значение развоя на събитията, кодът в него *винаги се изпълнява след try-catch секцията.
+При прихващането на Exception-и е задължително в catch блока да ги изредим от по-конкретния към по-общия.
+При наличието на finally блок, без значение развоя на събитията, кодът в него \*винаги се изпълнява след try-catch секцията.
 
 ```java
-public class CustomException extends Exception{
-	
+public class CustomException extends Exception {
+
 	public CustomException(String message) {
 		super(message);
 	}
-	
 }
 ```
 
 ```java
-public void throwException() throws CustomException {
-	throw new CustomException("Bad Exception");
-}
-	
-public void iDoNotKnowWhatToDoWithThisException() throws CustomException {
-	throwException();
-}
-	
 public void iWillHandleTheException() {
 	try {
 		iDoNotKnowWhatToDoWithThisException();
 	} catch (CustomException e) {
 		System.out.println("The exception finally is gone");
 	}
+}
+
+public void iDoNotKnowWhatToDoWithThisException() throws CustomException {
+	throwException();
+}
+
+public void throwException() throws CustomException {
+	throw new CustomException("Bad Exception");
 }
 ```
 
