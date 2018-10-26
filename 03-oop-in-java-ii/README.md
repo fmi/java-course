@@ -2,7 +2,7 @@
 
 ### Interfaces
 
-Когато имаме 2 интерфейса с един и същ default-ен метод, то в имплементационния клас трябва задължително да предоставим имплементация на въпросния метод. Може да извикаме конкретна default-на имплементация от даден интерфейс, използвайки синтаксиса `{Interface}.super.{method}` (например `Likeable.super.saySomething()`).
+Когато имаме 2 интерфейса с един и същ default-ен метод, то в имплементационния клас трябва задължително да предоставим имплементация на въпросния метод. Може да дадем нова имплементация, или да извикаме конкретна default-на имплементация от даден интерфейс, използвайки синтаксиса `{Interface}.super.{method}` (например `Likeable.super.saySomething()`).
 
 
 ```java
@@ -35,9 +35,9 @@ public class Person implements Lovable, Likeable {
 
 В Java всеки примитивен тип си има свой Wrapper Class: int -> Integer, char -> Character ....
 Wrapper класовете се използват за да конвертират всеки примитив в Обект. Както всеки клас в Java,
-така и Wrapper класовете наследяват неявно java.lang.Object класа. В практиката често се използват
+така и Wrapper класовете наследяват неявно `java.lang.Object` класа. В практиката често се използват
 при колекциите, защото те приемат само обекти (повече за това на следващата лекция).
-Java компилаторът може автоматично да конвертира от примитив в Wrappеr Class (autoboxing) и обратно (autounboxing). Поради тази възможнот, Java ни позволява да правим неща като: `Integer number = 5;`
+Java компилаторът може автоматично да конвертира от примитив в инстанция на Wrappеr Class (autoboxing) и обратно (autounboxing). Поради тази възможнот, Java ни позволява да правим неща като: `Integer number = 5;`
 
 | Примитивен тип | Wrapper клас | Пример за използване |
 | -------------- |:------------:| :-------------------:|
@@ -70,8 +70,7 @@ public class Main {
 
 ### Enums
 
-Enum-ите в Java имат функционалността да дефинират изборими множества, както Enum-ите във всеки един език за програмиране + още нещо. В Java всеки един Enum е наследник на java.lang.Enum, който от своя страна ни предоставя методи като values() и valueOf() на готово. Java Enum-ите също като всеки друг клас могат да си имат 
-член данни и конструктор (може да бъде само package-private или private). Важно е да отбележим, че всеки Enum очаква в началото, след декларацията да види първо изброимите си множества.
+Enum-ите в Java дефинират крайни изброими множества. В Java всеки Enum е наследник на `java.lang.Enum`, който от своя страна ни предоставя методи като values() и valueOf() наготово. Java Enum-ите също като всеки друг клас могат да си имат член данни и конструктор (може да бъде само package-private или private). Важно е да отбележим, че първото в дефиницията (тялото) на всеки Enum трябва да е списъкът от инстанциите му.
 
 ```java
 public enum VirtualMachineSize {
@@ -114,13 +113,13 @@ public class Main {
 
 ### Static
 
-Ключовата дума `static` в Java може да се използва при декларацията на член данни и методи. Static член данните/методите се асоциират със самия клас, а не с неговите инстанции (много различни окръжности можем на начертаем, но всички ползват едно и също PI, т.е PI не се обвързва с конкретна инстанция, а със самия клас Circle). Static метод може да реферира само static член данни и да вика само static методи.
+Ключовата дума `static` в Java може да се използва при декларацията на член-данни и методи. Static член-данните/методите се асоциират със самия клас, а не с неговите инстанции (много различни окръжности можем да начертаем, но всички ползват едно и също PI, т.е PI не се обвързва с конкретна инстанция, а със самия клас `Circle`). Static метод може да реферира само static член-данни и да вика само static методи.
 
-Къде се пазят всички static член данни?
+Къде се пазят всички static член-данни?
 
 Не са нито в stack-a, нито в heap-a.
 
-Преди Java 8 се пазят в PermGen. След Java 8 се пазят в Metaspace. Може да намерите повече информация [тук](https://dzone.com/articles/java-8-permgen-metaspace).
+Преди Java 8 се пазят в специална област на паметта, т.нар. PermGen. След Java 8 се пазят в друга специална област, т.нар. Metaspace. Може да намерите повече информация [тук](https://dzone.com/articles/java-8-permgen-metaspace).
 
 ```java
 public class HealthPotion implements Treasure {
@@ -142,15 +141,15 @@ public class HealthPotion implements Treasure {
 
 ### Exceptions
 
-Всеки Exception в Java е наследник на класа Throwable. Съществуват 2 групи изключения:
+Всеки Exception в Java е наследник на класа `Throwable`. Съществуват 2 групи изключения:
 
 1) Exceptions
-  - Checked Exceptions (Compile time Exceptions) - компилаторът ни задължава да ги обработим или прехвърлим нагоре по веригата (например java.io.IOException).
-  - Unchecked Exceptions (Runtime Exceptions) - невидими за компилатора и доста често подсказват, че в кода ни има бъг (например java.lang.IndexOutOfBoundsException). Не е добра практика runtime exception-ите да бъдат прихващани. Хубаво е да си debug-нем кода и да си отстраним бъговете.
-2) Errors - при тях нищо не може да се направи и програмата ни се терминира (например java.lang.OutOfMemoryError).
+  - Checked Exceptions (Compile-time Exceptions) - компилаторът ни задължава да ги обработим или прехвърлим нагоре по веригата (например `java.io.IOException`).
+  - Unchecked Exceptions (Runtime Exceptions) - невидими за компилатора и доста често подсказват, че в кода ни има бъг (например `java.lang.IndexOutOfBoundsException`). Не е добра практика runtime exception-ите да бъдат прихващани. Хубаво е да си debug-нем кода и да си отстраним бъговете.
+2) Errors - при тях нищо не може да се направи и програмата ни се терминира (например `java.lang.OutOfMemoryError`).
 
-При прихващането на Exception-и е задължително в catch блока да ги изредим от по-конкретния към по-общия.
-При наличието на finally блок, без значение развоя на събитията, кодът в него \*винаги се изпълнява след try-catch секцията.
+При прихващането на няколко различни Exception-и в един try-catch е задължително `catch` блокoвете да са подредени от по-конкретния към по-общия (в смисъл на йерархията на наследяване).
+При наличието на `finally` блок, без значение от развоя на събитията, кодът в него \*винаги се изпълнява след try-catch секцията.
 
 ```java
 public class CustomException extends Exception {
@@ -201,14 +200,14 @@ public static void terminate() {
 	try {
 		throw new Exception();
 	} catch (Exception e) {
-		System.out.println("I am in catch block");
+		System.out.println("I am in a catch block");
 		System.exit(0);
 	} finally {
-		System.out.println("I am in finally block");
+		System.out.println("I am in a finally block");
 	}
 }
 
 public static void main(String[] args) {
-	terminate(); // I am in catch block
+	terminate(); // "I am in a catch block"
 }
 ```
