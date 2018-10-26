@@ -4,7 +4,7 @@
 
 Създайте система за проследяване на грешки (bug tracking), проблеми (issue tracking) и управление на разработката на софтуерни проекти. [JIRA](https://www.atlassian.com/software/jira)
 
-Issue Tracker-ът трябва да имплементира следният интерфейс:
+Issue Tracker-ът трябва да имплементира следния интерфейс:
 
 ```java
 public interface IssueTracker {
