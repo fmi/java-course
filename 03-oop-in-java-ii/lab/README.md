@@ -26,7 +26,7 @@ public interface IssueTracker {
 Класът, който го имплементира, трябва да има следният конструктор:
 
 ```java
-     public Jira(Issue[] issues);
+public Jira(Issue[] issues);
 ```
 *Issue* класът трябва да имплементира следният интерфейс:
 
