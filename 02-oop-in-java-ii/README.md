@@ -57,9 +57,9 @@ public class Main {
 		Integer firstNum = 1;
 		Integer secondNum = 1;
 		
-		System.out.println(firstNum.compareTo(secondNum)); // 0
-		System.out.println(firstNum.equals(secondNum));    // true
-		System.out.println(firstNum == secondNum);         // true
+		System.out.println(firstNum.compareTo(secondNum)); // 
+		System.out.println(firstNum.equals(secondNum));    // 
+		System.out.println(firstNum == secondNum);         // 
 	}
 }
 ```
@@ -192,7 +192,7 @@ public static int getNumber() {
 }
 
 public static void main(String[] args) {
-	getNumber(); // 3
+	getNumber(); 
 }
 ```
 
@@ -209,6 +209,6 @@ public static void terminate() {
 }
 
 public static void main(String[] args) {
-	terminate(); // I am in catch block
+	terminate(); 
 }
 ```
