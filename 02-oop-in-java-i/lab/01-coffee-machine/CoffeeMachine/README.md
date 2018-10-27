@@ -5,7 +5,7 @@
 Когато става въпрос за дизайн, трябва да се съобразим с редица фактори и ограничения, като често се налага вземането на компромисни решения (e.g. оставихме метода `updateSupplies(Beverage beverage)` публичен, а премахнахме setter-ите на контейнерите).
 
 ### Клас диаграма
-![class-diagram](../../../images/java-logo.png?raw=true)
+![class-diagram](../../../../images/coffee-machine-class-diagram.png?raw=true)
 
 ### FAQ
 **Защо `PremiumCoffeeMachine` не наследява `BasicCoffeeMachine`?**
