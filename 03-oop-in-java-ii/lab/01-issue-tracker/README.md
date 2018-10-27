@@ -55,7 +55,7 @@ public Issue(IssuePriority priority, Component component, User reporter, String 
   * приоритет, който може да бъде TRIVIAL, MINOR, MAJOR, CRITICAL.
   * resolution(как issue-то е било resolve-нато), който може да бъде FIXED, WONT_FIX, DUPLICATE, CANNOT_REPRODUCE, UNRESOLVED. При създаване, статусът е UNRESOLVED по подразбиране.
   * статус на issue-то, който може да бъде OPEN, IN_PROGRESS, RESOLVED, REOPENED. При създаване, статусът е OPEN по подразбиране.
-  * тип на issue-то, който може да бъде TASK, BUG, NEW_FEATURE, кato TASK и NEW_FEATURE са Issue-та, които дадено време, за което трябва да бъдат изпълнени (dueTime).
+  * тип на issue-то, който може да бъде TASK, BUG, NEW_FEATURE, кaтo TASK и NEW_FEATURE са Issue-та, които имат и допълнително поле за време, до което трябва да бъдат изпълнени (dueTime).
   * компонента, на която принадлежи issue-то.
   * кога е създадено във времето.
   * кога е променяно за последно във времето.
