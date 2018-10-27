@@ -38,6 +38,10 @@ public interface IIssue {
 	public void setStatus(IssueStatus status);
 
 	public String getId();
+	
+	public LocalDateTime getCreatedAt();
+	
+	public LocalDateTime getLastModifiedAt();
 }
 ```
 
@@ -79,13 +83,14 @@ src
 ╷
 └─ bg/sofia/uni/fmi/jira/
    └─ Component.java
-   └─ Issue.java
    └─ User.java
    └─ Jira.java
-   (...)
+   └─(...)
    └─ issues/
-      (...)
+      └─ Issue.java
+      └─(...)
       └─ exceptions/
+         └─(...)
    └─ interfaces/
      └─ IIssue.java
      ├─ IssueTracker.java
@@ -97,3 +102,15 @@ src
 * *Hint* За местата, на които смятате, че ви трябва тип време, използвайте [java.time API](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html) и обърнете по-специално внимание на `LocalDateTime` класа и неговите методи.
 
 Успех, и не се срамувайте да задавате въпроси!
+
+*Hints after the exercise, за да Ви минат успешно тестовете*
+------------------------
+
+* Трябва да създате класове за отделните типове Issue-та, тоест трябва да имате:
+	- bg.sofia.uni.fmi.jira.issues.Bug.java;
+	- bg.sofia.uni.fmi.jira.issues.NewFeature.java;
+	- bg.sofia.uni.fmi.jira.issues.Task.java;
+	
+* Всяко Issue трябва да има методи, със следната сигнатура(Добавени са и в интефейса IIssue по-горе вече): 
+	- *public LocalDateTime getCreatedAt();*. 
+	- *public LocalDateTime getLastModifiedAt();*. 
