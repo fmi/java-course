@@ -114,3 +114,8 @@ Hints after the exercise, за да ви минат успешно тестов�
 * Всяко `Issue` трябва да има методи със следната сигнатура (добавени са и в интефейса `IIssue` по-горе вече): 
 	- `public LocalDateTime getCreatedAt();` 
 	- `public LocalDateTime getLastModifiedAt();` 
+	
+* Конструкторите на NewFeature и Task трябва да приемат като последен параметър 'LocalDateTime dueTime'.
+
+* Конструкторите на Issue, Bug, NewFeature и Task не трябва да хвърлят друг checked exception, освен InvalidReporterException.	
+
