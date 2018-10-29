@@ -45,21 +45,25 @@ _30.10.2018_
 
 ---
 
-#### Интерфейси Iterаtor и Iterable
+#### Интерфейси Iterator и Iterable
 
 ```java
 public interface Iterator<E> {
-      boolean hasNext(); // return true if the iterator has more elements
-      E next(); // return the next element in the iterator
-      void remove(); // remove the last element returned by the iterator
+      boolean hasNext();
+      E next();
+      void remove();
 }
 ```
 
 ```java
 public interface Iterable<T> {
- Iterator<T> iterator(); // return an iterator over elements of type T
+ Iterator<T> iterator();
 }
 ```
+
+---
+
+#### Интерфейси Iterator и Iterable
 
 - Итераторите предоставят унифициран начин за обхождане на елементите на дадена колекция.
 - Колекциите (както и масивите) могат да се обхождат с foreach loop
@@ -67,10 +71,22 @@ public interface Iterable<T> {
 
 ---
 
-#### Колекции - интерфейси
+#### Основни структури от данни
 
-От птичи поглед:
-![Collection interfaces](images/04.1-collections-interfaces.png?raw=true)
+Основните структури от данни, използвани в имплементациите на колекциите са
+
+- Масиви
+- Свързани списъци
+- Хеш таблици
+- Дървета
+
+---
+
+![Collection diagrams](images/04.2-collections-diagram.png?raw=true)
+
+---
+
+![Map hierarchy](images/04.2.1-java-map-hierarchy.png?raw=true)
 
 ---
 
@@ -97,14 +113,6 @@ Object[] toArray()
 @[1-6]
 @[8-12]
 @[14-15]
-
----
-
-![Collection diagrams](images/04.2-collections-diagram.png?raw=true)
-
----
-
-![Map diagram](images/04.3-map-diagram.png?raw=true)
 
 ---
 
