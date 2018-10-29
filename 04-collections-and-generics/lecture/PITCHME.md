@@ -49,13 +49,11 @@ _30.10.2018_
 
 ```java
 public interface Iterator<E> {
-      boolean hasNext();
-      E next();
-      void remove();
+    boolean hasNext();
+    E next();
+    void remove();
 }
-```
 
-```java
 public interface Iterable<T> {
  Iterator<T> iterator();
 }
@@ -137,20 +135,6 @@ public interface Comparator<T> {
 
 ---
 
-#### Колекции - имплементации
-
-- ArrayList - списък върху динамичен масив. Константна амортизирана сложност за повечето операции.
-- LinkedList - свързан списък
-- TreeMap/TreeSet - червено-черни дървета. Запазват естествена наредба. Елементите трябва да имплементират интерфейса Comparable и метода #equals. Логаритмична сложност за повечето операции.
-
----
-
-#### Колекции - имплементации (2)
-
-- HashMap/HashSet - хеш таблици. Нямат естествена наредба. Елементите трябва да имплементират методите #hashCode и #equals. Константна сложност за повечето операции.
-
----
-
 __List__
 
 ```java
@@ -179,6 +163,46 @@ List<E> subList(int fromIndex, int toIndex)
 
 ---
 
+#### Имплементации на List
+
+- ArrayList - списък върху динамичен масив
+- LinkedList - свързан списък
+- Vector - динамичен масив
+- Stack - стек
+
+---
+
+__Queue__
+
+```java
+boolean add(E e)
+
+// Retrieves, but does not remove, the head of the queue
+E peek()
+
+// Retrieves and removes the head of the queue
+// Returns null if the queue is empty
+E poll()
+
+// Retrieves and removes the head of the queue
+// Throws NoSuchElementException if the queue is empty
+E remove()
+```
+
+@[1]
+@[3-4]
+@[6-8]
+@[10-12]
+
+---
+
+#### Имплементации на Queue
+
+- PriorityQueue
+- ArrayDeque
+
+---
+
 __Set__
 
 ```java
@@ -196,6 +220,14 @@ Object[] toArray()
 @[4]
 @[5]
 @[6]
+
+---
+
+#### Имплементации на Set
+
+- TreeSet
+- HashSet
+- LinkedHashSet
 
 ---
 
@@ -245,27 +277,18 @@ Collection<V> values()
 
 ---
 
-__Queue__
+#### Имплементации на Map
 
-```java
-boolean add(E e)
+- TreeMap
+- HashMap
+- LinkedHashMap
 
-// Retrieves, but does not remove, the head of the queue
-E peek()
+---
 
-// Retrieves and removes the head of the queue
-// Returns null if the queue is empty
-E poll()
+#### Колекции с наредба vs Колекции без наредба
 
-// Retrieves and removes the head of the queue
-// Throws NoSuchElementException if the queue is empty
-E remove()
-```
-
-@[1]
-@[3-4]
-@[6-8]
-@[10-12]
+- TreeMap/TreeSet - червено-черни дървета. Запазват естествена наредба. Елементите трябва да имплементират интерфейса Comparable и метода equals(). Логаритмична сложност за повечето операции.
+- HashMap/HashSet - хеш таблици. Нямат естествена наредба. Елементите трябва да имплементират методите hashCode() и equals(). Константна сложност за повечето операции.
 
 ---
 
@@ -290,7 +313,7 @@ Collections.sort(nums, Collections.reverseOrder());
 
 ---
 
-- Търсене (#indexOf, #binarySearch)
+- Търсене: indexOf(), binarySearch()
 
 ```java
 List<Integer> nums = Arrays.asList(4, 9, 0, 7, -1);
@@ -306,7 +329,7 @@ index = Collections.binarySearch(nums, -1);
 
 ---
 
-- Разбъркване (#shuffle)
+- Разбъркване: shuffle()
 
 ```java
 List<Integer> nums = Arrays.asList(4, 9, 0, 7, -1);
@@ -318,7 +341,7 @@ Collections.shuffle(nums);
 
 ---
 
-- Манипулация (__#copy__, __#fill__, #reverse, #swap)
+- Манипулаци __copy()__, __fill()__, reverse(), swap())
 
 ```java
 List<String> from = new ArrayList<>();
@@ -344,7 +367,7 @@ Collections.fill(list, "a");
 
 ---
 
-- Манипулация (#copy, #fill, __#reverse__, __#swap__)
+- Манипулация copy(), fill(), __reverse()__, __swap()__)
 
 ```java
 List<String> list = new ArrayList<>();
@@ -361,7 +384,7 @@ Collections.swap(list, 0, 1);
 
 ---
 
-- Статистики (#min, #max, #frequency)
+- Статистики: min(), max(), frequency()
 
 ```java
 Set<Integer> nums = Set.of(4, 9, 0, 7, -1);
@@ -400,21 +423,7 @@ $ javac FindDistinctWords.java && \
 
 ---
 
-#### Итератори
-
-- Итераторът е обект, който позволява обхождане на елементите на колекция
-
-```java
-public interface Iterator<E> {
-    boolean hasNext();
-    E next();
-    void remove(); //optional
-} 
-```
-
----
-
-- Също така чрез итератор можем да премахнем елементи на колекцията
+#### Премахване на елементи на колекция при итериране
 
 ```java
 private static void filter(Collection<String> collection) {
@@ -504,7 +513,12 @@ cities = Map.ofEntries(
 
 ---
 
-details for previous slide
+#### Collection factory методи
+
+- Колекциите, създавани с factory методите са immutable
+- Заемат по-малко памет от mutable събратята си
+- Не могат да съдържат null елементи
+- При едно и също съдържание, могат да връщат нови инстанции или референции към съществуващи
 
 ---
 
