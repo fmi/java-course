@@ -88,6 +88,51 @@ public interface Iterable<T> {
 
 ---
 
+#### Обхождане на колекции
+
+```java
+List<Float> nums = Arrays.asList(4.999f, 0.271f, 7.1f, -1f);
+```
+
+- Чрез enhanced for-loop:
+
+```java
+for (float current : nums) {
+	System.out.printf("%.2f%n", current);
+}
+```
+
+- Чрез итератор:
+
+```java
+Iterator<Float> iterator = nums.iterator();
+while (iterator.hasNext()) {
+	System.out.printf("%.2f%n", iterator.next());
+}
+```
+
+---
+
+#### Обходждане на Map
+
+Според това какво ни е нужно, може да вземем от Map-a:
+
+- множеството от ключовете
+```java
+Set<Integer> keys = map.keySet();
+```
+- колекция от стойностите
+```java
+Collection<String> values = map.values();
+```
+
+- колекция от двойките ключ-стойност
+```java
+Set<Entry<Integer, String>> s = map.entrySet();
+```
+
+---
+
 __java.util.Collection__
 
 ```java
@@ -505,52 +550,6 @@ words.add("baz");
 filter(words);
 // words = [foo]
 ```
-
----
-
-#### Обхождане на колекции
-
-```java
-List<Float> nums = Arrays.asList(4.999f, 0.271f, 7.1f, -1f);
-```
-
-- Чрез enhanced for-loop:
-
-```java
-for (float current : nums) {
-	System.out.printf("%.2f%n", current);
-}
-```
-
-- Чрез итератор:
-
-```java
-Iterator<Float> iterator = nums.iterator();
-while (iterator.hasNext()) {
-	System.out.printf("%.2f%n", iterator.next());
-}
-```
-
----
-
-#### Обходждане на Map
-
-Според това какво ни е нужно, може да вземем от Map-a:
-
-- множеството от ключовете
-```java
-Set<Integer> keys = map.keySet();
-```
-- колекция от стойностите
-```java
-Collection<String> values = map.values();
-```
-
-- колекция от двойките ключ-стойност
-```java
-Set<Entry<Integer, String>> s = map.entrySet();
-```
-
 ---
 
 #### Collection factory методи
@@ -595,22 +594,8 @@ List<E>
 // We read "list of E"
 ```
 
-- Прави се проверка по време на компилация за съвместимост между типовете
-
 - Дават възможност за параметризиране чрез типове на класове и методи
-
----
-
-- "Сурови" типове (raw types)
-
-- Параметърът за тип може да приема кой да е непримитивен тип – клас, интерфейс, масив и т.н.
-
-- Дефиниция
-```java
-class name<T1, T2, ..., Tn> {
-	/* ... */
-}
-```
+- Прави се проверка по време на компилация за съвместимост между типовете
 
 ---
 
@@ -675,6 +660,203 @@ Box<Integer> integerBox = new Box<>();
 - S, U, V etc. - 2nd, 3rd, 4th types
 
 ---
+
+#### Шаблонни методи
+
+- Могат да използват нови параметри за тип, недекларирани от класа
+
+- Новите параметри за тип са видими единствено за метода, който ги декларира
+
+- Могат да са:
+  - статични
+  - на инстанцията
+  - конструктури
+
+---
+
+#### Шаблонни методи – примери
+
+```java
+public class Pair<K, V> {
+	private K key;
+	private V value;
+
+	// Generic constructor
+	public Pair(K key, V value) {
+		this.key = key;
+		this.value = value;
+	}
+	// Generic methods
+	public K getKey()   { return key; }
+	public void setKey(K key) { this.key = key; }
+	public V getValue() { return value; }
+	public void setValue(V value) { this.value = value; }
+}
+```
+
+---
+
+#### Шаблонни методи – примери
+
+```java
+public class Util {
+
+	// Generic static method
+	public static <K, V> boolean compare(
+		Pair<K, V> p1, Pair<K, V> p2) {
+		return p1.getKey().equals(p2.getKey()) &&
+			p1.getValue().equals(p2.getValue());
+	}
+}
+```
+
+---
+
+#### Шаблонни методи - извикване
+
+```java
+Pair<Integer, String> p1 = new Pair<>(1, "apple");
+Pair<Integer, String> p2 = new Pair<>(2, "pear");
+
+// Full syntax
+boolean areSame = Util.<Integer, String>compare(p1, p2);
+
+// Short syntax
+areSame = Util.compare(p1, p2);
+```
+
+---
+
+#### Шаблонни типове - наследяване
+
+- Integer is-a Object
+- Integer is-a Number
+- Double is-a Number
+
+Обаче
+- Box<Integer> is-not-а Box<Number>, техният общ производен клас е Object
+
+---
+
+#### Шаблони и подтипове
+
+- Подтип на шаблонен клас или интерфейс получаваме чрез разширяване или имплементиране
+- Ако аргумента за тип е еднакъв, то is-a връзката е в сила
+
+---
+
+- Пример от Collections framework
+
+![Collection subtypes](images/04.5-collections-subtypes.png?raw=true)
+
+---
+
+#### Wildcards
+
+- ? – означава неизвестен тип
+- Може да се използва за тип на:
+  - параметър
+  - поле на инстанцията
+  - локална променлива
+  - тип на връщане
+- Не може да се използва за аргумент за тип при извикване на:
+  - шаблонен метод
+  - създаването на инстанция на шаблонен клас
+
+---
+
+#### Wildcards, ограничени отгоре
+
+Например, искате да създадете метод, който намира сумата на елементите в списък от Integer, Double, Float, Number.
+
+```java
+public static double sumOfList(List<? extends Number> list) {
+		double sum = 0.0;
+		for (Number current : list) {
+			sum += current.doubleValue();
+		}
+		return sum;
+}
+```
+
+---
+
+#### Неограничени wildcards
+
+- Списък от елементи от неизвестен тип - List<?>
+- List<?> е еквивалентно на List<? extends Object>
+- Използва се, когато:
+  - Функционалността която пишем може да се имплементира единствено със знанието за методите в java.lang.Object
+  - Не се интересуваме от типа на елементите в списъка, а се интересуваме от характеристики на самия списък – например размер на списъка
+
+---
+
+#### Wildcards, ограничени отдолу
+
+- Искаме да създадем метод, които да добавя Integer обекти към списък
+- Искаме методът да работи с колекции от Integer, Number, Object
+
+```java
+public static void addNumbers(List<? super Integer> list) {
+		for (int i = 1; i <= 10; i++) {
+			list.add(i);
+		}
+}
+```
+
+---
+
+#### Изтриване на информацията за типовите аргументите
+
+- Java компилаторът изтрива информацията за типовите аргументи и тази информация не е налична по време на изпълнение
+- Всички типови параметри в шаблонни класове и интерфейси се заместват
+
+---
+
+- Ако са неограничени – с Object:
+
+```java
+public class Box<T> {
+	private T value;
+	public T getValue() { return value; }
+	public void setValue(T value) { this.value = value; }
+}
+```
+
+- След заместване става:
+
+```java
+public class Box {
+	private Object value;
+	public Object getValue() { return value; }
+	public void setValue(Object value) { this.value = value; }
+}
+```
+
+---
+
+- Ако са ограничени – с техния ограничителен тип
+
+```java
+class Shape { /* ... */ }
+class Circle extends Shape { /* ... */ }
+class Rectangle extends Shape { /* ... */ }
+```
+
+Нека имаме дефиниран следния метод, който рисува дадена фигура:
+
+```java
+public static <T extends Shape> void draw(T shape) { /* ... */ }
+```
+
+След заместването на типовия параметър от компилатора се получава:
+
+```java
+public static void draw(Shape shape) { /* ... */ }
+```
+
+---
+
 
 #### Сурови типове (Raw types)
 
@@ -758,212 +940,6 @@ array[0] = "I don't fit in"; // Throws ArrayStoreException
 // Won't compile
 List<Object> list = new ArrayList<Long>(); // Incompatible types
 list.add("I don't fit in");
-```
-
----
-
-#### Шаблонни методи
-
-- Могат да използват нови параметри за тип, недекларирани от класа
-
-- Новите параметри за тип са видими единствено за метода, който ги декларира
-
-- Могат да са:
-  - статични
-  - на инстанцията
-  - конструктури
-
----
-
-#### Шаблонни методи – примери
-
-```java
-public class Pair<K, V> {
-	private K key;
-	private V value;
-
-	// Generic constructor
-	public Pair(K key, V value) {
-		this.key = key;
-		this.value = value;
-	}
-	// Generic methods
-	public K getKey()   { return key; }
-	public void setKey(K key) { this.key = key; }
-	public V getValue() { return value; }
-	public void setValue(V value) { this.value = value; }
-}
-```
-
----
-
-#### Шаблонни методи – примери
-
-```java
-public class Util {
-
-	// Generic static method
-	public static <K, V> boolean compare(
-		Pair<K, V> p1, Pair<K, V> p2) {
-		return p1.getKey().equals(p2.getKey()) &&
-			p1.getValue().equals(p2.getValue());
-	}
-}
-```
-
----
-
-#### Шаблонни методи - извикване
-
-```java
-Pair<Integer, String> p1 = new Pair<>(1, "apple");
-Pair<Integer, String> p2 = new Pair<>(2, "pear");
-
-// Full syntax
-boolean areSame = Util.<Integer, String>compare(p1, p2);
-
-// Short syntax
-areSame = Util.compare(p1, p2);
-```
-
----
-
-#### Шаблонни методи - наследяване
-
-- Integer is-a Object
-- Integer is-a Number
-- Double is-a Number
-
-Обаче
-- Box<Integer> is-not-а Box<Number>, техният общ производен клас е Object
-
----
-
-diagram
-
----
-
-#### Шаблони и подтипове
-
-- Подтип на шаблонен клас или интерфейс получаваме чрез разширяване или имплементиране
-- Ако аргумента за тип е еднакъв, то is-a връзката е в сила
-
----
-
-- Пример от Collections framework
-
-![Collection subtypes](images/04.5-collections-subtypes.png?raw=true)
-
----
-
-#### Wildcards
-
-- ? – означава неизвестен тип
-- Може да се използва за тип на:
-  - параметър
-  - поле на инстанцията
-  - локална променлива
-  - тип на връщане
-- Не може да се използва за аргумент за тип при извикване на:
-  - шаблонен метод
-  - създаването на инстанция на шаблонен клас
-
----
-
-#### Wildcards, ограничени отгоре
-
-Например, искате да създадете метод, който намира сумата на елементите в списък от Integer, Double, Float, Number.
-
-```java
-public static double sumOfList(List<? extends Number> list) {
-		double sum = 0.0;
-		for (Number current : list) {
-			sum += current.doubleValue();
-		}
-		return sum;
-}
-```
-
----
-
-#### Неограничени wildcards
-
-- Списък от елементи от неизвестен тип - List<?>
-- List<?> е еквивалентно на List<? extends Object>
-- Използва се, когато:
-  - Функционалността която пишем може да се имплементира единствено със знанието за методите в java.lang.Object
-  - Не се интересуваме от типа на елементите в списъка, а се интересуваме от характеристики на самия списък – например размер на списъка
-
----
-
-#### Wildcards, ограничени отдолу
-
-- Искаме да създадем метод, които да добавя Integer обекти към списък
-- Искаме методът да работи с колекции от Integer, Number, Object
-
-```java
-public static void addNumbers(List<? super Integer> list) {
-		for (int i = 1; i <= 10; i++) {
-			list.add(i);
-		}
-}
-```
-
----
-
-#### Wildcards и подтипове
-
-
-
----
-
-#### Изтриване на информацията за типовите аргументите
-
-- Java компилаторът изтрива информацията за типовите аргументи и тази информация не е налична по време на изпълнение
-- Всички типови параметри в шаблонни класове и интерфейси се заместват
-
----
-
-- Ако са неограничени – с Object:
-
-```java
-public class Box<T> {
-	private T value;
-	public T getValue() { return value; }
-	public void setValue(T value) { this.value = value; }
-}
-```
-
-- След заместване става:
-
-```java
-public class Box {
-	private Object value;
-	public Object getValue() { return value; }
-	public void setValue(Object value) { this.value = value; }
-}
-```
-
----
-
-- Ако са ограничени – с техния ограничителен тип
-
-```java
-class Shape { /* ... */ }
-class Circle extends Shape { /* ... */ }
-class Rectangle extends Shape { /* ... */ }
-```
-
-Нека имаме дефиниран следния метод, който рисува дадена фигура:
-
-```java
-public static <T extends Shape> void draw(T shape) { /* ... */ }
-```
-
-След заместването на типовия параметър от компилатора се получава:
-
-```java
-public static void draw(Shape shape) { /* ... */ }
 ```
 
 ---
