@@ -732,16 +732,7 @@ areSame = Util.compare(p1, p2);
 - Integer is-a Object
 - Integer is-a Number
 - Double is-a Number
-
-Обаче
-```java
-Box<Integer>
-```
-is-not-а
-
-```java
-Box<Number>
-```
+- Обаче `Box<Integer>` is-not-а `Box<Number>`
 - техният общ производен клас е Object
 
 ---
