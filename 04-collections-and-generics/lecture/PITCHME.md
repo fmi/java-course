@@ -897,7 +897,7 @@ Box<Integer> intBox = rawBox;
 
 #### Сурови типове (Raw types)
 
-- Също се генерира предупреждение ако се опитаме да изпълним шаблонен метод през инстанция на суров тип:
+- Също се генерира предупреждение, ако се опитаме да изпълним шаблонен метод през инстанция на суров тип:
 
 ```java
 Box<String> stringBox = new Box<>();
@@ -1012,6 +1012,10 @@ public class Example {
 	public void print(Set<Integer> intSet) { }
 }
 ```
+
+---
+
+![Recommended Literature](images/o-reilly-generics-and-collections.png?raw=true)
 
 ---
 
