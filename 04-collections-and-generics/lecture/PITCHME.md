@@ -55,7 +55,7 @@ public interface Iterator<E> {
 }
 
 public interface Iterable<T> {
- Iterator<T> iterator();
+    Iterator<T> iterator();
 }
 ```
 
@@ -325,10 +325,6 @@ Collections.addAll(sc, 'a', 'b', 'j');
 
 ---
 
-![Cheat sheet](images/04.4-cheat-sheet.png?raw=true)
-
----
-
 Операции над множества с __Set__
 
 ```java
@@ -394,6 +390,10 @@ Collection<V> values()
 
 - TreeMap/TreeSet - червено-черни дървета. Запазват естествена наредба. Елементите трябва да имплементират интерфейса Comparable и метода equals(). Логаритмична сложност за повечето операции.
 - HashMap/HashSet - хеш таблици. Нямат естествена наредба. Елементите трябва да имплементират методите hashCode() и equals(). Константна сложност за повечето операции.
+
+---
+
+![Cheat sheet](images/04.4-cheat-sheet.png?raw=true)
 
 ---
 
@@ -734,7 +734,15 @@ areSame = Util.compare(p1, p2);
 - Double is-a Number
 
 Обаче
-- Box<Integer> is-not-а Box<Number>, техният общ производен клас е Object
+```java
+Box<Integer>
+```
+is-not-а
+
+```java
+Box<Number>
+```
+- техният общ производен клас е Object
 
 ---
 
