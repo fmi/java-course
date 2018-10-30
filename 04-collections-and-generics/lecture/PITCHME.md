@@ -114,27 +114,6 @@ Object[] toArray()
 
 ---
 
-![Cheat sheet](images/04.4-cheat-sheet.png?raw=true)
-
----
-
-__java.lang.Comparable vs java.util.Comparator__
-
-```
-public interface Comparable<T> {
-	public int compareTo(T o);
-}
-
-public interface Comparator<T> {
-	int compare(T o1, T o2);
-}
-```
-
-@[1-3]
-@[5-7]
-
----
-
 __List__
 
 ```java
@@ -165,10 +144,10 @@ List<E> subList(int fromIndex, int toIndex)
 
 #### Имплементации на List
 
-- ArrayList - списък върху динамичен масив
-- LinkedList - свързан списък
-- Vector - динамичен масив
-- Stack - стек
+- ArrayList - resize-ващ се масив
+- LinkedList - двойно свързан списък
+- Vector - resize-ващ се масив. Synchronized. Legacy
+- Stack - наследява Vector. Legacy
 
 ---
 
@@ -204,9 +183,9 @@ E remove()
 
 #### Имплементации на Queue
 
-- PriorityQueue
-- ArrayDeque
+- PriorityQueue - heap (пирамида)
 - LinkedList
+- ArrayDeque - resize-ващ се масив
 
 ---
 
@@ -238,11 +217,10 @@ Object[] toArray()
 
 #### Имплементации на Set
 
-- TreeSet
-- HashSet
-- LinkedHashSet
-- CopyOnWriteArraySet
-- EnumSet
+- TreeSet - TreeMap. Червено-черно дърво
+- HashSet - хеш таблица
+- LinkedHashSet - хеш таблица + свързан списък
+- EnumSet - битов масив
 
 ---
 
@@ -262,9 +240,26 @@ HashSet(int initialCapacity, float loadFactor);
 ```java
 TreeSet(); // natural ordering
 TreeSet(Collection<? extends E> c);
-TreeSet(Comparator<? super E> comparator); // sorted according to comparator
+TreeSet(Comparator<? super E> comparator);
 TreeSet(SortedSet<E> s);
 ```
+
+---
+
+__java.lang.Comparable vs java.util.Comparator__
+
+```
+public interface Comparable<T> {
+	public int compareTo(T o);
+}
+
+public interface Comparator<T> {
+	int compare(T o1, T o2);
+}
+```
+
+@[1-3]
+@[5-7]
 
 ---
 
@@ -282,6 +277,10 @@ Collections.addAll(sc, 'a', 'b', 'j');
 #### Алгоритмична сложност на основните операции
 
 ![SetComplexities](images/04.7-setperformance.png?raw=true)
+
+---
+
+![Cheat sheet](images/04.4-cheat-sheet.png?raw=true)
 
 ---
 
@@ -333,10 +332,10 @@ Collection<V> values()
 
 #### Имплементации на Map
 
-- HashMap
-- LinkedHashMap
-- EnumMap
-- TreeMap
+- HashMap - хеш таблица
+- LinkedHashMap - хеш таблица + свързан списък
+- EnumMap - битов масив
+- TreeMap - червено-черно дърво
 
 ---
 
