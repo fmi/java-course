@@ -299,7 +299,7 @@ public interface Comparable<T> {
 }
 
 public interface Comparator<T> {
-	int compare(T o1, T o2);
+	public int compare(T o1, T o2);
 }
 ```
 
@@ -870,7 +870,7 @@ Box rawBox = new Box();
 
 - Отнемат възможността на компилатора да открива грешки по време на компилация
 
-- Избягвайте ги
+- Оставени са по backward compatibility причини. Избягвайте ги
 
 ---
 
