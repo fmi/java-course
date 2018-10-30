@@ -172,6 +172,12 @@ List<E> subList(int fromIndex, int toIndex)
 
 ---
 
+#### Алгоритмична сложност на основните операции
+
+![ListComplexities](images/04.9-listperformance.png?raw=true)
+
+---
+
 __Queue__
 
 ```java
@@ -200,6 +206,13 @@ E remove()
 
 - PriorityQueue
 - ArrayDeque
+- LinkedList
+
+---
+
+#### Алгоритмична сложност на основните операции
+
+![QueueComplexities](images/04.8-queueperformance.png?raw=true)
 
 ---
 
@@ -228,6 +241,47 @@ Object[] toArray()
 - TreeSet
 - HashSet
 - LinkedHashSet
+- CopyOnWriteArraySet
+- EnumSet
+
+---
+
+#### Конструктори на HashSet
+
+```java
+HashSet(); // default initial capacity (16) and load factor (0.75).
+HashSet(Collection<? extends E> c);
+HashSet(int initialCapacity);
+HashSet(int initialCapacity, float loadFactor);
+```
+
+---
+
+#### Конструктори на TreeSet
+
+```java
+TreeSet(); // natural ordering
+TreeSet(Collection<? extends E> c);
+TreeSet(Comparator<? super E> comparator); // sorted according to comparator
+TreeSet(SortedSet<E> s);
+```
+
+---
+
+#### LinkedHashSet
+
+![LinkedHashSet](images/04.6-linkedhashset.png?raw=true)
+
+```java
+Set<Character> sc = new LinkedHashSet<>();
+Collections.addAll(sc, 'a', 'b', 'j');
+```
+
+---
+
+#### Алгоритмична сложност на основните операции
+
+![SetComplexities](images/04.7-setperformance.png?raw=true)
 
 ---
 
@@ -279,9 +333,16 @@ Collection<V> values()
 
 #### Имплементации на Map
 
-- TreeMap
 - HashMap
 - LinkedHashMap
+- EnumMap
+- TreeMap
+
+---
+
+#### Алгоритмична сложност на основните операции
+
+![MapComplexities](images/04.10-mapperformance.png?raw=true)
 
 ---
 
@@ -341,7 +402,7 @@ Collections.shuffle(nums);
 
 ---
 
-- Манипулаци __copy()__, __fill()__, reverse(), swap())
+- Манипулаци __copy()__, __fill()__, reverse(), swap()
 
 ```java
 List<String> from = new ArrayList<>();
@@ -515,7 +576,7 @@ cities = Map.ofEntries(
 
 #### Collection factory методи
 
-- Колекциите, създавани с factory методите са immutable
+- Колекциите, създавани с factory методите, са immutable
 - Заемат по-малко памет от mutable събратята си
 - Не могат да съдържат null елементи
 - При едно и също съдържание, могат да връщат нови инстанции или референции към съществуващи
