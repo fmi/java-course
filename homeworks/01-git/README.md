@@ -31,6 +31,14 @@ result.getMessage(); // "added foo.txt, bar.txt, baz.txt to stage"
 
 Когато `add()` е извикан с файл, който вече съществува в хранилището, операцията трябва да бъде неуспешна със съобщение - `'{file}' already exists`. Когато `add()` е извикан с повече от един файл и ако някой от файловете вече съществува в хранилището, `add()` трябва да върне неуспешна операция за първия вече съществуващ файл, а останалите файлове не трябва да бъдат добавени към хранилището.
 
+```java
+Repository repo = new Repository();
+repo.add("bar.txt", "baz.txt");
+
+Result result = repo.add("baz.txt");
+result.getMessage(); // "'baz.txt' already exists"
+```
+
 #### Result commit(String message)
 
 Прави транзакция с файловете, които са добавени/премахнати.
