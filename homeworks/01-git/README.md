@@ -128,7 +128,7 @@ Date: Thu Oct 25 11:13 2018
 
 #### Result createBranch(String name)
 
-Създава нов branch с име `name`. Branch-ът не е нищо повече от pointer към даден commit. Във всеки един момент хранилището има текущ branch. При опит за създаване на branch с име, което вече съществува, съобщението е `branch {name} already exists`. Новосъздаденият branch съдържа всички commit-и на текущия.
+Създава нов branch с име `name`. Branch-ът не е нищо повече от pointer към даден commit. Във всеки един момент хранилището има текущ branch. При опит за създаване на branch с име, което вече съществува, съобщението е `branch {name} already exists`. Новосъздаденият branch съдържа всички commit-и на текущия. Съобщението от успешна операция е `created branch {name}`.
 
 #### Result checkoutBranch(String name)
 
