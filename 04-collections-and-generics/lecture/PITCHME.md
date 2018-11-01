@@ -388,7 +388,7 @@ Collection<V> values()
 
 #### Колекции с наредба vs Колекции без наредба
 
-- TreeMap/TreeSet - червено-черни дървета. Запазват естествена наредба. Елементите трябва да имплементират интерфейса Comparable и метода equals(). Логаритмична сложност за повечето операции.
+- TreeMap/TreeSet - червено-черни дървета. Запазват естествена наредба. Елементите трябва да имплементират интерфейса Comparable (или да се подава имплементация на Comparator). Логаритмична сложност за повечето операции.
 - HashMap/HashSet - хеш таблици. Нямат естествена наредба. Елементите трябва да имплементират методите hashCode() и equals(). Константна сложност за повечето операции.
 
 ---
@@ -861,7 +861,7 @@ public static void draw(Shape shape) { /* ... */ }
 - Представлява името на шаблонен клас или интерфейс без аргументите за тип
 
 - Raw type на `Box<T>` е `Box`. Можем да създадем инстанция по следния начин
-	
+
 ```java
 Box rawBox = new Box();
 ```
@@ -917,7 +917,7 @@ List raw;
 // References to generic type List<E> should be parameterized
 
 List <Object> objects;
-List <String> strings = new List<>();
+List <String> strings = new ArrayList<>();
 
 raw = strings; // ?
 objects = strings; // ?
