@@ -81,8 +81,8 @@ public enum VirtualMachineSize {
 	LARGE(8, 16384),
 	X_LARGE(16, 32768);
 
-	public final int cpu;
-	public final int memory;
+	private final int cpu;
+	private final int memory;
 
 	VirtualMachineSize(int cpu, int memory) {
 		this.cpu = cpu;
@@ -165,6 +165,7 @@ public void iWillHandleTheException() {
 	try {
 		iDoNotKnowWhatToDoWithThisException();
 	} catch (CustomException e) {
+		System.out.println(e.getMessage());
 		System.out.println("The exception finally is gone");
 	}
 }
