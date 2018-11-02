@@ -13,7 +13,6 @@ import bg.sofia.uni.fmi.mjt.carstore.car.OrdinaryCar;
 import bg.sofia.uni.fmi.mjt.carstore.enums.EngineType;
 import bg.sofia.uni.fmi.mjt.carstore.enums.Model;
 import bg.sofia.uni.fmi.mjt.carstore.enums.Region;
-import bg.sofia.uni.fmi.mjt.carstore.exception.CarNotFoundException;
 
 public class SampleCarStoreTest {
 
@@ -59,15 +58,6 @@ public class SampleCarStoreTest {
 		Collection<Car> cars = carStore.getCars(new CustomComparator(), false);
 
 		assertEquals(Arrays.asList(three, one, two), cars);
-	}
-
-	@Test(expected = CarNotFoundException.class)
-	public void testIfRemoveFailsWithException() {
-		Car one = new OrdinaryCar(Model.AUDI, CAR_MID_YEAR, EXPENSIVE_CAR_PRICE, EngineType.DIESEL, Region.BURGAS);
-		Car two = new OrdinaryCar(Model.BMW, CAR_NEW_YEAR, VERY_EXPENSIVE_CAR_PRICE, EngineType.ELECTIC, Region.BURGAS);
-		carStore.add(one);
-
-		carStore.remove(two);
 	}
 
 	@Test
