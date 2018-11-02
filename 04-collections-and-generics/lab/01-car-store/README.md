@@ -101,6 +101,7 @@ public class CarStore {
 }
 
 ```
+
 ***Note***: Default order - подредени първо по модел (по азбучен ред) и след това по година на производство (в нарастващ ред)
 
 Създайте абстрактен клас или интерфейс `Car` със следните методи:
@@ -143,16 +144,16 @@ public <type> Car {
 ```java
 public OrdinaryCar(Model model, int year, int price, EngineType engineType, Region region);
 
-
 public SportsCar(Model model, int year, int price, EngineType engineType, Region region);
 ```
+
 и да се намират в пакет `bg.sofia.uni.fmi.mjt.carstore.car`
 
 - `Model` може да приема следните стойности: **ALFA**, **AUDI**, **BMW**, **MERCEDES**, **FERRARI**, **OPEL**
 - `EngineType` може да приема следните стойности: **DIESEL**, **GASOLINE**, **ELECTIC**, **HYBRID**
 - `Region` може да приема следните стойности: **SOFIA**, **BURGAS**, **VARNA**, **PLOVDIV**, **RUSE**, **GABROVO**, **VIDIN**, **VRATSA**
-- Всяка кола се идентифицира уникално чрез нейния регистрационен номер. Той се образува по следния начин:
-``{region}{number}{random alphabet char}{random alphabet char}``, където **{number}** е число, започващо от 1000 и инкрементиращо се при всяка новосъздадена кола, **{random alphabet char}** e произволна буква от латинската азбука а **{region}** е един от следните областни кодове (буквите на кодовете са от латинската азбука):
+- Всяка кола се идентифицира уникално чрез регистрационния си номер. Той се образува по следния начин:
+``{region}{number}{random alphabet char}{random alphabet char}``, където **{number}** е число, започващо от 1000 и инкрементиращо се при всяка новосъздадена кола, **{random alphabet char}** e произволна буква от латинската азбука, а **{region}** е един от следните областни кодове (буквите на кодовете са от латинската азбука):
   - Бургас -> A
   - София -> CB
   - Варна -> B
@@ -162,8 +163,10 @@ public SportsCar(Model model, int year, int price, EngineType engineType, Region
   - Пловдив -> PB
   - Русе -> P
 
-  **Например**: CB1111AA
--------------------------------------
+  **Например**: CB1111AA, P1234JA
+
+---
+
 Проектът ви трябва да има следната структура:
 ```
 src
@@ -181,4 +184,4 @@ src
       └─ CarNotFoundException.java
       └─ (...)
 ```
-В sapera.org качвайте .zip архив на `src` директорията.
+В [sapera.org](http://grader.sapera.org) качвайте .zip архив на `src` директорията.
