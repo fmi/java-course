@@ -116,7 +116,7 @@ public <type> Car {
   public Model getModel();
 
   /**
-  * Returns car's year of manufacture.
+  * Returns the year of manufacture of the car.
   */
   public int getYear();
 
@@ -138,21 +138,21 @@ public <type> Car {
 }
 ```
 
-Конкретните имплементации на `Car` са `OrdinaryCar` и `SportCar` и трябва да имат следните конструктори:
+Конкретните имплементации на `Car` са `OrdinaryCar` и `SportsCar` и трябва да имат следните конструктори:
 
 ```java
 public OrdinaryCar(Model model, int year, int price, EngineType engineType, Region region);
 
 
-public SportCar(Model model, int year, int price, EngineType engineType, Region region);
+public SportsCar(Model model, int year, int price, EngineType engineType, Region region);
 ```
 и да се намират в пакет `bg.sofia.uni.fmi.mjt.carstore.car`
 
 - `Model` може да приема следните стойности: **ALFA**, **AUDI**, **BMW**, **MERCEDES**, **FERRARI**, **OPEL**
-- `EngineType` може да приема следнтие стойности: **DIESEL**, **GASOLINE**, **ELECTIC**, **HYBRID**
+- `EngineType` може да приема следните стойности: **DIESEL**, **GASOLINE**, **ELECTIC**, **HYBRID**
 - `Region` може да приема следните стойности: **SOFIA**, **BURGAS**, **VARNA**, **PLOVDIV**, **RUSE**, **GABROVO**, **VIDIN**, **VRATSA**
 - Всяка кола се идентифицира уникално чрез нейния регистрационен номер. Той се образува по следния начин:
-``{region}{number}{random alphabet char}{random alphabet char}``, където **{number}** е число, започващо от 1000 и инкрементиращо се на всяка новосъздадена кола, **{random alphabet char}** e произволна буква от латинската азбука а **{region}** е един от следните областни кодове (буквите на кодовете са от латинската азбука):
+``{region}{number}{random alphabet char}{random alphabet char}``, където **{number}** е число, започващо от 1000 и инкрементиращо се при всяка новосъздадена кола, **{random alphabet char}** e произволна буква от латинската азбука а **{region}** е един от следните областни кодове (буквите на кодовете са от латинската азбука):
   - Бургас -> A
   - София -> CB
   - Варна -> B
@@ -164,7 +164,7 @@ public SportCar(Model model, int year, int price, EngineType engineType, Region 
 
   **Например**: CB1111AA
 -------------------------------------
-Проектът Ви трябва да има следната структура:
+Проектът ви трябва да има следната структура:
 ```
 src
 └─ bg/sofia/uni/fmi/mjt/carstore/
@@ -173,7 +173,7 @@ src
    └─ car/
       └─ Car.java
       └─ OrdinaryCar.java
-      └─ SportCar.java
+      └─ SportsCar.java
       └─(...)
    └─ enums/
      └─ (...)
