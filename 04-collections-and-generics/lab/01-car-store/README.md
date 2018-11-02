@@ -18,7 +18,6 @@ public class CarStore {
   /**
   * Adds the specified car in the store.
   * @return true if the car was added successfully to the store
-  * @throws CarAlreadyExistsException if the specified car already exists in the store
   */
   public boolean add(Car car) {
     // implement ...
@@ -28,7 +27,6 @@ public class CarStore {
   /**
   * Adds all of the elements of the specified collection in the store.
   * @return true if the store does not already contain none of the cars in the specified collection and the cars are added to the store
-  * @throws CarAlreadyExistsException if there is a car in the collection that already exists in the store
   */
   public boolean addAll(Collection<Car> cars) {
     // implement ...
@@ -38,7 +36,6 @@ public class CarStore {
   /**
   * Removes the specified car from the store.
   * @return true if the car is successfully removed from the store
-  * @throws CarNotFoundException if the specified car is not found in the car store
   */
   public boolean remove(Car car) {
     // implement ...
@@ -182,7 +179,6 @@ src
      └─ (...)
    └─ exception/
       └─ CarNotFoundException.java
-      └─ CarAlreadyExistsException.java
       └─ (...)
 ```
 В sapera.org качвайте .zip архив на `src` директорията.
