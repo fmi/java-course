@@ -26,7 +26,7 @@ public class CarStore {
 
   /**
   * Adds all of the elements of the specified collection in the store.
-  * @return true if the store does not already contain none of the cars in the specified collection and the cars are added to the store
+  * @return true if the store cars are changed after the execution (i.e. at least one new car is added to the store
   */
   public boolean addAll(Collection<Car> cars) {
     // implement ...
@@ -150,10 +150,10 @@ public SportsCar(Model model, int year, int price, EngineType engineType, Region
 и да се намират в пакет `bg.sofia.uni.fmi.mjt.carstore.car`
 
 - `Model` може да приема следните стойности: **ALFA**, **AUDI**, **BMW**, **MERCEDES**, **FERRARI**, **OPEL**
-- `EngineType` може да приема следните стойности: **DIESEL**, **GASOLINE**, **ELECTIC**, **HYBRID**
+- `EngineType` може да приема следните стойности: **DIESEL**, **GASOLINE**, **ELECTRIC**, **HYBRID**
 - `Region` може да приема следните стойности: **SOFIA**, **BURGAS**, **VARNA**, **PLOVDIV**, **RUSE**, **GABROVO**, **VIDIN**, **VRATSA**
 - Всяка кола се идентифицира уникално чрез регистрационния си номер. Той се образува по следния начин:
-``{region}{number}{random alphabet char}{random alphabet char}``, където **{number}** е число, започващо от 1000 и инкрементиращо се при всяка новосъздадена кола, **{random alphabet char}** e произволна буква от латинската азбука, а **{region}** е един от следните областни кодове (буквите на кодовете са от латинската азбука):
+``{region}{number}{random alphabet char}{random alphabet char}``, където **{number}** е цяло число, започващо от 1000 и инкрементиращо се при всяка новосъздадена кола, **{random alphabet char}** e произволна буква от латинската азбука, а **{region}** е един от следните областни кодове (буквите на кодовете са от латинската азбука):
   - Бургас -> A
   - София -> CB
   - Варна -> B
