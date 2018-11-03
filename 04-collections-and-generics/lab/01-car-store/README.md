@@ -44,6 +44,7 @@ public class CarStore {
 
   /**
   * Returns all cars of a given model.
+  * The cars need to be sorted by year of manufacture (in ascending order).
   */
   public Collection<Car> getCarsByModel(Model model) {
     // implement ...
