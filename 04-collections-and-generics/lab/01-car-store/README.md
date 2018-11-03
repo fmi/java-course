@@ -26,7 +26,7 @@ public class CarStore {
 
   /**
   * Adds all of the elements of the specified collection in the store.
-  * @return true if the store cars are changed after the execution (i.e. at least one new car is added to the store
+  * @return true if the store cars are changed after the execution (i.e. at least one new car is added to the store)
   */
   public boolean addAll(Collection<Car> cars) {
     // implement ...
