@@ -150,7 +150,7 @@ public SportsCar(Model model, int year, int price, EngineType engineType, Region
 
 и да се намират в пакет `bg.sofia.uni.fmi.mjt.carstore.car`
 
-- `Model` може да приема следните стойности: **ALFA**, **AUDI**, **BMW**, **MERCEDES**, **FERRARI**, **OPEL**
+- `Model` може да приема следните стойности: **ALFA_ROMEO**, **AUDI**, **BMW**, **MERCEDES**, **FERRARI**, **OPEL**
 - `EngineType` може да приема следните стойности: **DIESEL**, **GASOLINE**, **ELECTRIC**, **HYBRID**
 - `Region` може да приема следните стойности: **SOFIA**, **BURGAS**, **VARNA**, **PLOVDIV**, **RUSE**, **GABROVO**, **VIDIN**, **VRATSA**
 - Всяка кола се идентифицира уникално чрез регистрационния си номер. Той се образува по следния начин:
