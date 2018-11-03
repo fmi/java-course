@@ -95,7 +95,7 @@ public class CarStore {
   /**
   * Returns the total price of all cars in the store.
   */
-  public int getTotalPriceOfCars() {
+  public int getTotalPriceForCars() {
     // implement ...
     return 0;
   }
@@ -165,6 +165,8 @@ public SportsCar(Model model, int year, int price, EngineType engineType, Region
   - Русе -> P
 
   **Например**: CB1111AA, P1234JA
+
+`Region` трябва да има метод `getPrefix()`, който връща областния код.
 
 ---
 
