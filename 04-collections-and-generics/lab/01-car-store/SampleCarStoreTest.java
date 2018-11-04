@@ -1,8 +1,8 @@
 package bg.sofia.uni.fmi.mjt.carstore;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 import org.junit.Before;
@@ -43,7 +43,9 @@ public class SampleCarStoreTest {
 
 		Collection<Car> cars = carStore.getCarsByModel(Model.AUDI);
 
-		assertEquals(Arrays.asList(three, one), cars);
+		Car[] expected = { three, one };
+		Car[] actual = cars.toArray(new Car[cars.size()]);
+		assertArrayEquals(expected, actual);
 	}
 
 	@Test
@@ -57,7 +59,9 @@ public class SampleCarStoreTest {
 		carStore.add(three);
 		Collection<Car> cars = carStore.getCars(new CustomComparator(), false);
 
-		assertEquals(Arrays.asList(three, one, two), cars);
+		Car[] expected = { three, one, two };
+		Car[] actual = cars.toArray(new Car[cars.size()]);
+		assertArrayEquals(expected, actual);
 	}
 
 	@Test
