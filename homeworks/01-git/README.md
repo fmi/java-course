@@ -82,7 +82,7 @@ result.getMessage(); // "2 files changed"
 
 #### Commit getHead()
 
-Връща последния commit в текущия branch. Ако в текущият branch няма никакви commit-и, методът трябва да върне `null`.
+Връща последния commit в текущия branch. Ако в текущия branch няма никакви commit-и, методът трябва да върне `null`.
 
 `Commit` трябва да съдържа следните методи:
 - `String getHash()` - връща хеш на commit-a (в следващите секции е обяснено как се генерира)
