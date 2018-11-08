@@ -10,3 +10,4 @@
 | 2 | ООП в Java (част I)                                                                                              | 16.10.2018 |
 | 3 | ООП в Java (част II)                                                                                             | 23.10.2018 |
 | 4 | [Колекции и шаблонни типове](https://gitpitch.com/fmi/java-course/master?p=04-collections-and-generics/lecture/) | 30.10.2018 |
+| 5 | [Unit Testing](https://gitpitch.com/fmi/java-course/master?p=05-unit-testing/lecture/)                           | 06.11.2018 |
