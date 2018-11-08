@@ -171,7 +171,7 @@ _06.11.2018_
 
 @ul
 
-- JUnit се базира на анотаци
+- JUnit се базира на анотации
 - Всеки JUnit тест е метод, анотиран с `@Test`, съдържащ се в клас, който се използва само за тестване
 - Такъв клас се нарича Test Case
 
@@ -259,9 +259,17 @@ __fail()__
 
 @ul
 
-- `assertEquals(String message, expected, actual)` – проверява за равенство на два обекта.
-- масивите се сравняват по референции, не по съдържание.
-- `assertEquals(String message, expected, actual, delta)` – проверява за равенство на числа с плаваща точка.
+- `assertEquals(String message, expected, actual)` – проверява за равенство на два обекта
+- масивите се сравняват по референции, не по съдържание
+- assertArrayEquals(String message, expected, actual) - проверява за равенство на два масива по дължина и съдържание
+
+@ulend
+
+---
+
+@ul
+
+- `assertEquals(String message, expected, actual, delta)` – проверява за равенство на числа с плаваща точка
 - делтата (delta) определя точността на сравнението
 
 @ulend
@@ -398,7 +406,7 @@ fancy-project
 - През IDE
 - През конзола
 - През build системи (maven, gradle)
-- CI системи (Jenkins, Travis)
+- През Continuous Integration (CI) системи (Jenkins, Travis)
 - Засега ще се ограничим да ги изпълняваме през IDE-то
 
 @ulend
@@ -745,9 +753,9 @@ public void testBuyTicket() {
 
 @ul
 
-- композираният клас се обръща към външен ресурс (REST API, database, file system, etc.)
-- логиката в композирания клас не е тривиална
-- не може да настроите test environment-a по тривиален начин
+- Композираният клас се обръща към външен ресурс (REST API, database, file system, etc.)
+- Логиката в композирания клас не е тривиална
+- Не може да настроите test environment-a по тривиален начин
 
 @ulend
 
@@ -757,8 +765,8 @@ public void testBuyTicket() {
 
 @ul
 
-- композираният клас представлява value object, който може да подадете отвън
-- може тривиално да настроите test environment-a
+- Композираният клас представлява value object, който може да подадете отвън
+- Може тривиално да настроите test environment-a
 
 @ulend
 
@@ -782,7 +790,7 @@ public void testBuyTicket() {
 @ul
 
 - Ще разглеждаме mockito (2.23.0) като mocking library
-- Поражда се като разширение на функционалността на EasyMock
+- Възниква като разширение на функционалността на EasyMock
 - Една от 10-те най-популярни Java библиотеки като цяло
 - Open-source
 
@@ -798,7 +806,7 @@ public void testBuyTicket() {
 - Може да я изтеглите от [тук](http://central.maven.org/maven2/org/mockito/mockito-core/2.23.0/)
 - Изтеглете mockito-core jar-a и 3-те му compile dependency-та
 - Ако ползвате IDE, добавете въпросните jar-ки в class path-a на проека ви
-- Алтернативно ако сте запознати с maven/gradle, ползвайте тях :)
+- Алтернативно, ако сте запознати с maven/gradle, ползвайте тях :)
 
 @ulend
 
