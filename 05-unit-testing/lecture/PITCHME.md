@@ -977,6 +977,8 @@ public class UserServiceTest {
 
 ---
 
+#### Полезни четива
+
 ![Practical unit testing](images/05.4-practical-unit-testing.png?raw=true)
 
 ---
