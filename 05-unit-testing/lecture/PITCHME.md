@@ -969,10 +969,15 @@ public class UserServiceTest {
 @ul
 
 - [JUnit javadoc](https://junit.org/junit4/javadoc/latest/index.html)
+- [Unit Testing with JUnit](http://www.vogella.com/tutorials/JUnit/article.html)
 - [Mocks aren't stubs](https://martinfowler.com/articles/mocksArentStubs.html) by Martin Fowler
 - [Writing good tests](https://github.com/mockito/mockito/wiki/How-to-write-good-tests) by Mockito team
 
 @ulend
+
+---
+
+![Practical unit testing](images/05.4-practical-unit-testing.png?raw=true)
 
 ---
 
