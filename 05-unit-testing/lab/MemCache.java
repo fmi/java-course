@@ -1,4 +1,4 @@
-package bg.uni.sofia.fmi.mjt.cache;
+package bg.sofia.uni.fmi.mjt.cache;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
