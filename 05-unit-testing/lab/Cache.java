@@ -14,10 +14,10 @@ public interface Cache<K, V> {
     /**
      * Adds the value to the cache and associates it with the key, if both key and
      * value are not null. If the key is already present in the cache, replaces the
-     * old value with the currently supplied. If the cache is full but contains at
-     * least one expired item, exactly one arbitrary expired item is removed before
-     * adding the current one. If the cache is full and there is not a single
-     * expired item, CapacityExceededException is thrown
+     * old value with the currently supplied and updates the expiration. If the cache
+     * is full but contains at least one expired item, exactly one arbitrary expired
+     * item is removed before adding the current one. If the cache is full and there
+     * is not a single expired item, CapacityExceededException is thrown
      *
      * @param expiresAt
      *            The point in time after which the item must be considered expired.
