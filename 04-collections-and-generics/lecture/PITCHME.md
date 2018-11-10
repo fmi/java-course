@@ -80,11 +80,11 @@ public interface Iterable<T> {
 
 ---
 
-![Collection diagrams](../../images/04.2-collections-diagram.png?raw=true)
+![Collection diagrams](images/04.2-collections-diagram.png?raw=true)
 
 ---
 
-![Map hierarchy](../../images/04.2.1-java-map-hierarchy.png?raw=true)
+![Map hierarchy](images/04.2.1-java-map-hierarchy.png?raw=true)
 
 ---
 
@@ -198,7 +198,7 @@ List<E> subList(int fromIndex, int toIndex)
 
 #### Алгоритмична сложност на основните операции
 
-![ListComplexities](../../images/04.9-listperformance.png?raw=true)
+![ListComplexities](images/04.9-listperformance.png?raw=true)
 
 ---
 
@@ -236,7 +236,7 @@ E remove()
 
 #### Алгоритмична сложност на основните операции
 
-![QueueComplexities](../../images/04.8-queueperformance.png?raw=true)
+![QueueComplexities](images/04.8-queueperformance.png?raw=true)
 
 ---
 
@@ -310,7 +310,7 @@ public interface Comparator<T> {
 
 #### LinkedHashSet
 
-![LinkedHashSet](../../images/04.6-linkedhashset.png?raw=true)
+![LinkedHashSet](images/04.6-linkedhashset.png?raw=true)
 
 ```java
 Set<Character> sc = new LinkedHashSet<>();
@@ -321,7 +321,7 @@ Collections.addAll(sc, 'a', 'b', 'j');
 
 #### Алгоритмична сложност на основните операции
 
-![SetComplexities](../../images/04.7-setperformance.png?raw=true)
+![SetComplexities](images/04.7-setperformance.png?raw=true)
 
 ---
 
@@ -382,7 +382,7 @@ Collection<V> values()
 
 #### Алгоритмична сложност на основните операции
 
-![MapComplexities](../../images/04.10-mapperformance.png?raw=true)
+![MapComplexities](images/04.10-mapperformance.png?raw=true)
 
 ---
 
@@ -393,7 +393,7 @@ Collection<V> values()
 
 ---
 
-![Cheat sheet](../../images/04.4-cheat-sheet.png?raw=true)
+![Cheat sheet](images/04.4-cheat-sheet.png?raw=true)
 
 ---
 
@@ -745,7 +745,7 @@ areSame = Util.compare(p1, p2);
 
 - Пример от Collections framework
 
-![Collection subtypes](../../images/04.5-collections-subtypes.png?raw=true)
+![Collection subtypes](images/04.5-collections-subtypes.png?raw=true)
 
 ---
 
@@ -1011,7 +1011,7 @@ public class Example {
 
 ---
 
-![Recommended Literature](../../images/o-reilly-generics-and-collections.png?raw=true)
+![Recommended Literature](images/o-reilly-generics-and-collections.png?raw=true)
 
 ---
 
