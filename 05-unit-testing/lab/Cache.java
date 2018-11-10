@@ -43,7 +43,7 @@ public interface Cache<K, V> {
     boolean remove(K key);
 
     /**
-     * Returns a Collection of all actual (expired or not) items stored currently in
+     * Returns the number of all actual (expired or not) items stored currently in
      * the cache.
      */
     long size();
