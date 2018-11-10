@@ -35,13 +35,13 @@ _06.11.2018_
 
 #### Кога да тестваме?
 
-![Relative cost of fixing defects](../../images/05.1-relative-cost.png?raw=true)
+![Relative cost of fixing defects](images/05.1-relative-cost.png?raw=true)
 
 ---
 
 #### Тестването не е фаза, а е процес
 
-![Testing is a process](../../images/05.2-testing-process.png?raw=true)
+![Testing is a process](images/05.2-testing-process.png?raw=true)
 
 ---
 
@@ -79,7 +79,7 @@ _06.11.2018_
 
 #### Още видове тестове
 
-![More test types](../../images/05.3-more-tests.png?raw=true)
+![More test types](images/05.3-more-tests.png?raw=true)
 
 ---
 
@@ -979,7 +979,7 @@ public class UserServiceTest {
 
 #### Полезни четива
 
-![Practical unit testing](../../images/05.4-practical-unit-testing.png?raw=true)
+![Practical unit testing](images/05.4-practical-unit-testing.png?raw=true)
 
 ---
 
