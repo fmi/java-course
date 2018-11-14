@@ -88,11 +88,11 @@ _13.11.2018_
 
 - пакети
   - само малки букви, със смислена йерархия
-  - `bg.sofia.uni.fmi.mjt`
+  - bg.sofia.uni.fmi.mjt
 
 - класове, абстрактни класове, интерфейси, enums
   - съществителни, започващи с главна буква (upper camel case)
-  - `Student`, `GameBoard`
+  - Student, GameBoard
 
 @endul
 
@@ -104,11 +104,11 @@ _13.11.2018_
 
 - методи
   - глаголи, започващи с малка буква (camel case)
-  - `reverseString()`, `calculateSalary()`
+  - reverseString(), calculateSalary()
 
 - константи
   - all-caps, с подчертавки между думите
-  - `MAX_NAME_LENGTH`
+  - MAX_NAME_LENGTH
 
 @endul
 
@@ -181,13 +181,10 @@ return x % 2 == 0;
 
 ![Static Code Analyzers](images/06.3-static-code-analyzers.png?raw=true)
 
-@ul
 
 - Има инструменти за статичен код анализ, които
 - автоматизират придържането към код конвенции
 - намират и бъгове
-
-@endul
 
 ---
 
@@ -195,13 +192,9 @@ return x % 2 == 0;
 
 Някои от най-популярните open-source инструменти:
 
-@ul
-
 - [checkstyle](http://checkstyle.sourceforge.net/index.html)
 - [PMD](https://pmd.github.io/)
 - [FindBugs](http://findbugs.sourceforge.net/index.html)
-
-@endul
 
 ---
 
@@ -231,12 +224,8 @@ return x % 2 == 0;
 
 #### Ще разгледаме
 
-@ul
-
 - Концепцията за поток
 - Входно-изходните потоци в Java
-
-@endul
 
 ---
 
@@ -248,14 +237,10 @@ return x % 2 == 0;
 
 #### Входно-изходни потоци
 
-@ul
-
 - Концепцията за вход-изход в Java се основава на *потоци* (*streams*)
 - *Потокът* е абстракция за безкраен поток от данни  
 - Може да се четат данни от поток или да се пишат данни в поток
 - В Java потоците може да се основават на байтове или на символи
-
-@endul
 
 ---
 
@@ -275,20 +260,14 @@ return x % 2 == 0;
 
 `InputStream`, `OutputStream`, `Reader` и `Writer` имат много наследници, създадени за различни цели:
 
-@ul
-
 - Достъп до файлове
 - Достъп до мрежи
 - Достъп до буфери в паметта
 - Междунишкова комуникация (Pipes)
 
-@endul
-
 ---
 
 #### Входно-изходни потоци
-
-@ul
 
 - Буфериране
 - Филтриране
@@ -296,8 +275,6 @@ return x % 2 == 0;
 - Четене и писане на текст
 - Четене и писане на примитивни данни
 - Четене и писане на обекти
-
-@endul
 
 ---
 
@@ -315,13 +292,9 @@ return x % 2 == 0;
 
 Потоците се
 
-@ul
-
 - Създават
 - Използват
 - Затварят
-
-@endul
 
 ---
 
@@ -503,12 +476,8 @@ try {
 
 #### Try-with-resources
 
-@ul
-
 - `try` блок, който декларира един или повече ресурси и автоматично затваря всеки ресурс в края на блока
 - Ресурс може да е обект от произволен клас, който имплементира интерфейса `java.lang.AutoCloseable` (което включва всички класове, които имплементират `java.io.Closeable`)
-
-@endul
 
 ---
 
@@ -564,13 +533,9 @@ void          write(String str, int off, int len);
 
 #### Трите системни потока
 
-@ul
-
 - `System.in` (`InputStream`)
 - `System.out` (`PrintStream`)
 - `System.err` (`PrintStream`)
-
-@endul
 
 ---
 
