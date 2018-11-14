@@ -100,6 +100,8 @@ _13.11.2018_
 
 #### Принципи на чистия код - Смислени имена
 
+@ul
+
 - методи
   - глаголи, започващи с малка буква (camel case)
   - `reverseString()`, `calculateSalary()`
@@ -114,8 +116,6 @@ _13.11.2018_
 
 #### Принципи на чистия код
 
-- Винаги ограждай в блок телата на if-else и цикли, дори са с по един statement
-
 ```java
 if (x % 2 == 0)
     return x / 2;
@@ -127,11 +127,11 @@ if (x % 2 == 0) {
 }
 ```
 
+- Винаги ограждай в блок телата на if-else и цикли, дори са с по един statement
+
 ---
 
 #### Принципи на чистия код
-
-- Изразявай се кратко. Малко код == малко бъгове
 
 ```java
 if (x % 2 == 0) {
@@ -144,6 +144,8 @@ if (x % 2 == 0) {
 ```java
 return x % 2 == 0;
 ```
+
+- Изразявай се кратко. Малко код == малко бъгове
 
 ---
 
@@ -344,18 +346,18 @@ inputstream.close();
 #### `java.io.InputStream`
 
 ```java
-int				available​();
-void			close​();
-void			mark​(int readlimit);
-boolean			markSupported​();
-abstract int	read​();	
-int				read​(byte[] b);
-int				read​(byte[] b, int off, int len);
-byte[]			readAllBytes​();
-int				readNBytes​(byte[] b, int off, int len);
-void			reset​();
-long			skip​(long n);
-long			transferTo​(OutputStream out);
+int          available​();
+void         close​();
+void         mark​(int readlimit);
+boolean      markSupported​();
+abstract int read​();
+int          read​(byte[] b);
+int          read​(byte[] b, int off, int len);
+byte[]       readAllBytes​();
+int          readNBytes​(byte[] b, int off, int len);
+void         reset​();
+long         skip​(long n);
+long         transferTo​(OutputStream out);
 ```
 
 ---
@@ -388,11 +390,11 @@ OutputStream output =
 #### `java.io.OutputStream`
 
 ```java
-void			close​();
-void			flush​();
-void			write​(byte[] b);
-void			write​(byte[] b, int off, int len);
-abstract void	write​(int b);
+void          close​();
+void          flush​();
+void          write​(byte[] b);
+void          write​(byte[] b, int off, int len);
+abstract void write​(int b);
 ```
 
 ---
@@ -529,16 +531,16 @@ static String readFirstLineFromFile(String path)
 #### `java.io.Reader`
 
 ```java
-abstract void	close();
-void			mark(int readAheadLimit);
-boolean			markSupported();
-int				read();
-int				read(char[] cbuf);
-abstract int	read(char[] cbuf, int off, int len);
-int				read(CharBuffer target);
-boolean			ready();
-void			reset();
-long			skip(long n);
+abstract void close();
+void          mark(int readAheadLimit);
+boolean       markSupported();
+int           read();
+int           read(char[] cbuf);
+abstract int  read(char[] cbuf, int off, int len);
+int           read(CharBuffer target);
+boolean       ready();
+void          reset();
+long          skip(long n);
 ```
 
 ---
@@ -546,16 +548,16 @@ long			skip(long n);
 #### `java.io.Writer`
 
 ```java
-Writer			append(char c);
-Writer			append(CharSequence csq);
-Writer			append(CharSequence csq, int start, int end);
-abstract void	close();
-abstract void	flush();
-void			write(char[] cbuf);
-abstract void	write(char[] cbuf, int off, int len);
-void			write(int c);
-void			write(String str);
-void			write(String str, int off, int len);
+Writer        append(char c);
+Writer        append(CharSequence csq);
+Writer        append(CharSequence csq, int start, int end);
+abstract void close();
+abstract void flush();
+void          write(char[] cbuf);
+abstract void write(char[] cbuf, int off, int len);
+void          write(int c);
+void          write(String str);
+void          write(String str, int off, int len);
 ```
 
 ---
@@ -607,7 +609,7 @@ formatter.format(Locale.FRANCE, "e = %+10.4f", Math.E);
 
 ```java
 // The '(' numeric flag may be used to format negative numbers
-// with parentheses rather than a minus sign.  Group separators
+// with parentheses rather than a minus sign. Group separators
 // are automatically inserted.
 formatter.format("Amount diff since last statement: $ %(,.2f",
                     balanceDelta);
@@ -616,7 +618,6 @@ formatter.format("Amount diff since last statement: $ %(,.2f",
 // Writes a formatted string to System.out.
 System.out.format("Local time: %tT", Calendar.getInstance());
 // -> "Local time: 13:34:18"
-
 // Writes formatted output to System.err.
 System.err.printf("Unable to open file '%1$s': %2$s",
                      fileName, exception.getMessage());
