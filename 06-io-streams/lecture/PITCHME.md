@@ -6,13 +6,13 @@ _13.11.2018_
 
 ---
 
+#### Как мерим качеството на кода?
+
 ![Code Quality](images/06.2-wtfs-per-min.png?raw=true)
 
 ---
 
-#### Принципи на чистия код
-
-Спазвай ООП принципите
+#### Принципи на чистия код - Спазвай ООП принципите
 
 @ul
 
@@ -32,39 +32,57 @@ _13.11.2018_
 
 ---
 
-#### Принципи на чистия код
+#### Принципи на чистия код - Стреми се към хубав ОО дизайн
 
-Стреми се към хубав ОО дизайн
+@ul
 
 - Използвай само по изключение пакета по подразбиране
 
 - Един клас трябва да прави едно нещо
-  - Ако имаш "and" в името, вероятно не е така
-  - Ако имаш "Helper", "Manager", "Utility" в името, *може би* има по-добър дизайн
+- Ако имаш "and" в името, вероятно не е така
+- Ако имаш "Helper", "Manager", "Utility" в името, *може би* има по-добър дизайн
 
 - Един метод трябва да прави едно нещо
-  - Да е кратък: <= 20 реда код
-  - Ако имаш "and" в името, може би прави повечко неща --> раздели го на няколко
-  - Ако имаш много параметри на метод,
-    - може би не му е мястото в този клас (а там, откъдето се взимат стоностите за тези параметри)
-    - или трябва да направиш data object, който да групира семантично свързаните от тях
+- Да е кратък: <= 20 реда код
 
+@endul
+
+---
+
+#### Принципи на чистия код - Стреми се към хубав ОО дизайн
+
+@ul
+
+- Ако имаш "and" в името, може би прави повечко неща --> раздели го на няколко
+- Ако имаш много параметри на метод,
+- може би не му е мястото в този клас (а там, откъдето се взимат стоностите за тези параметри)
+- или трябва да направиш data object, който да групира семантично свързаните от тях
 - Не злоупотребявай със static
+
+@endul
 
 ---
 
 #### Принципи на чистия код
+
+@ul
 
 - Форматирай си кода
   - Нямаш никакво оправдание да не го правиш (IDE shortcut?)
 
 - Вместо "магически числа" в кода, ползвай подходящо именувани константи
 
+@endul
+
 ---
 
 #### Принципи на чистия код - Смислени имена
 
 Имената на пакети, класове, интерфейси, член-променливи, методи, локални променливи трябва да са говорящи и да спазват установените конвенции
+
+---
+
+#### Принципи на чистия код - Смислени имена
 
 @ul
 
@@ -75,6 +93,12 @@ _13.11.2018_
 - класове, абстрактни класове, интерфейси, enums
   - съществителни, започващи с главна буква (upper camel case)
   - `Student`, `GameBoard`
+
+@endul
+
+---
+
+#### Принципи на чистия код - Смислени имена
 
 - методи
   - глаголи, започващи с малка буква (camel case)
@@ -90,8 +114,6 @@ _13.11.2018_
 
 #### Принципи на чистия код
 
-@ul
-
 - Винаги ограждай в блок телата на if-else и цикли, дори са с по един statement
 
 ```java
@@ -104,13 +126,10 @@ if (x % 2 == 0) {
     return x / 2;
 }
 ```
-@endul
 
 ---
 
 #### Принципи на чистия код
-
-@ul
 
 - Изразявай се кратко. Малко код == малко бъгове
 
@@ -125,7 +144,6 @@ if (x % 2 == 0) {
 ```java
 return x % 2 == 0;
 ```
-@endul
 
 ---
 
@@ -134,14 +152,11 @@ return x % 2 == 0;
 @ul
 
 - Слагай коментари, без да прекаляваш
-  - Хубавият код е self-explanatory, и все пак, на места си трябва коментар
-
+- Хубавият код е self-explanatory, и все пак, на места си трябва коментар
 - Разделяй нормалната логика от exception логиката
-  - Ползвай изключения вместо error codes и печатане на съобщения в конзолата
-
+- Ползвай изключения вместо error codes и печатане на съобщения в конзолата
 - Не suppress-вай / swallow-вай exceptions
-  - Никога не оставяй празен catch, или catch само с `e.printStackTrace()`
-
+- Никога не оставяй празен catch, или catch само с `e.printStackTrace()`
 - Разделяй I/O логиката от бизнес логиката
 
 @endul
@@ -150,25 +165,17 @@ return x % 2 == 0;
 
 #### Java код конвенции
 
-@ul
-
 - Запознай се с цялостна Java код конвенция и се придържай към нея. Две от най-популярните:
-  - [Oracle Code Conventions for the Java Programming Language](https://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html)
-  - [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
-
-@endul
+- [Oracle Code Conventions for the Java Programming Language](https://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html)
+- [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
 
 ---
 
 #### Инструменти за статичен код анализ
 
-@ul
-
 - Има инструменти за статичен код анализ, които
-  - автоматизират придържането към код конвенции
-  - намират и бъгове
-
-@endul
+- автоматизират придържането към код конвенции
+- намират и бъгове
 
 ![Static Code Analyzers](images/06.3-static-code-analyzers.png?raw=true)
 
@@ -178,13 +185,9 @@ return x % 2 == 0;
 
 Някои от най-популярните open-source инструменти:
 
-@ul
-
 - [checkstyle](http://checkstyle.sourceforge.net/index.html)
 - [PMD](https://pmd.github.io/)
 - [FindBugs](http://findbugs.sourceforge.net/index.html)
-
-@endul
 
 ---
 
@@ -225,14 +228,10 @@ return x % 2 == 0;
 
 #### Входно-изходни потоци
 
-@ul
-
 - Концепцията за вход-изход в Java се основава на *потоци* (*streams*)
 - *Потокът* е абстракция за безкраен поток от данни  
 - Може да се четат данни от поток или да се пишат данни в поток
 - В Java потоците може да се основават на байтове или на символи
-
-@endul
 
 ---
 
@@ -256,6 +255,15 @@ return x % 2 == 0;
 - Достъп до мрежи
 - Достъп до буфери в паметта
 - Междунишкова комуникация (Pipes)
+
+@endul
+
+---
+
+#### Входно-изходни потоци
+
+@ul
+
 - Буфериране
 - Филтриране
 - Парсване
@@ -288,7 +296,8 @@ return x % 2 == 0;
 #### Пример с `InputStream`
 
 ```java
-InputStream inputstream = new FileInputStream("c:\\data\\input-text.txt");
+InputStream inputstream =
+	new FileInputStream("c:\\data\\input-text.txt");
 
 int data = inputstream.read();
 
@@ -305,18 +314,18 @@ inputstream.close();
 #### `java.io.InputStream`
 
 ```java
-int	available​();
-void	close​();
-void	mark​(int readlimit);
-boolean	markSupported​();
+int				available​();
+void			close​();
+void			mark​(int readlimit);
+boolean			markSupported​();
 abstract int	read​();	
-int	read​(byte[] b);
-int	read​(byte[] b, int off, int len);
-byte[]	readAllBytes​();
-int	readNBytes​(byte[] b, int off, int len);
-void	reset​();
-long	skip​(long n);
-long	transferTo​(OutputStream out);
+int				read​(byte[] b);
+int				read​(byte[] b, int off, int len);
+byte[]			readAllBytes​();
+int				readNBytes​(byte[] b, int off, int len);
+void			reset​();
+long			skip​(long n);
+long			transferTo​(OutputStream out);
 ```
 
 ---
@@ -336,19 +345,23 @@ os.close();
 
 ```java
 // appends to file
-OutputStream output = new FileOutputStream("c:\\data\\output-text.txt", true); 
+OutputStream output =
+	new FileOutputStream("c:\\data\\output-text.txt", true); 
 
 // overwrites file
-OutputStream output = new FileOutputStream("c:\\data\\output-text.txt", false);
+OutputStream output =
+	new FileOutputStream("c:\\data\\output-text.txt", false);
 ```
+
+---
 
 #### `java.io.OutputStream`
 
 ```java
-void	close​();
-void	flush​();
-void	write​(byte[] b);
-void	write​(byte[] b, int off, int len);
+void			close​();
+void			flush​();
+void			write​(byte[] b);
+void			write​(byte[] b, int off, int len);
 abstract void	write​(int b);
 ```
 
@@ -357,7 +370,8 @@ abstract void	write​(int b);
 #### Пример с `DataInputStream`
 
 ```java
-DataInputStream dataInputStream = new DataInputStream(new FileInputStream("binary.data"));
+DataInputStream dataInputStream =
+	new DataInputStream(new FileInputStream("binary.data"));
 
 int    aByte   = input.read();
 int    anInt   = input.readInt();
@@ -389,7 +403,8 @@ while (line != null) {
 #### Пример с `ObjectOutputStream`
 
 ```java
-ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("object.data"));
+ObjectOutputStream objectOutputStream =
+	new ObjectOutputStream(new FileOutputStream("object.data"));
 
 MyClass object = new MyClass();
 
@@ -419,7 +434,8 @@ public static class Person implements Serializable {
 #### Има ли проблем в този код?
 
 ```java
-InputStream input = new FileInputStream("c:\\data\\input-text.txt");
+InputStream input =
+	new FileInputStream("c:\\data\\input-text.txt");
 int data = input.read();
 
 while (data != -1) {
@@ -439,13 +455,12 @@ InputStream input = null;
 try {
 	input = new FileInputStream("c:\\data\\input-text.txt");
 	int data = input.read();
-
 	while (data != -1) {
 		doSomethingWithData(data);
 		data = input.read();
 	}
-
-} catch (IOException e) { //do something with e... log, perhaps rethrow etc.
+} catch (IOException e) {
+	//do something with e... log, perhaps rethrow etc.
 } finally {
 	if (input != null) {
 		input.close();
@@ -465,8 +480,10 @@ try {
 #### Пример за try-with-resources
 
 ```java
-static String readFirstLineFromFile(String path) throws IOException { 
-	try (BufferedReader br = new BufferedReader(new FileReader(path))) { 
+static String readFirstLineFromFile(String path)
+								throws IOException { 
+	try (BufferedReader br =
+			new BufferedReader(new FileReader(path))) { 
 		return br.readLine(); 
 	}
 }
@@ -480,15 +497,15 @@ static String readFirstLineFromFile(String path) throws IOException {
 
 ```java
 abstract void	close();
-void	mark(int readAheadLimit);
-boolean	markSupported();
-int	read();
-int	read(char[] cbuf);
+void			mark(int readAheadLimit);
+boolean			markSupported();
+int				read();
+int				read(char[] cbuf);
 abstract int	read(char[] cbuf, int off, int len);
-int	read(CharBuffer target);
-boolean	ready();
-void	reset();
-long	skip(long n);
+int				read(CharBuffer target);
+boolean			ready();
+void			reset();
+long			skip(long n);
 ```
 
 ---
@@ -496,16 +513,16 @@ long	skip(long n);
 #### `java.io.Writer`
 
 ```java
-Writer	append(char c);
-Writer	append(CharSequence csq);
-Writer	append(CharSequence csq, int start, int end);
+Writer			append(char c);
+Writer			append(CharSequence csq);
+Writer			append(CharSequence csq, int start, int end);
 abstract void	close();
 abstract void	flush();
-void	write(char[] cbuf);
+void			write(char[] cbuf);
 abstract void	write(char[] cbuf, int off, int len);
-void	write(int c);
-void	write(String str);
-void	write(String str, int off, int len);
+void			write(int c);
+void			write(String str);
+void			write(String str, int off, int len);
 ```
 
 ---
@@ -541,11 +558,17 @@ formatter.format("%4$2s %3$2s %2$2s %1$2s", "a", "b", "c", "d")
 // -> " d  c  b  a"
 
 // Optional locale as the first argument can be used to get
-// locale-specific formatting of numbers.  The precision and width can be
-// given to round and align the value.
+// locale-specific formatting of numbers.  The precision and width
+// can be given to round and align the value.
 formatter.format(Locale.FRANCE, "e = %+10.4f", Math.E);
 // -> "e =    +2,7183"
+```
 
+---
+
+#### `java.util.Formatter`
+
+```java
 // The '(' numeric flag may be used to format negative numbers with
 // parentheses rather than a minus sign.  Group separators are
 // automatically inserted.
