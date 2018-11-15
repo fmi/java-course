@@ -47,7 +47,7 @@ _13.11.2018_
 - Ако имаш "and" в името, вероятно не е така
 - Ако имаш "Helper", "Manager", "Utility" в името, *може би* има по-добър дизайн
 - Един метод трябва да прави едно нещо
-- Да е кратък: < 20 реда код
+- Методът трябва да е кратък: < 20 реда код
 
 @ulend
 
@@ -57,10 +57,10 @@ _13.11.2018_
 
 @ul
 
-- Ако имаш "and" в името на метод, може би прави повечко неща: раздели го на няколко
-- Ако имаш много параметри на метод,
-- може би не му е мястото в този клас (а там, откъдето се взимат стойностите за тези параметри)
-- или трябва да направиш data object, който да групира семантично свързаните от тях
+- Ако имаш "and" в името на метод, може би той прави повечко неща: раздели го на няколко
+- Ако имаш много параметри на метод:
+  - може би не му е мястото в този клас (а там, откъдето се взимат стойностите за тези параметри)
+  - или трябва да направиш data object, който да групира семантично свързаните от тях
 - Не злоупотребявай със static
 
 @ulend
@@ -118,23 +118,26 @@ _13.11.2018_
 #### Принципи на чистия код
 
 ```java
+// Bad
 if (x % 2 == 0)
     return x / 2;
 ```
 
 ```java
+// Good
 if (x % 2 == 0) {
     return x / 2;
 }
 ```
 
-- Винаги ограждай в блок телата на if-else и цикли, дори са с по един statement
+- Винаги ограждай в блок телата на if-else и цикли, дори да са с по един statement
 
 ---
 
 #### Принципи на чистия код
 
 ```java
+// Bad
 if (x % 2 == 0) {
     return true;
 } else {
@@ -143,6 +146,7 @@ if (x % 2 == 0) {
 ```
 
 ```java
+// Good
 return x % 2 == 0;
 ```
 
@@ -178,7 +182,7 @@ return x % 2 == 0;
 @ul
 
 - Запознай се с цялостна Java код конвенция и се придържай към нея.
-  Две от най-популярните:
+- Две от най-популярните:
 - [Oracle Code Conventions for the Java Programming Language](https://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html)
 - [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
 
@@ -193,8 +197,8 @@ return x % 2 == 0;
 @ul
 
 - Има инструменти за статичен код анализ, които
-- автоматизират придържането към код конвенции
-- намират и бъгове
+  - автоматизират придържането към код конвенции
+  - намират и бъгове
 
 @ulend
 
@@ -274,7 +278,7 @@ return x % 2 == 0;
 
 ---
 
-#### java.io.*
+#### `java.io.*`
 
 ![Java I/O Root Abstract Classes](images/06.8-java-io-root-abstract-classes.png?raw=true)
 
@@ -320,7 +324,7 @@ return x % 2 == 0;
 
 ---
 
-#### Входно-изходни потоци: жизнен цикъл
+#### Входно-изходни потоци: - жизнен цикъл
 
 Потоците се
 
@@ -337,17 +341,17 @@ return x % 2 == 0;
 #### Пример с `InputStream`
 
 ```java
-InputStream inputstream =
+InputStream inputStream =
 	new FileInputStream("c:\\data\\input-text.txt");
 
-int data = inputstream.read();
+int data = inputStream.read();
 
 while (data != -1) {
 	doSomethingWithData(data);
-	data = inputstream.read();
+	data = inputStream.read();
 }
 
-inputstream.close();
+inputStream.close();
 ```
 
 ---
@@ -411,7 +415,7 @@ abstract void write​(int b);
 #### Пример с `DataInputStream`
 
 ```java
-DataInputStream dataInputStream =
+DataInputStream input =
 	new DataInputStream(new FileInputStream("binary.data"));
 
 int    aByte   = input.read();
@@ -461,12 +465,12 @@ output.close();
 ```java
 import java.io.Serializable;
 
-public static class Person implements Serializable {
+public class Person implements Serializable {
 
 	private static final long serialVersionUID = 1234L;
 
 	public String name = null;
-	public int    age  =   0;
+	public int age = 0;
 }
 ```
 
@@ -582,9 +586,9 @@ void          write(String str, int off, int len);
 #### `java.util.Scanner`
 
 ```java
-Scanner sc = new Scanner(System.in);
-int i = sc.nextInt();
-String str = sc.nextLine();
+Scanner scanner = new Scanner(System.in);
+int i = scanner.nextInt();
+String str = scanner.nextLine();
 // ...
 ```
 
