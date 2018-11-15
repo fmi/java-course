@@ -453,9 +453,9 @@ ObjectOutputStream objectOutputStream =
 
 MyClass object = new MyClass();
 
-output.writeObject(object);
+objectOutputStream.writeObject(object);
 
-output.close();
+objectOutputStream.close();
 ```
 
 ---
@@ -469,8 +469,8 @@ public class Person implements Serializable {
 
 	private static final long serialVersionUID = 1234L;
 
-	public String name = null;
-	public int age = 0;
+	private String name = null;
+	private int age = 0;
 }
 ```
 
