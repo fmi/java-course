@@ -18,13 +18,13 @@
     doSomethingElse(counter);
     ```
 
-    **Note 1 :** Statement-ите се разделят със символа **;**
+    **Note 1:** Statement-ите се разделят със символа `;`
 
-    **Note 2 :** Код от вида ```doSomething;;;;``` е коректен, тъй като има само един непразен statement
+    **Note 2:** Код от вида `doSomething;;;;` е коректен, тъй като има само един непразен statement
 
 2.  Не е позволено да се ползват wildcards в import statement-и:
 
-    ``` java
+    ```java
     // incorrect
     import java.util.*;
 
@@ -34,7 +34,8 @@
     ```
 
 3.  Отварящите скоби не трябва да бъдат на нов ред:
-    ``` java
+
+    ```java
     // incorrect
     public static void main(String[] args)
     {
@@ -54,59 +55,68 @@
 
 4. Всеки ред трябва да има дължина не повече от n на брой символа
 
-    **Note 1:** - проверката за дължина на ред не се прави при import statement-и
+    **Note 1:** Проверката за дължина на ред не се прави при import statement-и.
 
-    **Note 2:** - в проверката за дължина на ред не се включват leading и trailing whitespaces и tabs
+    **Note 2:** В проверката за дължина на ред не се включват leading и trailing whitespace.
 
 ### Имплементация:
 
 Създайте клас `StyleChecker`, който има следните конструктори и метод:
 
-``` java
+```java
 /**
-* Used for static code checks of Java files.
-*
-* Depending on a stream from user-defined configuration or default values, it checks
-* if the following rules are applied:
-* <li> there is only one statement per line;
-* <li> the line lengths do not exceed 100 (or user-defined) characters;
-* <li> the import statements do not use a wildcard;
-* <li> each opening block bracket is on the same line as the declaration.
-*/
+ * Used for static code checks of Java files.
+ *
+ * Depending on a stream from user-defined configuration or default values, it
+ * checks if the following rules are applied:
+ * <ul>
+ * <li>there is only one statement per line;</li>
+ * <li>the line lengths do not exceed 100 (or user-defined) characters;</li>
+ * <li>the import statements do not use a wildcard;</li>
+ * <li>each opening block bracket is on the same line as the declaration.</li>
+ * </ul>
+ */
 public class StyleChecker {
 
     /**
-    * Creates a StyleChecker with properties having the following default values:
-    * <li> {@code wildcard.import.check.active=true}
-    * <li> {@code statements.per.line.check.active=true}
-    * <li> {@code opening.bracket.check.active=true}
-    * <li> {@code length.of.line.check.active=true}
-    * <li> {@code line.length.limit=100}
-    **/
+     * Creates a StyleChecker with properties having the following default values:
+     * <ul>
+     * <li>{@code wildcard.import.check.active=true}</li>
+     * <li>{@code statements.per.line.check.active=true}</li>
+     * <li>{@code opening.bracket.check.active=true }</li>
+     * <li>{@code length.of.line.check.active=true}</li>
+     * <li>{@code line.length.limit=100}</li>
+     * </ul>
+     **/
     public StyleChecker() {
         // implementation
     }
 
-   /**
-    * Creates a StyleChecker with custom configuration, based on the content from the
-    * given {@code inputStream}. If the stream does not contain any of
-    * the properties, the missing ones get their default values.
-    **/
+    /**
+     * Creates a StyleChecker with custom configuration, based on the content from
+     * the given {@ inputStream}. If the stream does not contain any of the
+     * properties, the missing ones get their default values.
+     * 
+     * @param inputStream
+     */
     public StyleChecker(InputStream inputStream) {
         // implementation
     }
 
     /**
-    * For each line from the given {@code source} InputStream writes
-    * FIXME comment for the violated rules (if any) with an
-    * explanation of the style error preceded by the line itself in the {@code output}.
-    **/
+     * For each line from the given {@code source} InputStream writes FIXME comment
+     * for the violated rules (if any) with an explanation of the style error
+     * preceded by the line itself in the {@code output}.
+     * 
+     * @param source
+     * @param output
+     */
     public void checkStyle(InputStream source, OutputStream output) {
         // implementation
     }
-
 }
 ```
+
 Коментарите могат да бъдат следните:
 - `// FIXME Wildcards are not allowed in import statements`
 - `// FIXME Only one statement per line is allowed`
@@ -119,17 +129,17 @@ public class StyleChecker {
 
 Пример:
 - **source java file:**
-    ``` java
+    ```java
     import java.lang.*;
 
     public class Test {
-    
+
         public static void sayHello()
         {
             String hello = "Hey, it's Hannah, Hannah Baker. That's right. Don't adjust your... whatever device you're listening to this on. It's me, live and in stereo.";
             System.out.println(hello);
         }
-        
+
         public static void main(String[] args) {
             sayHello();sayHello();sayHello();sayHello();sayHello();sayHello();sayHello();sayHello();sayHello();sayHello();sayHello();
         }
@@ -137,7 +147,7 @@ public class StyleChecker {
     ```
 - **output java file:**
 
-    ``` java
+    ```java
     // FIXME Wildcards are not allowed in import statements
     import java.lang.*;
 
@@ -163,7 +173,7 @@ public class StyleChecker {
 
 Файлът има видa:
 
-``` properties
+```properties
 line.length.limit=130
 statements.per.line.check.active=true|false
 length.of.line.check.active=true|false
@@ -180,7 +190,7 @@ opening.bracket.check.active=true|false
 
 Стойностите по подразбиране са следните:
 
-``` properties
+```properties
 line.length.limit=100
 statements.per.line.check.active=true
 length.of.line.check.active=true
@@ -229,4 +239,4 @@ test
     └─ (...)
 ```
 
-В sapera.org качвайте общ `zip` архив на папки `src` и `test`.
+В [grader.sapera.org](grader.sapera.org) качете общ `zip` на директориите `src` и `test`.

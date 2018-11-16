@@ -45,4 +45,4 @@
         └─ (...)
     ```
 
-6. В sapera.org качете общ **zip** на двете папки `src` и `test`.
+6. В [grader.sapera.org](grader.sapera.org) качете общ `zip` на директориите `src` и `test`.
