@@ -239,4 +239,4 @@ test
     └─ (...)
 ```
 
-В [grader.sapera.org](grader.sapera.org) качете общ `zip` на директориите `src` и `test`.
+В [grader.sapera.org](http://grader.sapera.org) качете общ `zip` на директориите `src` и `test`.
