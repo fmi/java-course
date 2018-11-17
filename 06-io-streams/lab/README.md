@@ -1,8 +1,8 @@
 # Java StyleChecker
 
-Ще създадем програма за статично анализиране (*static code analysis tool*) на Java код - **StyleChecker**, която да ни помага да се придържаме към определен стандарт за писане на код (например [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)).
+Ще създадем инструмент за статично анализиране (*static code analysis tool*) на Java код - **StyleChecker**, който да ни помага да се придържаме към определен стандарт за писане на код (например [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)).
 
-Програмата ни ще проверява дали определен набор от правила са изпълнени.
+Инструментът ни ще проверява дали определен набор от правила са изпълнени.
 
 ### Правила:
 
@@ -71,8 +71,8 @@
  * checks if the following rules are applied:
  * <ul>
  * <li>there is only one statement per line;</li>
- * <li>the line lengths do not exceed 100 (or user-defined) characters;</li>
- * <li>the import statements do not use a wildcard;</li>
+ * <li>the line lengths do not exceed 100 (or user-defined number of) characters;</li>
+ * <li>the import statements do not use wildcards;</li>
  * <li>each opening block bracket is on the same line as the declaration.</li>
  * </ul>
  */
@@ -106,7 +106,7 @@ public class StyleChecker {
     /**
      * For each line from the given {@code source} InputStream writes FIXME comment
      * for the violated rules (if any) with an explanation of the style error
-     * preceded by the line itself in the {@code output}.
+     * followed by the line itself in the {@code output}.
      * 
      * @param source
      * @param output
@@ -200,7 +200,7 @@ opening.bracket.check.active=true
 
 ### Забележки
 
-Java файловете, които ще бъдат проверявани за стил няма да съдържат:
+Java файловете, които ще бъдат проверявани за стил, няма да съдържат:
 - коментари
 - символни низове с валиден Java код
 - static и non-static initializer blocks
