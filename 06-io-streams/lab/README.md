@@ -198,7 +198,9 @@ opening.bracket.check.active=true
 **Note 3**: Няма нужда да валидирате пропъртитата и техните стойности, които прочитате от `InputStream`-a - приемаме че винаги са валидни.
 
 #### Лесен начин да съхраняваме и четем property-та
-За тази цел можем да използваме класа `java.util.Properties`.
+
+За тази цел можем да използваме класа [`java.util.Properties`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Properties.html).
+
 ``` java
 Properties properties = new Properties();
 
@@ -209,7 +211,8 @@ properties.setProperty("statements.per.line.check.active", "true");
 boolean isPropertySet = Boolean.parseBoolean(properties.getProperty("statements.per.line.check.active")); // true
 
 // Зареждаме всички property-та от дадения InputStream в Properties обекта
-// Ако някое от property-тата вече същестува, то стойността му ще бъде override-ната с тази, която е прочетена от `InputStream`-a
+// Ако някое от property-тата вече същестува, стойността му ще бъде override-ната с тази,
+// която е прочетена от `InputStream`-a
 ByteArrayInputStream input = new ByteArrayInputStream("statements.per.line.check.active=false".getBytes());
 properties.load(input);
 isPropertySet = Boolean.parseBoolean(properties.getProperty("statements.per.line.check.active")); // false
