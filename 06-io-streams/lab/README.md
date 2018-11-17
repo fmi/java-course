@@ -167,11 +167,11 @@ public class StyleChecker {
     }
     ```
 
-### Properties file
+### Properties
 
-`Properties` файлът, чиито `InputStream` подаваме на `StyleChecker`-a, съдържа информация за четирите правила, които нашият StyleChecker проверява. Стойностите `true` и `false` показват дали дадено правило ще бъде проверено или не.
+`Property`-тата , съдържащи се в `InputStream`-а, който подаваме на нашия `StyleChecker`, дават информация за четирите правила, които той трябва да проверява. Стойностите `true` и `false` показват дали дадено правило ще бъде проверено или не.
 
-Файлът има видa:
+`Property`-тата са следните:
 
 ```properties
 line.length.limit=130
@@ -181,14 +181,7 @@ wildcard.import.check.active=true|false
 opening.bracket.check.active=true|false
 ```
 
-**Note**: Ако `length.of.line.check.active=false`, не взимаме под внимание `line.length.limit` (без значение дали съществува и има някаква стойност).
-
-Ако някое от пропъртитата липсва, то трябва да бъде използвана неговата стойност по подразбиране.
-
-:exclamation: Файлът съдържа само валидни пропъртита и стойности.
-
-
-Стойностите по подразбиране са следните:
+Стойностите им по подразбиране са следните:
 
 ```properties
 line.length.limit=100
@@ -196,6 +189,30 @@ statements.per.line.check.active=true
 length.of.line.check.active=true
 wildcard.import.check.active=true
 opening.bracket.check.active=true
+```
+
+**Note 1**: Ако `length.of.line.check.active=false`, не взимаме под внимание `line.length.limit` (без значение дали съществува и има някаква стойност).
+
+**Note 2**: Ако някое от пропъртитата липсва, то трябва да бъде използвана неговата стойност по подразбиране.
+
+**Note 3**: Няма нужда да валидирате пропъртитата и техните стойности, които прочитате от `InputStream`-a - приемаме че винаги са валидни.
+
+#### Лесен начин да съхраняваме и четем property-та
+За тази цел можем да използваме класа `java.util.Properties`.
+``` java
+Properties properties = new Properties();
+
+// Добаваме property със съответната му стойност към Properties обекта
+properties.setProperty("statements.per.line.check.active", "true");
+
+// Взимаме стойността на съответното property от Properties обекта
+boolean isPropertySet = Boolean.parseBoolean(properties.getProperty("statements.per.line.check.active")); // true
+
+// Зареждаме всички property-та от дадения InputStream в Properties обекта
+// Ако някое от property-тата вече същестува, то стойността му ще бъде override-ната с тази, която е прочетена от `InputStream`-a
+ByteArrayInputStream input = new ByteArrayInputStream("statements.per.line.check.active=false".getBytes());
+properties.load(input);
+isPropertySet = Boolean.parseBoolean(properties.getProperty("statements.per.line.check.active")); // false
 ```
 
 ### Забележки
