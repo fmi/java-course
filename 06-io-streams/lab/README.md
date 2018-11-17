@@ -104,7 +104,7 @@ public class StyleChecker {
     }
 
     /**
-     * For each line from the given {@code source} InputStream writes FIXME comment
+     * For each line from the given {@code source} InputStream writes fixme comment
      * for the violated rules (if any) with an explanation of the style error
      * followed by the line itself in the {@code output}.
      * 
