@@ -21,7 +21,6 @@ public class MemCache<K, V> implements Cache<K, V> {
 	 */
 	public MemCache(long capacity) {
 		this.maxCapacity = capacity;
-
 		this.map = new HashMap<>();
 	}
 
@@ -34,16 +33,18 @@ public class MemCache<K, V> implements Cache<K, V> {
 
 	@Override
 	public V get(K key) {
-		CacheItem<V> ci = map.get(key);
-		if (ci != null) {
-			if (!ci.isExpired()) {
+		CacheItem<V> item = map.get(key);
+
+		if (item != null) {
+			if (!item.isExpired()) {
 				successfulHits++;
-				return ci.getValue();
-			} else {
-				map.remove(key);
-				size--;
+				return item.getValue();
 			}
+			
+			map.remove(key);
+			size--;
 		}
+
 		missedHits++;
 		return null;
 	}
@@ -71,9 +72,11 @@ public class MemCache<K, V> implements Cache<K, V> {
 	@Override
 	public LocalDateTime getExpiration(K key) {
 		CacheItem<V> item = map.get(key);
+		
 		if (item == null) {
 			return null;
 		}
+		
 		return item.getExpiration();
 	}
 
@@ -85,6 +88,7 @@ public class MemCache<K, V> implements Cache<K, V> {
 				return true;
 			}
 		}
+		
 		return false;
 	}
 
@@ -95,6 +99,7 @@ public class MemCache<K, V> implements Cache<K, V> {
 			size--;
 			return true;
 		}
+		
 		return false;
 	}
 
@@ -116,6 +121,7 @@ public class MemCache<K, V> implements Cache<K, V> {
 		if (successfulHits == 0) {
 			return 0.0;
 		}
+		
 		return (double) successfulHits / (successfulHits + missedHits);
 	}
 

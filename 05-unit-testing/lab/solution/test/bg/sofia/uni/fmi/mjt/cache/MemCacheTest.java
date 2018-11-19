@@ -1,6 +1,8 @@
 package bg.sofia.uni.fmi.mjt.cache;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.time.LocalDateTime;
 
@@ -33,7 +35,6 @@ public class MemCacheTest {
 	@Test
 	public void testAddingTwoItemsWithTheSameKey() throws CapacityExceededException {
 		MemCache<Integer, String> cache = new MemCache<>(CACHE_TEST_SIZE);
-
 		cache.set(1, "a", LocalDateTime.now());
 		cache.set(1, "b", LocalDateTime.now().plusMinutes(1));
 
@@ -52,20 +53,20 @@ public class MemCacheTest {
 
 		cache.set((int) CACHE_TEST_SIZE, "a", afterOneMinute);
 		LocalDateTime actual = cache.getExpiration((int) CACHE_TEST_SIZE);
+		
 		assertEquals(afterOneMinute, actual);
 	}
 
 	@Test
 	public void testAddNull() throws CapacityExceededException {
 		MemCache<Integer, String> cache = new MemCache<>();
-
 		cache.set(null, "a", LocalDateTime.now());
 		cache.set(1, null, LocalDateTime.now());
 		cache.set(null, null, LocalDateTime.now());
 		cache.set(null, null, null);
 
-		assertEquals("Adding null items with null keys and/or values isn't supposed to register them in the cache.", 0,
-		        cache.size());
+		assertEquals("Adding null items with null keys and/or values "
+					 + "isn't supposed to register them in the cache.", 0, cache.size());
 	}
 
 	@Test(expected = CapacityExceededException.class)
@@ -93,7 +94,6 @@ public class MemCacheTest {
 	@Test
 	public void testGet() throws CapacityExceededException {
 		MemCache<Integer, String> cache = new MemCache<>(CACHE_TEST_SIZE);
-
 		cache.set(1, "a", LocalDateTime.now().plusMinutes(1));
 
 		assertEquals("Key should be mapped correctly to its value in the cache.", "a", cache.get(1));
@@ -106,8 +106,8 @@ public class MemCacheTest {
 		LocalDateTime currentTime = LocalDateTime.now();
 		cache.set(1, "a", currentTime);
 
-		assertEquals("Key should be mapped correctly to its expiration time in the cache.", currentTime,
-		        cache.getExpiration(1));
+		assertEquals("Key should be mapped correctly to its expiration time in the cache.",
+					 currentTime, cache.getExpiration(1));
 	}
 
 	@Test
@@ -120,9 +120,7 @@ public class MemCacheTest {
 	@Test
 	public void testRemoveExistingElement() throws CapacityExceededException {
 		MemCache<Integer, String> cache = new MemCache<>(CACHE_TEST_SIZE);
-
 		cache.set(1, "a", LocalDateTime.now());
-
 		cache.remove(1);
 
 		assertEquals("Removing an existing key from the cache.", 0, cache.size());
@@ -131,9 +129,7 @@ public class MemCacheTest {
 	@Test
 	public void testRemoveNonExistingElement() throws CapacityExceededException {
 		MemCache<Integer, String> cache = new MemCache<>(CACHE_TEST_SIZE);
-
 		cache.set(1, "a", LocalDateTime.now());
-
 		cache.remove(FAKE_ELEMENT);
 
 		assertEquals("Removing a non-existing key from the cache.", 1, cache.size());
@@ -142,7 +138,6 @@ public class MemCacheTest {
 	@Test
 	public void testGetExpiredElement() throws CapacityExceededException {
 		MemCache<Integer, String> cache = new MemCache<>(CACHE_TEST_SIZE);
-
 		cache.set(1, "a", LocalDateTime.now().minusMinutes(1));
 
 		assertNull("Getting expired elements from the cache should remove them and return null.", cache.get(1));
@@ -151,7 +146,6 @@ public class MemCacheTest {
 	@Test
 	public void testHitRate() throws CapacityExceededException {
 		MemCache<Integer, String> cache = new MemCache<>(CACHE_TEST_SIZE);
-
 		cache.set(1, "a", LocalDateTime.now().plusMinutes(1));
 		cache.get(1);
 		cache.get(0);
@@ -170,7 +164,7 @@ public class MemCacheTest {
 
 		cache.set(FAKE_ELEMENT, "a", LocalDateTime.now().plusMinutes(1));
 
-		assertNotNull("Adding a new item should be possible when the cache is full but there's an expired item.",
-		        cache.get(FAKE_ELEMENT));
+		assertNotNull("Adding a new item should be possible when "
+					 + "the cache is full but there's an expired item.", cache.get(FAKE_ELEMENT));
 	}
 }
