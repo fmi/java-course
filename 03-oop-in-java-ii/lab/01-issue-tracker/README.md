@@ -103,14 +103,19 @@ src
 
 Успех, и не се срамувайте да задавате въпроси!
 
-*Hints after the exercise, за да Ви минат успешно тестовете*
+Hints after the exercise, за да ви минат успешно тестовете
 ------------------------
 
-* Трябва да създате класове за отделните типове Issue-та, тоест трябва да имате:
-	- bg.sofia.uni.fmi.jira.issues.Bug.java;
-	- bg.sofia.uni.fmi.jira.issues.NewFeature.java;
-	- bg.sofia.uni.fmi.jira.issues.Task.java;
+* Трябва да създадете класове за отделните типове `Issue`-та, тоест трябва да имате:
+	- `bg.sofia.uni.fmi.jira.issues.Bug.java;`
+	- `bg.sofia.uni.fmi.jira.issues.NewFeature.java;`
+	- `bg.sofia.uni.fmi.jira.issues.Task.java;`
 	
-* Всяко Issue трябва да има методи, със следната сигнатура(Добавени са и в интефейса IIssue по-горе вече): 
-	- *public LocalDateTime getCreatedAt();*. 
-	- *public LocalDateTime getLastModifiedAt();*. 
+* Всяко `Issue` трябва да има методи със следната сигнатура (добавени са и в интефейса `IIssue` по-горе вече): 
+	- `public LocalDateTime getCreatedAt();` 
+	- `public LocalDateTime getLastModifiedAt();` 
+	
+* Конструкторите на NewFeature и Task трябва да приемат като последен параметър 'LocalDateTime dueTime'.
+
+* Конструкторите на Issue, Bug, NewFeature и Task не трябва да хвърлят друг checked exception, освен InvalidReporterException.	
+
