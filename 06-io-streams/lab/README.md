@@ -94,7 +94,7 @@ public class StyleChecker {
 
     /**
      * Creates a StyleChecker with custom configuration, based on the content from
-     * the given {@ inputStream}. If the stream does not contain any of the
+     * the given {@code inputStream}. If the stream does not contain any of the
      * properties, the missing ones get their default values.
      * 
      * @param inputStream
@@ -123,7 +123,7 @@ public class StyleChecker {
 - `// FIXME Length of line should not exceed [X] characters`
 - `// FIXME Opening brackets should be placed on the same line as the declaration`
 
-**Note 1:** Последователността им не е значение.
+**Note 1:** Последователността им не е от значение.
 
 **Note 2:** На един ред може да има повече от едно нарушено правило.
 
