@@ -94,7 +94,7 @@ public class StyleChecker {
 
     /**
      * Creates a StyleChecker with custom configuration, based on the content from
-     * the given {@ inputStream}. If the stream does not contain any of the
+     * the given {@code inputStream}. If the stream does not contain any of the
      * properties, the missing ones get their default values.
      * 
      * @param inputStream
@@ -123,9 +123,11 @@ public class StyleChecker {
 - `// FIXME Length of line should not exceed [X] characters`
 - `// FIXME Opening brackets should be placed on the same line as the declaration`
 
-**Note 1:** Последователността им няма значение.
+**Note 1:** Последователността им не е от значение.
 
 **Note 2:** На един ред може да има повече от едно нарушено правило.
+
+**Note 3:** Подравняването на коментарите не е от значение. Върпеки това, ако искате output-a да стане една идея по-красив, може да си поиграете.
 
 Пример:
 - **source java file:**
@@ -152,6 +154,7 @@ public class StyleChecker {
     import java.lang.*;
 
     public class Test {
+    
         public static void sayHello()
         // FIXME Opening brackets should be placed on the same line as the declaration
         {
@@ -159,6 +162,7 @@ public class StyleChecker {
             String hello = "Hey, it's Hannah, Hannah Baker. That's right. Don't adjust your... whatever device you're listening to this on. It's me, live and in stereo.";
             System.out.println(hello);
         }
+        
         public static void main(String[] args) {
             // FIXME Only one statement per line is allowed
             // FIXME Length of line should not exceed 100 characters
