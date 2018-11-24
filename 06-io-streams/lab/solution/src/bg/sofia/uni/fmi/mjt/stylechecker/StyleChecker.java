@@ -19,10 +19,10 @@ import bg.sofia.uni.fmi.mjt.stylechecker.check.WildcardImportCheck;
 /**
  * Used for static code checks of Java files.
  *
- * Depending on a stream from user-defined configuration or default values, it
+ * Depending on a stream of user-defined configuration or default values, it
  * checks if the following rules are applied:
  * <li>there is only one statement per line;
- * <li>the line lengths do not exceed 100 (or user-defined) characters;
+ * <li>the line lengths do not exceed 100 (or user-defined number of) characters;
  * <li>the import statements do not use a wildcard;
  * <li>each opening block bracket is on the same line as the declaration.
  */
@@ -79,9 +79,9 @@ public class StyleChecker {
 	}
 
 	/**
-	 * For each line from the given {@code source} InputStream writes FixMe comment
+	 * For each line from the given {@code source} InputStream, writes FixMe comment
 	 * for the violated rules (if any) with an explanation of the style error
-	 * preceded by the line itself in the {@code output}.
+	 * followed by the line itself in the {@code output}.
 	 **/
 	public void checkStyle(InputStream source, OutputStream output) {
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(source));
@@ -110,7 +110,7 @@ public class StyleChecker {
 			}
 
 		} catch (IOException ioExc) {
-			throw new RuntimeException("Error occured while checking style", ioExc);
+			throw new RuntimeException("Error occurred while checking style", ioExc);
 		}
 	}
 
