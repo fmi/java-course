@@ -72,7 +72,7 @@ public class MoviesExplorer {
 1. :green_book: Намира броя на филмите, излезли на екран през `{year}` година.
 
     ``` java
-    public long countMoviesReleasedIn(int year)
+    public int countMoviesReleasedIn(int year)
     ```
 
 2. :green_book: Намира **първия** (по ред) филм в `dataset`-а, който съдържа `{title}` в заглавието си. Ако такъв филм не бъде намерен, се хвърля `IllegalArgumentException`:
