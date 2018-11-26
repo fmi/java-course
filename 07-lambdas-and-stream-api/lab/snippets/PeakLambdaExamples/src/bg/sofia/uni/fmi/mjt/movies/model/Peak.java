@@ -4,12 +4,14 @@ package bg.sofia.uni.fmi.mjt.movies.model;
  * Клас който съхранява информация за един връх от mountains.txt
  */
 public class Peak {
+
     private static final String PEAK_ATTR_DELIMITER = ",";
 
     private final int pos; // Позиция по височина - мястото по височина на съответния връх
     private final String name; // Име (на върха)
     private final double height; // Височина (в метри)
-    private final double prominence; // Изпъкналост (в метри) - показва височината на върха от най-високата седловина, свързваща го с по-висок връх) (виж Topographic prominence)
+    private final double prominence; // Изпъкналост (в метри) - показва височината на върха от най-високата седловина,
+                                     // свързваща го с по-висок връх) (виж Topographic prominence)
     private final String range; // Планина – от коя планинска верига е част върхът
     private final int firstAscent; // Година на първо изкачване
     private final int totalAscents; // Брой изкачвания след 2004 г.
