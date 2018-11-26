@@ -12,7 +12,7 @@ public class Peak {
     private final double prominence; // Изпъкналост (в метри) - показва височината на върха от най-високата седловина, свързваща го с по-висок връх) (виж Topographic prominence)
     private final String range; // Планина – от коя планинска верига е част върхът
     private final int firstAscent; // Година на първо изкачване
-    private final int totalAscents; //Брой изкачвания след 2004 г.
+    private final int totalAscents; // Брой изкачвания след 2004 г.
 
     private Peak(
             int pos, String name, double height, double prominence, String range, int firstAscent, int totalAscents) {
