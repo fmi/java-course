@@ -111,8 +111,8 @@ public interface SentimentAnalyzer {
 	public Collection<String> getMostNegativeWords(int n);
 
 	/**
-	 * @param       sentence-review
-	 * @param value of the review
+	 * @param review The text part of the review
+	 * @param sentimentValue The given rating
 	 */
 	public void appendReview(String review, int sentimentValue);
 
@@ -128,6 +128,12 @@ public interface SentimentAnalyzer {
 
 }
 ```
+
+<pre>
+Нашият dataset от ревюта трябва да може да се разширява. Това ще допринесе за допълнителна точност при меренето на "sentiment" във времето. Точно това е идеята и на outputStream-a. той ще добавя нови ревюта към reviews.txt
+
+Метода append ни дава възможност да усъвършенстваме нашия sentiment analyzer. При добавяне на нови ревюта и оценки преизчисляваме sentiment-a думите от ревюто.
+</pre>
 
 ### Оценяване
 
