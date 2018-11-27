@@ -135,6 +135,8 @@ public interface SentimentAnalyzer {
 Метода append ни дава възможност да усъвършенстваме нашия sentiment analyzer. При добавяне на нови ревюта и оценки преизчисляваме sentiment-a думите от ревюто.
 </pre>
 
+:exclamation: **Важно**: Качвайте само .zip архив на src и test директориите без resources. :exclamation:
+
 ### Оценяване
 
 Решението може да ви донесе до 100 точки, като ще бъде оценявано:
