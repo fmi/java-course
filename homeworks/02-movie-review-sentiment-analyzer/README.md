@@ -1,6 +1,4 @@
-# Домашно #2
-
-## Movie Review Sentiment Analyzer
+# Movie Review Sentiment Analyzer
 
 `Краен срок: 11.12.2018, 23:45`
 
