@@ -1,4 +1,4 @@
-package bg.uni.sofia.fmi.mjt.sentiment;
+package bg.sofia.uni.fmi.mjt.sentiment;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
