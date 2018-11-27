@@ -55,7 +55,7 @@
 
 `public MovieReviewSentimentAnalyzer(InputStream stopwordsInput, InputStream reviewsInput,OutputStream reviewsOutput)`
 
-Kато трите параметъра са съответно поток за четене на [stopwords.txt], поток за четене на [reviews.txt] и поток за писане в [reviews.txt] 
+Kато трите параметъра са съответно поток за четене на [stopwords.txt], поток за четене на [reviews.txt] и поток за писане в [reviews.txt].
 
 ```java
 package bg.sofia.uni.fmi.mjt.sentiment.interfaces;
@@ -126,14 +126,11 @@ public interface SentimentAnalyzer {
 
 }
 ```
+Нашият data set от ревюта трябва да може да се разширява. Това ще допринесе за допълнителна точност при меренето на sentiment във времето. Точно това е идеята и на `outputStream`-a - чрез него ще добавя нови ревюта към `reviews.txt`.
 
-<pre>
-Нашият dataset от ревюта трябва да може да се разширява. Това ще допринесе за допълнителна точност при меренето на "sentiment" във времето. Точно това е идеята и на outputStream-a. той ще добавя нови ревюта към reviews.txt
+Методът `append` ни дава възможност да усъвършенстваме нашия sentiment analyzer. При добавяне на нови ревюта и оценки, преизчисляваме sentiment-a думите от ревюто.
 
-Метода append ни дава възможност да усъвършенстваме нашия sentiment analyzer. При добавяне на нови ревюта и оценки преизчисляваме sentiment-a думите от ревюто.
-</pre>
-
-:exclamation: **Важно**: Качвайте само .zip архив на src и test директориите без resources. :exclamation:
+:exclamation: **Важно**: Качвайте само `.zip` архив на `src` и `test` директориите, без `resources`. :exclamation:
 
 ### Оценяване
 
@@ -141,4 +138,4 @@ public interface SentimentAnalyzer {
 
 * за функционална пълнота и коректност, и за автоматични тестове с добър code coverage (50% от оценката)
 * от static code check plugin-а в sapera.org (20% от оценката)
-* за спазване на принципите за чист код и подбиране на оптимални за задачата структури (30% от оценката)
+* за спазване на принципите за чист код и подбиране на оптимални за задачата структури от данни (30% от оценката)
