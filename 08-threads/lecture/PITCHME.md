@@ -677,7 +677,7 @@ __Изчакване чрез wait()__
 
 ```
   public synchronized void withdrawCreditPayment(double monthFee) {
-    if (this.balance < monthFee) {
+    while (this.balance < monthFee) {
       try {
         // Изчакваме и освобождаваме монитора this
         this.wait();
@@ -953,8 +953,8 @@ BlockingQueue<String> queue = new ArrayBlockingQueue<>(4);
 
 ___Използвана литература___
 
-"Java Concurrency in Practice" by Brian Göetz, Tim Peierls, Joshua Bloch
-**http://docs.oracle.com/javase/tutorial/essential/concurrency/**
-**http://www.javaworld.com/article/2071214/java-concurrency/java-101--understanding-java-threads-part-3--thread-scheduling-and-wait-notify.html**
-**https://docs.oracle.com/javase/8/docs/api/**
+- "Java Concurrency in Practice" by Brian Göetz, Tim Peierls, Joshua Bloch
+- **http://docs.oracle.com/javase/tutorial/essential/concurrency/**
+- **http://www.javaworld.com/article/2071214/java-concurrency/java-101--understanding-java-threads-part-3--thread-scheduling-and-wait-notify.html**
+- **https://docs.oracle.com/javase/8/docs/api/**
 
