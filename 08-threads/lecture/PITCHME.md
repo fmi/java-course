@@ -867,6 +867,7 @@ atomicInt.incrementAndGet();
 atomicInt.addAndGet(x) 
 
 // thread-safe вариант на if (ref == expected) { ref = update; } 
+// NB! Сравняваме рефенции затова използваме `==`, а не equals
 atomicRef.compareAndSet(expected, update)
 ```
 ---
@@ -949,3 +950,11 @@ ArrayBlockingQueue – основна имплементация. Опашкат
 BlockingQueue<String> queue = new ArrayBlockingQueue<>(4);
 ```
 ---
+
+___Използвана литература___
+
+"Java Concurrency in Practice" by Brian Göetz, Tim Peierls, Joshua Bloch
+**http://docs.oracle.com/javase/tutorial/essential/concurrency/**
+**http://www.javaworld.com/article/2071214/java-concurrency/java-101--understanding-java-threads-part-3--thread-scheduling-and-wait-notify.html**
+**https://docs.oracle.com/javase/8/docs/api/**
+
