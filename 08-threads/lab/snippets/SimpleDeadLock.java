@@ -30,15 +30,17 @@ public class SimpleDeadLock {
     Thread friend2 = new Thread(new Runnable() {
       @Override
       public void run() {
-        synchronized (oil) {
+        // To resolve the deadlock
+        // lock the monitors in the same order
+        synchronized (vinegar) {
           try {
             Thread.sleep(500);
           } catch (InterruptedException e) {
             e.printStackTrace();
           }
 
-          synchronized (vinegar) {
-            System.out.println("Friend1 made his salad");
+          synchronized (oil) {
+            System.out.println("Friend2 made his salad");
           }
         }
       }

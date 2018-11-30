@@ -15,9 +15,9 @@ public class DaemonThreads {
  */
 class BackgroundTask extends Thread {
   public BackgroundTask() {
-    // if you comment next line deamon thread will 
+    // if you comment next line daemon thread will 
     // always reach to the end and exit normally
-    super.setDaemon(true);
+    setDaemon(true);
   }
 
   @Override

@@ -15,7 +15,7 @@ public class JoinExample {
 }
 
 class TimerBomb extends Thread {
-  private String[] count = new String[] {"five", "four", "three", "two", "one"};
+  private String[] count = {"five", "four", "three", "two", "one"};
 
   public void run() {
     for (String c : count) {

@@ -36,7 +36,7 @@ class CreditBankAccount extends BankAccount {
   @Override
   public synchronized void deposit(double amount) {
     super.deposit(amount);
-    // We use notifyAll() as there may be enough money so few threds can proceed.
+    // We use notifyAll() as there may be enough money so few threads can proceed.
     this.notifyAll();
   }
 
