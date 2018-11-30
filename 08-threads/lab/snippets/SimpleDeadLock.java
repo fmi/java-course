@@ -1,5 +1,3 @@
-  
-
 /** 
  * Trivial deadlock example.
  * The two threads take locks in exchanged order.

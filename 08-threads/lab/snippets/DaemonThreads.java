@@ -1,5 +1,3 @@
-
-
 /**
  *  Deamon threads sample
  */

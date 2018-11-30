@@ -1,5 +1,3 @@
-
-
 public class InterruptExample {
   public static void main(String[] args) throws Exception {
     // ThreadGroup with max thread prio = 10
