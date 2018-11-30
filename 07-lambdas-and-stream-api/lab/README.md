@@ -97,7 +97,7 @@ public class MoviesExplorer {
     public Collection<Movie> getAllMoviesBy(Actor actor)
     ```
 
-6. :orange_book: Връща колекция от всички филми, сортирани според годината на пускане на екрана (в нарастващ ред):
+6. :orange_book: Връща колекция от всички филми, сортирани според годината на пускане на екрана (в нарастващ ред). Сортировката трябва да бъде [стабилна](https://en.wikipedia.org/wiki/Sorting_algorithm#Stability):
 
     ``` java
     public Collection<Movie> getMoviesSortedByReleaseYear()
