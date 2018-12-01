@@ -233,6 +233,7 @@ public class Christmas {
     public Workshop getWorkshop() {
         return workshop;
     }
+}
 ```
 
 ## Структура на проекта
