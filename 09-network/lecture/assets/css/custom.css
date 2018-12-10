@@ -1,0 +1,12 @@
+.reveal section img {
+  border: 0;
+  box-shadow: none;
+}
+
+.resize-image {
+  height: 550px;
+}
+
+.resize-image-width-small {
+  width: 200px;
+}
