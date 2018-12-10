@@ -14,4 +14,4 @@
 | 6 | [Clean code \| I/O streams](https://gitpitch.com/fmi/java-course/master?p=06-io-streams/lecture/)                | 13.11.2018 |
 | 7 | [Ламбда изрази и Stream API](https://gitpitch.com/fmi/java-course/master?p=07-lambdas-and-stream-api/lecture/)   | 20.11.2018 |
 | 8 | [Многонишково програмиране](https://gitpitch.com/fmi/java-course/master?p=08-threads/lecture/)                   | 27.11.2018 |
-| 9 | [Мрежово програмиране](https://gitpitch.com/fmi/java-course/master)                                         | 11.12.2018 |
+| 9 | [Мрежово програмиране](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/)                        | 11.12.2018 |
