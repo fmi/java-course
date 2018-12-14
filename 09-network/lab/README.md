@@ -134,7 +134,7 @@ netstat -an
 | ------- | ---------------- |
 | test    | Unknown command  |
 | echo:what | what |
-| gethostname | <hostname of your machine> |
+| gethostname | \<hostname of your machine\> |
 | echo: who | who |
 | echo      | Missing argument |
 
