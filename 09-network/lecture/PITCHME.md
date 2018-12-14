@@ -142,7 +142,7 @@ IP Адрес + Порт = Socket
 <ul style="font-size:0.7em; line-height=0.8em;">
   <li>В общия случай, компютърът има една физическа връзка към мрежата. По тази връзка се изпращат и получават данни от/за всички приложения. Портовете се използват, за да се знае кои данни за кое приложение са.</li>
   <li>Предадените данни по мрежата винаги съдържат в себе си информация за компютъра и порта, към които са насочени.</li>
-  <li>Портовете се идентифицират с 16 битово число, което се използва от UDP и TCP протокола, за да идентифицират за кое приложение са предназначени данните.</li>
+  <li>Портовете се идентифицират с 16-битово число, което се използва от UDP и TCP протокола, за да идентифицират за кое приложение са предназначени данните.</li>
   <li>Портовете могат да бъдат от номер 0 до номер 65 535.</li>
   <li>Портове с номера от 0 до 1023 са известни като “well-known ports”. За да се използват тези портове от вашето приложение, то трябва да се изпълнява с администраторски права.</li>
 </ul>
@@ -154,8 +154,8 @@ IP Адрес + Порт = Socket
 @snapend
 
 @snap[west]
-<p>Сокетите се използват при клиент-сървър комуникация и представляват една крайна точка от двупосочна връзка.</p>
-<p>Състояния на сокетите:</p>
+<p>Сокетите се използват при клиент-сървър комуникация и представляват една крайна точка от двупосочна връзка./p>
+<p>Състояния на сокетите:</p>
 <ol style="font-size:0.5em; line-height=0.7em;">
   <li>socket() методът създава крайна точка за комуникация и връща дескриптор на сокета.</li>
   <li>bind() методът създава уникално име за този сокет. По този начин, сървърът е достъпен по мрежата.</li>
@@ -193,11 +193,11 @@ IP Адрес + Порт = Socket
 
 #### Видове клиенти
 
-Според наличната функционалност в клиента:
+Според наличната функционалност в клиента:
 - Rich клиенти.
 - Thin клиенти.
 
-Според семантиката (протокола):
+Според семантиката (протокола):
 - Web клиенти – Браузери (Chrome, Firefox, IE).
 - Mail клиенти – POP/SMTP клиенти (MS Outlook, Lotus notes).
 - FTP клиенти – Total Commander, Filezilla, WinSCP.
@@ -209,7 +209,7 @@ IP Адрес + Порт = Socket
 
 <ul style="font-size:0.8em; line-height=1em;">
   <li>Файл сървър (Windows, Samba, UNIX NFS, OpenAFS).</li>
-  <li>DB сървър (MySQL, PostgreSQL, Oracle, MS SQL Server, Mongo DB, HANA).</li>
+  <li>DB сървър (MySQL, PostgreSQL, Oracle, MS SQL Server, Mongo DB).</li>
   <li>Mail сървър (MS Exchange, GMail, Lotus Notes).</li>
   <li>Name сървър (DNS).</li>
   <li>FTP сървър (ftpd, IIS).</li>
@@ -269,7 +269,7 @@ IP Адрес + Порт = Socket
 
 #### java.net.* | Мрежови адаптери | 2
 
-<p style="font-size:0.6em; line-height=0.8em;">С помощта на класа NetworkInterface може да вземете списък с всички мрежови адаптери (getNetworkInterfaces()) или да вземете точно определен (getByInetAddress() и getByName()).</p>
+<p style="font-size:0.6em; line-height=0.8em;">С помощта на класа NetworkInterface, може да вземете списък с всички мрежови адаптери (getNetworkInterfaces()) или да вземете точно определен (getByInetAddress() и getByName()).</p>
 
 ```java
 Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
@@ -302,9 +302,9 @@ Addresses: /10.xxx.xxx.xxx,
 #### java.net.* | Клиент-сървър комуникация | 1
 
 ```java
-//Отваряне на сокет от клиентската страна и изпращане на заявка (request):
+// Отваряне на сокет от клиентската страна и изпращане на заявка
 try {
-    Socket s = new Socket("www.sap.com", 80);
+    Socket s = new Socket("www.cia.gov", 80);
     PrintWriter pw = new PrintWriter(s.getOutputStream());
     pw.println("GET /index.html");
     pw.println();
@@ -321,8 +321,8 @@ try {
 ```java
 try {
     ServerSocket ss = new ServerSocket(80);
-    Socket s = ss.accept(); //The thread is blocked.
-    //New connection is established. Read the request
+    Socket s = ss.accept(); // The thread is blocked.
+    // New connection is established. Read the request
     BufferedInputStream is = new BufferedInputStream(s.getInputStream());
     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
     byte[] b = new byte[2048];
@@ -347,10 +347,10 @@ try {
 #### java.net.* | Клиент-сървър комуникация | 3
 
 ```java
-//Обработка на заявката и връщане на отговор:
+// Обработка на заявката и връщане на отговор:
 try {
-    //Process request
-    //Send response
+    // Process request
+    // Send response
     PrintWriter pw = new PrintWriter(s.getOutputStream());
     pw.println("Hello World");
     pw.flush();
@@ -365,7 +365,7 @@ try {
 #### java.net.* | Клиент-сървър комуникация | 4
 
 ```java
-//Прочитане на отговора (response) от сървъра :
+// Прочитане на отговора (response) от сървъра:
 try {
     ...
     BufferedReader br = new BufferedReader(
@@ -386,7 +386,7 @@ try {
 
 Въведен от JDK 1.4.
 Позволява асинхронни входно-изходни (I/О) операции.
-Намалява генерирането на “боклук”, чрез използването на буфери с директна памет (DMA), при които при писането и четенето в сокетите не се извършва копиране на данни.
+Намалява генерирането на “боклук” чрез използването на буфери с директна памет (DMA), при които при писането и четенето в сокетите не се извършва копиране на данни.
 
 ---
 
@@ -395,7 +395,7 @@ try {
 <ul style="font-size:0.8em; line-height=1em;">
   <li>Буфери (Buffers) – Представляват блок от паметта, в който може да се записват данни. Използват се за четене и запис в NIO канали (channels).</li>
   <li>Канали (Channels) – Подобни на потоците (Stream). Представляват една връзка, като от тях може да се чете и да се записва. Основните класове: FileChannel, DatagramChannel, SocketChannel, ServerSocketChannel.</li>
-  <li>Селектор (Selector) – Компонент в който се регистрират канали и може да обработва повече от един канал в една нишка.</li>
+  <li>Селектор (Selector) – Компонент, в който се регистрират канали и може да обработва повече от един канал в една нишка.</li>
 </ul>
 
 ---
@@ -432,7 +432,7 @@ try {
   <li>Обем (capacity) – показва какво е максималното количество данни, което може да съдържа буферът.</li>
   <li>Маркер (mark) – програмистът може да запомни някоя позиция от масива.</li>
 </ul>
-<p style="font-size:0.7em; line-height=0.9em;">Зависимостта между четирите състояния е: 0 <= mark <= position <= limit <= capacity</p>
+<p style="font-size:0.7em; line-height=0.9em;">Зависимостта между четирите състояния е: 0 <= mark <= position <= limit <= capacity</p>
 
 ---
 
@@ -444,7 +444,7 @@ try {
 
 #### java.nio.* | Достъп до паметта | 1
 
-Indirect Buffer (не директен буфер).
+Indirect Buffer (индиректен буфер).
 ```java
 ByteBuffer buffer = ByteBuffer.allocate(1024);
 ```
@@ -477,7 +477,8 @@ ByteBuffer readBuffer = buffer.asReadOnlyBuffer();
 #### java.nio.* | ServerSocketChannel
 
 ```java
-//ServerSocketChannel е канал (java.nio.Channel), който може да слуша за входящи TCP повиквания, точно както ServerSocket.
+// ServerSocketChannel е канал (java.nio.Channel), който може
+// да слуша за входящи TCP повиквания, точно както ServerSocket.
 
 ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
 serverSocketChannel.socket().bind(new InetSocketAddress(9999));
@@ -503,11 +504,11 @@ socketChannel.register(selector, SelectionKey.OP_READ);
 
 #### java.nio.* | SocketChannel | Регистрация | 2
 
-Когато регистрираме SocketChannel трябва да укажем за какви операции да бъдем известени:
+Когато регистрираме SocketChannel, трябва да укажем за какви операции да бъдем известени:
 <ul style="font-size:0.7em; line-height=0.9em;">
   <li>OP_READ – ще се получи известие (notification), когато се получи нещо за четене от канала.</li>
   <li>OP_WRITE – ще се получи известие (notification), когато каналът е готов за запис.</li>
-  <li>OP_CONENCT – ще се получи известие (notification), когато каналът е готов да завърши последователността си за свързване към отдалечената система.</li>
+  <li>OP_CONNECT – ще се получи известие (notification), когато каналът е готов да завърши последователността си за свързване към отдалечената система.</li>
   <li>OP_ACCEPT – ще се получи известие (notification), когато пристигне нова конекция.</li>
 </ul>
 
@@ -516,17 +517,17 @@ socketChannel.register(selector, SelectionKey.OP_READ);
 #### java.nio.* | SocketChannel | Notification
 
 ```java
-//Получаване на известие за няколко канала.
+// Получаване на известие за няколко канала.
 while (true) {
     int readyChannels = selector.select();
-    if (readyChannels == 0) continue;
+    if (readyChannels == 0) { continue; }
 
     Set<SelectionKey> selectedKeys = selector.selectedKeys();
     Iterator<SelectionKey> keyIterator = selectedKeys.iterator();
     while (keyIterator.hasNext()) {
         SelectionKey key = keyIterator.next();
         if (key.isReadable()) {
-            //A channel is ready for reading
+            // A channel is ready for reading
         }
         keyIterator.remove();
     }
@@ -538,7 +539,7 @@ while (true) {
 #### java.nio.* | SocketChannel | Notification | Четене
 
 ```java
-//Четене на данните от канал.
+// Четене на данните от канал.
 if (key.isReadable()) {
     // Read the data
     SocketChannel sc = (SocketChannel) key.channel();
@@ -559,7 +560,8 @@ if (key.isReadable()) {
 #### java.nio.* | SocketChannel | Запис
 
 ```java
-//Използваме SocketChannel канал (channel) и за изпращане на данни по TCP връзката (connection).
+// Използваме SocketChannel канал (channel) и за изпращане на данни
+// по TCP връзката (connection).
 
 SocketChannel socketChannel = SocketChannel.open();
 socketChannel.connect(new InetSocketAddress("127.0.0.1", 9999));
