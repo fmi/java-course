@@ -55,7 +55,7 @@
 
 `public MovieReviewSentimentAnalyzer(InputStream stopwordsInput, InputStream reviewsInput,OutputStream reviewsOutput)`
 
-Kато трите параметъра са съответно поток за четене на [stopwords.txt], поток за четене на [reviews.txt] и поток за писане в [reviews.txt].
+Kато трите параметъра са съответно поток за четене на [stopwords.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-movie-review-sentiment-analyzer/resources/stopwords.txt), поток за четене на [reviews.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-movie-review-sentiment-analyzer/resources/reviews.txt) и поток за писане в [reviews.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-movie-review-sentiment-analyzer/resources/reviews.txt).
 
 ```java
 package bg.sofia.uni.fmi.mjt.sentiment.interfaces;
@@ -87,7 +87,7 @@ public interface SentimentAnalyzer {
 
 	/**
 	 * @param sentiment value [0 - 4]
-	 * @return а review with а sentiment equal to the sentimentValue or NULL if there is no such a sentiment
+	 * @return а review with а sentiment equal to the sentimentValue or null, if there is no such a sentiment
 	 */
 	public String getReview(double sentimentValue);
 
@@ -128,7 +128,7 @@ public interface SentimentAnalyzer {
 ```
 Нашият data set от ревюта трябва да може да се разширява. Това ще допринесе за допълнителна точност при меренето на sentiment във времето. Точно това е идеята и на `outputStream`-a - чрез него ще добавяме нови ревюта към `reviews.txt`.
 
-Методът `append` ни дава възможност да усъвършенстваме нашия sentiment analyzer. При добавяне на нови ревюта и оценки, преизчисляваме sentiment-a думите от ревюто. Уверете се, че след `append`-a добавяте и `System.lineSeparator()`.
+Методът `append` ни дава възможност да усъвършенстваме нашия sentiment analyzer. При добавяне на нови ревюта и оценки, преизчисляваме sentiment-a на думите от ревюто. Уверете се, че след `append`-a добавяте и `System.lineSeparator()`.
 
 :exclamation: **Важно**: Качете `.zip` архив на `src`, `test` и `resources` (ако имате такава) директориите. Grader-ът има upload size limit на submission-ите - т.е. няма да може да качите оригиналния `reviews.txt` като част от вашите тестове. Препоръчваме ви да тествате върху малка извадка от ревюта (било това във файл или в някаква структура в самия тест).
 
