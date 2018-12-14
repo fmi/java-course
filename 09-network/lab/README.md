@@ -2,25 +2,25 @@
 
 ## Условие на задачата
 
-Да се имплементира Command Exection Server, които да се използва, за изпълнение на отдалечени команди. Сървърът да поддъжа изпълнението на следните команди:
+Да се имплементира Command Execution Server, който да се използва за изпълнение на отдалечени команди. Сървърът да поддържа изпълнението на следните команди:
 
 | Команда | Входни Параметри | Описание | Пример |
 | ------- | ---------------- | -------- | ------ |
 | echo    | Да               | Командата връща на потребителя подадените входни параметри | echo:somestringtoreturn |
 | gethostname | Не           | Командата прочита какво е името на сървъра и го връща на потребителя | gethostname |
 
-За имплементирането на сървъра да не се използват нишки, a неблокиращото `java.nio` API.
+За имплементирането на сървъра, да не се използват нишки, a неблокиращото `java.nio` API.
 
 ## Изпълнение
 
-1. Създайте клас `CommandExecutionServer` с следната структира:
+1. Създайте клас `CommandExecutionServer` с следната структура:
 
 ```java
-package bg.uni.sofia.fmi.echo.server.nio;
+package bg.sofia.uni.fmi.echo.server.nio;
 
 /**
  * This is a command execution server. It is used to listen for
- * incoming command to execute them and to return a response.
+ * incoming commands, to execute them and to return a response.
  * We have implemented only two commands:
  *  - echo:test - echo all the data after the echo: command
  *  - gethostname - returns the hostname of the remote machine
@@ -33,9 +33,11 @@ public class CommandExecutionServer implements AutoCloseable {
 	private ByteBuffer commandBuffer;
 
 	public CommandExecutionServer(int port) throws IOException {
+	
 	}
 
 	private void start() throws IOException {
+	
 	}
 	
 	/**
@@ -45,16 +47,18 @@ public class CommandExecutionServer implements AutoCloseable {
 	 * @throws IOException In case of problems with the accept
 	 */
 	private void accept(SelectionKey key) throws IOException {
+	
 	}
 
 	/**
 	 * Read data from a connection
 	 * 
-	 * @param key The key for which a data was received
+	 * @param key The key for which data was received
 	 */
 	private void read(SelectionKey key) {
 
 	}
+
 	/**
 	 * Validate and execute the received commands from the clients
 	 * 
@@ -89,6 +93,7 @@ public class CommandExecutionServer implements AutoCloseable {
 	
 	@Override
 	public void close() throws Exception {
+	
 	}
 
 	public static void main(String args[]) throws Exception {
@@ -101,37 +106,37 @@ public class CommandExecutionServer implements AutoCloseable {
 	}
 }
 ```
-2. Имплементирайте конструктира на класа `CommandExecutionServer`. В конструктира трябва да инциализирате `Selector`, `ByteBuffer`, и да отворите `ServerSocketChannel` на подаденият порт. След като отворите сокета го регистрирайте в селектора, за OP_ACCEPT и изпишете на кой IP адрес се намира нашият сървър с извикването `InetAddress.getLocalHost().getHostAddress()`. За повече информация вижте [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/36) и [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/37)
+2. Имплементирайте конструктора на класа `CommandExecutionServer`. В конструктора трябва да инициализирате `Selector`, `ByteBuffer` и да отворите `ServerSocketChannel` на подадения порт. След като отворите сокета, го регистрирайте в селектора за OP_ACCEPT и изпишете, на кой IP адрес се намира нашият сървър с извикването `InetAddress.getLocalHost().getHostAddress()`. За повече информация, вижте [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/36) и [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/37)
 
-3. Имплементирайте метода `close` като затворите всички ресурси заделени в конструктура.
+3. Имплементирайте метода `close`, като затворите всички ресурси заделени в конструктора.
 
 
-4. Пуснете вашият сървър и вижте дали на операционната системата, че порт 4444 е зает с командата:
+4. Пуснете вашия сървър и вижте дали на операционната система порт 4444 е зает, с командата:
 ```
 netstat -an
 ```
 След това спрете сървъра.
 
-5. Имплементирайте метода `start`. В този метод трябва да извиквате `selector.select()` и да итерирате по селектираните канали като обработвате OP_ACCEPT и OP_READ операции. За повече информация вижте [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/39). Не забравейте да извикате метода `start` в `main` метода.
+5. Имплементирайте метода `start`. В този метод трябва да извиквате `selector.select()` и да итерирате по селектираните канали, като обработвате OP_ACCEPT и OP_READ операции. За повече информация, вижте [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/39). Не забравяйте да извикате метода `start` в `main` метода.
 
-6. Имплементирайте метода `accept` като в него трябва да обработвате нови канали, когато клиент се върже към сървъра и да ги регистрирате в `selector`-а за операции OP_READ.
+6. Имплементирайте метода `accept`, като в него трябва да обработвате нови канали, когато клиент се върже към сървъра, и да ги регистрирате в `selector`-а за операции OP_READ.
 
-7. стартирайте сървъра и се опитайте да се вържете към него. Можете да използвате няколко инструмента:
+7. Стартирайте сървъра и се опитайте да се вържете към него. Можете да използвате няколко инструмента:
 - Команда `nc <IP of Server> <Port of Server>` за Linux и MacOS
 - Команда `telnet <IP of Server> <Port of Server>` за Windows
-- Използвайте имплементираният java клиент `bg.uni.sofia.fmi.java.network.client.io.BasicClient`
+- Използвайте имплементирания java клиент `bg.uni.sofia.fmi.java.network.client.io.BasicClient`
 
-8. Имплементирайте метода `read`. В този метод трябва да вземете `Channel` от ключа и да прочетете съдържанието в буфера, който сме заделили в конструктура. След като данните се прочетат, конверитирайте `ByteBuffer` обекта в `String` с `Charset.forName("UTF-8").decode(commandBuffer).toString();` и го подайте на метода `executeCommand`. Резултата от `executeCommand` го конвертирайте в `ByteArray` с `commandBuffer.put(result.getBytes());` и го запишете в канала. За повече информация вижте [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/40).
+8. Имплементирайте метода `read`. В този метод трябва да вземете `Channel` от ключа и да прочетете съдържанието в буфера, който сме заделили в конструктора. След като данните се прочетат, конвертирайте `ByteBuffer` обекта в `String` с `Charset.forName("UTF-8").decode(commandBuffer).toString();` и го подайте на метода `executeCommand`. Резултата от `executeCommand` го конвертирайте в `ByteArray` с `commandBuffer.put(result.getBytes());` и го запишете в канала. За повече информация, вижте [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/40).
 
-9. Стартирайте сървъра и с помощта на командите опсани в точка 7 подайте следните команди:
+9. Стартирайте сървъра и го тествайте с помощта на командите, описани в точка 7:
 
-| Команда | Очакван Резултат |
+| Команда | Очакван резултат |
 | ------- | ---------------- |
 | test    | Unknown command  |
 | echo:what | what |
 | gethostname | <hostname of your machine |
 | echo: who | who |
-| echo      | Missing argumen |
+| echo      | Missing argument |
 
 ## Структура на проекта
 ```

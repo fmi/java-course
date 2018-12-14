@@ -1,4 +1,4 @@
-package bg.uni.sofia.fmi.java.network.server.nio;
+package bg.sofia.uni.fmi.java.network.server.nio;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -16,7 +16,7 @@ import java.util.Set;
 
 /**
  * This is a command execution server. It is used to listen for
- * incoming command to execute them and to return a response.
+ * incoming commands to execute them and to return a response.
  * We have implemented only two commands:
  *  - echo:test - echo all the data after the echo: command
  *  - gethostname - returns the hostname of the remote machine
@@ -29,9 +29,11 @@ public class CommandExecutionServer implements AutoCloseable {
 	private ByteBuffer commandBuffer;
 
 	public CommandExecutionServer(int port) throws IOException {
+	
 	}
 
 	private void start() throws IOException {
+	
 	}
 	
 	/**
@@ -41,14 +43,16 @@ public class CommandExecutionServer implements AutoCloseable {
 	 * @throws IOException In case of problems with the accept
 	 */
 	private void accept(SelectionKey key) throws IOException {
+	
 	}
 
 	/**
 	 * Read data from a connection
 	 * 
-	 * @param key The key for which a data was received
+	 * @param key The key for which data was received
 	 */
 	private void read(SelectionKey key) {
+	
 	}
 	
 	/**

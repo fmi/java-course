@@ -1,4 +1,4 @@
-package bg.uni.sofia.fmi.java.network.client.io;
+package bg.sofia.uni.fmi.java.network.client.io;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,16 +9,16 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-import bg.uni.sofia.fmi.java.network.server.nio.CommandExecutionServer;
+import bg.sofia.uni.fmi.java.network.server.nio.CommandExecutionServer;
 
 /**
  * This is a client written with the blocking API of java.net.* The client
  * connects to the server and waits for information from the user. When the user
- * enters data it sends it to the server and waits for a response. When the
- * response is received it is printed to the user and the user can enter new
+ * enters data, it sends it to the server and waits for a response. When the
+ * response is received, it is printed to the user and the user can enter new
  * data.
  * 
- * Hint: The client can be improved by enabling to simultaneously read from
+ * Hint: The client can be improved by enabling it to simultaneously read from
  * the console/send to the server and receive information from the server, by
  * using a separate thread for reading from the server and printing the
  * information to the user.
