@@ -482,6 +482,7 @@ ByteBuffer readBuffer = buffer.asReadOnlyBuffer();
 
 ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
 serverSocketChannel.socket().bind(new InetSocketAddress(9999));
+serverSocketChannel.configureBlocking(false);
 
 while (true) {
     SocketChannel socketChannel = serverSocketChannel.accept();
@@ -494,9 +495,11 @@ while (true) {
 #### java.nio.* | SocketChannel | Регистрация | 1
 
 SocketChannel  представлява една TCP връзка. За да се използва асинхронно, трябва да се регистрира в селектор.
+Каналът трябва да се постави в nonblocking режим (чрез извикване на `configureBlocking(false)`) преди да може да бъде регистриран със селектор.
 
 ```java
 Selector selector = Selector.open();
+socketChannel.configureBlocking(false);
 socketChannel.register(selector, SelectionKey.OP_READ);
 ```
 
