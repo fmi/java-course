@@ -115,6 +115,10 @@ public class CommandExecutionServer implements AutoCloseable {
 ```
 netstat -an
 ```
+или ако сте на Linux:
+```
+ss -an
+```
 След това спрете сървъра.
 
 5. Имплементирайте метода `start`. В този метод трябва да извиквате `selector.select()` и да итерирате по селектираните канали, като обработвате OP_ACCEPT и OP_READ операции. За повече информация, вижте [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/39). Не забравяйте да извикате метода `start` в `main` метода.
