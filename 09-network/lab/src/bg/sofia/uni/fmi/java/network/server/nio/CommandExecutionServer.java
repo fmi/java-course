@@ -27,13 +27,26 @@ public class CommandExecutionServer implements AutoCloseable {
 	
 	private Selector selector;
 	private ByteBuffer commandBuffer;
+	private boolean runServer = true;
 
 	public CommandExecutionServer(int port) throws IOException {
-	
+
 	}
 
-	private void start() throws IOException {
+	/**
+	 * Start the server
+	 * @throws IOException
+	 */
+	public void start() throws IOException {
+
+	}
 	
+	/**
+	 * Stop the server
+	 * @throws IOException
+	 */
+	public void stop() {
+		runServer = false;
 	}
 	
 	/**
@@ -43,7 +56,7 @@ public class CommandExecutionServer implements AutoCloseable {
 	 * @throws IOException In case of problems with the accept
 	 */
 	private void accept(SelectionKey key) throws IOException {
-	
+
 	}
 
 	/**
@@ -52,7 +65,7 @@ public class CommandExecutionServer implements AutoCloseable {
 	 * @param key The key for which data was received
 	 */
 	private void read(SelectionKey key) {
-	
+
 	}
 	
 	/**
@@ -89,6 +102,7 @@ public class CommandExecutionServer implements AutoCloseable {
 	
 	@Override
 	public void close() throws Exception {
+
 	}
 
 	public static void main(String args[]) throws Exception {

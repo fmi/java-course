@@ -4,10 +4,10 @@
 
 Да се имплементира Command Execution Server, който да се използва за изпълнение на отдалечени команди. Сървърът да поддържа изпълнението на следните команди:
 
-| Команда | Входни Параметри | Описание | Пример |
-| ------- | ---------------- | -------- | ------ |
-| echo    | Да               | Командата връща на потребителя подадените входни параметри | echo:somestringtoreturn |
-| gethostname | Не           | Командата прочита какво е името на сървъра и го връща на потребителя | gethostname |
+| Команда     | Входни Параметри | Описание                                                             | Пример                  |
+| ----------- | ---------------- | -------------------------------------------------------------------- | ----------------------- |
+| echo        | Да               | Командата връща на потребителя подадените входни параметри           | echo:somestringtoreturn |
+| gethostname | Не               | Командата прочита какво е името на сървъра и го връща на потребителя | gethostname             |
 
 За имплементирането на сървъра, да не се използват нишки, a неблокиращото `java.nio` API.
 
@@ -117,7 +117,7 @@ netstat -an
 ```
 След това спрете сървъра.
 
-5. Имплементирайте метода `start`. В този метод трябва да извиквате `selector.select()` и да итерирате по селектираните канали, като обработвате OP_ACCEPT и OP_READ операции. За повече информация, вижте [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/39). Не забравяйте да извикате метода `start` в `main` метода.
+5. Имплементирайте метода `start`. В този метод трябва да извиквате `selector.select()` и да итерирате по селектираните канали, като обработвате OP_ACCEPT и OP_READ операции. За повече информация, вижте [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/39). Използвайте променливата `runServer`, за да окажете до кога да се използва селектора. Тази променлива се променя само от метода `stop()`
 
 6. Имплементирайте метода `accept`, като в него трябва да обработвате нови канали, когато клиент се върже към сървъра, и да ги регистрирате в `selector`-а за операции OP_READ.
 
@@ -130,21 +130,25 @@ netstat -an
 
 9. Стартирайте сървъра и го тествайте с помощта на командите, описани в точка 7:
 
-| Команда | Очакван резултат |
-| ------- | ---------------- |
-| test    | Unknown command  |
-| echo:what | what |
-| gethostname | \<hostname of your machine\> |
-| echo: who | who |
-| echo      | Missing argument |
+| Команда        | Очакван резултат             |
+| -------------- | ---------------------------- |
+| test           | Unknown command              |
+| echo:what      | what                         |
+| gethostname    | \<hostname of your machine\> |
+| echo:what:what | Incorrect command syntax     |
+| echo           | Missing argument             |
 
 ## Структура на проекта
 ```
 src
 ╷
 └─ bg/sofia/uni/fmi/java/network/
-   ├─ server/nio/
-   |   └─ CommandExecutionServer.java
-   └─ client/io/ 
-       └─ BasicClient.java
+|  ├─ server/nio/
+|  |   └─ CommandExecutionServer.java
+|  └─ client/io/ 
+|      └─ BasicClient.java
+test
+└─ bg/sofia/uni/fmi/java/network/
+   └─ server/nio/
+       └─ CommandExecutionServerTest.java
 ```
