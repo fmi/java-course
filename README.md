@@ -15,4 +15,4 @@
 | 7 | [Ламбда изрази и Stream API](https://gitpitch.com/fmi/java-course/master?p=07-lambdas-and-stream-api/lecture/)   | 20.11.2018 |
 | 8 | [Многонишково програмиране](https://gitpitch.com/fmi/java-course/master?p=08-threads/lecture/)                   | 27.11.2018 |
 | 9 | [Мрежово програмиране](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/)                        | 11.12.2018 |
-| 9 | [HTTP, REST](https://gitpitch.com/fmi/java-course/master?p=10-http-rest/lecture/)                                | 18.12.2018 |
+| 10 | [HTTP, REST](https://gitpitch.com/fmi/java-course/master?p=10-http-rest/lecture/)                                | 18.12.2018 |
