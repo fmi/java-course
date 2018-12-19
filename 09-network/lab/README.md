@@ -13,10 +13,10 @@
 
 ## Изпълнение
 
-1. Създайте клас `CommandExecutionServer` с следната структура:
+1. Създайте клас `CommandExecutionServer` със следната структура:
 
 ```java
-package bg.sofia.uni.fmi.echo.server.nio;
+package bg.sofia.uni.fmi.java.network.server.nio;
 
 /**
  * This is a command execution server. It is used to listen for
@@ -31,13 +31,18 @@ public class CommandExecutionServer implements AutoCloseable {
 	
 	private Selector selector;
 	private ByteBuffer commandBuffer;
+	private boolean runServer = true;
 
 	public CommandExecutionServer(int port) throws IOException {
 	
 	}
 
-	private void start() throws IOException {
-	
+	/**
+	 * Start the server
+	 * @throws IOException
+	 */
+	public void start() throws IOException {
+
 	}
 	
 	/**
@@ -57,6 +62,14 @@ public class CommandExecutionServer implements AutoCloseable {
 	 */
 	private void read(SelectionKey key) {
 
+	}
+
+	/**
+	 * Stop the server
+	 * @throws IOException
+	 */
+	public void stop() {
+		runServer = false;
 	}
 
 	/**
@@ -106,7 +119,7 @@ public class CommandExecutionServer implements AutoCloseable {
 	}
 }
 ```
-2. Имплементирайте конструктора на класа `CommandExecutionServer`. В конструктора трябва да инициализирате `Selector`, `ByteBuffer` и да отворите `ServerSocketChannel` на подадения порт. След като отворите сокета, го регистрирайте в селектора за OP_ACCEPT и изпишете, на кой IP адрес се намира нашият сървър с извикването `InetAddress.getLocalHost().getHostAddress()`. За повече информация, вижте [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/36) и [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/37)
+2. Имплементирайте конструктора на класа `CommandExecutionServer`. В конструктора трябва да инициализирате `Selector`, `ByteBuffer` и да отворите `ServerSocketChannel` на подадения порт. След като отворите сокета, го регистрирайте в селектора за OP_ACCEPT и изпишете на кой IP адрес се намира нашият сървър с извикването `InetAddress.getLocalHost().getHostAddress()`. За повече информация, вижте [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/36) и [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/37)
 
 3. Имплементирайте метода `close`, като затворите всички ресурси заделени в конструктора.
 
@@ -121,7 +134,7 @@ ss -an
 ```
 След това спрете сървъра.
 
-5. Имплементирайте метода `start`. В този метод трябва да извиквате `selector.select()` и да итерирате по селектираните канали, като обработвате OP_ACCEPT и OP_READ операции. За повече информация, вижте [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/39). Използвайте променливата `runServer`, за да окажете до кога да се използва селектора. Тази променлива се променя само от метода `stop()`
+5. Имплементирайте метода `start`. В този метод трябва да извиквате `selector.select()` и да итерирате по селектираните канали, като обработвате OP_ACCEPT и OP_READ операции. За повече информация, вижте [тук](https://gitpitch.com/fmi/java-course/master?p=09-network/lecture/#/39). Използвайте променливата `runServer`, за да укажете до кога да се използва селектора. Тази променлива се променя само от метода `stop()`
 
 6. Имплементирайте метода `accept`, като в него трябва да обработвате нови канали, когато клиент се върже към сървъра, и да ги регистрирате в `selector`-а за операции OP_READ.
 

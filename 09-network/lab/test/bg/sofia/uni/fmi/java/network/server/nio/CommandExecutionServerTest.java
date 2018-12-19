@@ -1,6 +1,6 @@
 package bg.uni.sofia.fmi.java.network.server.nio;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,16 +10,16 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 class CommandExecutionServerTest {
 
 	private static Thread serverStarterThread;
 	private static CommandExecutionServer commandExServer;
 	
-	@BeforeAll
+	@BeforeClass
 	static void setUpBeforeClass() throws Exception {
 		serverStarterThread = new Thread() {
 			
@@ -36,7 +36,7 @@ class CommandExecutionServerTest {
 		serverStarterThread.start();
 	}
 
-	@AfterAll
+	@AfterClass
 	static void tearDownAfterClass() throws Exception {
 		commandExServer.stop();
 		// Wake up the server so that it can exit
