@@ -1,6 +1,6 @@
 # Meetup Client
 
-Една от най-популярните онлайн услуги за организиране на събития е [meetup.com](meetup.com), с над 35 милиона потребители към днешна дата. Като всяка уважаваща се съвременна онлайн услуга, meetup, освен чрез уеб сайт и мобилно приложение, е достъпна и чрез публично [REST API](https://secure.meetup.com/meetup_api), което позволява използването и интеграцята ѝ в произволно друго приложение.
+Една от най-популярните онлайн услуги за организиране на събития е [meetup.com](https://www.meetup.com/), с над 35 милиона потребители към днешна дата. Като всяка уважаваща се съвременна онлайн услуга, meetup, освен чрез уеб сайт и мобилно приложение, е достъпна и чрез публично [REST API](https://secure.meetup.com/meetup_api), което позволява използването и интеграцята ѝ в произволно друго приложение.
 
 ### Условие
 
@@ -10,7 +10,7 @@
 
 Според [документацията](https://secure.meetup.com/meetup_api), най-новата версия на REST API-то e v3. Ще "консумираме" нея. 
 
-Повечето заявки към REST API-то изискват [автентикация](https://secure.meetup.com/meetup_api/auth/), като ще ползваме най-простия метод за автентикация, чрез т.нар. API key. API key представлява уникален за даден потребител низ, който след като се [регистрирате](https://secure.meetup.com/register/) в meeting.com може да получите от [тук](https://secure.meetup.com/meetup_api/key/). Ще трябва да подаваме този низ като параметър с име `key` в URL-то всяка заявка, изискваща автентикация.
+Повечето заявки към REST API-то изискват [автентикация](https://secure.meetup.com/meetup_api/auth/), като ще ползваме най-простия метод за автентикация, чрез т.нар. API key. API key представлява уникален за даден потребител низ, който, след като се [регистрирате](https://secure.meetup.com/register/) в meeting.com, може да получите от [тук](https://secure.meetup.com/meetup_api/key/). Ще трябва да подаваме този низ като параметър с име `key` в URL-то на всяка заявка, изискваща автентикация.
 
 **Важно!** API ключът е за ваша лична употреба - не го споделяйте или публикувайте. Също, не използвайте meetup.com API-то с ключ, който не е за вашия account.
 
@@ -23,12 +23,12 @@ https://api.meetup.com/find/groups?category=34&order=members&key=your_api_key
 За да "дешифрираме" този URL,
 
 1. api.meetup.com -- това е хостът на REST API-то
-2. /find/groups -- методът, който извикваме, представен като път
+2. /find/groups -- метода, който извикваме, представен като път
 3. параметри -- категория (34 е кодът на `tech`), атрибут, по който да са подредени резултатите и ключ (не забравяте да смените `your_api_key` с вашия ключ)
 
 ### Търсене на събития
 
-Понеже в нашия клиент ще се ограничим до търсене на събития по определен критерий, трябва да се запознаем със [съответната част](https://www.meetup.com/meetup_api/docs/:urlname/events/#list) от документацията, като се интересуваме от методът `/find/events`.
+Понеже в нашия клиент ще се ограничим до търсене на събития по определен критерий, трябва да се запознаем със [съответната част](https://www.meetup.com/meetup_api/docs/:urlname/events/#list) от документацията, като се интересуваме от метода `/find/events`.
 Ако отворим в браузър https://api.meetup.com/find/events?&key=your_api_key, ще видим списък на всички събития в близост до нашата локация, в JSON формат.
 
 Meetup.com предоставя и [API конзола](https://secure.meetup.com/meetup_api/console/?path=/:urlname/events), с която може да тестваме в браузъра различни заявки и да разглеждаме в по-четим вид JSON отговора.
@@ -87,7 +87,7 @@ public class MeetupClient {
 	}
 
 	/**
-	 * Fetches the nearby events which descriptions contains all of the given
+	 * Fetches the nearby events whose descriptions contains all of the given
 	 * keywords. The comparison is case insensitive.
 	 * 
 	 * @param keywords
@@ -173,7 +173,7 @@ src
 |      └─ Venue.java
 test
 └─ bg/sofia/uni/fmi/mjt/meetup/
-   └─ MeetupClientTest.java
+|  └─ MeetupClientTest.java
 lib
 ├─ gson-x.x.x.jar
 ├─ mockito-core-x.xx.x.jar
