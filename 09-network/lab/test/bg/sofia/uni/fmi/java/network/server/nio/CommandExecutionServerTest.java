@@ -1,4 +1,4 @@
-package bg.uni.sofia.fmi.java.network.server.nio;
+package bg.sofia.uni.fmi.java.network.server.nio;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,13 +14,13 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-class CommandExecutionServerTest {
+public class CommandExecutionServerTest {
 
 	private static Thread serverStarterThread;
 	private static CommandExecutionServer commandExServer;
 	
 	@BeforeClass
-	static void setUpBeforeClass() throws Exception {
+	public static void setUpBeforeClass() throws Exception {
 		serverStarterThread = new Thread() {
 			
 			public void run() { 
@@ -34,43 +34,51 @@ class CommandExecutionServerTest {
 			}
 		}; 
 		serverStarterThread.start();
+
+		while (true) {
+			try (Socket socket = new Socket("localhost", CommandExecutionServer.SERVER_PORT)) {
+				break; // client connection accepted --> server has started
+			} finally {
+				Thread.sleep(500);
+			}
+		}
 	}
 
 	@AfterClass
-	static void tearDownAfterClass() throws Exception {
+	public static void tearDownAfterClass() throws Exception {
 		commandExServer.stop();
 		// Wake up the server so that it can exit
 		serverStarterThread.interrupt();
 	}
 
 	@Test
-	void test_01_EchoCommandWithCorrectData() {
+	public void test_01_EchoCommandWithCorrectData() {
 		assertEquals("what", sendRecvMsg("echo:what"));
 	}
 	
 	@Test
-	void test_02_EchoCommandWithIncorrectData() {
+	public void test_02_EchoCommandWithIncorrectData() {
 		assertEquals("Missing Argument", sendRecvMsg("echo"));
 	}
 	
 	@Test
-	void test_03_UnknownCommand() {
+	public void test_03_UnknownCommand() {
 		assertEquals("Unknown command", sendRecvMsg("test"));
 	}
 	
 	@Test
-	void test_04_GetHostnameCommand() throws UnknownHostException {
+	public void test_04_GetHostnameCommand() throws UnknownHostException {
 		assertEquals(InetAddress.getLocalHost().getHostName(), sendRecvMsg("gethostname"));
 	}
 	
 	@Test
-	void test_05_CommandWithAdditionalDelimiter() {
+	public void test_05_CommandWithAdditionalDelimiter() {
 		assertEquals("Incorrect command syntax", sendRecvMsg("echo:what:what"));
 	}
 
 	private String sendRecvMsg(String msg) {
 		String response = "fail";
-		try (Socket socket = new Socket(InetAddress.getLocalHost(), CommandExecutionServer.SERVER_PORT);
+		try (Socket socket = new Socket("localhost", CommandExecutionServer.SERVER_PORT);
 				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				PrintWriter out = new PrintWriter(socket.getOutputStream())) {
 			System.out.println("Client " + socket + " connected to server");
