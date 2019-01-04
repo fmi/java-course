@@ -137,7 +137,7 @@ public class MeetupClient {
 	}
 
 	/**
-	 * Performs an async download of the photos from the given photo album to the
+	 * Performs a parallel download of the photos from the given photo album to the
 	 * given target directory. A folder with the album id is being created in the
 	 * target directory. The photos are downloaded in the newly created album
 	 * directory. The file name of each photo is its id.
