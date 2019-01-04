@@ -179,3 +179,15 @@ lib
 ├─ mockito-core-x.xx.x.jar
 └─ ...
 ```
+
+### Dependencies
+
+```bash
+wget http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar
+
+# for testing
+wget http://central.maven.org/maven2/org/mockito/mockito-core/2.23.0/mockito-core-2.23.0.jar
+wget http://central.maven.org/maven2/net/bytebuddy/byte-buddy/1.9.0/byte-buddy-1.9.0.jar
+wget http://central.maven.org/maven2/net/bytebuddy/byte-buddy-agent/1.9.0/byte-buddy-agent-1.9.0.jar
+wget http://central.maven.org/maven2/org/objenesis/objenesis/2.6/objenesis-2.6.jar
+```
