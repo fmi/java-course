@@ -58,11 +58,8 @@ https://api.meetup.com/Cloud-Native-Computing-Bulgaria/photo_albums/29473987/pho
 
 Тъй като забелязваме в JSON отговора, че `venue` също е обект, ще го моделираме чрез клас `Venue`, отново в пакета `bg.sofia.uni.fmi.mjt.meetup.dto`, като за местоположението на събитието ще ни интересуват:
 
-  - id
   - name
-  - address
   - city
-  - country
 
 Снимките ще моделираме чрез клас `Photos` в същия пакет, като атрибутите, които ни интересуват, са:
 
@@ -183,14 +180,14 @@ public class MeetupClient {
 ```
 src
 ╷
-└─ bg/sofia/uni/fmi/mjt/meetup/
+├─ bg/sofia/uni/fmi/mjt/meetup/
 |  ├─ MeetupClient.java
 |  └─ dto 
-|      └─ Event.java
-|      └─ Photo.java
+|      ├─ Event.java
+|      ├─ Photo.java
 |      └─ Venue.java
 test
-└─ bg/sofia/uni/fmi/mjt/meetup/
+├─ bg/sofia/uni/fmi/mjt/meetup/
 |  └─ MeetupClientTest.java
 lib
 ├─ gson-x.x.x.jar
