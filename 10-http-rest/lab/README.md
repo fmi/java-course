@@ -61,7 +61,7 @@ https://api.meetup.com/Cloud-Native-Computing-Bulgaria/photo_albums/29473987/pho
   - name
   - city
 
-Снимките ще моделираме чрез клас `Photos` в същия пакет, като атрибутите, които ни интересуват, са:
+Снимките ще моделираме чрез клас `Photo` в същия пакет, като атрибутите, които ни интересуват, са:
 
   - id
   - photo_link
