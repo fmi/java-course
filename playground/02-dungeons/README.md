@@ -99,6 +99,7 @@
 
 * конструктор, който прима следните аргументи - `char[][] map, Hero hero, Enemy[] enemies, Treasure[] treasures`
 * `char[][] getMap()` - връща текущото състояние на картата
+* `Hero getHero()` - връща героя.
 * `Position getHeroPosition()` - връща текущата позиция на героя
 * `String makeMove(Direction direction)` - където `direction` е посоката на движение на героя.
   - ако при извикването на метода клетката е свободна - героят се отмества на тази клетка и се връща съобщението "You moved successfully to the next position."
