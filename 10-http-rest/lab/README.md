@@ -101,7 +101,7 @@ public class MeetupClient {
 	}
 
 	/**
-	 * Fetches the nearby events whose descriptions contains all of the given
+	 * Fetches the nearby events whose description contains all of the given
 	 * keywords. The comparison is case insensitive.
 	 * 
 	 * @param keywords
@@ -137,8 +137,8 @@ public class MeetupClient {
 	}
 
 	/**
-	 * Fetches photos for the photo album with the given id. Returns null in case of
-	 * a missing photo album.
+	 * Fetches photos for the photo album with the given id. Returns empty list in
+	 * case of a missing photo album.
 	 * 
 	 * @param urlname
 	 *            - the photo album group urlname
