@@ -28,6 +28,8 @@
 > - if the word ends in 'ing', remove the 'ing'
 > - if the word ends in 'ly', remove the 'ly'
 
+За лесно `parse`-ване на `html` може да използвате библиотеката [JSoup](https://jsoup.org/).
+
 ### Клиент
 
 Клиентът трябва да има `command line interface` със следните команди:
@@ -36,8 +38,11 @@
 register <username> <password>
 login <username> <password>
 make-collection <collection-name>
+add <link> - добавя линк в default-на колекция
 add-to <collection> <link>
 remove-from <collection> <link>
+list-all - извежда списък с всички линкове на потребителя
+list <collection> - извежда списък с всички линкове от дадената колекция
 search -tags <tag1> <tag2> <tag3> ...
 search -title <title> - връща всички линкове, в чиито заглавия се среща <title>
 import-from-chrome - добавя всички bookmarks от Google Chrome
