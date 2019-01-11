@@ -28,6 +28,36 @@
 
 **Подсказка:** Решението на тази задача ще ви улесни изключително много при разработката на курсовите ви проекти, защото всички те представляват приложения тип клиент-сървър, като сървърът обслужва много потребители едновременно.
 
+### Пример
+
+```bash
+# start a client from command line
+$ java bg.sofia.uni.fmi.mjt.chat.ChatClient
+connect localhost 8080 java-duke
+=> connected to server running on localhost:8080 as java-duke
+# or
+=> cannot connect to server on localhost:8080, make sure that the server is started
+
+send java-duke hi there
+=> [12.01.2018 20:05] java-duke: hi there
+=> [12.01.2018 20:06] adam: hallo # sent to java-duke from adam
+# or
+=> java-duke seems to be offline
+
+list-users
+=> john, connected at 12.01.2019 20:05
+=> adam, connected at 12.01.2019 21:12
+# or
+=> nobody is online
+
+disconnect
+=> disconnected from server on localhost:8080
+# or
+=> cannot disconnect, try to connect first
+```
+
+Имате свобода да използвате съобщения и формати по ваш избор.
+
 ### Тестване
 
 Голяма част от имплементацията може да се тества със стандартни JUnit средства, но всяка програма тип клиент-сървър ни навежда на мисълта да ползваме mocking, за да тестваме изолирано логиката на клиента и логиката на сървъра.
