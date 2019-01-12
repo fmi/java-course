@@ -1,4 +1,4 @@
-## Въведение в Design Patterns
+## Design Patterns и maven
 
 _08.01.2019_
 
@@ -45,7 +45,8 @@ _08.01.2019_
 
 @ul
 
-- A client should not be forced to implement an interface that it doesn’t use. Many client-specific interfaces are better than one general-purpose interface
+- A client should not be forced to implement an interface that it doesn’t use.
+- Many client-specific interfaces are better than one general-purpose interface
 
 @ulend
 
@@ -107,7 +108,7 @@ _08.01.2019_
 
 @ul
 
-- Осигуряват начин да се създават обекти на класове, скривайки логиката по създаването им (вместо да се инстанцират директно чрез оператора new)
+- Осигуряват начин да се създават обекти на класове, скривайки логиката по създаването им (вместо да се инстанцират директно чрез оператора `new`)
 - Factory, Abstract Factory, Builder, Singleton, Prototype
 
 @ulend
@@ -141,7 +142,7 @@ _08.01.2019_
 @ul
 
 - creational pattern
-- създаваме обект без да expose-ваме логиката по създаването му на клиента и реферираме новосъздадения обект чрез общ интерфейс
+- създаваме обект без да expose-ваме логиката по създаването му на клиента
 - използва се, когато имаме родителски клас с няколко наследници и искаме да създаваме един от наследниците на родителския клас според подаден параметър
 - примери от JDK-то: `java.util.Calendar` методите, `valueOf()` метода на wrapper класовете като `Boolean`, `Integer` и т.н., `of()` методите на `List`, `Set`, `Map`
 
@@ -175,7 +176,7 @@ _08.01.2019_
 - Създаваме static вложен клас и копираме всички параметри от външния клас в builder класа
 - builder класът трябва да има публичен конструктор с всички задължителни атрибути като параметри
 - setter методи за всички опционални параметри, които връщат същата builder инстанция
- - build() method, който връща обекта
+- build() method, който връща обекта
 
 @ulend
 
@@ -215,6 +216,15 @@ _08.01.2019_
 - позволява да се съберат повече обекти в наличната памет чрез споделяне на общите части на state-a между множество обекти
 - намялва memory footprint-а на програмата
 - може също да подобри бързодействието в приложения, където инстанцирането на обектите е скъпа операция.
+
+@ulend
+
+---
+
+#### Flyweight
+
+@ul
+
 - flyweight обектите са immutable: всяка операция, която променя състоянието им трябва да се изпълнява от factory-то
 - примери от JDK-то: `Integer.valueOf(int)`, `Byte.valueOf(byte)` и подобните са останалите wrapper типове
 
@@ -293,7 +303,7 @@ _08.01.2019_
 @ul
 
 - behavioral pattern
-- прилага се, когато имаме множество алгоритми за дадена задача и клиентът решава по време на изпълнение коя имплементация на алгоритъм да се ползва
+- прилага се, когато имаме множество алгоритми за дадена задача и клиентът решава по време на изпълнение, коя имплементация на алгоритъм да се ползва
 - примери от JDK-to: `Collections.sort()`, който сортира по различен критерий/алгоритъм в зависимост от подадения `Comparator`
 
 @ulend
@@ -304,9 +314,8 @@ _08.01.2019_
 
 @ul
 
-- може да разгледате приложените [code snippets](../lab/snippets/)
-- тук може да намерите информация и примери с код на Java за голям брой design patterns (не само 23-те от *Gang-of-Four*):
-  - https://github.com/iluwatar/java-design-patterns
+- може да разгледате приложените [code snippets](https://github.com/fmi/java-course/tree/master/11-design-patterns-maven/lab/snippets/design-patterns)
+- тук може да намерите информация и примери с код на Java за голям брой design patterns (не само 23-те от *Gang-of-Four*): https://github.com/iluwatar/java-design-patterns
 
 @ulend
 
