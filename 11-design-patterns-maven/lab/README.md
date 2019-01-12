@@ -88,3 +88,5 @@ wget http://central.maven.org/maven2/net/bytebuddy/byte-buddy/1.9.0/byte-buddy-1
 wget http://central.maven.org/maven2/net/bytebuddy/byte-buddy-agent/1.9.0/byte-buddy-agent-1.9.0.jar
 wget http://central.maven.org/maven2/org/objenesis/objenesis/2.6/objenesis-2.6.jar
 ```
+
+[Код от упражнение](https://gist.github.com/ialidzhikov/04df81ae7da7fbefc561bf4608028152).
