@@ -2,7 +2,7 @@
 
 ### packages && imports
 
-Пакетите служат за групиране на логически свързани типове. Чрез тях решаваме naming конфликти, като индентифицираме по уникален начин даден тип (клас, интерфейс, enum или анотация) - `org.slf4j.Logger` vs `org.apache.log4j.Logger`. Пакетите също така служат за контролиране на достъпа - може да дефинираме класове с `package-private` visibility, като това ще направи видими въпросните класове само в пакета. Конвенцията за именуване на пакети е използване на малки букви и точка за разделител (`java.lang`, за компаниите е прието да се ползва reversed domain name - `mail.google.com` -> `com.google.mail`, `com.github.myusername.mylibrary`). Класовете от първото упражнение бяха без package declaration и се намираха в така наречения `default package` (подходящ е само за малки тестове).
+Пакетите служат за групиране на логически свързани типове. Чрез тях решаваме naming конфликти, като идентифицираме по уникален начин даден тип (клас, интерфейс, enum или анотация) - `org.slf4j.Logger` vs `org.apache.log4j.Logger`. Пакетите също така служат за контролиране на достъпа - може да дефинираме класове с `package-private` visibility, като това ще направи видими въпросните класове само в пакета. Конвенцията за именуване на пакети е използване на малки букви и точка за разделител (`java.lang`, за компаниите е прието да се ползва reversed domain name - `mail.google.com` -> `com.google.mail`, `com.github.myusername.mylibrary`). Класовете от първото упражнение бяха без package declaration и се намираха в така наречения `default package` (подходящ е само за малки тестове).
 
 В даден наш пакет може да използваме клас от друг пакет, като се обърнем към него чрез пълното му име. За да използваме даден клас от друг пакет по така наречения `simple class name`, то трябва да го import-нем. Типовете, които се намират в един и същ пакет, могат да се реферират без `import`. Типовете от `java.lang` се import-ват по подразбиране. Пример:
 
@@ -276,7 +276,7 @@ public class Person implements Cloneable {
 		System.out.println(first == second); // false
 
 		Person referenceCopy = first;
-		System.out.println(first == referenceCopy); // true, they point the the same address
+		System.out.println(first == referenceCopy); // true, they point the same address
 
 		Person  cloned = (Person) first.clone();
 		System.out.println(first == cloned); // false
