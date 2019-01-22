@@ -55,7 +55,7 @@ grep foo /Users/my-user/git/java-course 2
 06-io-streams/lecture/PITCHME.md:633:// -> "Unable to open file 'food': No such file or directory"
 # [...]
 
-grep foo /Users/my-user/git/java-course 4 /Users/my-user/output.txt
+grep -wi foo /Users/my-user/git/java-course 4 /Users/my-user/output.txt
 ```
 
 ### Качване в `grader`-a
