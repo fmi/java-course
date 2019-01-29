@@ -67,6 +67,7 @@ String[] names;
 1. Keep methods short (~ 40 lines)
 2. Don't make long arguments list
 3. Don't make excessive nesting
+4. Don't repeat yourself (code duplication)
 
 ### How should I name my classes?
 1. [How to avoid calling everything a “<WhatEver>Manager”?](https://stackoverflow.com/questions/1866794/naming-classes-how-to-avoid-calling-everything-a-whatevermanager)
