@@ -28,10 +28,11 @@
 ```bash
 register <email> <password>
 login <email> <password>
+disconnect
 search <words> - връща всички песни, в чиито имена или имената на изпълнителите iм, се среща потърсената дума (или думи)
 top <number> - връща списък с *number* от най-слушаните песни в момента, сортиран в намаляващ ред
 create-playlist <name_of_the_playlist>
-add-song_to <name_of_the_playlist>
+add-song-to <name_of_the_playlist> <song>
 show-playlist <name_of_the_playlist>
 play <song>
 stop
@@ -47,7 +48,7 @@ stop
     За целите на проекта, трябва да използвате `SourceDataLine`.
 	1. За да създадем [`SourceDataLine`](https://docs.oracle.com/javase/7/docs/api/javax/sound/sampled/SourceDataLine.html) първо трябва да знаем конкретния формат на данните, които ще получаваме по мрежата. Това става с класа [`AudioFormat`](https://docs.oracle.com/javase/7/docs/api/javax/sound/sampled/AudioFormat.html). За да успеем да възпроизведем дадена песен при клиента, трябва предварително да знаем какъв е този формат.
 	
-	2. Преди сървърът да започне да ни `stream`-ва  песента, той трябва да ни даде(прати) информация за формата на данните. Класът `AudioFormat` не е `Serializable`, т.е не можем да го прехвърляме по мрежата.
+	2. Преди сървърът да започне да ни `stream`-ва  песента, той трябва да ни даде(прати) информация за формата на данните. Класът `AudioFormat` не е `Serializable`, т.е не можем да изпратим на клиента директно обект от тип `AudioFormat`.
 	
 	3. За да вземем формата на песента на сървъра, можем да използваме следния код:
         ```java
