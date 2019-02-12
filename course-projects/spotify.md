@@ -29,7 +29,7 @@
 register <email> <password>
 login <email> <password>
 disconnect
-search <words> - връща всички песни, в чиито имена или имената на изпълнителите iм, се среща потърсената дума (или думи)
+search <words> - връща всички песни, в чиито имена или имената на изпълнителите им, се среща потърсената дума (или думи)
 top <number> - връща списък с *number* от най-слушаните песни в момента, сортиран в намаляващ ред
 create-playlist <name_of_the_playlist>
 add-song-to <name_of_the_playlist> <song>
