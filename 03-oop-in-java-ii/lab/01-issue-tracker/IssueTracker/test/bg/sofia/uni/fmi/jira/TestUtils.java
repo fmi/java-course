@@ -1,4 +1,4 @@
-package bg.sofia.uni.fmi.jira.test;
+package bg.sofia.uni.fmi.jira;
 
 import bg.sofia.uni.fmi.jira.issues.Issue;
 

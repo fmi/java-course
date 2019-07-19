@@ -1,4 +1,4 @@
-package bg.sofia.uni.fmi.jira.test;
+package bg.sofia.uni.fmi.jira;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,9 +9,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import bg.sofia.uni.fmi.jira.Component;
-import bg.sofia.uni.fmi.jira.Jira;
-import bg.sofia.uni.fmi.jira.User;
 import bg.sofia.uni.fmi.jira.enums.IssuePriority;
 import bg.sofia.uni.fmi.jira.enums.IssueResolution;
 import bg.sofia.uni.fmi.jira.enums.IssueStatus;
