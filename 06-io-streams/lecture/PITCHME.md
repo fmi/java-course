@@ -323,9 +323,49 @@ return x % 2 == 0;
 ![Java I/O Class Hierarchy](images/06.10-java-io-class-hierarchy.png?raw=true)
 
 ---
+#### Разликата между Byte Streams и Char Streams
 
+Byte Stream:
+- Извършва операции със символи до 8 бита включително (1 байт)
+
+Char Stream
+- Извършва операции със символи до 16 бита включително (2 байтa)
+
+---
+#### Byte Streams - пример
+
+```java
+InputStream in = new ByteArrayInputStream("Ivan / Спасов".getBytes());
+int current;
+while ((current = in.read()) != -1) {
+    System.out.print((char)current); // cast, иначе ще изведе код от ASCII
+}
+in.close();
+
+// output: Ivan / Ð¡Ð¿Ð°ÑÐ¾Ð²
+```
+
+- символ от латинската азбука има размер до 8 бита
+- символ от кирилицата - повече от 8 бита
+- 'I' = 73(dec) = 0b1001001(bin) - това са 7 бита, които се допълват до 8 с 0 в началото
+- така се обработва всеки символ от символния низ
+- 'С' = 1057(dec) = 0b100010001(bin) - 9 бита, което надхвърля 8
+
+---
+#### Character Streams - пример
+
+```java
+InputStreamReader in = new InputStreamReader(new ByteArrayInputStream(nameF.getBytes()));
+int current;
+while ((current = in.read()) != -1) {
+    System.out.print((char)current);
+}
+in.close();
+// output: Ivan / Спасов
+```
+
+---
 #### Входно-изходни потоци: жизнен цикъл
-
 Потоците се
 
 @ul
