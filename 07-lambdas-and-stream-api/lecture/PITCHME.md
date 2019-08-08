@@ -679,15 +679,15 @@ public class Main {
 - Много често в ламбда изразите просто делегираме параметрите на някой съществуващ метод:
 
 ```java
-list.forEach(s -> System.out.println(s));
-list.filter(s -> s.equalsIgnoreCase("ivan"));
+list.stream().forEach(s -> System.out.println(s));
+list.stream().filter(s -> s.equalsIgnoreCase("ivan"));
 ```
 
 - Метод референциите са удобен синтаксис, с който може да се създаде ламбда израз от вече съществуващ метод:
 
 ```java
-list.forEach(System.out::println);
-list.filter("ivan"::equalsIgnoreCase);
+list.stream().forEach(System.out::println);
+list.stream().filter("ivan"::equalsIgnoreCase);
 ```
 
 ---
