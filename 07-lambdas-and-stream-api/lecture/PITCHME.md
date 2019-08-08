@@ -584,7 +584,9 @@ ActionListener listener =
 
 #### Контекст на Lambda израз
 
-Един и същ ламбда литерал може да има различен тип в зависимост от контекста:
+- Контекст на ламбда израз представлява мястото на използване на ламбда израза
+- Например можем да присвоим ламбда израз към променлива или да върнем ламбда от даден метод
+- Един и същ ламбда литерал може да има различен тип в зависимост от контекста:
 
 ```java
 Supplier s = () -> "Hello World"; // Supplier
@@ -611,7 +613,46 @@ Callable c = () -> "Hello World"; // Callable
 
 ---
 
-#### Видове ламбда изрази
+#### Контекст на присвояване
+
+```java
+@FunctionalInterface
+interface Calculator {
+    int calculate(int x, int y);
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Calculator calculator = (x, y) -> x + y;
+        System.out.println(calculator.calculate(1, 2));
+    }
+}
+```
+
+---
+
+#### Контекст параметър на метод
+
+```java
+@FunctionalInterface
+interface Calculator {
+    int calculate(int x, int y);
+}
+
+public class Main {
+    public static void main(String[] args) {
+        engine((x, y) -> x / y);
+    }
+
+    private static void engine(Calculator calculator){
+        System.out.println(calculator.calculate(2, 4));
+    }
+}
+```
+
+---
+
+#### Видове Lambda изрази
 
 @ul
 

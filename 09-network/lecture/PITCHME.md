@@ -588,3 +588,7 @@ while (buf.hasRemaining()) {
 <p style="font-size:0.6em; line-height=0.8em;">Асинхронни (неблокиращи) операции.</p>
 
 @img[resize-image-width-small](09-network/lecture/assets/img/java_nio_arch.png)
+
+---
+
+## Въпроси
