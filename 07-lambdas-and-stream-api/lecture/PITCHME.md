@@ -572,13 +572,14 @@ ActionListener listener =
 
 #### Функционални интерфейси (3)
 
-| java.util.function  | Lambda notation |
-| ------------------- |---------------- |
-| Consumer<T>         | (T) -> void     |
-| Predicate<T>        | (T) -> boolean  |
-| Supplier<R>         | () -> R         |
-| Function<T, R>      | (T) -> R        |
-| BiFunction<T, U, R> | (T, U) -> R     |
+| java.util.function        | Lambda notation |
+| ------------------------- |---------------- |
+| Consumer <T>              | (T) -> void     |
+| Predicate <T>             | (T) -> boolean  |
+| Supplier <R>              | () -> R         |
+| Function <T, R>           | (T) -> R        |
+| BiFunction <T, U, R>      | (T, U) -> R     |
+| BinaryOperator <T, T, T>  | (T, T) ->  T    |
 
 ---
 
