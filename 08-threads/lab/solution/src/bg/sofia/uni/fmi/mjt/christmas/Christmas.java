@@ -38,7 +38,6 @@ public class Christmas {
 		// Notify that Christmas is here
 		synchronized (workshop) {
 			workshop.setChristmasTime();
-			workshop.notifyAll();
 		}
 
 		// Wait for the kids threads to finish
