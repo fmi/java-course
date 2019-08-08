@@ -44,7 +44,7 @@ public class Workshop {
 			}
 		}
 
-		return (elvesBacklog.isEmpty()) ? null : elvesBacklog.poll();
+		return (isChristmasTime || elvesBacklog.isEmpty()) ? null : elvesBacklog.poll();
 	}
 
 	public synchronized int getWishCount() {
@@ -55,8 +55,9 @@ public class Workshop {
 		return elves;
 	}
 
-	public void setChristmasTime() {
+	public synchronized void setChristmasTime() {
 		this.isChristmasTime = true;
+		this.notifyAll();
 	}
 
 }
