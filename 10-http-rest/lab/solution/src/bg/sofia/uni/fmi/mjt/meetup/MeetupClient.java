@@ -110,7 +110,7 @@ public class MeetupClient {
 				return null;
 			}
 
-			String jsonResponse = client.send(request, BodyHandlers.ofString()).body();
+			String jsonResponse = response.body();
 			Gson gson = new Gson();
 			return gson.fromJson(jsonResponse, Event.class);
 		} catch (Exception e) {
@@ -137,7 +137,7 @@ public class MeetupClient {
 				return Collections.emptyList();
 			}
 
-			String jsonResponse = client.send(request, BodyHandlers.ofString()).body();
+			String jsonResponse = response.body();
 			Gson gson = new Gson();
 			return gson.fromJson(jsonResponse, new TypeToken<List<Photo>>() {
 			}.getType());
