@@ -86,6 +86,7 @@ public interface SentimentAnalyzer {
 	public double getWordSentiment(String word);
 
 	/**
+	 * @delta check for match with DELTA = 0.001
 	 * @param sentiment value [0 - 4]
 	 * @return а review with а sentiment equal to the sentimentValue or null, if there is no such a sentiment
 	 */
