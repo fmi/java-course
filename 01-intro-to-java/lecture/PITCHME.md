@@ -42,7 +42,7 @@ Hello world!
 
 #### Стандартно Java приложение
 
-picture
+![Java app diagram](images/01.1-java-app.jpg?raw=true)
 
 ---
 
@@ -63,6 +63,27 @@ picture
 ---
 
 #### Формат на .class файла
+
+```
+ClassFile {
+    u4             	magic;
+    u2             	minor_version;
+    u2             	major_version;
+    u2             	constant_pool_count;
+    cp_info        	constant_pool[constant_pool_count-1];
+    u2             	access_flags;
+    u2             	this_class;
+    u2             	super_class;
+    u2             	interfaces_count;
+    u2             	interfaces[interfaces_count];
+    u2             	fields_count;
+    field_info     	fields[fields_count];
+    u2             	methods_count;
+    method_info    	methods[methods_count];
+    u2             	attributes_count;
+    attribute_info 	attributes[attributes_count];
+}
+```
 
 ---
 
@@ -91,9 +112,74 @@ int gear = 1;
 
 #### Променливи
 
+![Variables](images/01.2-variables.jpg?raw=true)
+
 ---
 
 #### Примитивни типове данни
+
+<table>
+  <tr>
+    <th style="font-size:0.9em">Тип данни</th>
+    <th style="font-size:0.9em">Размер</th>
+    <th style="font-size:0.9em">Минимум</th>
+    <th style="font-size:0.9em">Максимум</th>
+  </tr>
+  <tr style="font-size:0.7em">
+    <td>boolean</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+  <tr style="font-size:0.7em">
+    <td>char</td>
+    <td>16 бита</td>
+    <td>Unicode 0</td>
+    <td>Unicode 2<sup>16</sup> - 1</td>
+  </tr>
+  <tr style="font-size:0.7em">
+    <td>byte</td>
+    <td>8 бита</td>
+    <td>-128</td>
+    <td>+127</td>
+  </tr>
+  <tr style="font-size:0.7em">
+    <td>short</td>
+    <td>16 бита</td>
+    <td>-2<sup>15</sup></td>
+    <td>+2<sup>15</sup> - 1</td>
+  </tr>
+  <tr style="font-size:0.7em">
+    <td>int</td>
+    <td>32 бита</td>
+    <td>-2<sup>31</sup></td>
+    <td>+2<sup>31</sup> - 1</td>
+  </tr>
+  <tr style="font-size:0.7em">
+    <td>long</td>
+    <td>64 бита</td>
+    <td>-2<sup>63</sup></td>
+    <td>+2<sup>63</sup> - 1</td>
+  </tr>
+  <tr style="font-size:0.7em">
+    <td>float</td>
+    <td>32 бита</td>
+    <td>IEEE754</td>
+    <td>IEEE754</td>
+  </tr>
+  <tr style="font-size:0.7em">
+    <td>float</td>
+    <td>64 бита</td>
+    <td>double</td>
+    <td>double</td>
+  </tr>
+  <tr style="font-size:0.7em">
+    <td>void</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+</table>
 
 ---
 
@@ -255,9 +341,12 @@ int mask = 0b1010_1010_1010;
 
 - За да ни помага компилаторът
 
-// Picture
+<br />
 
-> През 1996, ракетата Ариана 5 експлодира след излитане поради софтуерна грешка в конвертирането на типове (опит да „набута“ 64-битово число в 16 бита).
+![Java app diagram](images/01.3-rocket.jpg?raw=true)
+
+<p style="font-size:0.5em">През 1996, ракетата Ариана 5 експлодира след излитане поради софтуерна грешка в конвертирането на типове (опит да „набута“ 64-битово число в 16 бита).</p>
+
 
 ---
 
@@ -376,6 +465,8 @@ String sorted = Arrays.sort(ca).toString(); // "Fbdeiir"
 - Може да конкатенираме низове с оператора `+`
 - Ако аргумент на `+` е нещо различно от низ, той се конвертира към низ.
 
+<br />
+
 ```java
 String str1 = "Current";
 String str2 = str1 + " year is " + 2017;
@@ -431,7 +522,66 @@ String lineRead = sc.nextLine();
 
 #### Булеви логически оператори
 
-// Picture
+@ul[squares]
+
+- | - the OR operator
+- & - the AND operator
+- ^ - the XOR operator
+- ! - the NOT operator
+- || - the short-circuit OR operator
+- && - the short-circuit AND operator
+- == - the EQUAL TO operator
+- != - the NOT EQUAL TO operator
+
+@ulend
+
+---
+
+#### Булеви логически оператори (2)
+
+<table>
+  <tr>
+    <th>A</th>
+    <th>B</th>
+    <th>A|B</th>
+    <th>A&B</th>
+    <th>A^B</th>
+    <th>!A</th>
+  </tr>
+  <tr>
+    <td>false</td>
+    <td>false</td>
+    <td>false</td>
+    <td>false</td>
+    <td>false</td>
+    <td>true</td>
+  </tr>
+  <tr>
+    <td>true</td>
+    <td>false</td>
+    <td>true</td>
+    <td>false</td>
+    <td>true</td>
+    <td>false</td>
+  </tr>
+  <tr>
+    <td>false</td>
+    <td>true</td>
+    <td>true</td>
+    <td>false</td>
+    <td>true</td>
+    <td>true</td>
+  </tr>
+  <tr>
+    <td>true</td>
+    <td>true</td>
+    <td>true</td>
+    <td>true</td>
+    <td>false</td>
+    <td>false</td>
+  </tr>
+</table>
+
 
 ---
 
@@ -456,6 +606,9 @@ if (booleanExpression) {
 - `condition ? statement1 : statement2`
 - Eдинственият тернарен оператор в Java.
 - Еквивалентен е на:
+
+<br />
+
 ```java
 if (condition) {
     statement1
@@ -521,7 +674,7 @@ switch (selector) {
 
 #### Масиви
 
-// Picture
+![Array](images/01.4-array.jpg?raw=true)
 
 ---
 
@@ -566,7 +719,9 @@ int[][] b = {
 };
 ```
 
-// PIcture
+@snap[east fragment]
+![Matrix](images/01.5-matrix.jpg?raw=true)
+@snapend
 
 ---
 
@@ -607,7 +762,7 @@ Arrays.sort(a, Collections.reverseOrder());
 
 #### Функции
 
-// Picture
+![Functions](images/01.6-funcs.jpg?raw=true)
 
 ---
 
