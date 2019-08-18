@@ -209,16 +209,16 @@ String s = "cool";
 
 ```java
 // The number 26, in decimal
-int decVal = 26;
+int decVal = 26;
 
 // The number 26, in hexadecimal
 int hexVal = 0x1a;
 
 // The number 26, in binary
-int binVal = 0b11010;
+int binVal = 0b11010;
 
 // The number 26, in octal
-int octVal = 032;
+int octVal = 032;
 ```
 
 @[1-2]
@@ -768,11 +768,11 @@ Arrays.sort(a, Collections.reverseOrder());
 
 #### Използвана (и препоръчвана) литература
 
-- [Thinking in Java](https://en.wikipedia.org/wiki/Thinking_in_Java)
-- Effective Java
-- Oracle OCA Java SE 8 Programmer I Study Guide 
-- [What’s new in JDK 9](https://docs.oracle.com/javase/9/whatsnew/)
-- [Learning the Java Language](https://docs.oracle.com/javase/tutorial/java/index.html)
+- [Thinking in Java](https://en.wikipedia.org/wiki/Thinking_in_Java)
+- Effective Java
+- Oracle OCA Java SE 8 Programmer I Study Guide
+- [What’s new in JDK 9](https://docs.oracle.com/javase/9/whatsnew/)
+- [Learning the Java Language](https://docs.oracle.com/javase/tutorial/java/index.html)
 
 ---
 
