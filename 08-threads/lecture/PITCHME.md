@@ -804,7 +804,7 @@ ScheduledFuture scheduleAtFixedRate(Runnable r,long delay,
 
 __Създаване на Executor__  
 
-```
+```java
 // предоставя статични методи фабрики за създаването на pools от нишки
 java.util.concurrent.Executors
 
