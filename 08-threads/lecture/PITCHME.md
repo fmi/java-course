@@ -958,3 +958,10 @@ ___Използвана литература___
 - **http://www.javaworld.com/article/2071214/java-concurrency/java-101--understanding-java-threads-part-3--thread-scheduling-and-wait-notify.html**
 - **https://docs.oracle.com/javase/8/docs/api/**
 
+---
+
+## Въпроси
+
+@snap[south span-100]
+@fab[github] [fmi/java-course](https://github.com/fmi/java-course)
+@snapend

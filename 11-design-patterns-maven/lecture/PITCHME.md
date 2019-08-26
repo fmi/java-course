@@ -463,3 +463,11 @@ java -jar target/my-app-1.0-SNAPSHOT.jar
 
 - [JAR files](https://docs.oracle.com/javase/tutorial/deployment/jar/index.html)
 - [Maven User Centre](https://maven.apache.org/users/index.html)
+
+---
+
+## Въпроси
+
+@snap[south span-100]
+@fab[github] [fmi/java-course](https://github.com/fmi/java-course)
+@snapend

@@ -168,10 +168,10 @@ int gear = 1;
     <td>IEEE754</td>
   </tr>
   <tr style="font-size:0.7em">
-    <td>float</td>
+    <td>double</td>
     <td>64 бита</td>
-    <td>double</td>
-    <td>double</td>
+    <td>IEEE754</td>
+    <td>IEEE754</td>
   </tr>
   <tr style="font-size:0.7em">
     <td>void</td>
@@ -346,7 +346,6 @@ int mask = 0b1010_1010_1010;
 ![Java app diagram](images/01.3-rocket.jpg?raw=true)
 
 <p style="font-size:0.5em">През 1996, ракетата Ариана 5 експлодира след излитане поради софтуерна грешка в конвертирането на типове (опит да „набута“ 64-битово число в 16 бита).</p>
-
 
 ---
 
@@ -777,3 +776,7 @@ Arrays.sort(a, Collections.reverseOrder());
 ---
 
 ## Въпроси
+
+@snap[south span-100]
+@fab[github] [fmi/java-course](https://github.com/fmi/java-course)
+@snapend

@@ -1120,3 +1120,7 @@ optionalEmployee.orElseThrow(NoSuchElementException::new);
 ---
 
 ## Въпроси
+
+@snap[south span-100]
+@fab[github] [fmi/java-course](https://github.com/fmi/java-course)
+@snapend

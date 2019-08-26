@@ -688,3 +688,7 @@ System.err.printf("Unable to open file '%1$s': %2$s",
 ---
 
 ## Въпроси
+
+@snap[south span-100]
+@fab[github] [fmi/java-course](https://github.com/fmi/java-course)
+@snapend

@@ -1,4 +1,4 @@
-## Обектно-ориентирано програмиране с Java
+## Обектно-ориентирано програмиране с Java
 
 #### Част I
 
@@ -25,7 +25,7 @@ _16.10.2018_
 
 @ul
 
-- Класове и обекти
+- Класове и обекти
 - Абстрактни класове и интерфейси
 - Фундаменталните ООП принципи
   - Енкапсулация
@@ -441,7 +441,7 @@ public class Human {
 
     public void whoAmI() {
         System.out.println("My name is " + name);
-    }            
+    }
 }
 ```
 
@@ -598,7 +598,7 @@ public abstract class Cat {
         System.out.println("I mew.");
     }
 
-    public abstract void eat();       
+    public abstract void eat();
 }
 
 public class DomesticCat extends Cat {
@@ -720,14 +720,14 @@ Object clone()
   <tr style="font-size:0.7em">
     <td>
         <ul>
-            <li>литерали и променливи от примитивните типове</li>
-            <li>параметри и локални променливи в методи</li>
+            <li>литерали и променливи от примитивните типове</li>
+            <li>параметри и локални променливи в методи</li>
             <li>референции към обекти</li>
         </ul>
     </td>
     <td>
         <ul>
-            <li>обекти (инстанции на класове)</li>
+            <li>обекти (инстанции на класове)</li>
             <li>масиви</li>
         </ul>
     </td>
@@ -735,13 +735,13 @@ Object clone()
   <tr style="font-size:0.7em">
     <td>
         <ul>
-            <li>заделяне: при извикване на метод</li>
+            <li>заделяне: при извикване на метод</li>
             <li>освобождаване: при приключване на изпълнението на метод</li>
         </ul>
     </td>
     <td>
         <ul>
-            <li>заделяне: с оператора new</li>
+            <li>заделяне: с оператора new</li>
             <li>освобождаване: от JVM Garbage Collector-a</li>
         </ul>
     </td>
@@ -749,15 +749,15 @@ Object clone()
   <tr style="font-size:0.7em">
     <td>
         <ul>
-            <li>с кратък живот (method invocation)</li>
-            <li>бърз достъп</li>
+            <li>с кратък живот (method invocation)</li>
+            <li>бърз достъп</li>
             <li>не се фрагментира</li>
         </ul>
     </td>
     <td>
         <ul>
-            <li>обикновено по-дълъг живот</li>
-            <li>по-бавен достъп</li>
+            <li>обикновено по-дълъг живот</li>
+            <li>по-бавен достъп</li>
             <li>може да се фрагментира</li>
         </ul>
     </td>
@@ -767,3 +767,7 @@ Object clone()
 ---
 
 ## Въпроси
+
+@snap[south span-100]
+@fab[github] [fmi/java-course](https://github.com/fmi/java-course)
+@snapend
