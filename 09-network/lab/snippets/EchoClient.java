@@ -11,14 +11,14 @@ public class EchoClient {
 
     public static void main(String[] args) {
 
-        try (Socket s = new Socket("localhost", SERVER_PORT);
-                PrintWriter pw = new PrintWriter(s.getOutputStream(), true); // autoflush on
-                BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+        try (Socket socket = new Socket("localhost", SERVER_PORT);
+                PrintWriter writer = new PrintWriter(socket.getOutputStream(), true); // autoflush on
+                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-                Scanner sc = new Scanner(System.in);) {
+                Scanner scanner = new Scanner(System.in);) {
 
             while (true) {
-                String message = sc.nextLine(); // read a line from the console
+                String message = scanner.nextLine(); // read a line from the console
                 
                 if ("quit".equals(message)) {
                     break;
@@ -26,9 +26,9 @@ public class EchoClient {
                 
                 System.out.println("Sending message <" + message + "> to the server...");
 
-                pw.println(message); // send the message to the server 
+                writer.println(message); // send the message to the server
 
-                String reply = br.readLine(); // read the response from the server
+                String reply = reader.readLine(); // read the response from the server
                 System.out.println("The server replied <" + reply + ">");
             }
 
