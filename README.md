@@ -10,5 +10,5 @@
 
 ### Материали от предходни издания
 
-- [2018/2019](https://github.com/fmi/java-course/tree/mjt-2018/2019)
-- [2017/2018](https://github.com/fmi/java-course/tree/mjt-2017/2018)
+- [2018/2019](https://github.com/fmi/java-course/tree/mjt-2018-2019)
+- [2017/2018](https://github.com/fmi/java-course/tree/mjt-2017-2018)
