@@ -5,14 +5,14 @@ import java.lang.Math;
 public class IntroTestProblems {
 
     public static int digitDistance(int num1, int num2) {
-        int sum=0;
+        int sum = 0;
         if (num1 < 10) {
             return Math.abs(num1 - num2);
         }
-        while (num1>0){
+        while (num1 > 0){
             sum += Math.abs(num1%10 - num2%10);
-            num1/=10;
-            num2/=10;
+            num1 /= 10;
+            num2 /= 10;
         }
         return sum;
     }
