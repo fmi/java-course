@@ -12,7 +12,7 @@ _09.10.2018_
 - Обектно-ориентиран
 - Статично компилируем
 - Със C/C++ синтаксис
-- "Write once, run anyywhere"
+- "Write once, run anywhere"
 
 @ulend
 
