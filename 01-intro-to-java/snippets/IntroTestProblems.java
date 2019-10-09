@@ -9,7 +9,7 @@ public class IntroTestProblems {
         if (num1 < 10) {
             return Math.abs(num1 - num2);
         }
-        while(num1>0){
+        while (num1>0){
             sum += Math.abs(num1%10 - num2%10);
             num1/=10;
             num2/=10;
@@ -19,7 +19,7 @@ public class IntroTestProblems {
 
     public static int minSwaps(String s1, String s2) {
         int differences = 0;
-        for(int i = 0; i < s1.length(); ++i) {
+        for (int i = 0; i < s1.length(); ++i) {
             differences += (s1.charAt(i) == s2.charAt(i)) ? 0 : 1;
         }
         return differences / 2;
