@@ -1,5 +1,3 @@
-package bg.uni.sofia.fmi.mjt;
-
 import java.lang.Math;
 
 public class IntroTestProblems {
