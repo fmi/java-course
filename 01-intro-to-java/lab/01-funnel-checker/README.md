@@ -13,7 +13,7 @@ public static boolean isFunnel(String str1, String str2)
 ### Примери
 
 | Извикване                       | Резултат   |
-| ------------------------------- |:----------:|
+|:------------------------------- |:---------- |
 | `isFunnel("leave", "eave")`     | `true`     |
 | `isFunnel("reset", "rest")`     | `true`     |
 | `isfunnel("dragoon", "dragon")` | `true`     |

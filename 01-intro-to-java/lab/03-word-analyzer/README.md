@@ -13,7 +13,7 @@ public static String getSharedLetters(String word1, String word2)
 ### Примери
 
 | Извикване                            | Резултат |
-| ------------------------------------ |:--------:|
+|:------------------------------------ |:-------- |
 | `getSharedLetters("house", "home")`  | `"eho"`  |
 | `getSharedLetters("Micky", "mouse")` | `"m"`    |
 | `getSharedLetters("house", "villa")` | `""`     |
