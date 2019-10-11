@@ -21,7 +21,7 @@ public static String longestRepeatingSequence(String dna)
 
 ### Примери
 
-| Извикване               | Резултат  |
-|:----------------------- |:--------- |
-| `lrs("abracadabra")`    | `"abra"`  |
-| `lrs("ATACTCGGTACTCT")` | `"TACTC"` |
+| Извикване                                    | Резултат  |
+|:-------------------------------------------- |:--------- |
+| `longestRepeatingSequence("abracadabra")`    | `"abra"`  |
+| `longestRepeatingSequence("ATACTCGGTACTCT")` | `"TACTC"` |
