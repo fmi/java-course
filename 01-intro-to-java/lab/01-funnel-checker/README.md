@@ -16,7 +16,7 @@ public static boolean isFunnel(String str1, String str2)
 |:------------------------------- |:---------- |
 | `isFunnel("leave", "eave")`     | `true`     |
 | `isFunnel("reset", "rest")`     | `true`     |
-| `isfunnel("dragoon", "dragon")` | `true`     |
-| `isfunnel("eave", "leave")`     | `false`    |
-| `isfunnel("sleet", "lets")`     | `false`    |
-| `isfunnel("skiff", "ski")`      | `false`    |
+| `isFunnel("dragoon", "dragon")` | `true`     |
+| `isFunnel("eave", "leave")`     | `false`    |
+| `isFunnel("sleet", "lets")`     | `false`    |
+| `isFunnel("skiff", "ski")`      | `false`    |
