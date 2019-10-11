@@ -23,7 +23,7 @@ _09.10.2019_
 
 @ul
 
-- Java Editon е вариация на Java платформата (JDK-то), асемблирана за различна цел
+- Java Edition е вариация на Java платформата (JDK-то), асемблирана за различна цел
   - Java Platform Standard Edition (Java SE)
   - Java Platform Enterprise Edition (Java EE)
   - Java Platform Micro Edition (Java ME)
