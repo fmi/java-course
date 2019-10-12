@@ -14,17 +14,17 @@ public class SampleWordAnalyzerTest {
 
     @Test
     public void testWordAnalyzer_ThreeCommon() {
-        assertEquals(wordAnalyzer.getSharedLetters("house", "home"), "eho");
+        assertEquals("eho, "wordAnalyzer.getSharedLetters("house", "home"));
     }
 
     @Test
     public void testWordAnalyzer_OneCommon() {
-        assertEquals(wordAnalyzer.getSharedLetters("Micky", "mouse"), "m");
+        assertEquals("m", wordAnalyzer.getSharedLetters("Micky", "mouse"));
     }
 
     @Test
     public void testWordAnalyzer_NoCommon() {
-        assertEquals(wordAnalyzer.getSharedLetters("house", "villa"), "");
+        assertEquals("", wordAnalyzer.getSharedLetters("house", "villa"));
     }
 
 }

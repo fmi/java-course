@@ -14,12 +14,12 @@ public class SampleDNAAnalyzerTest {
 
     @Test
     public void testDNAAnalyzer_Abracadabra() {
-        assertEquals(dnaAnalyzer.longestRepeatingSequence("abracadabra"), "abra");
+        assertEquals("abra", dnaAnalyzer.longestRepeatingSequence("abracadabra"));
     }
 
     @Test
     public void testDNAAnalyzer_DNASequence() {
-        assertEquals(dnaAnalyzer.longestRepeatingSequence("ATACTCGGTACTCT"), "TACTC");
+        assertEquals("TACTC", dnaAnalyzer.longestRepeatingSequence("ATACTCGGTACTCT"));
     }
 
 }
