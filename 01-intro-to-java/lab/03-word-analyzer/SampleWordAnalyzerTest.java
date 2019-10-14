@@ -14,7 +14,7 @@ public class SampleWordAnalyzerTest {
 
     @Test
     public void testWordAnalyzer_ThreeCommon() {
-        assertEquals("eho ", wordAnalyzer.getSharedLetters("house", "home"));
+        assertEquals("eho", wordAnalyzer.getSharedLetters("house", "home"));
     }
 
     @Test
