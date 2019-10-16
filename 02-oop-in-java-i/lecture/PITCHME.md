@@ -131,11 +131,11 @@ public class HelloWorldApp {
 ---
 
 ```java
-// A method that takes variable number of intger arguments
+// A method that takes variable number of integer arguments
 static void funWithVarargs(int... a) {
     System.out.println("Number of arguments: " + a.length); 
 
-    // using for each loop to display contents of a
+    // using for-each loop to display contents of a
     for (int i : a) {
         System.out.print(i + " "); 
     } 
@@ -231,7 +231,7 @@ public class MainApp {
 
 ---
 
-#### Пакет
+#### Пакети
 
 @ul
 
@@ -282,8 +282,8 @@ public class StringUtils {
 
 @ul
 
-- Прието е да `import`-ите да се подреждат в сортиран ред по `<package>.<class>`
-- По-чисто е да се изброят конкретните класове от пакета вместо `import java.util.*;`
+- Прието е `import`-ите да се подреждат в сортиран лексикографски ред по `<package>.<class>`
+- По-чисто е да се изброят конкретните класове от пакета, вместо `import java.util.*;`
 
 @ulend
 
@@ -323,7 +323,7 @@ public class StringUtils {
 
 #### Енкапсулация
 
-Енкапсулацията адресира основния проблем, мотивирал създаването на ООП: до-добро менажиране на конкурентния достъп до споделени данни
+Енкапсулацията адресира основния проблем, мотивирал създаването на ООП: по-добро менажиране на конкурентния достъп до споделени данни
 
 ---
 
@@ -362,7 +362,7 @@ public class Main {
 
 @snap[south span-100]
 @[3-4](No encapsulation)
-@[14-15](Hmm..)
+@[14-14](Hmm..)
 @snapend
 
 ---
@@ -390,7 +390,7 @@ public class Main {
 
 @snap[south span-100]
 @[3-4](Stays hidden.)
-@[14-15](Won't compile)
+@[14-14](Won't compile)
 @snapend
 
 ---
@@ -544,8 +544,8 @@ System.out.println(ref instanceof Object);
 ```
 
 @snap[south span-100]
-@[12-12](false for any class: null is not an instance of anything)
-@[13-13](true for any non-null ref, because any class extends java.lang.Object)
+@[13-13](false for any class: null is not an instance of anything)
+@[14-14](true for any non-null ref, because any class extends java.lang.Object)
 @snapend
 
 ---
@@ -798,72 +798,10 @@ public class Leopard extends Cat {
 @ul
 
 - Съвкупност от декларации на методи без имплементация
-- Описва формално поведение без да го имплементира
-- Може да съдържа static final член-променливи == константи
+- Описват формално поведение, без да го имплементират
+- Може да съдържат static final член-променливи == константи
 - От Java 8 може да съдържат също `default` и `static` методи с имплементация
 - От Java 9 – и private методи
-
-@ulend
-
----
-
-#### Интерфейси - пример
-
-```java
-public interface Animal {
-    public void move();
-    public void communicate();
-}
-
-public class Human implements Animal {
-    private String name;
-
-    public Human(String name) {
-        this.name = name;
-    }
-    public void move() {
-        System.out.println("I am walking using two legs");
-    }
-    public void communicate() {
-        System.out.println("I speak");
-    }
-}
-
-public class Cat implements Animal {
-    public void move() {
-        System.out.println("I am walking using 4 toes");
-    }
-    public void communicate() {
-        System.out.println("I mew");
-    }
-}
-```
-
-@snap[south span-100]
-@[1-4](interface Animal)
-@[6-18](class Human)
-@[20-27](class Leopard)
-@snapend
-
----
-
-#### Абстракция
-
-@ul
-
-- Абстракция означава, моделирайки в обектно-ориентиран език за програмиране обекти от реалния или виртуалния свят, да се ограничим само до съществените им за конкретната задача характеристики и да се абстрахираме (пропуснем) в модела несъществените или нерелевантни за задачата.
-    - Пример: моделирайки студент, да го характеризираме само с име и факултетен номер, абстрахирайки се от всички други характеристики на студента в реалния свят (напр. цвят на очите).
-
-@ulend
-
----
-
-#### Абстракция
-
-@ul
-
-- Абстракция също означава да работим с нещо, което знаем как да използваме, без да знаем как работи вътрешно. Всяка конкретна имплементация на поведение е скрита в своя обект, за външния свят е видимо само поведението (т.е. интерфейсът)
-- Принципът за абстракция се постига в Java чрез интерфейси и абстрактни класове.
 
 @ulend
 
