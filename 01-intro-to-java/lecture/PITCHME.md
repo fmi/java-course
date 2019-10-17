@@ -648,7 +648,8 @@ char[] ca = s.toCharArray();
 for (int i = 0; i < ca.size(); i++) {...}
 for (char c : ca) {...} // enhanced for-loop, a.k.a. for-each
 
-String sorted = Arrays.sort(ca).toString(); // "Fbdeiir"
+Arrays.sort(ca);
+String sorted = String.valueOf(ca); // "Fbdeiir"
 ```
 
 ---
