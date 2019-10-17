@@ -649,7 +649,7 @@ for (int i = 0; i < ca.size(); i++) {...}
 for (char c : ca) {...} // enhanced for-loop, a.k.a. for-each
 
 Arrays.sort(ca);
-String sorted = String.valueOf(ca); // "Fbdeiir"
+String sorted = String.valueOf(ca); // "Fbdeiirr"
 ```
 
 ---
