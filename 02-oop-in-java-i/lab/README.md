@@ -11,7 +11,7 @@
 :point_right: Той ще има възможност за съхранение на до 5 карти.
 
 ### Виртуален портфейл
-:computer: За целта нека имаме интерфейс `VirtualWalletAPI`:
+За целта нека имаме интерфейс `VirtualWalletAPI`:
 ``` java
 package bg.sofia.uni.fmi.mjt.virtualwallet.core;
 
@@ -44,7 +44,7 @@ public interface VirtualWalletAPI {
 }
 ```
 
-:computer: Създайте конкретен клас с име `VirtualWallet`, който да го имплементира:
+Създайте конкретен клас с име `VirtualWallet`, който да го имплементира:
 ``` java
 package bg.sofia.uni.fmi.mjt.virtualwallet.core;
 
@@ -61,7 +61,7 @@ public class VirtualWallet implements VirtualWalletAPI {
 :point_right: При плащане с `GoldenCard` ни се възвръщат 15% от цената на покупката. 
 
 
-:computer: Класовете `StandardCard` и `GoldenCard` трябва да наследяват абстрактия клас `Card`:
+Класовете `StandardCard` и `GoldenCard` трябва да наследяват абстрактия клас `Card`:
 
 ``` java
 package bg.sofia.uni.fmi.mjt.virtualwallet.core.card;
