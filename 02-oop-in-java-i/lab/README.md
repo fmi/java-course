@@ -124,7 +124,6 @@ public class PaymentInfo {
 ## Пакети
 Спазвайте имената на пакетите на всички по-горе описани класове, тъй като в противен случай решението ви няма да може да бъде тествано от грейдъра.
 ``` bash
-bg.sofia.uni.fmi.mjt.virtualwallet.core
 src
 ╷
 └─ bg/sofia/uni/fmi/mjt/virtualwallet/core
