@@ -77,6 +77,7 @@ public class SampleVirtualWalletTest {
 	
 	@Test
 	public void testIfPaymentFailsIfNullPaymentIsPassed() {
+		assertTrue(wallet.registerCard(standardCard));
 		assertFalse(wallet.executePayment(standardCard, null));
 	}
 	
