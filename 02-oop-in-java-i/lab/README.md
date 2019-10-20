@@ -5,15 +5,14 @@
 Ще създадем приложение за управление на виртуални карти.
 Нашият `виртуален портфейл` ще има следните прости функционалности:
 - създаване на нова карта
+- съхраняване на до 5 карти
 - зареждане на конкретна карта с пари
 - плащане с конкретна карта
 - извличане на конкретна карта по име
 
-:point_right: Той ще има възможност за съхранение на до 5 карти.
-
 ### Виртуален портфейл
 
-За целта, нека имаме интерфейс `VirtualWalletAPI`:
+За целта ще създадем интерфейс `VirtualWalletAPI`:
 
 ```java
 package bg.sofia.uni.fmi.mjt.virtualwallet.core;
@@ -52,26 +51,30 @@ public interface VirtualWalletAPI {
 }
 ```
 
-Създайте конкретен клас с име `VirtualWallet`, който да го имплементира:
+- Помислете, кога операциите `executePayment`, `feed` и `registerCard` могат да са неуспешни, т.е да връщат `false`.<br>
+- С какви подадени параметри можем да 'счупим' нашия `VirtualWallet`?
+
+След като сме дефинирали 'спецификацията' на нашия виртуален портфейл, ще създадем конкретен клас `VirtualWallet`, който да го имплементира:
 
 ```java
+
 package bg.sofia.uni.fmi.mjt.virtualwallet.core;
 
 public class VirtualWallet implements VirtualWalletAPI {
 
     public VirtualWallet() {
-
+        // Implement logic
     }
 
 }
 ```
+
 ## Карти
 
-:point_right: `VirtualWallet` ще поддържа два типа карти - `StandardCard` и `GoldenCard`.
+Създаденият `VirtualWallet` ще поддържа два типа карти - стандартни и златни, съответно имплементирани от класовете `StandardCard` и `GoldenCard`. 
+- При всяко плащане със златна карта, тя ще ни връща 15% от цената на покупката. За да изпълним дадено плащане трябва първо да имаме първоначалната сума на покупката (преди да приложим 'бонуса' от 15%)
 
-:point_right: При плащане с `GoldenCard` ни се възвръщат 15% от цената на покупката.
-
-Класовете `StandardCard` и `GoldenCard` трябва да наследяват абстрактния клас `Card`:
+Двата класа `StandardCard` и `GoldenCard` ще наследяват абстрактния клас `Card`:
 
 ```java
 package bg.sofia.uni.fmi.mjt.virtualwallet.core.card;
@@ -79,30 +82,27 @@ package bg.sofia.uni.fmi.mjt.virtualwallet.core.card;
 public abstract class Card {
 
     public Card(String name) {
-
+        // Implement logic
     }
 
     public abstract boolean executePayment(double cost);
 
     public String getName() {
-
+        // Implement logic
     }
 
     public double getAmount() {
-
+        // Implement logic
     }
 
 }
 ```
 
-:point_right: Разликата в поведението между `StandardCard` и `GoldenCard` е отразена
-чрез абстрактния метод <br>
-
-   `boolean executePayment(double cost)`
+Разликата в поведението между двете карти, отразяваме чрез абстрактния метод `executePayment`
 
 ## Плащане
 
-:computer: Информацията за всяко плащане ще се съдържа в класа `PaymentInfo`:
+Информацията за всяко плащане ще съхраняваме в класа `PaymentInfo`:
 
 ```java
 package bg.sofia.uni.fmi.mjt.virtualwallet.core.payment;
@@ -110,38 +110,33 @@ package bg.sofia.uni.fmi.mjt.virtualwallet.core.payment;
 public class PaymentInfo {
 
     public PaymentInfo(String reason, String location, double cost) {
-
+        // Implement logic
     }
 
     public double getCost() {
-
+        // Implement logic
     }
 
     public String getReason() {
-
+        // Implement logic
     }
 
     public String getLocation() {
-
+        // Implement logic
     }
 
 }
 ```
 
-## Валидация
-
-:ballot_box_with_check: Обърнете внимание на методите от `VirtualWallet`-a и помислете, кога биха връщали `false`. Направете подходяща валидация на параметрите, които тези методи приемат.
-
 ## Бонус задача
 
-Съхранявайте последните 10 транзакции, извършени през виртуалния портфейл. Включете:
+Съхранявайте последните 10 транзакции, извършени през виртуалния портфейл. Всяка транзакция трябва да съдържа:
 - името на картата, от която е била направена транзакцията (плащането)
 - дата на транзакцията
 - информация за самото плащане т.е. `PaymentInfo`.
 
-:point_right: Когато вече нямате свободно място за съхранение, премахвайте най-старата транзакция.
-
-:point_right: За работа с дата и час, може да използвате `java.time API`, обръщайки по-специално внимание на `LocalDateTime` класа и неговите методи.
+- Когато вече нямате свободно място за съхранение, премахвайте най-старата транзакция от масива.
+- За работа с дата и час, може да използвате `java.time API`, обръщайки по-специално внимание на `LocalDateTime` класа и неговите методи.
 
 ## Пакети
 
