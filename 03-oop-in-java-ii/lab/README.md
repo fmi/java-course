@@ -72,7 +72,7 @@ public Issue(IssuePriority priority, Component component, String description) {}
   * **компонент**, на който принадлежи issue-то
   * **action log** - пази списък от действията, които е извършвал програмистът, докато работи по `Issue`-то. Действията могат да бъдат *RESEARCH*, *DESIGN*, *IMPLEMENTATION*, *TESTS*, *FIX*
 
-    Списъкът се състои от низове във формат `<action>: <description>`. Например *"Fix: Added 'products.manage' scope check in authorizer"*. Описанието на действието е задължително
+    Списъкът се състои от низове във формат `<action>: <description>`. Например *"fix: Added 'products.manage' scope check in authorizer"*. Описанието на действието е задължително
 
     Може да съхранява до 20 действия. При надвишаване на този лимит, хвърляйте **походящо изключение**.
   * **момент (*timestamp*) на създаване**
