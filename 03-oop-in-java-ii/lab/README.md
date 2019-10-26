@@ -18,7 +18,7 @@ public interface Filter {
 }
 
 public interface Repository {
-    public boolean addIssue(Issue issue);
+    public void addIssue(Issue issue);
 }
 ```
 
