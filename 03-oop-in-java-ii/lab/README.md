@@ -35,7 +35,7 @@ public void addActionToIssue(Issue issue, WorkAction action, String actionDescri
 public void resolveIssue(Issue issue, IssueResolution resolution) {}
 ```
 
-- Може да съхранява **до 100 Issue-та** наведнъж. При надвишаване на този лимит, хвърляйте **походящо изключение**.
+- Може да съхранява **до 100 Issue-та** наведнъж. При надвишаване на този лимит, или при опит за добавяне на `Issue`, което вече е добавено (критерий за еднаквост е уникалното ID на `Issue`-то) хвърляйте **походящо изключение**.
 
 ### `abstract class Issue`
 
