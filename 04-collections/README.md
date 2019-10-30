@@ -1,1 +1,1 @@
-# Collections Framework & Generics
+# Колекции
