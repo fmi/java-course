@@ -33,9 +33,9 @@ public interface SmartDevice {
     String getName();
 
     /**
-    * Returns the power consumption of the device.
-    * For example, a lamp may consume 1kW/hour.
-    */
+     * Returns the power consumption of the device.
+     * For example, a lamp may consume 1kW/hour.
+     */
     double getPowerConsumption();
 
     /**
@@ -123,7 +123,7 @@ public class SmartCityHub {
      *
      * @throws IllegalArgumentException in case @id is null.
      * @throws DeviceNotFoundException in case device with ID @id is not found.
-    */
+     */
     public SmartDevice getDeviceById(String id) throws DeviceNotFoundException {
         throw new UnsupportedOperationException();
     }
