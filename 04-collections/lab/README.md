@@ -21,31 +21,31 @@ package bg.sofia.uni.fmi.mjt.smartcity.device;
 
 public  interface SmartDevice {
     /**
-    * Returns the id of the device.
-    */
+     * Returns the id of the device.
+     */
     String getId();
 
     /**
-    * Returns the name of the device.
-    */
+     * Returns the name of the device.
+     */
     String getName();
 
     /**
-    * Returns the power consumption of the device.
-    * For example, a lamp may consume 1kW/hour.
-    */
+     * Returns the power consumption of the device.
+     * For example, a lamp may consume 1kW/hour.
+     */
     double getPowerConsumption();
     
     /**
-    * Returns the date and time of device installation.
-    * This is a time in the past when the device was 'physically' installed.
-    * It is not related to time when the device is registered in the hub.
-    */
+     * Returns the date and time of device installation.
+     * This is a time in the past when the device was 'physically' installed.
+     * It is not related to time when the device is registered in the hub.
+     */
     LocalDateTime getInstallationDateTime();
 	
     /**
-    * Returns the type of the device.
-    */
+     * Returns the type of the device.
+     */
     DeviceType getType();
 }
 ```
@@ -96,66 +96,66 @@ public class SmartCityHub {
     }
     
     /**
-    * Adds a @device to the SmartCityHub.
-    *
-    * @throws IllegalArgumentException in case null is passed.
-    * @throws DeviceAlreadyRegisteredException in case the @device is already registered.
-    */
+     * Adds a @device to the SmartCityHub.
+     *
+     * @throws IllegalArgumentException in case null is passed.
+     * @throws DeviceAlreadyRegisteredException in case the @device is already registered.
+     */
     public void register(SmartDevice device) throws DeviceAlreadyRegisteredException {
         throw new UnsupportedOperationException();
     }
 
     /**
-    * Removes the @device from the SmartCityHub.
-    *
-    * @throws IllegalArgumentException in case null is passed.
-    * @throws DeviceNotFoundException in case the @device is not found.
-    */
+     * Removes the @device from the SmartCityHub.
+     *
+     * @throws IllegalArgumentException in case null is passed.
+     * @throws DeviceNotFoundException in case the @device is not found.
+     */
     public void unregister(SmartDevice device) throws DeviceNotFoundException {
         throw new UnsupportedOperationException();
     }
 
     /**
-    * Returns a SmartDevice with an id @id.
-    *
-    * @throws IllegalArgumentException in case null is passed.
-    * @throws DeviceNotFoundException in case device with an id @id is not found.
-    */
+     * Returns a SmartDevice with an id @id.
+     *
+     * @throws IllegalArgumentException in case null is passed.
+     * @throws DeviceNotFoundException in case device with an id @id is not found.
+     */
     public SmartDevice getDeviceById(String id) throws DeviceNotFoundException {
         throw new UnsupportedOperationException();
     }
 
     /**
-    * Returns the total number of devices with type @type registered in SmartCityHub.
-    *
-    * @throws IllegalArgumentException in case null is passed.
-    */
+     * Returns the total number of devices with type @type registered in SmartCityHub.
+     *
+     * @throws IllegalArgumentException in case null is passed.
+     */
     public int getDeviceQuantityPerType(DeviceType type) {
         throw new UnsupportedOperationException();
     }
 
     /**
-    * Returns a collection of id-s of the top @n devices which consumed
-    * most power from the time of installation until now.
-    * 
-    * The total power consumption of a device is calculated by the hours elapsed
-    * between the two LocalDateTime-s multiplied by the stated power consumption of the device. 
-    *
-    * If @n exceeds the total number of devices return all devices available sorted by the given criteria.
-    * @throws IllegalArgumentException in case a negative number is passed.
-    */
+     * Returns a collection of id-s of the top @n devices which consumed
+     * most power from the time of installation until now.
+     * 
+     * The total power consumption of a device is calculated by the hours elapsed
+     * between the two LocalDateTime-s multiplied by the stated power consumption of the device. 
+     *
+     * If @n exceeds the total number of devices return all devices available sorted by the given criteria.
+     * @throws IllegalArgumentException in case a negative number is passed.
+     */
     public Collection<String> getTopNDevicesByPowerConsumption(int n) {
         throw new UnsupportedOperationException();
     }
 
     /**
-    * Returns a collection of the first @n registered devices, i.e the first @n that were added
-    * in the SmartCityHub (registration != installation).
-    * 
-    * If @n exceeds the total number of devices return all devices available sorted by the given criteria.
-    * 
-    * @throws IllegalArgumentException in case a negative number is passed.
-    */
+     * Returns a collection of the first @n registered devices, i.e the first @n that were added
+     * in the SmartCityHub (registration != installation).
+     * 
+     * If @n exceeds the total number of devices return all devices available sorted by the given criteria.
+     * 
+     * @throws IllegalArgumentException in case a negative number is passed.
+     */
     public Collection<SmartDevice> getFirstNDevicesByRegistration(int n) {
         throw new UnsupportedOperationException();
     }
