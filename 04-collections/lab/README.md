@@ -198,11 +198,11 @@ src
    └─ DeviceNotFoundException.java
    └─ (...)
    bg/sofia/uni/fmi/mjt/smartcity/device/
-	└─ SmartDevice.java
-	└─ SmartTrafficLight.java
-	└─ SmartLamp.java
-	└─ SmartCamera.java
-	└─ (...)
+    └─ SmartDevice.java
+    └─ SmartTrafficLight.java
+    └─ SmartLamp.java
+    └─ SmartCamera.java
+    └─ (...)
    bg/sofia/uni/fmi/mjt/smartcity/enums/
       └─ DeviceType.java
       └─ (...)
