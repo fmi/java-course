@@ -142,7 +142,8 @@ public class SmartCityHub {
      * the most power from the time of their installation until now.
      * 
      * The total power consumption of a device is calculated by the hours elapsed
-     * between the two LocalDateTime-s multiplied by the stated power consumption of the device.
+     * between the two LocalDateTime-s: the installation time and the current time (now)
+     * multiplied by the stated power consumption of the device.
      *
      * If @n exceeds the total number of devices, return all devices available sorted by the given criterion.
      * @throws IllegalArgumentException in case @n is a negative number.
