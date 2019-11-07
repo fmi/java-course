@@ -680,7 +680,7 @@ _06.11.2019_
 
 ---
 
-#### Принципи на чистия код -ползвай полиморфизъм
+#### Принципи на чистия код - ползвай полиморфизъм
 
 ```java
 // Bad
@@ -815,7 +815,7 @@ try {
 } catch (FileNotFoundException e) {
     // I hope someone reads the logs
     e.printStackTrace();
-} catch (IOException) {
+} catch (IOException e) {
     // the admin should see this
     System.err.println("I/O exception accessing the file system.");
 }
