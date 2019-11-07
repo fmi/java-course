@@ -572,7 +572,8 @@ list.add("I don't fit in");
 
 ```java
 public static <E> void append(List<E> list) {
-    E elem = new E(); // compile-time error: type parameter E cannot be instatiated directly
+    E elem = new E(); // compile-time error: type parameter E
+                      // cannot be instatiated directly
     list.add(elem); 
 }
 
