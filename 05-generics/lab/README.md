@@ -30,8 +30,8 @@ public interface Cache<K, V> {
     void set(K key, V value);
 
     /**
-     * Removes the item associated with the specified key from the cache. Returns
-     * true, if an item with the specified key was found and false otherwise.
+     * Removes the item associated with the specified key from the cache.
+     * Returns true, if an item with the specified key was found and false otherwise.
      */
     boolean remove(K key);
 
@@ -76,7 +76,7 @@ public interface Cache<K, V> {
 ```java
 /**
  * Constructs a new Cache<K, V> with the specified maximum capacity and eviction policy 
- * @throws IllegalArgumentExcepion if the given capacity is less or equal to zero
+ * @throws IllegalArgumentExcepion if the given capacity is less than or equal to zero
  */
 static <K, V> Cache<K, V> getInstance(long capacity, EvictionPolicy policy);
 
