@@ -61,7 +61,7 @@ public interface Cache<K, V> {
      * Returns the number of times that the value of the given key has been accessed.
      * Returns 0 if the key is not present in the cache.
      */
-    long getUsesCount(K key);
+    int getUsesCount(K key);
     
 }
 ```
@@ -77,8 +77,9 @@ public interface Cache<K, V> {
 
 ```java
 /**
- * Constructs a new Cache<K, V> with the specified maximum capacity and eviction policy 
- * @throws IllegalArgumentExcepion if the given capacity is less than or equal to zero
+ * Constructs a new Cache<K, V> with the specified maximum capacity and eviction policy
+ * @throws IllegalArgumentException if the given capacity is less than or equal to zero.
+ * Note that IllegalArgumentException is a `RuntimeException` from the JDK
  */
 static <K, V> Cache<K, V> getInstance(long capacity, EvictionPolicy policy);
 
@@ -104,7 +105,7 @@ public enum EvictionPolicy {
 - когато се извика `set` за вече съществуващ key с ново или същото value, броят пъти, в които сме използвали този елемент, се увеличава с 1, а не се занулява.
 - ако съществуват два или повече елемента с равна (минимална) честота на използване, при добавяне на нов елемент при пълен кеш, трием произволен от тях.
 
-:point_right: При Random Replacement имплементацията, методът `getUsesCount` хвърля `OperationNotSupportedException`.
+:point_right: При Random Replacement имплементацията, методът `getUsesCount` хвърля `UnsupportedOperationException` (съществуващ `RuntimeException` от JDK-то).
 
 #### Забележки
 
