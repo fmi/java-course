@@ -12,6 +12,8 @@
 Даден е интерфейсът `Cache<K, V>`, който може да оперира с обекти от произволен тип
 
 ```java
+package bg.sofia.uni.fmi.mjt.cache;
+
 public interface Cache<K, V> {
 
     /**
@@ -59,7 +61,7 @@ public interface Cache<K, V> {
      * Returns the number of times that the value of the given key has been accessed.
      * Returns 0 if the key is not present in the cache.
      */
-    int getUsesCount(K key);
+    long getUsesCount(K key);
     
 }
 ```
