@@ -1,6 +1,6 @@
 # Домашно 1
 
-## **Shopping Portal** ![](https://www.webzarc.in/images/online-shopping.png =60x50)
+## **Shopping Portal** :department_store:
 
 `Краен срок: 27.11.2019, 23:45`
 
