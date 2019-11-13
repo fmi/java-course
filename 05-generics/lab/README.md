@@ -115,7 +115,7 @@ public enum EvictionPolicy {
 
 Проектът ви трябва да има следната структура:
 
-```
+```bash
   src
   ╷
   └─ bg/sofia/uni/fmi/mjt/cache/
