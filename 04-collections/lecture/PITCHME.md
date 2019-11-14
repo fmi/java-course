@@ -542,7 +542,7 @@ List<E> subList(int fromIndex, int toIndex)
 __Queue__
 
 ```java
-// adds an element to the head of the queue
+// adds an element to the tail of the queue
 boolean offer(E e)
 
 // Retrieves, but does not remove, the head of the queue
