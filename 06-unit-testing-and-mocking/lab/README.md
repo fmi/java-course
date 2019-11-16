@@ -48,7 +48,8 @@ src
 test
 ╷
 └─ bg/sofia/uni/fmi/mjt/shopping/
-    ├─ ShoppingCartTest.java
+    ├─ ListShoppingCartTest.java
+    ├─ MapShoppingCartTest.java
     └─ (...)
 ```
 
