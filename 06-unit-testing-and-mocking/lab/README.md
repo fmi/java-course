@@ -50,9 +50,6 @@ test
 └─ bg/sofia/uni/fmi/mjt/shopping/
     ├─ ShoppingCartTest.java
     └─ (...)
-    bg/sofia/uni/fmi/mjt/shopping/item/
-    ├─ ItemTest.java
-    └─ (...)
 ```
 
 6. В [grader.sapera.org](http://grader.sapera.org) качете общ `zip` архив на директориите `src` и `test`.
