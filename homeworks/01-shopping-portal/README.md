@@ -53,6 +53,7 @@ public interface ShoppingDirectory {
     
 }
 ```
+:exclamation: Обърнете внимание, че текущият ден също е част от последните 30 дни.
 
 ### **Оферти**
 
