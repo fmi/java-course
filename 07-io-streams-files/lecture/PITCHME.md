@@ -773,13 +773,13 @@ try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 
 ---
 
-#### Обхождане на директория с глоб (wildcards)
+#### Обхождане на директория с шаблони за търсене (globs, wildcards)
 
 ```java
 DirectoryStream<Path> newDirectoryStream(Path dir, String glob)
 // създава поток, който съдържа само файловете и поддиректориите,
-// които отговарят на глоба glob
-// например, итерираме всички файлове, завършващи със .java
+// които отговарят на шаблона за търсене glob
+// например, итерираме всички файлове с разширение .java
 
 
 Path dir = ... ;
@@ -792,11 +792,11 @@ try (DirectoryStream<Path> stream =
 
 ---
 
-#### Глоб (wildcards)
+#### Шаблони за търсене (globs, wildcards)
 
 <table>
   <tr>
-    <th style="font-size:0.9em">Глоб</th>
+    <th style="font-size:0.9em">Шаблон за търсене</th>
     <th style="font-size:0.9em">Семантика</th>
   </tr>
   <tr style="font-size:0.7em">
@@ -813,7 +813,7 @@ try (DirectoryStream<Path> stream =
   </tr>
   <tr style="font-size:0.7em">
     <td>{subGlobl, …, subGlobN}</td>
-    <td>замества някой от подглобовете</td>
+    <td>замества някой от под-шаблоните</td>
   </tr>
   <tr style="font-size:0.7em">
     <td>[c1...cN]</td>
@@ -832,11 +832,11 @@ try (DirectoryStream<Path> stream =
 
 ---
 
-#### Примерни глобове
+#### Примерни шаблони за търсене
 
 <table>
   <tr>
-    <th style="font-size:0.9em">Глоб</th>
+    <th style="font-size:0.9em">Шаблон за търсене</th>
     <th style="font-size:0.9em">Семантика</th>
   </tr>
   <tr style="font-size:0.7em">
@@ -902,7 +902,7 @@ Path createTempDirectory(String prefix)
 
 ```java
 // These are suitable for small files.
-// For larger ones, use buffered streams/writers
+// For larger ones, use buffered streams
 byte[] readAllBytes(Path file);
 List<String> readAllLines(Path file, Charset cs);
 
