@@ -796,7 +796,7 @@ try (DirectoryStream<Path> stream =
 
 <table>
   <tr>
-    <th style="font-size:0.9em">Шаблон за търсене</th>
+    <th style="font-size:0.9em">Шаблон</th>
     <th style="font-size:0.9em">Семантика</th>
   </tr>
   <tr style="font-size:0.7em">
@@ -836,7 +836,7 @@ try (DirectoryStream<Path> stream =
 
 <table>
   <tr>
-    <th style="font-size:0.9em">Шаблон за търсене</th>
+    <th style="font-size:0.9em">Шаблон</th>
     <th style="font-size:0.9em">Семантика</th>
   </tr>
   <tr style="font-size:0.7em">
