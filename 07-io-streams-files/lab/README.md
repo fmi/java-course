@@ -2,7 +2,7 @@
 
 Ще създадем инструмент за статично анализиране (*static code analysis tool*) на Java код - **StyleChecker**, който да ни помага да се придържаме към определен стандарт за писане на код (например [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)).
 
-Инструментът ни ще проверява дали определен набор от правила са изпълнени за Java сорс файл.
+Инструментът ни ще проверява, дали определен набор от правила са изпълнени за Java сорс файл.
 
 ### Правила:
 
@@ -43,7 +43,7 @@ public static void main(String... args)
 }
 
 // correct
-public static void main(String.... args) {
+public static void main(String... args) {
 
 }
 ```
@@ -60,7 +60,7 @@ package gov.NASA.deepSpace;
 package gov.nasa.deepspace;
 ```
 
-5. Всеки ред трябва да има дължина не повече от n на брой символа
+5. Всеки ред трябва да има дължина не повече от 100 символа
 
 **Забележка 1:** Ограничението за дължина на ред не в сила за `import` statement-и.
 
@@ -68,7 +68,7 @@ package gov.nasa.deepspace;
 
 ### Имплементация:
 
-Създайте клас `StyleChecker`, който има следните конструктори и метод:
+Създайте клас `StyleChecker`:
 
 ```java
 
@@ -99,7 +99,7 @@ public class StyleChecker {
 Коментарите могат да бъдат следните:
 - `// FIXME Wildcards are not allowed in import statements`
 - `// FIXME Only one statement per line is allowed`
-- `// FIXME Length of line should not exceed [X] characters`
+- `// FIXME Length of line should not exceed 100 characters`
 - `// FIXME Opening brackets should be placed on the same line as the declaration`
 - `// FIXME Package name should not contain upper-case letters or underscores`
 
@@ -170,7 +170,7 @@ Java файловете, които ще бъдат проверявани за 
 
 ### Тестване
 
-Валидирайте решението си чрез unit тестове. Вместо да разчитате на съществуващи файлове, може да използвате подходящи stream-ове:
+Валидирайте решението си чрез unit тестове. Вместо да разчитате на съществуващи файлове, може да използвате подходящи потоци:
 
 ```java
 @Test
@@ -181,7 +181,8 @@ public void test() {
     checker.checkStyle(input, output);
     String actual = output.toString();
 
-    assertEquals("// FIXME Wildcards are not allowed in import statements" + System.lineSeparator() + "import java.util.*;", actual.strip());
+    assertEquals("// FIXME Wildcards are not allowed in import statements"
+            + System.lineSeparator() + "import java.util.*;", actual.strip());
 }
 ```
 
