@@ -99,7 +99,7 @@ Collections.sort(names, (a, b) -> a.compareTo(b));
 
 ---
 
-#### Ламба изрази - синтаксис
+#### Ламбда изрази - синтаксис
 
 параметри -> тяло
 
@@ -117,7 +117,7 @@ Collections.sort(names, (a, b) -> a.compareTo(b));
 
 ---
 
-#### Ламба изрази - примери
+#### Ламбда изрази - примери
 
 ```java
 // one parameter
@@ -141,7 +141,7 @@ name -> System.out.println("Hello " + name);
 
 ---
 
-#### Ламба изрази - примери
+#### Ламбда изрази - примери
 
 ```java
 // omit {} and the return as there is single expression in the body
@@ -369,12 +369,12 @@ Function<Integer, Integer> multiply = i -> i * x;
 
 ---
 
-#### Ламба изрази: добри практики
+#### Ламбда изрази: добри практики
 
 - Препоръчва се ламбда изразите да не модифицират:
   - данните на източника (*non-interference*)
   - външни променливи (*stateless*)
-- Препоръчва се ламба изразите да са one-liners
+- Препоръчва се ламбда изразите да са one-liners
 
 ---
 
