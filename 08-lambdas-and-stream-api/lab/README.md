@@ -71,7 +71,6 @@ public class YoutubeTrendsExplorer {
 1. Връща ID-то на trending видеото с най-малко харесвания
 
     ``` java
-    // 
     public String findIdOfLeastLikedVideo()
     ```
 
