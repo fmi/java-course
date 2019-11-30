@@ -9,6 +9,14 @@ import java.util.stream.Stream;
 
 public final class TrendingVideo {
 
+    private static final int ID = 0;
+    private static final int TITLE = 2;
+    private static final int PUBLISH_DATE = 3;
+    private static final int TAGS = 4;
+    private static final int VIEWS = 5;
+    private static final int LIKES = 6;
+    private static final int DISLIKES = 7;
+
     private String id;
     private String title;
     private LocalDate publishDate;
@@ -33,20 +41,13 @@ public final class TrendingVideo {
      **/
     public static TrendingVideo createVideo(String line) {
 
-        final int ID = 0;
-        final int TITLE = 2;
-        final int PUBLISH_DATE = 3;
-        final int TAGS = 4;
-        final int VIEWS = 5;
-        final int LIKES = 6;
-        final int DISLIKES = 7;
-
         String[] tokens = line.split("\t");
 
         String id = tokens[ID];
         String title = tokens[TITLE];
 
-        String parsedDate = tokens[PUBLISH_DATE].substring(0, tokens[PUBLISH_DATE].indexOf('T')); // 2017-11-13T17:13:01.000Z
+        String parsedDate = tokens[PUBLISH_DATE].substring(0, tokens[PUBLISH_DATE]
+                .indexOf('T')); // 2017-11-13T17:13:01.000Z
         LocalDate publishDate = LocalDate.parse(parsedDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         Set<String> tags = Stream.of(tokens[TAGS].split("\\|"))
