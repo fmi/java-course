@@ -39,7 +39,7 @@ public final class TrendingVideo {
     /**
      * Returns a Movie instance, based on the given @{line} from the dataset.
      **/
-    public static TrendingVideo createVideo(String line) {
+    public static TrendingVideo createTrendingVideo(String line) {
 
         String[] tokens = line.split("\t");
 
