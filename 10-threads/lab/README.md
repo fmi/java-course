@@ -202,4 +202,4 @@ src
    └─ Elf.java
 ```
 
-В sapera.org качете `zip` архив на `src` директорията.
+В [sapera.org](sapera.org) качете `zip` архив на `src` директорията.
