@@ -15,6 +15,7 @@
 | 7 | [Входно-изходни потоци \| Работа с файловата система](https://gitpitch.com/fmi/java-course?p=07-io-streams-files/lecture/) | 20.11.2019 |
 | 8 | [Ламбда изрази и Stream API](https://gitpitch.com/fmi/java-course?p=08-lambdas-and-stream-api/lecture/) | 27.11.2019 |
 | 9 | [Design Patterns](https://gitpitch.com/fmi/java-course?p=09-design-patterns/lecture/) | 04.12.2019 |
+| 10 | [Многонишково програмиране](https://gitpitch.com/fmi/java-course?p=10-threads/lecture/) | 11.12.2019 |
 
 ### Материали от предходни издания
 
