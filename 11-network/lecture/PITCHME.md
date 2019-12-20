@@ -1010,7 +1010,7 @@ while (true) {
 
 ---
 
-#### java.nio.* | SocketChannel | Регистрация
+#### java.nio | SocketChannel | Регистрация
 
 ```java
 
@@ -1026,7 +1026,7 @@ socketChannel.register(selector,
 
 ---
 
-#### java.nio.* | SocketChannel | Регистрация
+#### java.nio | SocketChannel | Регистрация
 
 <small>
 - Когато регистрираме SocketChannel, трябва да укажем за какви операции да бъдем известени:
@@ -1039,7 +1039,7 @@ socketChannel.register(selector,
 
 ---
 
-#### java.nio.* | SocketChannel | Notification
+#### java.nio | SocketChannel | Notification
 
 ```java
 // Получаване на известие за няколко канала
@@ -1061,7 +1061,7 @@ while (true) {
 
 ---
 
-#### java.nio.* | SocketChannel | Notification | Четене
+#### java.nio | SocketChannel | Notification | Четене
 
 ```java
 // Четене на данните от канал
