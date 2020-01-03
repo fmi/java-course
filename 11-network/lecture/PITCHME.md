@@ -756,7 +756,7 @@ OutputStream getOutputStream() // връща изходен поток за пи
   - Неефективно използване на нишките
     - Много нишки в waiting/blocked състояние, заради блокиращите операции
     - Допълнителна памет (за нишките)
-  - Performance penalty заради contex switching между нишките
+  - Performance penalty заради context switching между нишките
   - Ограничен брой паралелни конекции, защото нишките на сървъра са краен брой
 
 </small>
