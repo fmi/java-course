@@ -192,7 +192,7 @@ public class Elf {
 
 ## Структура на проекта
 
-```
+```bash
 src
 ╷
 └─ bg/sofia/uni/fmi/mjt/christmas/
