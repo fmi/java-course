@@ -46,7 +46,7 @@
 
 **Бележка:** GTIN, или [Global Trade Item Number](https://en.wikipedia.org/wiki/Global_Trade_Item_Number) и UPC, или [Universal Product Code](https://en.wikipedia.org/wiki/Universal_Product_Code), са индентификатори на продукти, кодирани в баркод. С други думи, въпросният код е числото, кодирано в баркода на опаковката на продуктите.
 
-![UPC Barcode](images/upc-barcode.gif)
+![UPC Barcode](../images/upc-barcode.gif)
 
 Сървърът кешира получената информация на локалната файлова система. При получаване на заявка, сървърът първо трябва да провери дали в кеша вече съществува информация за дадения продукт, и ако е така, директно да върне тази информация, вместо да направи нова заявка към REST API-то.
 
