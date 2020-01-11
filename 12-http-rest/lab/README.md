@@ -55,6 +55,8 @@ https://api.darksky.net/forecast/<your_secret_key>/42.6978634,23.3221789?units=s
   - data
   - summary
 
+Създайте `getter` методи за всички полета на тези три класа.
+
 #### Geocoding
 
 Понеже ни е по-удобно да търсим прогноза по локация (населено място), а не по георграфски координати, ще трябва да можем да конвертираме локация в координати - трансформация, известна като [Forward Geocoding](https://en.wikipedia.org/wiki/Geocoding).
@@ -80,18 +82,45 @@ package bg.sofia.uni.fmi.mjt.weather;
 
 public class WeatherForecastClient {
 
-	public WeatherForecastClient(HttpClient client, String secretKey, String token) {
+    public WeatherForecastClient(HttpClient client, String secretKey, String token) {
 
-	}
+    }
 
-	/**
-	 * Fetches the weather forecast for the specified location.
-	 * 
-	 * @return
-	 */
-	public WeatherForecast getForecast(String location) {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Fetches the weather forecast for the specified location.
+     * 
+     * @return the forecast
+     */
+    public WeatherForecast getForecast(String location) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Fetches the current weather for the specified location.
+     * 
+     * @return the current weather
+     */
+    public DataPoint getCurrent(String location) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Fetches the hourly weather forecast
+     * 
+     * @return the hourly weather forecast
+     */
+    public Collection<DataPoint> getHourlyForecast(String location) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Fetches the weekly weather forecast
+     * 
+     * @return the weekly weather forecast
+     */
+    public Collection<DataPoint> getWeeklyForecast(String location) {
+        throw new UnsupportedOperationException();
+    }
 
 }
 ```
