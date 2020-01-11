@@ -24,7 +24,13 @@ https://api.darksky.net/forecast/<your_secret_key>/42.6978634,23.3221789?units=s
 2. /forecast/<your_secret_key>/42.6978634,23.3221789 -- метод на API-то, който извикваме, secret key (не забравяте да смените `your_secret_key` с вашия ключ), и [географски координати](https://en.wikipedia.org/wiki/Geographic_coordinate_system) на локацията, която ни интересува - трите, представени като път
 3. параметри -- които указват метрична система за мерните единици и български език за описанието
 
-Ако отворим в браузър https://api.darksky.net/forecast/<your_secret_key>/42.6978634,23.3221789?units=si&lang=bg, ще видим прогнозата за времето, в JSON формат.
+Ако отворим в браузър
+
+```
+https://api.darksky.net/forecast/<your_secret_key>/42.6978634,23.3221789?units=si&lang=bg
+```
+
+ще видим прогнозата за времето, в JSON формат.
 
 ### Java модел на данните
 
