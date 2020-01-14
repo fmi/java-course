@@ -18,6 +18,7 @@
 | 10 | [Многонишково програмиране](https://gitpitch.com/fmi/java-course?p=10-threads/lecture/) | 11.12.2019 |
 | 11 | [Мрежово програмиране](https://gitpitch.com/fmi/java-course?p=11-network/lecture/) | 18.12.2019 |
 | 12 | [HTTP, REST, JSON](https://gitpitch.com/fmi/java-course?p=12-http-rest/lecture/) | 08.01.2020 |
+| 13 | [Reactive Programming \| Java Virtual Machine](https://gitpitch.com/fmi/java-course?p=13-reactive-jvm/lecture/) | 15.01.2020 |
 
 ### Материали от предходни издания
 
