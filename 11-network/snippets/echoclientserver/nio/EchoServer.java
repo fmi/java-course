@@ -52,12 +52,10 @@ public class EchoServer {
                         if (r <= 0) {
                             System.out.println("nothing to read, will close channel");
                             sc.close();
-                            break;
+                        } else {
+                            buffer.flip();
+                            sc.write(buffer);
                         }
-
-                        buffer.flip();
-                        sc.write(buffer);
-
                     } else if (key.isAcceptable()) {
                         ServerSocketChannel sockChannel = (ServerSocketChannel) key.channel();
                         SocketChannel accept = sockChannel.accept();
