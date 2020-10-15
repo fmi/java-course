@@ -2,8 +2,8 @@
 
 - [Java Development Kit](#java-development-kit)
 - [Integrated Development Environment](#integrated-development-environment)
-    - [Eclipse](#eclipse)
     - [IntelliJ IDEA](#intellij-idea)
+    - [Eclipse](#eclipse)
 - [Online Auto Grader](#online-auto-grader)
     - [Eclipse Plugin за Grader](#eclipse-plugin-за-grader)
        
@@ -15,7 +15,7 @@
 
 - [Инсталация на Mac OS](https://docs.oracle.com/en/java/javase/15/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE)
 
-**Забележка:** Изтеглете JDK 15 от Builds за вашата операционна система от [тук](
+**Забележка:** Изтеглете JDK 15 от **Builds** за вашата операционна система от [тук](
 https://jdk.java.net/15/).
 
 **Забележка:** Уверете се, че инсталацията е успешна:
