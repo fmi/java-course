@@ -12,7 +12,7 @@ public static int maxDistance(int[] seats)
 
 който по даден масив `seats`, връща максималната възможна дистанция.
 
-![Row of seats](images/lab01.1-row-of-seats.png)
+![Row of seats](https://github.com/fmi/java-course/blob/master/images/lab01.1-row-of-seats.png)
 
 ### Примери
 
