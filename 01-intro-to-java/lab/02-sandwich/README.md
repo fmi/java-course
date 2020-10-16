@@ -22,7 +22,7 @@ public static String[] extractIngredients(String sandwich)
 
 | Извикване                                                                            | Резултат              |
 | :----------------------------------------------------------------------------------- | :-------------------- |
-| extractIngredients("asd**bread**ham-tomato-mayo**bread**blabla")`                  | `{ham, mayo, tomato}` |
+| extractIngredients("asd**bread**ham-tomato-mayo**bread**blabla")                | `{ham, mayo, tomato}` |
 | extractIngredients("asd**bread**ham-*olives*-tomato-*olives*-mayo**bread**blabla") | `{ham, mayo, tomato}` |
 | extractIngredients("asd**bread**ham")                                                 | `{}`                  |
 
