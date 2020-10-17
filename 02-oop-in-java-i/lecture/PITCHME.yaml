@@ -1,0 +1,10 @@
+theme-background : [ "#FFF" ]
+theme-headline   : [ "Raleway", "#5289F7", "none" ]
+theme-byline     : [ "Raleway", "#111111", "none" ]
+theme-text       : [ "Ubuntu", "#1C1C1C", "none", "#000000", "80", "100", "15" ]
+theme-links      : [ "#5289F7", "#5254F7" ]
+theme-code       : [ "Source Code Pro" ]
+theme-controls   : [ "#484848" ]
+theme-margins    : [ "0", "15px" ]
+
+highlight        : tomorrow
