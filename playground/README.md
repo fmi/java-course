@@ -7,3 +7,4 @@
 | 01 | [Stock Exchange](https://github.com/fmi/java-course/tree/master/playground/01-stock-exchange) | масиви, цикли, алгоритми |
 | 02 | [DNA Analyzer](https://github.com/fmi/java-course/tree/master/playground/02-dna-analyzer) | низове, цикли, алгоритми |
 | 03 | [Dungeons](https://github.com/fmi/java-course/tree/master/playground/03-dungeons) | ООП, низове, цикли |
+| 04 | [Cryptic Letter](https://github.com/fmi/java-course/tree/master/playground/04-cryptic-letter) | низове, цикли |
