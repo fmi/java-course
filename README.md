@@ -7,7 +7,7 @@
 | # | Лекция                                                                                                           | Дата       | Видео |
 |---| ---------------------------------------------------------------------------------------------------------------- |:----------:|:------:|
 | 1 | [Въведение в Java](https://gitpitch.com/fmi/java-course?p=01-intro-to-java/lecture/#/1)                   | 14.10.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/vz8ex2UNOg4) |
-| 2 | [ООП с Java (част I)](https://gitpitch.com/fmi/java-course?p=02-oop-in-java/lecture/#/1)                   | 21.10.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/IYEOqrywRfE) |
+| 2 | [ООП с Java (част I)](https://gitpitch.com/fmi/java-course?p=02-oop-in-java-i/lecture/#/1)                   | 21.10.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/IYEOqrywRfE) |
 
 ### Материали от предходни издания
 
