@@ -104,7 +104,7 @@ public interface Card {
     LocalDate getExpirationDate();
 
     /**
-     * @return true if the PIN is correct and false otherwise
+     * @return true if the PIN is correct and false otherwise. Correct means, equal to the PIN, set in the card upon construction (i.e. passed in its constructor). You can check it for validity, e.g. that it is a 4-digit number, but you can assume the input is valid.
      **/
     boolean checkPin(int pin);
 
@@ -159,6 +159,8 @@ public abstract class Account {
 
 }
 ```
+
+В класическите банки, всяка карта е свързана с конкретна сметка. В Revolut обаче, и картите, и сметките, са свързани със самия Revolut, а не директно една с друга. Когато осъществяваме плащане, валидираме подадената карта, и при успешна валидация, обхождаме сметките и търсим такава в исканата валута и с необходимата минимална наличност.
 
 ## Пакети
 
