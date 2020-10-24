@@ -11,7 +11,7 @@
 
 ### Revolut
 
-В пакета `bg.sofia.uni.fmi.mjt.revolut` създайте клас `Revolut`, който имплементира следния интерфейс:
+В пакета `bg.sofia.uni.fmi.mjt.revolut` създайте клас `Revolut` с конструктор `Revolut(Account[] accounts, Card[] cards)`, който имплементира следния интерфейс:
 
 ```java
 package bg.sofia.uni.fmi.mjt.revolut;
@@ -51,7 +51,7 @@ public interface RevolutAPI {
      * Adds money to a Revolut account
      *
      * @param account the account to debit
-     * @param amount the amount to add to the account
+     * @param amount the amount to add to the account, in the @account's currency
      * @return true, if the acount exists in Revolut and false otherwise
      **/
     boolean addMoney(Account account, double amount);
@@ -62,6 +62,7 @@ public interface RevolutAPI {
      *
      * @param from the account to credit
      * @param to the account to debit
+     * @param amount the amount to transfer, in the @from account's currency
      * @return true if both accounts exist and are different (with different IBANs) and false otherwise
      **/
     boolean transferMoney(Account from, Account to, double amount);
