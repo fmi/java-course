@@ -1,4 +1,4 @@
-# Netflix and submitting-my-uni-assignments-at-the-very-last-minute :popcorn: 
+# Netflix :popcorn: 
 
 *Netflix* e една от най-известните видео стрийминг услуги в света. 
 
