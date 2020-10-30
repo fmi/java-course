@@ -46,17 +46,6 @@ public class InitializersDemo extends InitializersDemoBase {
 
     public static void main(String[] args) {
         new InitializersDemo();
-
-        record Point(int x, int y) {
-            public Point {
-                if (x < 0) {
-                    throw new IllegalArgumentException();
-                }
-            }
-        }
-
-        Point p = new Point(1, 2);
-        System.out.println(p.x() + ", " + p.y());
     }
 
 }
