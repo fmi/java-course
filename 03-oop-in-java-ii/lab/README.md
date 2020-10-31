@@ -32,7 +32,7 @@ public interface StreamingService {
     * Simulates watching activity for the given user.
     *
     * @param user the user that will watch the video. The user must be registered in the platform in order to access its contents.
-    * @param videoContentName the exact name of the video content. It is expected that the provided name matches at least one video available in the platform.
+    * @param videoContentName the exact name of the video content: movie or series
     * @throws ContentUnavailableException if the content is age restricted and the user is not yet permitted to access it.
     * @throws UserNotFoundException if the user is not registered in the platform.
     * @throws ContentNotFoundException if the content is not present in the platform.
@@ -40,7 +40,7 @@ public interface StreamingService {
     void watch(Account user, String videoContentName) throws ContentUnavailableException;
 
    /**
-    * @param videoContentName the exact name of the video content.
+    * @param videoContentName the exact name of the video content: movie or series
     * @return the Streamable resource with name that matches the provided name or null if no such content exists in the platform.
     */
     Streamable findByName(String videoContentName);
