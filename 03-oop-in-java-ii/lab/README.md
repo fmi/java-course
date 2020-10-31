@@ -30,9 +30,9 @@ public interface StreamingService {
 
     /**
     * Simulates watching activity for the given user.
-    *
     * @param user the user that will watch the video. The user must be registered in the platform in order to access its contents.
     * @param videoContentName the exact name of the video content: movie or series
+    *                         If the content is of type Series, we assume that the user will watch all episodes in it.
     * @throws ContentUnavailableException if the content is age restricted and the user is not yet permitted to access it.
     * @throws UserNotFoundException if the user is not registered in the platform.
     * @throws ContentNotFoundException if the content is not present in the platform.
@@ -110,9 +110,9 @@ public enum Genre { ACTION, HORROR, COMEDY }
 package bg.sofia.uni.fmi.mjt.netflix.content.enums;
 
 public enum PgRating {
-    G("General audience"),
-    PG13("May be inappropriate for children under 13"),
-    NC17("Adults Only");
+    G("General audience"), // it is available for everyone
+    PG13("May be inappropriate for children under 13"), // it is available only for people aged 14 and over
+    NC17("Adults Only"); // it is available only for people aged 18 and over
 
     private final String details;
 
