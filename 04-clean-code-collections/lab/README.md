@@ -216,4 +216,4 @@ src
 
 ## Забележки
 
-За да тествате решението си в [grader.sapera.org](grader.sapera.org), архивирайте в `zip` цялата `src` папка на проекта.
+За да тествате решението си в [grader.sapera.org](http://grader.sapera.org), архивирайте в `zip` цялата `src` папка на проекта.
