@@ -29,7 +29,7 @@ $ java -jar checkstyle-8.14-all.jar -c $CHECKS my-fancy-project/
 3. _Local Check Configurations..._ > _New..._.
 4. Избирате _Remote Configuration_ за _Type_.
 5. Давате му име - например _mjt_.
-6. Поставяте [този линк](https://raw.githubusercontent.com/KristianZH/Web-CAT/master/WEB-Cat/Docker/JavaTddPlugin/JavaTddPlugin/checkstyle.xml) за _Location_ и избирате _OK_.
+6. Поставяте [този линк](https://www.dropbox.com/s/ibg6r7n6ibyqixl/checkstyle.xml?dl=0) за _Location_ и избирате _OK_.
 7. Връщате се в _Main_ и избирате вашия checkstyle, който току-що създадохте.
 8. Избирате _Apply and Close_.
 9. Вече би трябвало да виждате checkstyle съобщенията.
