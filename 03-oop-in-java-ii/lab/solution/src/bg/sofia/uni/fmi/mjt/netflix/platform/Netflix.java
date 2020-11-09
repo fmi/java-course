@@ -80,7 +80,7 @@ public class Netflix implements StreamingService {
         return false;
     }
 
-    public boolean isContentAgeRestricted(Streamable content, Account user) {
+    private boolean isContentAgeRestricted(Streamable content, Account user) {
         LocalDateTime minYearsAgo = null;
         switch (content.getRating()) {
             case PG13 -> minYearsAgo = LocalDateTime.now().minusYears(13);
