@@ -187,7 +187,7 @@ public interface Content {
 
 ### Бележки
 
-:exclamation: Съдържание, което вече е `expire`-нало, не трябва да присъства като резултат в нито един от методите
+:exclamation: Съдържание, което вече е `expire`-нало, не трябва да присъства като резултат в нито един от методите\
 :exclamation: Решения, използващи [Java Stream API](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/stream/package-summary.html), няма да се приемат за това домашно. Имайте търпение, скоро ще се запознаем и с това API, а дотогава, старайте се да научите API-тата на Collections framework-а.
 
 
