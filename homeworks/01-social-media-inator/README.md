@@ -4,7 +4,7 @@
 
 `Краен срок: 25.11.2020, 23:45`
 
-Пери Птицечовката е по петите Ви! Имате мисия помогнете на Дуфеншмърц да създаде зла пларформа за социални мрежи, с която да превземе района на трите щата. В тайните му планове са заложени следните функционалности:
+Пери Птицечовката е по петите Ви! Имате мисия да помогнете на Дуфеншмърц да създаде зла платформа за социални мрежи, с която да превземе района на трите щата. В тайните му планове, са заложени следните функционалности:
 1. регистриране на нов потребител
 2. публикуване на `post` или `story`
 3. харесване и коментиране на `post` или `story`
@@ -12,6 +12,7 @@
 5. изчисляване на различни статистики за платформата
 
 Създайте клас `EvilSocialinator` с default-ен конструктор, който да имплементира интерфейса `SocialMediaInator`:
+
 ```java
 package bg.sofia.uni.fmi.mjt.socialmedia;
 
@@ -89,7 +90,7 @@ public interface SocialMediaInator {
     /**
      * Returns the {@code n} most popular content on the platform.
      * -> The popularity of a content is calculated by the total number of likes and comments
-     * -> If there is no content in the platform an empty Collection should be returned
+     * -> If there is no content in the platform, an empty Collection should be returned
      * -> If the total number of posts and stories is less than {@code n} return as many as available
      * @param n The number of content to be returned
      * @return Unmodifiable collection of Content sorted by popularity in descending order
@@ -98,7 +99,7 @@ public interface SocialMediaInator {
 
     /**
      * Returns the {@code n} most recent content of user {@code username}.
-     * -> If the given user does not have any content an empty Collection should be returned.
+     * -> If the given user does not have any content, an empty Collection should be returned.
      * -> If the total number of posts and stories is less than {@code n} return as many as available
      * @param n The number of content to be returned
      * @throws IllegalArgumentException If {@code username} is null or {@code n} is a negative number
@@ -143,7 +144,9 @@ public interface SocialMediaInator {
 
 }
 ```
+
 Всяко съдържание (`post`-ове и `story`-та) в нашата социална мрежа, представлява клас, който имплементира следния интерфейс:
+
 ```java
 package bg.sofia.uni.fmi.mjt.socialmedia.content;
 
@@ -183,8 +186,9 @@ public interface Content {
 ```
 
 ### Бележки
-:exclamation: Съдържание, което вече е `expire`-нало не трябва да присъства като резултат в нито един от методите 
-:exclamation:Решения, използващи [Java Stream API](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/stream/package-summary.html), няма да се приемат за това домашно. Имайте търпение, скоро ще се запознаем и с това API, а дотогава, старайте се да научите API-тата на Collections framework-а.
+
+:exclamation: Съдържание, което вече е `expire`-нало, не трябва да присъства като резултат в нито един от методите
+:exclamation: Решения, използващи [Java Stream API](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/stream/package-summary.html), няма да се приемат за това домашно. Имайте търпение, скоро ще се запознаем и с това API, а дотогава, старайте се да научите API-тата на Collections framework-а.
 
 
 ### Пакети
