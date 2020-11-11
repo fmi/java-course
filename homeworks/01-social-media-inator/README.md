@@ -191,7 +191,7 @@ public interface Content {
 ### Бележки
 
 - Съдържание, което вече е `expire`-нало, **не трябва да присъства** като резултат в методите, които връщат колекция от Content
-- От Дневникът на дейностите **не трябва да се премахва** expire-налoто съдържание
+- От дневника на дейностите **не трябва да се премахва** expire-налoто съдържание
 - :exclamation: Решения, използващи [Java Stream API](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/stream/package-summary.html), няма да се приемат за това домашно. Имайте търпение, скоро ще се запознаем и с това API, а дотогава, старайте се да научите API-тата на Collections framework-а.
 
 
