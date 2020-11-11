@@ -92,6 +92,7 @@ public interface SocialMediaInator {
      * -> The popularity of a content is calculated by the total number of likes and comments
      * -> If there is no content in the platform, an empty Collection should be returned
      * -> If the total number of posts and stories is less than {@code n} return as many as available
+     * -> The returned Collection should not contain expired content
      * @param n The number of content to be returned
      * @return Unmodifiable collection of Content sorted by popularity in descending order
      */
@@ -101,6 +102,7 @@ public interface SocialMediaInator {
      * Returns the {@code n} most recent content of user {@code username}.
      * -> If the given user does not have any content, an empty Collection should be returned.
      * -> If the total number of posts and stories is less than {@code n} return as many as available
+     * -> The returned Collection should not contain expired content
      * @param n The number of content to be returned
      * @throws IllegalArgumentException If {@code username} is null or {@code n} is a negative number
      * @throws UsernameNotFoundException if a user with {@code username} does not exist in the platform
@@ -119,6 +121,7 @@ public interface SocialMediaInator {
      * Returns all posts and stories containing the tag {@code tag} in their description.
      * -> If there are no posts or stories with the given tag in the platform, an empty Collection should be returned
      * -> Note that {@code tag} should start with '#'
+     * -> The returned Collection should not contain expired content
      * @param tag
      * @throws IllegalArgumentException If {@code tag} is null
      * @return Unmodifiable collection of Content
@@ -126,15 +129,15 @@ public interface SocialMediaInator {
     Collection<Content> findContentByTag(String tag);
     
     /**
-    * Returns the activity log of user {@code username}. It contains a history of all activities of a given user.
-    * -> The activity log is maintained in reversed chronological order (i.e newest events first).
-    * -> It has the following format:
-    * 	HH:mm:ss dd.mm.yy: Commented "<text>" on content with <id>
-    * 	HH:mm:ss dd.mm.yy: Liked content with <id>
-    * 	HH:mm:ss dd.mm.yy: Created a post with <id>
-    * 	HH:mm:ss dd.mm.yy: Created a story with <id>
-    * -> HH:mm:ss dd.mm.yy is a time format
-    * -> If the given user does not have any activity on the platform, an empty List should be returned
+     * Returns the activity log of user {@code username}. It contains a history of all activities of a given user.
+     * -> The activity log is maintained in reversed chronological order (i.e newest events first).
+     * -> It has the following format:
+     * 	HH:mm:ss dd.mm.yy: Commented "<text>" on content with <id>
+     * 	HH:mm:ss dd.mm.yy: Liked content with <id>
+     * 	HH:mm:ss dd.mm.yy: Created a post with <id>
+     * 	HH:mm:ss dd.mm.yy: Created a story with <id>
+     * -> HH:mm:ss dd.mm.yy is a time format
+     * -> If the given user does not have any activity on the platform, an empty List should be returned
      * @param username
      * @throws IllegalArgumentException If {@code username} is null
      * @throws UsernameNotFoundException if a user with {@code username} does not exist in the platform
@@ -187,8 +190,9 @@ public interface Content {
 
 ### Бележки
 
-:exclamation: Съдържание, което вече е `expire`-нало, не трябва да присъства като резултат в нито един от методите\
-:exclamation: Решения, използващи [Java Stream API](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/stream/package-summary.html), няма да се приемат за това домашно. Имайте търпение, скоро ще се запознаем и с това API, а дотогава, старайте се да научите API-тата на Collections framework-а.
+- Съдържание, което вече е `expire`-нало, **не трябва да присъства** като резултат в методите, които връщат колекция от Content
+- От Дневникът на дейностите **не трябва да се премахва** expire-налoто съдържание
+- :exclamation: Решения, използващи [Java Stream API](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/stream/package-summary.html), няма да се приемат за това домашно. Имайте търпение, скоро ще се запознаем и с това API, а дотогава, старайте се да научите API-тата на Collections framework-а.
 
 
 ### Пакети
