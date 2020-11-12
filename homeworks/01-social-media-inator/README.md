@@ -63,6 +63,7 @@ public interface SocialMediaInator {
      * @param type
      * @return The id of the newly created story
      * @throws IllegalArgumentException If any of the parameters is null
+     * @throws UsernameNotFoundException If a user with {@code username} does not exist in the platform
      */
     String publishStory(String username, LocalDateTime publishedOn, String description);
 
@@ -94,6 +95,7 @@ public interface SocialMediaInator {
      * -> If the total number of posts and stories is less than {@code n} return as many as available
      * -> The returned Collection should not contain expired content
      * @param n The number of content to be returned
+     * @throws IllegalArgumentException If {@code n} is a negative number
      * @return Unmodifiable collection of Content sorted by popularity in descending order
      */
     Collection<Content> getNMostPopularContent(int n);
