@@ -206,7 +206,7 @@ src
 ╷
 └─ bg/sofia/uni/fmi/mjt/socialmedia/
    └─ SocialMediaInator.java
-   └─ Socialinator.java
+   └─ EvilSocialinator.java
    └─ (...)
    bg/sofia/uni/fmi/mjt/socialmedia/content
    └─ Content.java
