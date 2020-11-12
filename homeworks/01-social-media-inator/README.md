@@ -43,8 +43,8 @@ public interface SocialMediaInator {
      * -> The tags and mentions are always separated with at least one space from the other words in the description
      * -> The id of each post is generated as follows: [username]-[auto-incremented integer starting from 0]
      * @param username
+     * @param publishedOn
      * @param description
-     * @param type
      * @return The id of the newly created post
      * @throws IllegalArgumentException If any of the parameters is null
      * @throws UsernameNotFoundException If a user with {@code username} does not exist in the platform
@@ -59,8 +59,8 @@ public interface SocialMediaInator {
      * -> The tags and mentions are always separated with at least one space from the other words in the description
      * -> The id of each story is generated as follows: [username]-[auto-incremented integer starting from 0]
      * @param username
+     * @param publishedOn
      * @param description
-     * @param type
      * @return The id of the newly created story
      * @throws IllegalArgumentException If any of the parameters is null
      * @throws UsernameNotFoundException If a user with {@code username} does not exist in the platform
@@ -105,6 +105,7 @@ public interface SocialMediaInator {
      * -> If the given user does not have any content, an empty Collection should be returned.
      * -> If the total number of posts and stories is less than {@code n} return as many as available
      * -> The returned Collection should not contain expired content
+     * @param username
      * @param n The number of content to be returned
      * @throws IllegalArgumentException If {@code username} is null or {@code n} is a negative number
      * @throws UsernameNotFoundException if a user with {@code username} does not exist in the platform
