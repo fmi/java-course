@@ -11,7 +11,8 @@
  * Creates a new instance of MJTExpressWarehouse with the given characteristics
  *
  * @param capacity        the total number of parcels that the warehouse can store
- * @param retentionPeriod the maximum number of days for which a parcel can stay in the warehouse, counted from the day the parcel was submitted. After that time passes, the parcel can be removed from the warehouse
+ * @param retentionPeriod the maximum number of days for which a parcel can stay in the warehouse, counted from the day the parcel
+ * was submitted. After that time passes, the parcel can be removed from the warehouse
  */
 public MJTExpressWarehouse(int capacity, int retentionPeriod) {}
 ```
