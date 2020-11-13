@@ -11,7 +11,7 @@
 4. поддържане на дневник на дейностите (`activity log`) за всеки потребител
 5. изчисляване на различни статистики за платформата
 
-Създайте клас `EvilSocialinator` с default-ен конструктор, който да имплементира интерфейса `SocialMediaInator`:
+Създайте клас `EvilSocialInator` с default-ен конструктор, който да имплементира интерфейса `SocialMediaInator`:
 
 ```java
 package bg.sofia.uni.fmi.mjt.socialmedia;
@@ -208,7 +208,7 @@ src
 ╷
 └─ bg/sofia/uni/fmi/mjt/socialmedia/
    └─ SocialMediaInator.java
-   └─ EvilSocialinator.java
+   └─ EvilSocialInator.java
    └─ (...)
    bg/sofia/uni/fmi/mjt/socialmedia/content
    └─ Content.java
