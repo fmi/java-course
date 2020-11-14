@@ -135,10 +135,10 @@ public interface SocialMediaInator {
      * Returns the activity log of user {@code username}. It contains a history of all activities of a given user.
      * -> The activity log is maintained in reversed chronological order (i.e newest events first).
      * -> It has the following format:
-     * 	HH:mm:ss dd.mm.yy: Commented "<text>" on content with <id>
-     * 	HH:mm:ss dd.mm.yy: Liked content with <id>
-     * 	HH:mm:ss dd.mm.yy: Created a post with <id>
-     * 	HH:mm:ss dd.mm.yy: Created a story with <id>
+     * 	HH:mm:ss dd.mm.yy: Commented "<text>" on content with id <id>
+     * 	HH:mm:ss dd.mm.yy: Liked content with id <id>
+     * 	HH:mm:ss dd.mm.yy: Created a post with id <id>
+     * 	HH:mm:ss dd.mm.yy: Created a story with id <id>
      * -> HH:mm:ss dd.mm.yy is a time format
      * -> If the given user does not have any activity on the platform, an empty List should be returned
      * @param username
