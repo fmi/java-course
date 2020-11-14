@@ -32,7 +32,7 @@ public interface DeliveryServiceWarehouse<L, P> {
      * Adds the provided parcels with the given label as a new item in the warehouse.
      *
      * @param label          the unique identifier of the parcel.
-     * @param parcel         the parcel that should be stored
+     * @param parcel         the parcel that should be stored. If the storage is full, the parcel can still be stored, if there is at least one item that can be evicted
      * @param submissionDate the date when the parcel was submitted into the warehouse
      * @throws CapacityExceededException if there is no capacity left in the warehouse
      * @throws IllegalArgumentException  if the provided date is a date in the future, or any of the parameters is null
@@ -91,6 +91,7 @@ public interface DeliveryServiceWarehouse<L, P> {
 
 ## :warning: Забележки
 
+ - Забравените пратки не се разчистват, докато свободното място не се запълни. Зачистват се само при нужда (при submit).
  - Добавянето на допълнителни методи в интерфейсa не е разрешено.
  - Добавяйте error message, когато хвърляте exceptions - добра практика, която е добре да усвоите от рано.
 
