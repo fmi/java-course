@@ -31,14 +31,16 @@ public interface SocialMediaInator {
      * Registers a new user in the platform.
      * @param username
      * @throws IllegalArgumentException If {@code username} is null
-     * @throws UsernameAlreadyExistsException If there is already a user with {@code username} registered in the platform
+     * @throws UsernameAlreadyExistsException If there is already a user with {@code username}
+     * registered in the platform
      */
     void register(String username);
 
     /**
      * Publishes a post with {@code description}.
      * -> A post expires in 30 days after it was published
-     * -> The description of the post may contain arbitrary number of mentions (i.e @someuser) and hash-tags (i.e #programming)
+     * -> The description of the post may contain arbitrary number of mentions (i.e @someuser) and hash-tags
+     * (i.e #programming)
      * -> If a non-existing user is mentioned in the description, the actual mention does not have any effect
      * -> The tags and mentions are always separated with at least one space from the other words in the description
      * -> The id of each post is generated as follows: [username]-[auto-incremented integer starting from 0]
@@ -54,7 +56,8 @@ public interface SocialMediaInator {
     /**
      * Publishes a story with {@code description}.
      * -> A story expires in 24 hours after it was published
-     * -> The description of the story may contain arbitrary number of mentions (i.e @someuser) and tags (i.e #programming)
+     * -> The description of the story may contain arbitrary number of mentions (i.e @someuser) and tags
+     * (i.e #programming)
      * -> If a non-existing user is mentioned in the description, the actual mention does not have any effect
      * -> The tags and mentions are always separated with at least one space from the other words in the description
      * -> The id of each story is generated as follows: [username]-[auto-incremented integer starting from 0]
@@ -135,10 +138,10 @@ public interface SocialMediaInator {
      * Returns the activity log of user {@code username}. It contains a history of all activities of a given user.
      * -> The activity log is maintained in reversed chronological order (i.e newest events first).
      * -> It has the following format:
-     * 	HH:mm:ss dd.mm.yy: Commented "[text]" on a content with id [id]
-     * 	HH:mm:ss dd.mm.yy: Liked a content with id [id]
-     * 	HH:mm:ss dd.mm.yy: Created a post with id [id]
-     * 	HH:mm:ss dd.mm.yy: Created a story with id [id]
+     * HH:mm:ss dd.mm.yy: Commented "[text]" on a content with id [id]
+     * HH:mm:ss dd.mm.yy: Liked a content with id [id]
+     * HH:mm:ss dd.mm.yy: Created a post with id [id]
+     * HH:mm:ss dd.mm.yy: Created a story with id [id]
      * -> HH:mm:ss dd.mm.yy is a time format
      * -> If the given user does not have any activity on the platform, an empty List should be returned
      * @param username
