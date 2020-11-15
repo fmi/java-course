@@ -217,6 +217,7 @@ src
    └─ Content.java
    └─ (...)
    bg/sofia/uni/fmi/mjt/socialmedia/exceptions
+      └─ ContentNotFoundException.java
       └─ NoUsersException.java
       └─ UsernameAlreadyExistsException.java
       └─ UsernameNotFoundException.java
