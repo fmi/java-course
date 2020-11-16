@@ -138,11 +138,11 @@ public interface SocialMediaInator {
      * Returns the activity log of user {@code username}. It contains a history of all activities of a given user.
      * -> The activity log is maintained in reversed chronological order (i.e newest events first).
      * -> It has the following format:
-     * HH:mm:ss dd.mm.yy: Commented "[text]" on a content with id [id]
-     * HH:mm:ss dd.mm.yy: Liked a content with id [id]
-     * HH:mm:ss dd.mm.yy: Created a post with id [id]
-     * HH:mm:ss dd.mm.yy: Created a story with id [id]
-     * -> HH:mm:ss dd.mm.yy is a time format
+     * HH:mm:ss dd.MM.yy: Commented "[text]" on a content with id [id]
+     * HH:mm:ss dd.MM.yy: Liked a content with id [id]
+     * HH:mm:ss dd.MM.yy: Created a post with id [id]
+     * HH:mm:ss dd.MM.yy: Created a story with id [id]
+     * -> HH:mm:ss dd.MM.yy is a time format
      * -> If the given user does not have any activity on the platform, an empty List should be returned
      * @param username
      * @throws IllegalArgumentException If {@code username} is null
@@ -200,7 +200,6 @@ public interface Content {
 - От дневника на дейностите **не трябва да се премахва** expire-налoто съдържание
 - Id-тата на постовете и сторитата се образуват по следния начин: **[username]-[auto-incremented integer starting from 0]**, където (1) **[username]** e името на user-a, който публикува конкретния content, a (2) **[auto-incremented integer starting from 0]** е число, което започва от 0 и е глобално за цялата социална мрежа (т.е не е `per-user` или `per-content`)
 - :exclamation: Решения, използващи [Java Stream API](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/stream/package-summary.html), няма да се приемат за това домашно. Имайте търпение, скоро ще се запознаем и с това API, а дотогава, старайте се да научите API-тата на Collections framework-а.
-
 
 ### Пакети
 
