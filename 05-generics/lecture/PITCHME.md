@@ -650,4 +650,5 @@ public class Example {
 
 @snap[south span-100]
 @fab[github] [fmi/java-course](https://github.com/fmi/java-course)
+@fab[youtube] [MJT2021](https://www.youtube.com/playlist?list=PLew34f6r0Pxy8PvaJ83pa4r76XCmZR657)
 @snapend
