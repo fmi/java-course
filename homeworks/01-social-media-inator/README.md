@@ -199,7 +199,7 @@ public interface Content {
 - Съдържание, което вече е `expire`-нало, **не трябва да присъства** като резултат в методите, които връщат колекция от Content
 - От дневника на дейностите **не трябва да се премахва** expire-налoто съдържание
 - Id-тата на постовете и сторитата се образуват по следния начин: **[username]-[auto-incremented integer starting from 0]**, където (1) **[username]** e името на user-a, който публикува конкретния content, a (2) **[auto-incremented integer starting from 0]** е число, което започва от 0 и е глобално за цялата социална мрежа (т.е не е `per-user` или `per-content`)
-- :exclamation: Решения, използващи [Java Stream API](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/stream/package-summary.html), няма да се приемат за това домашно. Имайте търпение, скоро ще се запознаем и с това API, а дотогава, старайте се да научите API-тата на Collections framework-а.
+- :exclamation::exclamation: **Решения, използващи [Java Stream API](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/stream/package-summary.html), lambdas, и всичко останало, което не е покрито до момента, няма да се приемат за това домашно.**
 
 ### Пакети
 
