@@ -44,11 +44,11 @@
 
 3. За да изтествате част от методите, ще ви се наложи да изполвате `mocking` с библиотеката *Mockito*. Може да си изтеглите *Mockito* библиотеката от [тук](https://repo1.maven.org/maven2/org/mockito/mockito-all/1.10.19/mockito-all-1.10.19.jar).
 
-3. С тестовете си трябва да покриете поне 85% от кода (*line code coverage*). Можете да използвате следните plugin-и за измерване на code coverage - [EclEmma for Eclipse](https://www.eclemma.org/) или [Code coverage runner for IntelliJ](https://www.jetbrains.com/help/idea/code-coverage.html)
+4. С тестовете си трябва да покриете поне 85% от кода (*line code coverage*). Можете да използвате следните plugin-и за измерване на code coverage - [EclEmma for Eclipse](https://www.eclemma.org/) или [Code coverage runner for IntelliJ](https://www.jetbrains.com/help/idea/code-coverage.html)
 
-4. След като качите решението си в грейдъра, ще се изпълнят вашите тестове. След крайния срок за заданието, ще се изпълнят еднократно и всички reference тестове
+5. След като качите решението си в грейдъра, ще се изпълнят вашите тестове. След крайния срок за заданието, ще се изпълнят еднократно и всички reference тестове
 
-5. Проектът ви трябва да има следната структура:
+6. Проектът ви трябва да има следната структура:
 
 ```bash
 src
@@ -74,4 +74,4 @@ test
     └─ (...)
 ```
 
-6. В [grader.sapera.org](http://grader.sapera.org) качете общ `zip` архив на директориите `src` и `test`.
+7. В [grader.sapera.org](http://grader.sapera.org) качете общ `zip` архив на директориите `src` и `test`.
