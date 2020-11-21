@@ -112,7 +112,7 @@ public interface SocialMediaInator {
      * @param n The number of content to be returned
      * @throws IllegalArgumentException If {@code username} is null or {@code n} is a negative number
      * @throws UsernameNotFoundException if a user with {@code username} does not exist in the platform
-     * @return Unmodifiable collection of Content sorted by popularity
+     * @return Unmodifiable collection of Content
      */
     Collection<Content> getNMostRecentContent(String username, int n);
 
