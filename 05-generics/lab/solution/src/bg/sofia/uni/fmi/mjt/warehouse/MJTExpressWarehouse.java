@@ -43,7 +43,7 @@ public class MJTExpressWarehouse<L, P> implements DeliveryServiceWarehouse<L, P>
 
         if (this.items.size() >= this.capacity) {
             if (items.firstKey().getCreationDate().plusDays(retentionPeriod).isAfter(LocalDateTime.now())) {
-                throw new CapacityExceededException();
+                throw new CapacityExceededException(String.format("Warehouse with capacity %d has no more free space available", capacity));
             }
             items.remove(items.firstKey());
         }
@@ -69,7 +69,7 @@ public class MJTExpressWarehouse<L, P> implements DeliveryServiceWarehouse<L, P>
         MJTExpressLabel<L> key = wrapLabel(label);
         P parcel = this.items.get(key);
         if (parcel == null) {
-            throw new ParcelNotFoundException();
+            throw new ParcelNotFoundException(String.format("Parcel with label %s not found in warehouse", label));
         }
 
         this.items.remove(key);
