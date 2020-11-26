@@ -886,25 +886,6 @@ try (DirectoryStream<Path> stream =
 
 ---
 
-#### Временни файлове и директории
-
-```java
-Path createTempFile(Path dir, String prefix, String suffix)
-// създава нов файл в директорията dir и с име,
-// започващо с prefix и завършващо със suffix
-Path createTempFile(String prefix, String suffix)
-// създава нов файл в системната временна директория и с име,
-// започващо с prefix и завършващо със suffix
-Path createTempDirectory(Path dir, String prefix)
-// създава нова поддиректория в директорията dir и с име,
-// започващо с prefix
-Path createTempDirectory(String prefix)
-// създава нова поддиректория в системната временна директория и с име,
-// започващо с prefix
-```
-
----
-
 #### Прочитане или записване на цял файл с `java.nio.file.Files`
 
 ```java
@@ -932,6 +913,25 @@ Path writeString(Path file, CharSequence lines,
 #### Сравнителен performance на различните методи за четене на файл
 
 ![File Reading Performance](images/07.8-file-reading-performance.png)
+
+---
+
+#### Временни файлове и директории
+
+```java
+Path createTempFile(Path dir, String prefix, String suffix)
+// създава нов файл в директорията dir и с име,
+// започващо с prefix и завършващо със suffix
+Path createTempFile(String prefix, String suffix)
+// създава нов файл в системната временна директория и с име,
+// започващо с prefix и завършващо със suffix
+Path createTempDirectory(Path dir, String prefix)
+// създава нова поддиректория в директорията dir и с име,
+// започващо с prefix
+Path createTempDirectory(String prefix)
+// създава нова поддиректория в системната временна директория и с име,
+// започващо с prefix
+```
 
 ---
 
