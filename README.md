@@ -12,7 +12,7 @@
 | 4 | [Clean Code \| Collections](https://gitpitch.com/fmi/java-course?p=04-clean-code-collections/lecture/#/1)                   | 04.11.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/8PYs7Xo3kjo) |
 | 5 | [Generics](https://gitpitch.com/fmi/java-course?p=05-generics/lecture/#/1)                   | 11.11.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/kW7Q-n3gveM) |
 | 6 | [Unit Testing & Mocking](https://gitpitch.com/fmi/java-course?p=06-unit-testing-and-mocking/lecture/#/1)                   | 18.11.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/vYsMcaewIg8) |
-| 7 | [Входно-изходни потоци \| Работа с файловата система](https://gitpitch.com/fmi/java-course?p=07-io-streams-and-files/lecture/#/1)                   | 25.11.2020 | |
+| 7 | [Входно-изходни потоци \| Работа с файловата система](https://gitpitch.com/fmi/java-course?p=07-io-streams-and-files/lecture/#/1)                   | 25.11.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/X_YQjlZqJX8) |
 
 ### Материали от предходни издания
 
