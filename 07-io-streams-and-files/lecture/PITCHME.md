@@ -428,7 +428,7 @@ void          write(String str, int off, int len);
 #### Пример с `BufferedReader`
 
 ```java
-Reader reader = new FileReader("data/data.bin");
+Reader reader = new FileReader("data/data.txt");
 BufferedReader bufferedReader = new BufferedReader(reader);
 
 String line;
