@@ -97,18 +97,19 @@ public class ZipExplorer {
     }
 
     static void zipAFile(String filePath, String zipFilePath) {
-        var inputPath = Path.of(filePath);
-        var zipPath = Path.of(zipFilePath);
+        var fileToBeZipped = Path.of(filePath);
 
-        try (var zos = new ZipOutputStream(
-                new BufferedOutputStream(Files.newOutputStream(zipPath)))) {
+        try (ZipOutputStream zippedOutput = new ZipOutputStream(new FileOutputStream(zipFilePath))) {
+            zippedOutput.putNextEntry(new ZipEntry(fileToBeZipped.getFileName().toString()));
 
-            Files.writeString(inputPath, "Howdy There Java Friends!\n");
-
-            zos.putNextEntry(new ZipEntry(inputPath.toString()));
-            Files.copy(inputPath, zos);
-            zos.closeEntry();
+            byte[] bytes = Files.readAllBytes(fileToBeZipped);
+            zippedOutput.write(bytes, 0, bytes.length);
+            zippedOutput.closeEntry();
+        } catch (FileNotFoundException e) {
+            System.err.format("The file %s does not exist", filePath);
+            throw new RuntimeException(e);
         } catch (IOException e) {
+            System.err.println("I/O error: " + e);
             throw new RuntimeException(e);
         }
     }
