@@ -425,6 +425,26 @@ void          write(String str, int off, int len);
 
 ---
 
+#### Разделител на редовете в текстов файл
+
+<small>
+Различните операционни системи използват различен символ или последователност от символи, за да обозначат край на ред в текстов файл:
+</small>
+
+  - Windows: `\r\n`
+  - UNIX/Linux: `\n`
+  - MacOS: `\r`
+
+<small>
+За да си гарантирате, че Java кодът ви ще работи коректно на всяка OS, вместо тези символи, трябва да ползвате
+</small>
+
+  - `System.lineSeparator()`, или
+  - `PrintWriter.println()`, или
+  - `BufferedWriter.newLine()`
+
+---
+
 #### Пример с `BufferedReader`
 
 ```java
@@ -564,7 +584,6 @@ Path linuxRelativePath = Paths.get("documents", "FileIO.odp");
     - В UNIX, Linux и MacOS е forward slash: /
     - В Windows е back slash: \\
 - Може да се вземе в Java код чрез `File.separator` или `FileSystem.getSeparator()`
-
 
 ---
 
