@@ -32,9 +32,9 @@ public class ZipExplorer {
         }
     }
 
-    static void initialize(Path intputsDir) throws IOException {
-        deleteDirectoryRecursively(intputsDir);
-        Files.createDirectory(intputsDir);
+    static void initialize(Path inputsDir) throws IOException {
+        deleteDirectoryRecursively(inputsDir);
+        Files.createDirectory(inputsDir);
     }
 
     static void deleteDirectoryRecursively(Path pathToDelete) throws IOException {
