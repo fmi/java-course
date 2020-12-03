@@ -13,7 +13,7 @@
 | 5 | [Generics](https://gitpitch.com/fmi/java-course?p=05-generics/lecture/#/1)                   | 11.11.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/kW7Q-n3gveM) |
 | 6 | [Unit Testing & Mocking](https://gitpitch.com/fmi/java-course?p=06-unit-testing-and-mocking/lecture/#/1)                   | 18.11.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/vYsMcaewIg8) |
 | 7 | [Входно-изходни потоци \| Работа с файловата система](https://gitpitch.com/fmi/java-course?p=07-io-streams-and-files/lecture/#/1)                   | 25.11.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/X_YQjlZqJX8) |
-| 8 | [Ламбда изрази и Stream API](https://gitpitch.com/fmi/java-course?p=08-lambdas-and-stream-api/lecture/#/1)                   | 02.12.2020 | |
+| 8 | [Ламбда изрази и Stream API](https://gitpitch.com/fmi/java-course?p=08-lambdas-and-stream-api/lecture/#/1)                   | 02.12.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/8W4zqpYaY30) |
 
 ### Материали от предходни издания
 
