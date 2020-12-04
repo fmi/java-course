@@ -1,0 +1,118 @@
+1,Mount Everest,8848.0,8848.0,Mahalangur Himalaya,1953,121
+2,K2,8611.0,4017.0,Baltoro Karakoram,1954,44
+3,Kangchenjunga,8586.0,3922.0,Kangchenjunga Himalaya,1955,24
+4,Lhotse,8516.0,610.0,Mahalangur Himalaya,1956,26
+5,Makalu,8485.0,2386.0,Mahalangur Himalaya,1955,52
+6,Cho Oyu,8188.0,2340.0,Mahalangur Himalaya,1954,28
+7,Dhaulagiri I,8167.0,3357.0,Dhaulagiri Himalaya,1960,39
+8,Manaslu,8163.0,3092.0,Manaslu Himalaya,1956,45
+9,Nanga Parbat,8126.0,4608.0,Nanga Parbat Himalaya,1953,67
+10,Annapurna I,8091.0,2984.0,Annapurna Himalaya,1950,47
+11,Gasherbrum I / Hidden Peak / K5,8080.0,2155.0,Baltoro Karakoram,1958,16
+12,Broad Peak / K3,8051.0,1701.0,Baltoro Karakoram,1957,19
+13,Gasherbrum II / K4,8035.0,1524.0,Baltoro Karakoram,1956,12
+14,Shishapangma,8027.0,2897.0,Jugal Himalaya,1964,19
+15,Gyachung Kang,7952.0,700.0,Mahalangur Himalaya,1964,3
+110,Gasherbrum III,7946.0,355.0,Baltoro Karakoram,1975,2
+16,Annapurna II,7937.0,2437.0,Annapurna Himalaya,1960,19
+17,Gasherbrum IV,7932.0,715.0,Baltoro Karakoram,1958,11
+18,Himalchuli,7893.0,1633.0,Manaslu Himalaya,1960,12
+19,Distaghil Sar,7884.0,2525.0,Hispar Karakoram,1960,5
+20,Ngadi Chuli,7871.0,1020.0,Manaslu Himalaya,1970,6
+111,Nuptse,7864.0,319.0,Mahalangur Himalaya,1961,12
+21,Khunyang Chhish,7823.0,1765.0,Hispar Karakoram,1971,6
+22,Masherbrum / K1,7821.0,2457.0,Masherbrum Karakoram,1960,9
+23,Nanda Devi,7816.0,3139.0,Garhwal Himalaya,1936,12
+24,Chomo Lonzo,7804.0,590.0,Mahalangur Himalaya,1954,1
+25,Batura Sar,7795.0,3118.0,Batura Karakoram,1976,6
+26,Kanjut Sar,7790.0,1690.0,Hispar Karakoram,1959,1
+27,Rakaposhi,7788.0,2818.0,Rakaposhi-Haramosh Karakoram,1958,13
+28,Namcha Barwa,7782.0,4106.0,Assam Himalaya,1992,2
+29,Kamet,7756.0,2825.0,Garhwal Himalaya,1931,14
+30,Dhaulagiri II,7751.0,2396.0,Dhaulagiri Himalaya,1971,11
+31,Saltoro Kangri / K10,7742.0,2160.0,Saltoro Karakoram,1962,1
+32,Jannu,7711.0,1036.0,Kangchenjunga Himalaya,1962,12
+33,Tirich Mir,7708.0,3910.0,Hindu Kush,1950,11
+112,Molamenqing,7703.0,430.0,Langtang Himalaya,1981,0
+34,Gurla Mandhata,7694.0,2788.0,Nalakankar Himalaya,1985,4
+35,Saser Kangri I / K22,7672.0,2304.0,Saser Karakoram,1973,4
+36,Chogolisa,7665.0,1624.0,Masherbrum Karakoram,1975,2
+113,Dhaulagiri IV,7661.0,469.0,Dhaulagiri Himalaya,1975,10
+37,Kongur Tagh,7649.0,3585.0,Kongur Shan (Eastern Pamirs),1981,4
+114,Dhaulagiri V,7618.0,340.0,Dhaulagiri Himalaya,1975,3
+38,Shispare,7611.0,1240.0,Batura Karakoram,1974,1
+39,Trivor,7577.0,980.0,Hispar Karakoram,1960,5
+40,Gangkhar Puensum,7570.0,2995.0,Kula Kangri Himalaya,0,3
+41,Gongga Shan / Minya Konka,7556.0,3642.0,Daxue Shan (Hengduan Shan),1932,7
+42,Annapurna III,7555.0,703.0,Annapurna Himalaya,1961,17
+43,Muztagh Ata,7546.0,2735.0,Muztagata (Eastern Pamirs),1956,0
+44,Skyang Kangri,7545.0,1085.0,Baltoro Karakoram,1976,2
+45,Changtse,7543.0,520.0,Mahalangur Himalaya,1982,9
+46,Kula Kangri,7538.0,1650.0,Kula Kangri Himalaya,1986,2
+47,Kongur Tiube,7530.0,840.0,Kongur Shan (Eastern Pamirs),1956,3
+48,Mamostong Kangri,7516.0,1803.0,Rimo Karakoram,1984,0
+49,Saser Kangri II E,7513.0,1450.0,Saser Karakoram,2011,0
+50,Ismoil Somoni Peak,7495.0,3402.0,Pamir (Akademiya Nauk Range),1933,178
+51,Saser Kangri III,7495.0,850.0,Saser Karakoram,1986,0
+52,Noshaq,7492.0,2024.0,Hindu Kush,1960,3
+53,Pumari Chhish,7492.0,890.0,Hispar Karakoram,1979,2
+54,Passu Sar,7476.0,645.0,Batura Karakoram,1994,0
+55,Yukshin Gardan Sar,7469.0,1313.0,Hispar Karakoram,1984,1
+56,Teram Kangri I,7462.0,1702.0,Siachen Karakoram,1975,0
+57,Jongsong Peak,7462.0,1298.0,Kangchenjunga Himalaya,1930,3
+58,Malubiting,7458.0,2193.0,Rakaposhi-Haramosh Karakoram,1971,6
+59,Gangapurna,7455.0,563.0,Annapurna Himalaya,1965,13
+60,Jengish Chokusu / Tömür / Pk Pobeda,7439.0,4148.0,Tian Shan,1938,123
+115,Sunanda Devi,7434.0,260.0,Garhwal Himalaya,1939,12
+61,K12,7428.0,1978.0,Saltoro Karakoram,1974,2
+62,Yangra / Ganesh I,7422.0,2352.0,Ganesh Himalaya,1955,6
+63,Sia Kangri,7422.0,640.0,Siachen Karakoram,1934,0
+64,Momhil Sar,7414.0,980.0,Hispar Karakoram,1964,6
+65,Kabru N,7412.0,780.0,Kangchenjunga Himalaya,1994,2
+66,Skil Brum,7410.0,1152.0,Baltoro Karakoram,1957,1
+67,Haramosh Peak,7409.0,2277.0,Rakaposhi-Haramosh Karakoram,1958,3
+68,Istor-o-Nal,7403.0,1040.0,Hindu Kush,1969,5
+69,Ghent Kangri,7401.0,1493.0,Saltoro Karakoram,1961,0
+70,Ultar,7388.0,700.0,Batura Karakoram,1996,5
+71,Rimo I,7385.0,1438.0,Rimo Karakoram,1988,3
+72,Churen Himal,7385.0,600.0,Dhaulagiri Himalaya,1970,0
+73,Teram Kangri III,7382.0,520.0,Siachen Karakoram,1979,0
+74,Sherpi Kangri,7380.0,1000.0,Saltoro Karakoram,1976,1
+75,Labuche Kang,7367.0,1957.0,Labuche Himalaya,1987,0
+76,Kirat Chuli,7362.0,1168.0,Kangchenjunga Himalaya,1939,6
+116,Abi Gamin,7355.0,217.0,Garhwal Himalaya,1950,2
+77,Nangpai Gosum,7350.0,500.0,Mahalangur Himalaya,1996,1
+117,Gimmigela / The Twins,7350.0,432.0,Kangchenjunga Himalaya,1994,1
+78,Saraghrar,7349.0,1979.0,Hindu Kush,1959,3
+79,Jomolhari,7326.0,2077.0,Jomolhari Himalaya,1937,0
+80,Chamlang,7321.0,1240.0,Mahalangur Himalaya,1961,1
+81,Chongtar,7315.0,1300.0,Baltoro Karakoram,1994,1
+82,Baltoro Kangri,7312.0,1200.0,Masherbrum Karakoram,1976,0
+83,Siguang Ri,7309.0,650.0,Mahalangur Himalaya,1989,1
+84,The Crown / Huang Guan,7295.0,1919.0,Yengisogat Karakoram,1993,3
+85,Gyala Peri,7294.0,2942.0,Assam Himalaya,1986,0
+86,Porong Ri,7292.0,520.0,Langtang Himalaya,1982,0
+87,Baintha Brakk / The Ogre,7285.0,1891.0,Panmah Karakoram,1977,13
+88,Yutmaru Sar,7283.0,620.0,Hispar Karakoram,1980,1
+89,Baltistan Peak / K6,7282.0,1962.0,Masherbrum Karakoram,1970,3
+90,Kangpenqing / Gang Benchhen,7281.0,1340.0,Baiku Himalaya,1982,1
+91,Muztagh Tower,7276.0,1710.0,Baltoro Karakoram,1956,2
+92,Mana Peak,7272.0,730.0,Garhwal Himalaya,1937,3
+118,Dhaulagiri VI,7268.0,485.0,Dhaulagiri Himalaya,1970,0
+93,Diran,7266.0,1325.0,Rakaposhi-Haramosh Karakoram,1968,8
+94,Labuche Kang III / East,7250.0,570.0,Labuche Himalaya,0,0
+95,Putha Hiunchuli,7246.0,1151.0,Dhaulagiri Himalaya,1954,5
+96,Apsarasas Kangri,7245.0,635.0,Siachen Karakoram,1976,0
+97,Mukut Parbat,7242.0,840.0,Garhwal Himalaya,1951,1
+98,Rimo III,7233.0,615.0,Rimo Karakoram,1985,0
+99,Langtang Lirung,7227.0,1525.0,Langtang Himalaya,1978,13
+100,Karjiang,7221.0,880.0,Kula Kangri Himalaya,0,2
+101,Annapurna Dakshin,7219.0,775.0,Annapurna Himalaya,1964,16
+102,Khartaphu,7213.0,712.0,Mahalangur Himalaya,1935,0
+103,Tongshanjiabu,7207.0,1757.0,Lunana Himalaya,0,0
+104,Malangutti Sar,7207.0,515.0,Hispar Karakoram,1985,0
+105,Noijin Kangsang / Norin Kang,7206.0,2160.0,Nagarze Himalaya,1986,1
+106,Langtang Ri,7205.0,650.0,Langtang Himalaya,1981,0
+107,Kangphu Kang,7204.0,1200.0,Lunana Himalaya,2002,0
+108,Singhi Kangri,7202.0,790.0,Siachen Karakoram,1976,0
+109,Lupghar Sar,7200.0,730.0,Hispar Karakoram,1979,0
