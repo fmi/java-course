@@ -3,9 +3,9 @@ package bg.sofia.uni.fmi.mjt.shopping.item;
 import java.util.Objects;
 
 public abstract class BaseItem implements Item {
-	
+
 	private String id;
-	
+
 	public BaseItem(String id) {
 		this.id = id;
 	}
