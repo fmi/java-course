@@ -23,44 +23,6 @@ public class PeakExplorer {
 		}
 	}
 
-	public static void main(String[] args) {
-		PeakExplorer peakExplorer = new PeakExplorer("./resources/mountains.txt");
-
-		System.out.println("Count of peaks taller than n: " + peakExplorer.countPeaksTallerThan(5000));
-
-		System.out.println("Get the sortest peak not being ascended: " + peakExplorer.shortestNotAscended());
-
-		System.out.println("Get average ascents in top n peaks: " + peakExplorer.avgAscentsTopN(20));
-
-		System.out.println("Highest ascended peek for year: " + peakExplorer.getHighestAscentForYear(1960));
-
-		// System.out.println("Highest ascended peek for year: " + peakExplorer.getHighestAscentForYear(2021)); // should result in IllegalArgumentException
-
-		System.out.println("Peaks with not Himalaya names by prominence: " + peakExplorer.getNonHimalayaNamesByProminence());
-
-		System.out.println("Get the mountain range wich has the most peaks in top n: " + peakExplorer.getRangeWithMostPeaks(20));
-
-		System.out.println("Get the year with most first ascents: " + peakExplorer.getYearWithMostFirstAscents());
-
-		System.out.println("Get the earliestt ascented peaks: " + peakExplorer.getEarliestAscentedPeaks(5));
-
-		// Optional example
-		System.err.println("Optional should be present");
-		Optional<String> optionalPeakName1 = peakExplorer.getPeakAscentedInYearWithHighestProminence(1960);
-		optionalUsageExample(optionalPeakName1);
-
-		System.err.println("Optional should not be present");
-		Optional<String> optionalPeakName2 = peakExplorer.getPeakAscentedInYearWithHighestProminence(2021);
-		// optionalUsageExample(optionalPeakName2); // this results in java.util.NoSuchElementException
-	}
-
-	private static void optionalUsageExample(Optional<String> optionalPeakName) {
-		System.out.println("Optional peak name is empty: " + optionalPeakName.isEmpty());
-		System.out.println("Optional peak name is present: " + optionalPeakName.isPresent());
-		System.out.println("Peak name: " + optionalPeakName.get());
-	}
-
-
 	public List<Peak> getPeaks() {
 		return peaks;
 	}
@@ -161,6 +123,43 @@ public class PeakExplorer {
 	 */
 	public Optional<String> getPeakAscentedInYearWithHighestProminence(int year) {
 		return peaks.stream().filter(p -> p.firstAscent() == year).max(Comparator.comparing(Peak::prominence)).map(Peak::name);
+	}
+	
+	private static void optionalUsageExample(Optional<String> optionalPeakName) {
+		System.out.println("Optional peak name is empty: " + optionalPeakName.isEmpty());
+		System.out.println("Optional peak name is present: " + optionalPeakName.isPresent());
+		System.out.println("Peak name: " + optionalPeakName.get());
+	}
+	
+	public static void main(String[] args) {
+		PeakExplorer peakExplorer = new PeakExplorer("./resources/mountains.txt");
+
+		System.out.println("Count of peaks taller than n: " + peakExplorer.countPeaksTallerThan(5000));
+
+		System.out.println("Get the sortest peak not being ascended: " + peakExplorer.shortestNotAscended());
+
+		System.out.println("Get average ascents in top n peaks: " + peakExplorer.avgAscentsTopN(20));
+
+		System.out.println("Highest ascended peek for year: " + peakExplorer.getHighestAscentForYear(1960));
+
+		// System.out.println("Highest ascended peek for year: " + peakExplorer.getHighestAscentForYear(2021)); // should result in IllegalArgumentException
+
+		System.out.println("Peaks with not Himalaya names by prominence: " + peakExplorer.getNonHimalayaNamesByProminence());
+
+		System.out.println("Get the mountain range wich has the most peaks in top n: " + peakExplorer.getRangeWithMostPeaks(20));
+
+		System.out.println("Get the year with most first ascents: " + peakExplorer.getYearWithMostFirstAscents());
+
+		System.out.println("Get the earliestt ascented peaks: " + peakExplorer.getEarliestAscentedPeaks(5));
+
+		// Optional example
+		System.err.println("Optional should be present");
+		Optional<String> optionalPeakName1 = peakExplorer.getPeakAscentedInYearWithHighestProminence(1960);
+		optionalUsageExample(optionalPeakName1);
+
+		System.err.println("Optional should not be present");
+		Optional<String> optionalPeakName2 = peakExplorer.getPeakAscentedInYearWithHighestProminence(2021);
+		// optionalUsageExample(optionalPeakName2); // this results in java.util.NoSuchElementException
 	}
 
 }
