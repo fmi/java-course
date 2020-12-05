@@ -38,7 +38,7 @@ public record SpotifyTrack(String id, Set<String> artists, String name,
 
         String id = tokens[ID];
         Set<String> artists = Stream.of(tokens[ARTISTS].split(";"))
-                .map(s -> s.replace("[", "").replace("]", "").replaceAll("'", ""))
+                .map(s -> s.strip().replace("[", "").replace("]", "").replaceAll("'", ""))
                 .collect(Collectors.toSet());
 
         String name = tokens[NAME];
