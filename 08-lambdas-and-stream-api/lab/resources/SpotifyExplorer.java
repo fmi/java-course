@@ -48,6 +48,8 @@ public class SpotifyExplorer {
 
     /**
      * Returns the number of years between the oldest and the newest released tracks of an artist.
+     * For example, if the oldest and newest tracks are released in 1996 and 1998 respectively,
+     * return 3, if the oldest and newest release match, e.g. 2002-2002, return 1.
      * Note that tracks with multiple authors including the given artist should also be considered in the result.
      *
      * @param artist artist name
