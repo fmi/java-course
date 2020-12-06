@@ -12,7 +12,7 @@ in Bulgaria, after the capital ,Sofia.
 ```
 
 ```
-<city country="Bulgaria">Plovdiv</city>'s old town is a major tourist attraction. It is the second largest city 
+<city country="Bulgaria">Plovdiv</city>'s old town is a major tourist attraction. It is the second largest city
 in Bulgaria, after the capital ,<city country="Bulgaria">Sofia</city>.
 ```
 
