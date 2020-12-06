@@ -12,7 +12,7 @@ public class TextFileDuplicator {
 
     // copy a text file, exactly replicating the source file's line breaks
     public static void copyTextFileExact(String fromFileName, String toFileName) throws IOException {
-        Pattern pat = Pattern.compile(".*\\r|.+\\z");
+        Pattern pat = Pattern.compile(".*\\R|.+\\z");
 
         try (var scanner = new Scanner(new BufferedReader(new FileReader(fromFileName)));
              var writer = new BufferedWriter((new FileWriter(toFileName)))) {
