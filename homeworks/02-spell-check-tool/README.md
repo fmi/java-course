@@ -138,7 +138,7 @@ Helllo, my name is Dog.\
 = = = Metadata = = =\
 19 characters, 4 words, 1 spelling issue(s) found\
 = = = Findings = = =\
-Line #1, {helllo} - Possible suggestions are {hello, hell, chello}
+Line #1, {Helllo} - Possible suggestions are {hello, hell, chello}
 
 ✒️ *Бележка 1*: Квадратните скоби са използвани само като placeholder. Те не трябва да са част от output-a.\
 ✒️ *Бележка 2*: Къдравите скоби трябва да са част от output-a.
