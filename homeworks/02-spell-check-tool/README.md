@@ -97,7 +97,7 @@ public record Metadata(int characters, int words, int mistakes) {
 
 ✔️ трябва да са case insensitive\
 ✔️ трябва да бъдат премахнати leading + trailing whitespaces\
-✔️ трябва да бъдат премахнати leading + trailing non-alphanumeric символи от думите в **речника**
+✔️ трябва да бъдат премахнати leading + trailing non-alphanumeric символи от думите в **речника**\
 ✔️ трябва да бъдат премахнати думите от **речника**, които се състоят само от един символ
 
 ✒️ *Бележка 1*: В речника няма да има фрази/словосъчетания (състоящи се от няколко думи, разделени с whitespace)\
@@ -114,7 +114,7 @@ public record Metadata(int characters, int words, int mistakes) {
 ### Броене на символи
 
 При броенето на символи не се включват:
-- whitespace символи
+- whitespace символи (включват се whitespaces, табулации, нови редове и т.н)
 
 ## Формат на output файла
 
@@ -136,7 +136,7 @@ Helllo, my name is Dog.
 
 Helllo, my name is Dog.\
 = = = Metadata = = =\
-19 characters, 5 words, 1 spelling issue(s) found\
+19 characters, 4 words, 1 spelling issue(s) found\
 = = = Findings = = =\
 Line #1, {helllo} - Possible suggestions are {hello, hell, chello}
 
