@@ -1,5 +1,5 @@
 # Spell Check Tool :speech_balloon: 
-`Краен срок: 23.12.2020, 23:45`
+`Краен срок: 27.12.2020, 23:45`
 
 Един от най-полезните инструменти, които използваме при общуването си online е т.нар. spell checker (инструмент за проверка на правописа).
 Целта на второто домашно от курса е да упражните знанията, взети до момента, чрез създаване на един такъв tool.
@@ -12,7 +12,6 @@
 
 :bulb: *Какво означава една дума да е "сгрешена"?*\
 Една дума е сгрешена, когато я няма в речника ни.*
-
 
 ## Условие
 
@@ -52,6 +51,7 @@ public interface SpellChecker {
 ```
 
 Създайте клас `NaiveSpellChecker`, който имплементира `SpellChecker` и има следния публичен конструктор:
+
 ```java
 package bg.sofia.uni.fmi.mjt.spellchecker;
 
@@ -65,7 +65,9 @@ public NaiveSpellChecker(Reader dictionaryReader, Reader stopwordsReader)
 ```
 
 ## Метаданни
+
 Метаданните за файла представляват следния `record`:
+
 ``` java
 package bg.sofia.uni.fmi.mjt.spellchecker;
 
@@ -76,16 +78,20 @@ public record Metadata(int characters, int words, int mistakes) {
 ## Стоп-думи и речник
 
 ### Стоп-думи (stopwords)
-:link: [stopwords.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-spell-check-tool/resources/stopwords.txt)\
+:link: [stopwords.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-spell-check-tool/resources/stopwords.txt)
+
 Стоп-думите са множество от често срещани в свободен текст думи, които носят твърде малко семантика: определителни членове, местоимения, предлози, съюзи и т.н. Много алгоритми, свързани с обработка на естествен език (NLP, natural language processing), ги игнорират - т.е. премахват ги от съответните входни текстове, защото внасят "шум", т.е. намаляват качеството на резултата.
  
 Няма еднозначна дефиниция (или речник) коя дума е stopword в даден език. В нашия алгоритъм ще ползваме списъка от 174 stopwords в английския език, записани по една на ред в текстовия файл stopwords.txt, който сме заимствали от сайта ranks.nl.
 
 ### Речник
-:link: [dictionary.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-spell-check-tool/resources/dictionary.txt)\
-Речникът представлява файл с думи, разделени с празен ред и ни служи да определеме еднозначно дали една дума е 'правилна' - ако не е стоп-дума и я няма в речника, приемаме че е написана грешно.
+
+:link: [dictionary.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-spell-check-tool/resources/dictionary.txt)
+
+Речникът представлява файл с думи, по една на ред, и ни служи да определеме еднозначно дали една дума е 'правилна' - ако не е стоп-дума и я няма в речника, приемаме че е написана грешно.
 
 ### Предварителна обработка на данните
+
 Стоп-думите и думите от речника се нуждаят от предварителна обработка:
 
 ✔️ трябва да са case insensitive\
@@ -96,46 +102,55 @@ public record Metadata(int characters, int words, int mistakes) {
 ✒️ *Бележка 2*: При проверяването дали дадена дума е правилна, се очаква да бъде приложена същата обработка
 
 ## Метаданни
+
 ### Броене на думи
+
 При броенето на думи не се включват:
 - стоп-думи
 - думи, които се състоят само от non-alphanumberic символи
 
 ### Броене на символи
+
 При броенето на символи не се включват:
 - whitespace символи
 
 ## Формат на output файла
+
 ### Формат
+
 [the text from the input, without any corrections]\
 = = = Metadata = = =\
-[charsNumber] characters, [wordsNumber] words, [issuesNumber] writing issue(s) found\
+[charsNumber] characters, [wordsNumber] words, [issuesNumber] spelling issue(s) found\
 = = = Findings = = =\
 Line #[lineNumber], {[misspelled word]} - Possible suggestions are {[suggestion1], [suggestion2], ...}
 
-
 ### Пример
+
 #### Вход
+
 Helllo, my name is Roko the dog.
 
 #### Резултат
+
 Helllo, my name is Roko the dog.\
 = = = Metadata = = =\
-12 characters, 4 words, 1 writing issue(s) found\
+12 characters, 4 words, 1 spelling issue(s) found\
 = = = Findings = = =\
-Line #1, {helllo} - Possible suggestions are {hello, chello, hellos}\
-<br>
+Line #1, {helllo} - Possible suggestions are {hello, chello, hellos}
 
 ✒️ *Бележка 1*: Квадратните скоби са използвани само като placeholder. Те не трябва да са част от output-a.\
 ✒️ *Бележка 2*: Къдравите скоби трябва да са част от output-a.
 
 ## Алгоритъм за намиране на сходство между две думи
+
 За изчисляване на сходство между две думи, `NaiveSpellCheckTool` ще използваме косинусова прилика (`cosine similarity`) с 2-грами.
 ### N-грами
+
 Най-просто казано, N-грамите разбиват една дума на X последователни части от по N символа.\
 Например, всички 2-грами на думата `latop` ще са: [`la`, `at`, `to`, `op`]
 
 ### Косинусова прилика
+
 Косинусовата прилика между две думи, представлява косинуса на ъгъла между техните вектори и се изчислява по следната формула: `V1 . V2 / (|V1| * |V2|)`, където:
 - V1 и V2 са векторите на дума1 и дума2
 - |V1| и |V2| са [дължините на тези вектори](https://bg.khanacademy.org/computing/computer-programming/programming-natural-simulations/programming-vectors/a/vector-magnitude-normalization)
@@ -143,44 +158,51 @@ Line #1, {helllo} - Possible suggestions are {hello, chello, hellos}\
 
 ![](https://miro.medium.com/max/3656/1*FFxFhSZ_GpuxkpOCNSxYyQ.png)
 
-
 :bulb: *Как да представим една дума като 'вектор'?*\
 Имайки предвид, че искаме алгоритъма ни да работи с 2-грами, един елемент от вектора на тази дума ще представлява двойка (<грамa>, <броя срещания на тaзи грамa в думата>).
 
 ### Пример
+
 #### Думи
+
 ```
 hello
 hallo
 ```
 
 #### Условно 'векторно представяне'
+
 ```
 (he, 1), (el, 1), (ll, 1), (lo, 1)
 (ha, 1), (al, 1), (ll, 1), (lo, 1)
 *първите две грами са им различни, а вторите две им съвпадат
 ```
 #### Дължина на векторите
+
 ```
 sqrt(1^2 + 1^2 + 1^2 + 1^2) = 2
 sqrt(1^2 + 1^2 + 1^2 + 1^2) = 2
 ```
-#### Произведение на hello и hallo:
+#### Произведение на hello и hallo
+
 ```
 (ll, 1) * (ll, 1) + (lo, 1) * (lo, 1) = 2
 *умножаваме само припокриващите се грами между двата 'вектора'
 ```
-#### Косинусова прилика между hello и hallo:
+#### Косинусова прилика между hello и hallo
+
 ```
 ((ll, 1) * (ll, 1) + (lo, 1) * (lo, 1)) / (2 * 2) = 0.5
 ```
 
 ## Бележки
+
 ### Важно
+
 - Все още не е разрешено да променяте сигнатурата на методите, които ви предоставяме. Те се използват за автоматични тестове. В противен случай решенията ви не се компилират
 - Проверете внимателно дали сте предали oчакваните от нас класове/интерфейси в правилните пакети
 - Проверете внимателно дали не сте добавили някой :warning: **checked exception** :warning: към сигнатурата на някой метод
-- Reference тестовете няма да включват негативни тестове (т.е няма да проверяваме дали се хвърля конкретен `exception` в определен сценарий). Този път, вие трябва да съобразите как да обработвате и къде какъв `exception` да хвръляте (като имате предвид горнaта точка)
+- Reference тестовете няма да включват негативни тестове (т.е няма да проверяваме дали се хвърля конкретен `exception` в определен сценарий). Този път, вие трябва да съобразите как да обработвате и къде какъв `exception` да хвърляте (като имате предвид горнaта точка)
 
 ### Пакети
 
@@ -214,7 +236,6 @@ test
 * от static code check plugin-а в grader.sapera.org (10% от оценката)
 * за спазване на принципите за чист код и подбиране на оптимални за задачата структури от данни (40% от оценката)
 
-
-✒️ *Бележка*: Refernce тестовете се пускат **СЛЕД** крайния срок за предаване на домашното
+✒️ *Бележка*: Referеnce тестовете се пускат **СЛЕД** крайния срок за предаване на домашното
 
 ### Желаем ви успех!
