@@ -134,15 +134,14 @@ Helllo, my name is Roko the dog.
 
 #### Резултат
 
-Helllo, my name is Roko the dog.\
+Helllo, my name is Dog.\
 = = = Metadata = = =\
-12 characters, 4 words, 1 spelling issue(s) found\
+19 characters, 5 words, 1 spelling issue(s) found\
 = = = Findings = = =\
-Line #1, {helllo} - Possible suggestions are {hello, chello, hellos}
+Line #1, {helllo} - Possible suggestions are {hello, hell, chello}
 
 ✒️ *Бележка 1*: Квадратните скоби са използвани само като placeholder. Те не трябва да са част от output-a.\
 ✒️ *Бележка 2*: Къдравите скоби трябва да са част от output-a.
-
 ## Алгоритъм за намиране на сходство между две думи
 
 За изчисляване на сходство между две думи, в `NaiveSpellCheckTool` ще използваме косинусова прилика (`cosine similarity`) с 2-грами.
