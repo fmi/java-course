@@ -130,7 +130,7 @@ Line #[lineNumber], {[misspelled word]} - Possible suggestions are {[suggestion1
 
 #### Вход
 
-Helllo, my name is Roko the dog.
+Helllo, my name is Dog.
 
 #### Резултат
 
