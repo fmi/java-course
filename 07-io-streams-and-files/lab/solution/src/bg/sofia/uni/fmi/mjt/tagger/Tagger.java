@@ -1,13 +1,23 @@
 package bg.sofia.uni.fmi.mjt.tagger;
 
-import java.io.*;
-import java.util.*;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Tagger {
 
     private final Map<String, String> cities;
     private final Map<String, Integer> taggedCities;
-    private long taggedCitiesCount = 0;
+    private long taggedCitiesCount;
 
     public Tagger(Reader citiesReader) throws IOException {
         cities = new HashMap<>();
@@ -35,7 +45,6 @@ public class Tagger {
                         .replaceAll("[^a-zA-Z ]+", "")
                         .replaceAll("\\s+", " ")
                         .trim();
-
 
                 if (!strippedWord.isEmpty()) {
                     String cityNameLowerCase = strippedWord.toLowerCase();

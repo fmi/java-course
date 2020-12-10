@@ -4,7 +4,11 @@ package bg.sofia.uni.fmi.mjt.tagger;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -58,7 +62,6 @@ public class TaggerTest {
                 inputWithNoCities, outputWriter.toString());
     }
 
-
     @Test
     public void testTagCitiesTextFileWithOneCityNoPunctuation() throws IOException {
         final String input = "hello, world! Maymana is a city in Afghanistan";
@@ -72,7 +75,6 @@ public class TaggerTest {
         assertEquals("Text with single city without punctuation should be tagged correctly",
                 expected, outputWriter.toString());
     }
-
 
     @Test
     public void testTagCitiesTextFileWithOneCityWithPunctuation() throws IOException {
