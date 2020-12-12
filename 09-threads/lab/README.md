@@ -27,7 +27,8 @@ public interface Restaurant {
     public void submitOrder(Order order);
 
     /**
-     * Returns the next order to be cooked.
+     * Returns the next order to be cooked
+     * and removes it from the pending orders
      **/
     public Order nextOrder();
 
@@ -66,7 +67,7 @@ package bg.sofia.uni.fmi.mjt.restaurant.customer;
 
 public abstract class AbstractCustomer extends Thread {
 
-    public AbstractCustomer(Restaurant workshop) {
+    public AbstractCustomer(Restaurant restaurant) {
         throw new UnsupportedOperationException("Method not yet implemented");
     }
 
@@ -163,7 +164,7 @@ public class Chef extends Thread {
   Задачата на готвачите е да приготвят ястията, поръчани от клиентите:
 
   1. Взимане на поръчка за приготвяне (в реда, определен от правилата на ресторанта и описан по-горе)
-  2. Приготвяне на ястието. Времето за приготвяне зависи от типа на ястието (т.е. `getCookingTime()` от `Meal`) - ще го симулираме отново с паузиране на нишката - готвач за съответния брой секунди.
+  2. Приготвяне на ястието. Времето за приготвяне зависи от типа на ястието (т.е. `getCookingTime()` от `Meal`) - ще го симулираме отново с паузиране на нишката - готвач за съответния брой милисекунди.
 
 :star: Забележка:
 
@@ -182,7 +183,7 @@ public class Chef extends Thread {
 
 **6. Тествайте локално решението ви**
 
-- В основната нишка, изчакайте даден брой (мили)секунди за настъпване на края на работното време на ресторанта.
+- В основната нишка, изчакайте даден брой секунди за настъпване на края на работното време на ресторанта.
 - След това, извикайте метода `close()` на ресторанта.
 - Всички ястия, поръчани преди извикването на `close()`, трябва да бъдат приготвени.
 - След като всеки готвач приключи работа (т.е дошъл е краят на работния ден и всички поръчки са изпълнени), изведете на конзолата ID-то на готвача и броя на приготвените от него ястия (за ваши тестови цели).
