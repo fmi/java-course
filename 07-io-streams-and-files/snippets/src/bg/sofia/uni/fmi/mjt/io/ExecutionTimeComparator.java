@@ -7,7 +7,7 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class ExecutionTimeCompare {
+public class ExecutionTimeComparator {
 
     public static void main(String... args) throws IOException {
         System.err.println("Read time comparison results:");
