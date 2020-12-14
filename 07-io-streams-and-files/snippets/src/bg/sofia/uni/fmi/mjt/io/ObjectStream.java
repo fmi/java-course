@@ -11,37 +11,38 @@ import java.nio.file.Path;
 public class ObjectStream {
 
     public static void main(String... args) {
-        Path file = Path.of("students.bin");
+        Path filePath = Path.of("students.bin");
         Student firstStudent = new Student("Gosho", 20);
         Student secondStudent = new Student("Stamat", 80);
 
-        writeStudentsToFile(file, firstStudent, secondStudent);
-        readStudentsFromFile(file);
+        writeStudentsToFile(filePath, firstStudent, secondStudent);
+        readStudentsFromFile(filePath);
     }
 
     private static void writeStudentsToFile(Path file, Student... students) {
-        try (var oos = new ObjectOutputStream(Files.newOutputStream(file))) {
+        try (var objectOutputStream = new ObjectOutputStream(Files.newOutputStream(file))) {
             for (Student student : students) {
-                oos.writeObject(student);
-                oos.flush();
+                objectOutputStream.writeObject(student);
+                objectOutputStream.flush();
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("A problem occurred while writing to a file", e);
         }
     }
 
     private static void readStudentsFromFile(Path file) {
-        try (var ois = new ObjectInputStream(Files.newInputStream(file))) {
-            while (true) {
-                Object studentObject = ois.readObject();
+        try (var objectInputStream = new ObjectInputStream(Files.newInputStream(file))) {
+
+            Object studentObject;
+            while ((studentObject = objectInputStream.readObject()) != null) {
                 System.out.println(studentObject);
             }
         } catch (EOFException e) {
             // EMPTY BODY
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("The files does not exist", e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException("A problem occurred while reading from a file", e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
