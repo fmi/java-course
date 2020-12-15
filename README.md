@@ -15,6 +15,8 @@
 | 7 | [Входно-изходни потоци \| Работа с файловата система](https://gitpitch.com/fmi/java-course?p=07-io-streams-and-files/lecture/#/1)                   | 25.11.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/X_YQjlZqJX8) |
 | 8 | [Ламбда изрази и Stream API](https://gitpitch.com/fmi/java-course?p=08-lambdas-and-stream-api/lecture/#/1)                   | 02.12.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/8W4zqpYaY30) |
 | 9 | [Многонишково програмиране](https://gitpitch.com/fmi/java-course?p=09-threads/lecture/#/1)                   | 09.12.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/PdxX_Ym1m68) |
+| 10 | [Многонишково програмиране (част II)](https://gitpitch.com/fmi/java-course?p=10-network/lecture/#/1)                   | 16.12.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/Ck1gWqVkubE) |
+| 10 | [Мрежово програмиране](https://gitpitch.com/fmi/java-course?p=10-network/lecture/#/19)                   | 16.12.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/fHWGEZ4Sifo) |
 
 ### Материали от предходни издания
 
