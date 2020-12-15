@@ -3,10 +3,15 @@ package bg.sofia.uni.fmi.mjt.spotify;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.IntSummaryStatistics;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class SpotifyExplorer {
@@ -75,7 +80,7 @@ public class SpotifyExplorer {
      */
     public int getArtistActiveYears(String artist) {
         if (artist == null) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("Artist name cannot be null");
         }
         IntSummaryStatistics statistics = spotifyTracks.stream()
                 .filter(track -> track.artists().contains(artist))
