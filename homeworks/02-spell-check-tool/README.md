@@ -126,8 +126,9 @@ public record Metadata(int characters, int words, int mistakes) {
 = = = Findings = = =\
 Line #[lineNumber], {[misspelled word]} - Possible suggestions are {[suggestion1], [suggestion2], ...}
 
-✒️ *Бележка 1*: Квадратните скоби са използвани само като placeholder. Те не трябва да са част от output-a.\
-✒️ *Бележка 2*: Къдравите скоби трябва да са част от output-a.
+✒️ *Бележка 1*: Квадратните скоби са използвани само като placeholder. Те не трябва да са част от output-a\
+✒️ *Бележка 2*: Къдравите скоби трябва да са част от output-a\
+✒️ *Бележка 3*: Броенето на редовете започва от 1
 ## Алгоритъм за намиране на сходство между две думи
 
 За изчисляване на сходство между две думи, в `NaiveSpellCheckTool` ще използваме косинусова прилика (`cosine similarity`) с 2-грами.
