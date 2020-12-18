@@ -37,7 +37,7 @@
 ```bash
 # start a wish list client from the command line
 $ java bg.sofia.uni.fmi.mjt.wish.list.WishListClient
-=> post-wish zdravko kolelo
+=> post-wish Zdravko kolelo
 [ Gift kolelo for student Zdravko submitted successfully ]
 
 # or
