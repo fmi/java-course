@@ -50,7 +50,7 @@ $ java bg.sofia.uni.fmi.mjt.wish.list.WishListClient
 [ Zdravko: [kolelo, topka] ]
 
 # or
-[ There are no students present in the wishlist ]
+[ There are no students present in the wish list ]
 
 => disconnect
 [ Disconnected from server ]
