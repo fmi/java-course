@@ -44,12 +44,11 @@ public class EchoServer {
 
                         buffer.clear();
                         int r = sc.read(buffer);
-                        if (r <= 0) {
-                            System.out.println("nothing to read, will close channel");
+                        if (r < 0) {
+                            System.out.println("Client has closed the connection");
                             sc.close();
-                            break;
+                            continue;
                         }
-
                         buffer.flip();
                         sc.write(buffer);
 

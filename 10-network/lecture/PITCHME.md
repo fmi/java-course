@@ -906,7 +906,7 @@ if (key.isReadable()) {
     while (true) {
         buffer.clear();
         int r = sc.read(buffer);
-        if (r<=0) { break; }
+        if (r <= 0) { continue; }
         buffer.flip();
         sc.write(buffer);
     }
