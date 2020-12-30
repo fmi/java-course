@@ -45,7 +45,6 @@
 - `post-wish`
 - `get-wish`
 - `logout`
-- `disconnect`
 
 ### Пример
 
@@ -88,6 +87,15 @@ $ java bg.sofia.uni.fmi.mjt.wish.list.WishListClient
 
 # or
 [ There are no students present in the wish list ]
+
+# or
+[ You are not logged in ]
+
+=> logout
+[ Successfully logged out ]
+
+# or
+[ You are not logged in ]
 
 => disconnect
 [ Disconnected from server ]
