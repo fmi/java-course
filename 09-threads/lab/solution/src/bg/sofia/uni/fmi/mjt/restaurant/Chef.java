@@ -32,7 +32,7 @@ public class Chef extends Thread {
 			}
 		}
 
-		// System.out.println(String.format("Chef %d cooked %s meals.", id, cookedMealsCount));
+		System.out.println(String.format("Chef %d cooked %s meals.", id, cookedMealsCount));
 	}
 
 	/**
