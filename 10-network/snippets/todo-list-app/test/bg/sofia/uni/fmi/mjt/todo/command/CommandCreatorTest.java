@@ -11,9 +11,9 @@ public class CommandCreatorTest {
         String command = "test";
         Command cmd = CommandCreator.newCommand(command);
 
-        assertEquals(command, cmd.command());
-        assertNotNull(cmd.arguments());
-        assertEquals(0, cmd.arguments().length);
+        assertEquals("unexpected command returned for command 'test'", command, cmd.command());
+        assertNotNull("command arguments should not be null", cmd.arguments());
+        assertEquals("unexpected command arguments count", 0, cmd.arguments().length);
     }
 
     @Test
@@ -21,9 +21,9 @@ public class CommandCreatorTest {
         String command = "test abcd";
         Command cmd = CommandCreator.newCommand(command);
 
-        assertEquals(command.split(" ")[0], cmd.command());
-        assertNotNull(cmd.arguments());
-        assertEquals(1, cmd.arguments().length);
+        assertEquals("unexpected command returned for command 'test abcd'", command.split(" ")[0], cmd.command());
+        assertNotNull("command arguments should not be null", cmd.arguments());
+        assertEquals("unexpected command arguments count", 1, cmd.arguments().length);
         assertEquals(command.split(" ")[1], cmd.arguments()[0]);
     }
 
@@ -32,9 +32,9 @@ public class CommandCreatorTest {
         String command = "test \"abcd 1234\"";
         Command cmd = CommandCreator.newCommand(command);
 
-        assertEquals(command.split(" ")[0], cmd.command());
-        assertNotNull(cmd.arguments());
-        assertEquals(1, cmd.arguments().length);
+        assertEquals("unexpected command returned for command 'test \"abcd 1234\"'", command.split(" ")[0], cmd.command());
+        assertNotNull("command arguments should not be null", cmd.arguments());
+        assertEquals("unexpected command arguments count", 1, cmd.arguments().length);
         assertEquals("multi-word argument is not respected", "abcd 1234", cmd.arguments()[0]);
     }
 }
