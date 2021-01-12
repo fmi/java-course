@@ -4,13 +4,13 @@ import bg.sofia.uni.fmi.mjt.restaurant.Restaurant;
 
 public class Customer extends AbstractCustomer {
 
-	public Customer(Restaurant workshop) {
-		super(workshop);
-	}
+    public Customer(Restaurant workshop) {
+        super(workshop);
+    }
 
-	@Override
-	public boolean hasVipCard() {
-		return false;
-	}
+    @Override
+    public boolean hasVipCard() {
+        return false;
+    }
 
 }
