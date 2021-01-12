@@ -35,6 +35,6 @@ public class CommandCreatorTest {
         assertEquals(command.split(" ")[0], cmd.command());
         assertNotNull(cmd.arguments());
         assertEquals(1, cmd.arguments().length);
-        assertEquals("abcd 1234", cmd.arguments()[0]);
+        assertEquals("multi-word argument is not respected", "abcd 1234", cmd.arguments()[0]);
     }
 }
