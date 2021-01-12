@@ -24,7 +24,7 @@ public class CommandCreatorTest {
         assertEquals("unexpected command returned for command 'test abcd'", command.split(" ")[0], cmd.command());
         assertNotNull("command arguments should not be null", cmd.arguments());
         assertEquals("unexpected command arguments count", 1, cmd.arguments().length);
-        assertEquals(command.split(" ")[1], cmd.arguments()[0]);
+        assertEquals("unexpected argument returned for command 'test abcd'", command.split(" ")[1], cmd.arguments()[0]);
     }
 
     @Test
