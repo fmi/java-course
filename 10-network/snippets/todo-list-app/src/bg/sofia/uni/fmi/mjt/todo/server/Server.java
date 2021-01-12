@@ -13,7 +13,6 @@ import java.util.Iterator;
 
 import bg.sofia.uni.fmi.mjt.todo.command.CommandCreator;
 import bg.sofia.uni.fmi.mjt.todo.command.CommandExecutor;
-import bg.sofia.uni.fmi.mjt.todo.storage.InMemoryStorage;
 
 public class Server {
     private static final int BUFFER_SIZE = 1024;
@@ -51,6 +50,7 @@ public class Server {
                         if (key.isReadable()) {
                             SocketChannel clientChannel = (SocketChannel) key.channel();
                             String clientInput = getClientInput(clientChannel);
+                            System.out.println(clientInput);
                             if (clientInput == null) {
                                 continue;
                             }
@@ -117,11 +117,5 @@ public class Server {
 
         accept.configureBlocking(false);
         accept.register(selector, SelectionKey.OP_READ);
-    }
-
-    public static void main(String[] args) {
-        Server s = new Server(3333, new CommandExecutor(new InMemoryStorage()));
-//		new Thread(s::start).start();
-        s.start();
     }
 }
