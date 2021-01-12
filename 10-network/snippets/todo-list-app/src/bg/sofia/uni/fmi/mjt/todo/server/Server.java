@@ -23,7 +23,9 @@ public class Server {
 
     private final int port;
     private boolean isServerWorking;
+
     private ByteBuffer buffer;
+    private Selector selector;
 
     public Server(int port, CommandExecutor commandExecutor) {
         this.port = port;
@@ -32,7 +34,7 @@ public class Server {
 
     public void start() {
         try (ServerSocketChannel serverSocketChannel = ServerSocketChannel.open()) {
-            Selector selector = Selector.open();
+            selector = Selector.open();
             configureServerSocketChannel(serverSocketChannel, selector);
             this.buffer = ByteBuffer.allocate(BUFFER_SIZE);
             isServerWorking = true;
@@ -73,6 +75,9 @@ public class Server {
 
     public void stop() {
         this.isServerWorking = false;
+        if (selector.isOpen()) {
+            selector.wakeup();
+        }
     }
 
     private void configureServerSocketChannel(ServerSocketChannel channel, Selector selector) throws IOException {

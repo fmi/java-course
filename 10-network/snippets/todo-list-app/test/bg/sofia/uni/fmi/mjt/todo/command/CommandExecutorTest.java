@@ -1,3 +1,7 @@
+package bg.sofia.uni.fmi.mjt.todo.command;
+
+import java.util.Collections;
+
 import bg.sofia.uni.fmi.mjt.todo.command.Command;
 import bg.sofia.uni.fmi.mjt.todo.command.CommandExecutor;
 import bg.sofia.uni.fmi.mjt.todo.storage.Storage;
@@ -14,6 +18,8 @@ public class CommandExecutorTest {
 
     private static final String INVALID_ARGS_COUNT_MESSAGE_FORMAT = "Invalid count of arguments: \"%s\" expects %d arguments. Example: \"%s\"";
     private static final String ADD = "add-todo";
+    private static final String COMPLETE = "complete-todo";
+    private static final String LIST = "list";
 
     private Storage storage;
     private CommandExecutor cmdExecutor;
@@ -68,10 +74,51 @@ public class CommandExecutorTest {
 
     @Test
     public void testCompleteReturnsErrorWhenLessArguments() {
-        String expected = String.format("Completed To Do with ID %s for user %s", testID, testUser);
-        String actual = cmdExecutor.execute(complete);
+        String expected = String.format(INVALID_ARGS_COUNT_MESSAGE_FORMAT, COMPLETE, 2, COMPLETE + " <username> <todo_item_id>");
+        String actual = cmdExecutor.execute(new Command(COMPLETE, new String[]{testUser}));
 
-        verify(storage, times(1)).remove(testUser, testID);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testCompleteReturnsErrorWhenIDIsNotNumerical() {
+        String expected = "Invalid ID provided for command \"complete-todo\": only integer values are allowed";
+        String actual = cmdExecutor.execute(new Command(COMPLETE, new String[]{testUser, testUser}));
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testList() {
+        when(storage.list(testUser)).thenReturn(Collections.singletonMap(testID, testTodo));
+        String expected = String.format("To-Do list of user %s:%n[%d] %s%n", testUser, testID, testTodo);
+        String actual = cmdExecutor.execute(list);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testListWhenEmpty() {
+        when(storage.list(testUser)).thenReturn(Collections.emptyMap());
+        String expected = "No To-Do items found for user with name " + testUser;
+        String actual = cmdExecutor.execute(list);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testListWhenLessArguments() {
+        String expected = String.format(INVALID_ARGS_COUNT_MESSAGE_FORMAT, LIST, 1, LIST + " <username>");
+        String actual = cmdExecutor.execute(new Command(LIST, new String[]{}));
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testUnknownCommand() {
+        String expected = "Unknown command";
+        String actual = cmdExecutor.execute(new Command("test", new String[]{}));
+
         assertEquals(expected, actual);
     }
 

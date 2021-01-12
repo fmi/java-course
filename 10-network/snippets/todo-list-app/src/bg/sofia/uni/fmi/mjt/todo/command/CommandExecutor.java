@@ -55,7 +55,7 @@ public class CommandExecutor {
 
     private String list(String[] args) {
         if (args.length != 1) {
-            return String.format(INVALID_ARGS_COUNT_MESSAGE_FORMAT, LIST, 2, LIST + " <username>");
+            return String.format(INVALID_ARGS_COUNT_MESSAGE_FORMAT, LIST, 1, LIST + " <username>");
         }
         String user = args[0];
         var todos = storage.list(user);

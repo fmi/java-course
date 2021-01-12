@@ -25,7 +25,7 @@ public class InMemoryStorage implements Storage {
 
     public void remove(String user, int todoID) {
         var toDos = userTodos.get(user);
-        if (!toDos.containsKey(todoID)) {
+        if (toDos == null || !toDos.containsKey(todoID)) {
             return;
         }
 
