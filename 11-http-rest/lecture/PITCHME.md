@@ -925,6 +925,12 @@ client.sendAsync(request, BodyHandlers.ofString())
 
 ---
 
+#### Литература
+
+[A closer look at the Java 11 HTTP Client](https://golb.hplar.ch/2019/01/java-11-http-client.html)
+
+---
+
 ## Въпроси
 
 @snap[south span-100]
