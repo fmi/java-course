@@ -19,6 +19,7 @@
 | 10 | [Мрежово програмиране](https://gitpitch.com/fmi/java-course?p=10-network/lecture/#/19)                   | 16.12.2020 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/fHWGEZ4Sifo) |
 | 11 | [HTTP, REST и JSON](https://gitpitch.com/fmi/java-course?p=11-http-rest/lecture/#/1)                   | 06.01.2021 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/YVEbfadPvvs) |
 | 12 | [S.O.L.I.D \| Design Patterns](https://gitpitch.com/fmi/java-course?p=12-design-patterns/lecture/#/1)                   | 13.01.2021 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/1dvxrSr2Myo) |
+| 13 | [Reactive Programming \| Java виртуалната машина](https://gitpitch.com/fmi/java-course?p=13-reactive-jvm/lecture/#/1)                   | 20.01.2021 | [![Video](images/mjt-on-youtube.png)](https://youtu.be/Z_wbhn3YuPY) |
 
 ### Материали от предходни издания
 
