@@ -20,7 +20,6 @@ public class WishListServer {
 
     private static final int SERVER_PORT = 7777;
     private static final int BUFFER_SIZE = 1024;
-    private static final int SLEEP_MILLIS = 200;
     private static final String SERVER_HOST = "localhost";
     private static final Random RANDOM = new Random();
 
@@ -51,12 +50,7 @@ public class WishListServer {
             while (isStarted) {
                 int readyChannels = selector.select();
                 if (readyChannels == 0) {
-                    System.out.println("Still waiting for a ready channel...");
-                    try {
-                        Thread.sleep(SLEEP_MILLIS);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    // select() is blocking but may still return with 0, check javadoc
                     continue;
                 }
 
@@ -73,7 +67,7 @@ public class WishListServer {
                         if (r <= 0) {
                             System.out.println("Nothing to read, closing channel");
                             socketChannel.close();
-                            break;
+                            continue;
                         }
 
                         handleKeyIsReadable(key, messageBuffer);
@@ -142,9 +136,9 @@ public class WishListServer {
     }
 
     private String postWish(String arguments) {
-        String[] argumentss = arguments.split("\\s+", 2);
-        String username = argumentss[0];
-        String gift = argumentss[1];
+        String[] argumentsArray = arguments.split("\\s+", 2);
+        String username = argumentsArray[0];
+        String gift = argumentsArray[1];
 
         if (!studentsWishes.containsKey(username)) {
             studentsWishes.put(username, new HashSet<>());
