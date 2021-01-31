@@ -12,11 +12,12 @@
 - Сървърът получава команди от клиентите и връща подходящ резултат.
 - Сървърът извлича необходимите му данни от гореспоменатото *RESTful API* и запазва (кешира) резултата в локалната си файлова система.
 
-    Например, при получаване на командата `get-food raffaello treat`, сървърът прави следната *HTTP GET* заявка: https://api.nal.usda.gov/fdc/v1/search?generalSearchInput=raffaello%20treat&requireAllWords=true&api_key=API_KEY (където API_KEY е валиден API key) и получава *HTTP response* със статус код *200* и с тяло следния *JSON*:
+    Например, при получаване на командата `get-food raffaello treat`, сървърът прави следната *HTTP GET* заявка: https://api.nal.usda.gov/fdc/v1/foods/search?query=raffaello%20treat&requireAllWords=true&api_key=API_KEY (където API_KEY е валиден API key) и получава *HTTP response* със статус код *200* и с тяло следния *JSON*:
 
 ```javascript
 {
   "foodSearchCriteria": {
+    "query": "raffaello treat",
     "generalSearchInput": "raffaello treat",
     "pageNumber": 1,
     "requireAllWords": true
