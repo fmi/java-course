@@ -1,0 +1,556 @@
+/* remarkjs 官网示例幻灯里面使用的暗色主题 */
+.inverse {
+  background: #272822;
+  color: #777872;
+  text-shadow: 0 0 20px #333;
+}
+.inverse h1,
+.inverse h2 {
+  color: #f3f3f3;
+  line-height: 0.8em;
+}
+
+/* Slide-specific styling */
+#slide-inverse .footnote {
+  bottom: 12px;
+  left: 20px;
+}
+
+/* 隐藏注释 */
+.invisible-ink {
+  display: none;
+}
+
+.remark-container.remark-presenter-mode .invisible-ink {
+  display: inline;
+  color: red;
+}
+
+/* 背景图片拉伸平铺 */
+.remark-slide-content {
+  background-size: 100% 100%;
+}
+
+/* 代码字体 */
+.remark-code,
+.remark-inline-code {
+  font-weight: normal;
+  font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+  line-height: 1.5em
+}
+
+/* 行内 <code> 底色等样式 */
+.remark-inline-code {
+  background-color: var(--nord6);
+  padding: 0.2em 0.4em;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  transition: background-color 400ms ease-in-out 0s;
+  font: 300 0.92em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif,
+    WenQuanYi Micro Hei, sans;
+}
+
+.remark-slide-content .center {
+  text-align: center;
+  justify-content: center;
+}
+
+.remark-slide-content .middle {
+  vertical-align: middle;
+  align-items: center;
+}
+
+/* 针对 typo.css 做一些修正 */
+a.github-fork-ribbon {
+  border-bottom-color: transparent;
+}
+
+a.github-fork-ribbon:hover {
+  border-bottom-color: transparent;
+}
+
+.center > h1 {
+  margin-top: 24px;
+}
+
+pre {
+  padding: 0px;
+}
+
+.font-xxs {
+  font-size: 10px;
+}
+
+.font-xxs .remark-code {
+  font-size: 10px;
+}
+
+/* 超小号字体 */
+.font-xs {
+  font-size: 12px;
+}
+
+.font-xs .remark-code {
+  font-size: 12px;
+}
+
+/* 小号字体 */
+.font-sm {
+  font-size: 14px;
+}
+
+.font-sm .remark-code {
+  font-size: 14px;
+}
+
+/* 比中号字体略小 */
+.font-m {
+  font-size: 16px;
+}
+
+.font-m .remark-code {
+  font-size: 16px;
+}
+
+/* 中号字体 */
+.font-md {
+  font-size: 18px;
+}
+
+.font-md .remark-code {
+  font-size: 18px;
+}
+
+/* 大号字体 */
+.font-lg {
+  font-size: 22px;
+}
+
+.font-lg .remark-code {
+  font-size: 22px;
+}
+
+.font-xl {
+  font-size: 28px;
+}
+
+.font-xxl {
+  font-size: 36px;
+}
+
+.font-xxxl {
+  font-size: 49px;
+}
+
+.font-2x {
+  font-size: 2em;
+}
+
+.font-3x {
+  font-size: 3em;
+}
+
+.font-4x {
+  font-size: 4em;
+}
+
+.font-5x {
+  font-size: 5em;
+}
+
+.line-height-1 {
+  line-height: 1em !important;
+}
+
+.line-height-1-2 {
+  line-height: 1.2em !important;
+}
+
+/* 由于 pure.css 提供的网格布局没有 gutter 功能，这里补充 8px 和 16px gutter 的样式 */
+.gutter-8 {
+  padding-left: 4px;
+  padding-right: 4px;
+  box-sizing: border-box;
+}
+
+.gutter-16 {
+  padding-left: 8px;
+  padding-right: 8px;
+  box-sizing: border-box;
+}
+
+.gutter-24 {
+  padding-left: 12px;
+  padding-right: 12px;
+  box-sizing: border-box;
+}
+
+.gutter-32 {
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
+.gutter-64 {
+  padding-left: 32px;
+  padding-right: 32px;
+  box-sizing: border-box;
+}
+
+/*
+ * 100% 宽度，无背景色的 Table
+ * 可选样式：
+ *   st-hline 只显示横线
+ *   st-vline 只显示竖线
+ *   st-allline 横线和竖线都显示
+*/
+.st {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.st table {
+  margin-bottom: 0px;
+  width: 100%;
+  max-width: 100%;
+  border-spacing: 0;
+}
+
+.st table thead th {
+  color: #000;
+}
+
+.st table td,
+.st table th,
+.st table thead,
+.st table thead th,
+.st table tr {
+  border-width: 0px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.12);
+  background-color: transparent;
+}
+
+.st-allline table td:first-child,
+.st-allline table th:first-child,
+.st-vline table td:first-child,
+.st-vline table th:first-child {
+  border-left: 0;
+}
+
+.st-hline table thead th,
+.st-hline table thead th,
+.st-hline table tbody tr:not(:last-child) td,
+.st-hline table tbody tr:not(:last-child) td,
+.st-vline table tr:nth-last-child(2) th,
+.st-vline table thead tr:last-child th,
+.st-allline table tbody tr:not(:last-child) td,
+.st-allline table thead th {
+  border-bottom-width: 1px;
+}
+
+.st-allline table td,
+.st-allline table thead th,
+.st-allline table th,
+.st-vline table td,
+.st-vline table thead th,
+.st-vline table th {
+  border-left-width: 1px;
+}
+
+.st.noborder {
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 0px;
+}
+
+.st.noborder table thead th {
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.6);
+  border-bottom-width: 2px;
+}
+
+.nord-dark .st {
+  border: 1px solid var(--nord3);
+}
+
+.nord-dark .st table thead th {
+  color: var(--nord6);
+}
+
+.nord-dark .st table td,
+.nord-dark .st table th,
+.nord-dark .st table thead,
+.nord-dark .st table thead th,
+.nord-dark .st table tr {
+  border-color: var(--nord3);
+}
+
+.nord-dark .st table td,
+.nord-dark .st table tr {
+  color: var(--nord6);
+  opacity: 0.9;
+}
+
+.nord-dark .st table th,
+.nord-dark .st table thead,
+.nord-dark .st table thead th {
+  color: var(--nord6);
+}
+
+.nord-dark .st.noborder {
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 1px solid var(--nord3);
+  border-radius: 0px;
+}
+
+/*
+ * quasar 样式修正
+*/
+.q-timeline {
+  list-style: none !important;
+}
+
+.q-scrollarea__bar,
+.q-scrollarea__thumb {
+  /*
+   * 由于 remarkjs 会自动使用 transform:scale() 来适应屏幕大小，而 Quasar 的 scroll area 组件会使用如下样式类
+   * 设置滚动条的 will-change: opacity; 它们两个加起来竟然会让整个幻灯内容页字体变虚(chrome 79.0.3945.88)！非常诡异的BUG.
+   * 即使使用下面的样式修正了，在鼠标移入移出 scroll area 组件导致滚动条显示/隐藏时还是会有短暂的虚的情况，所以最好
+   * 设置 scroll area 组件的 visible 属性为 true
+  */
+  will-change: auto;
+}
+
+/* 
+ * 分栏样式
+*/
+.column-2 {
+  column-count: 2;
+  column-gap: 3em;
+  column-rule: 0.2px solid rgba(0, 0, 0, 0.2);
+}
+
+.column-3 {
+  column-count: 3;
+  column-gap: 3em;
+  column-rule: 0.2px solid rgba(0, 0, 0, 0.2);
+}
+
+.column-4 {
+  column-count: 4;
+  column-gap: 3em;
+  column-rule: 0.2px solid rgba(0, 0, 0, 0.2);
+}
+
+.column-5 {
+  column-count: 5;
+  column-gap: 3em;
+  column-rule: 0.2px solid rgba(0, 0, 0, 0.2);
+}
+
+.column-6 {
+  column-count: 6;
+  column-gap: 3em;
+  column-rule: 0.2px solid rgba(0, 0, 0, 0.2);
+}
+
+.column-norule,
+.nord-dark .column-norule {
+  column-gap: 2em;
+  column-rule: 0px;
+}
+
+.column-gap-sm,
+.nord-dark .column-gap-sm {
+  column-gap: 1em;
+  column-rule: 0px;
+}
+
+.column-gap-xs,
+.nord-dark .column-gap-xs {
+  column-gap: 0.5em;
+  column-rule: 0px;
+}
+
+/*
+ * 浮动布局
+*/
+.float-left {
+  float: left;
+}
+
+.float-left > img {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-right > img {
+  float: right;
+}
+
+.block-middle {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*
+ * 布局
+*/
+.vcenter {
+  vertical-align: middle;
+}
+
+/* 字体间距 */
+.letter-spacing-0 {
+  letter-spacing: 0em;
+}
+.letter-spacing-10 {
+  letter-spacing: 0.1em;
+}
+.letter-spacing-20 {
+  letter-spacing: 0.2em;
+}
+.letter-spacing-30 {
+  letter-spacing: 0.3em;
+}
+.letter-spacing-40 {
+  letter-spacing: 0.4em;
+}
+.letter-spacing-50 {
+  letter-spacing: 0.5em;
+}
+.letter-spacing-60 {
+  letter-spacing: 0.6em;
+}
+.letter-spacing-70 {
+  letter-spacing: 0.7em;
+}
+.letter-spacing-80 {
+  letter-spacing: 0.8em;
+}
+.letter-spacing-90 {
+  letter-spacing: 0.9em;
+}
+.letter-spacing-100 {
+  letter-spacing: 1em;
+}
+
+/*
+ * 图标
+*/
+.icon-inline:before {
+  vertical-align: -0.2em;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+}
+
+.icon-top {
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  line-height: 2.5em;
+  font-size: 0.8em;
+  padding: 0em 0.5em;
+}
+
+.icon-top:before {
+  font-size: 4em;
+  vertical-align: 0em;
+  width: 100%;
+  display: inline-block;
+}
+
+/*
+ * 透明度
+ */
+.opacity-10 {
+  opacity: 0.1;
+}
+.opacity-20 {
+  opacity: 0.2;
+}
+.opacity-30 {
+  opacity: 0.3;
+}
+.opacity-40 {
+  opacity: 0.4;
+}
+.opacity-50 {
+  opacity: 0.5;
+}
+.opacity-60 {
+  opacity: 0.6;
+}
+.opacity-70 {
+  opacity: 0.7;
+}
+.opacity-80 {
+  opacity: 0.8;
+}
+.opacity-90 {
+  opacity: 0.9;
+}
+
+/* 对角线半透明渐变变暗蒙版 */
+.dark-mask-1 {
+  background-image: linear-gradient(150deg, rgba(0, 0, 0, 100%), rgba(0, 0, 0, 85%), rgba(0, 0, 0, 40%));
+}
+
+.dark-mask-1-nord {
+  background-image: linear-gradient(
+    150deg,
+    rgba(46, 52, 64, 100%),
+    rgba(46, 52, 64, 100%),
+    rgba(46, 52, 64, 98%),
+    rgba(46, 52, 64, 80%)
+  );
+}
+
+/* 滚动条 */
+.h-scroll {
+  overflow-x: scroll;
+}
+
+.v-scroll {
+  overflow-y: scroll;
+}
+
+.h-scroll::-webkit-scrollbar,
+.v-scroll::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.h-scroll::-webkit-scrollbar-thumb,
+.v-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--oc-gray-2);
+  outline: 1px solid #333;
+  border-radius: 4px;
+}
+
+.nord-dark .h-scroll::-webkit-scrollbar-thumb,
+.nord-dark .v-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--nord1);
+}
+
+/* 卡片放到分栏里会被截断，添加这个样式可避免被截断 */
+.inline-flex {
+  display: inline-flex;
+}
+
+.mermaid {
+  display: flex;
+}
+
+.mermaid > p {
+  margin-bottom: 0px;
+}

@@ -1,0 +1,185 @@
+/*
+ * 可独立使用的 Nord 字体颜色
+*/
+@import "./nord.css";
+
+.nord1,
+.nord1 h1,
+.nord1 h2,
+.nord1 h3,
+.nord1 h4,
+.nord1 h5,
+.nord1 h6,
+.nord1 p,
+.nord1 span,
+.nord1 strong {
+  color: var(--nord1) !important;
+}
+.nord2,
+.nord2 h1,
+.nord2 h2,
+.nord2 h3,
+.nord2 h4,
+.nord2 h5,
+.nord2 h6,
+.nord2 p,
+.nord2 span,
+.nord2 strong {
+  color: var(--nord2) !important;
+}
+.nord3,
+.nord3 h1,
+.nord3 h2,
+.nord3 h3,
+.nord3 h4,
+.nord3 h5,
+.nord3 h6,
+.nord3 p,
+.nord3 span,
+.nord3 strong {
+  color: var(--nord3) !important;
+}
+.nord4,
+.nord4 h1,
+.nord4 h2,
+.nord4 h3,
+.nord4 h4,
+.nord4 h5,
+.nord4 h6,
+.nord4 p,
+.nord4 span,
+.nord4 strong {
+  color: var(--nord4) !important;
+}
+.nord5,
+.nord5 h1,
+.nord5 h2,
+.nord5 h3,
+.nord5 h4,
+.nord5 h5,
+.nord5 h6,
+.nord5 p,
+.nord5 span,
+.nord5 strong {
+  color: var(--nord5) !important;
+}
+.nord6,
+.nord6 h1,
+.nord6 h2,
+.nord6 h3,
+.nord6 h4,
+.nord6 h5,
+.nord6 h6,
+.nord6 p,
+.nord6 span,
+.nord6 strong {
+  color: var(--nord6) !important;
+}
+.nord7,
+.nord7 h1,
+.nord7 h2,
+.nord7 h3,
+.nord7 h4,
+.nord7 h5,
+.nord7 h6,
+.nord7 p,
+.nord7 span,
+.nord7 strong {
+  color: var(--nord7) !important;
+}
+.nord8,
+.nord8 h1,
+.nord8 h2,
+.nord8 h3,
+.nord8 h4,
+.nord8 h5,
+.nord8 h6,
+.nord8 p,
+.nord8 span,
+.nord8 strong {
+  color: var(--nord8) !important;
+}
+.nord9,
+.nord9 h1,
+.nord9 h2,
+.nord9 h3,
+.nord9 h4,
+.nord9 h5,
+.nord9 h6,
+.nord9 p,
+.nord9 span,
+.nord9 strong {
+  color: var(--nord9) !important;
+}
+.nord10,
+.nord10 h1,
+.nord10 h2,
+.nord10 h3,
+.nord10 h4,
+.nord10 h5,
+.nord10 h6,
+.nord10 p,
+.nord10 span,
+.nord10 strong {
+  color: var(--nord10) !important;
+}
+.nord11,
+.nord11 h1,
+.nord11 h2,
+.nord11 h3,
+.nord11 h4,
+.nord11 h5,
+.nord11 h6,
+.nord11 p,
+.nord11 span,
+.nord11 strong {
+  color: var(--nord11) !important;
+}
+.nord12,
+.nord12 h1,
+.nord12 h2,
+.nord12 h3,
+.nord12 h4,
+.nord12 h5,
+.nord12 h6,
+.nord12 p,
+.nord12 span,
+.nord12 strong {
+  color: var(--nord12) !important;
+}
+.nord13,
+.nord13 h1,
+.nord13 h2,
+.nord13 h3,
+.nord13 h4,
+.nord13 h5,
+.nord13 h6,
+.nord13 p,
+.nord13 span,
+.nord13 strong {
+  color: var(--nord13) !important;
+}
+.nord14,
+.nord14 h1,
+.nord14 h2,
+.nord14 h3,
+.nord14 h4,
+.nord14 h5,
+.nord14 h6,
+.nord14 p,
+.nord14 span,
+.nord14 strong {
+  color: var(--nord14) !important;
+}
+.nord15,
+.nord15 h1,
+.nord15 h2,
+.nord15 h3,
+.nord15 h4,
+.nord15 h5,
+.nord15 h6,
+.nord15 p,
+.nord15 span,
+.nord15 strong {
+  color: var(--nord15) !important;
+}
