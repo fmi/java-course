@@ -6,25 +6,25 @@
     - [Eclipse](#eclipse)
 - [Online Auto Grader](#online-auto-grader)
     - [Eclipse Plugin за Grader](#eclipse-plugin-за-grader)
-       
+
 ## Java Development Kit
 
-- [Инсталация за Windows](https://docs.oracle.com/en/java/javase/15/install/installation-jdk-microsoft-windows-platforms.html#GUID-A740535E-9F97-448C-A141-B95BF1688E6F)
+- [Инсталация за Windows](https://docs.oracle.com/en/java/javase/17/install/installation-jdk-microsoft-windows-platforms.html#GUID-A740535E-9F97-448C-A141-B95BF1688E6F)
 
-- [Инсталация на Linux](https://docs.oracle.com/en/java/javase/15/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8)
+- [Инсталация на Linux](https://docs.oracle.com/en/java/javase/17/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8)
 
-- [Инсталация на Mac OS](https://docs.oracle.com/en/java/javase/15/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE)
+- [Инсталация на Mac OS](https://docs.oracle.com/en/java/javase/17/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE)
 
-**Забележка:** Изтеглете JDK 15 от **Builds** за вашата операционна система от [тук](
-https://jdk.java.net/15/).
+**Забележка:** Изтеглете JDK 17 от **Builds** за вашата операционна система от [тук](
+https://jdk.java.net/17).
 
 **Забележка:** Уверете се, че инсталацията е успешна:
 
 ```console
 $ java -version
-openjdk version "15" 2020-09-15
-OpenJDK Runtime Environment (build 15+36-1562)
-OpenJDK 64-Bit Server VM (build 15+36-1562, mixed mode, sharing)
+openjdk version "17" 2021-09-14
+OpenJDK Runtime Environment (build 17+35-Ubuntu-120.04)
+OpenJDK 64-Bit Server VM (build 17+35-Ubuntu-120.04, mixed mode, sharing)
 ```
 
 ## Integrated Development Environment
@@ -47,7 +47,7 @@ OpenJDK 64-Bit Server VM (build 15+36-1562, mixed mode, sharing)
 
 Най-често използваните са описани в [Mastering IntelliJ IDEA keyboard shortcuts](https://www.jetbrains.com/help/idea/mastering-keyboard-shortcuts.html#d1746384e89).
 
-Кратко описание на UI-а, както и полезни shortcut-и са включени в [Discover IntelliJ IDEA](https://www.jetbrains.com/help/idea/discover-intellij-idea.html).
+Кратко описание на UI-а, както и полезни shortcut-и са включени в [IntelliJ IDEA overview](https://www.jetbrains.com/help/idea/discover-intellij-idea.html).
 
 #### Дебъгване в IntelliJ IDEA
 
@@ -55,7 +55,7 @@ Beginner's Tutorial за дебъгване в _IntelliJ IDEA_ може да н�
 
 #### JUnit Тестове
 
-Към условието на всяка задача са прикачени и тестове за примерния вход и изход от условието. Ако след като сложите файла с тестовете в проекта си, виждате грешки от вида `Cannot resolve symbol 'Test'`, ще е необходимо да добавите _JUnit_ в _Build Path_ на проекта. [Официалната документация](https://www.jetbrains.com/help/idea/testing.html) на _Intellij IDEA_ включва обяснение за това как да конфигурирате JUnit 4/5 в проекта си - вместо JUnit 5.4, добавете JUnit 4 (`Alt+Enter on @Test -> Add Junit 4 to classpath`).
+Към условието на някои задачи са прикачени и тестове за примерния вход и изход от условието. Ако след като сложите файла с тестовете в проекта си, виждате грешки от вида `Cannot resolve symbol 'Test'`, ще е необходимо да добавите _JUnit_ в _Build Path_ на проекта. [Официалната документация](https://www.jetbrains.com/help/idea/testing.html) на _Intellij IDEA_ включва обяснение за това как да конфигурирате JUnit 4/5 в проекта си - вместо JUnit 5.4, добавете JUnit 4 (`Alt+Enter on @Test -> Add Junit 4 to classpath`).
 
 Пускане на тестовете - отворете файла с тестове в _IDE_-то и натиснете `ctrl+shift+f10` или `Mouse Right Click -> Run {{filename}}`.
 
@@ -63,9 +63,9 @@ Beginner's Tutorial за дебъгване в _IntelliJ IDEA_ може да н�
 
 #### Инсталация на Eclipse и Hello World
 
-Един доста [подробен tutorial](https://www.ntu.edu.sg/home/ehchua/programming/howto/EclipseJava_HowTo.html) за подготовка на [Eclipse]((https://www.eclipse.org/downloads/eclipse-packages/)). Точка едно описва как да си инсталирате _JDK_ и _IDE_-то. Точка две показва как да направите първия си проект.
+Един [подробен tutorial](https://www.vogella.com/tutorials/Eclipse/article.html) за подготовка на [Eclipse]((https://www.eclipse.org/downloads/eclipse-packages/)), включващ описание как да си го инсталирате и как да направите първия си проект.
 
-**Забележка**: За да използвате Java 15, ще ви трябва [Eclipse 2020-09 (4.17)](https://marketplace.eclipse.org/content/java-15-support-eclipse-2020-09-417) или по-нов. За момента (към 10-10-2019) се налага и инсталация на допълнителен feature, който се намира в предния [линк](https://marketplace.eclipse.org/content/java-15-support-eclipse-2020-09-417) (за да го инсталирате, просто drag-вате `Install` върху отворения workspace).
+**Забележка**: За да използвате Java 17, ще ви трябва [Eclipse 2021-09](https://www.eclipse.org/downloads/) или по-нов. За момента (към 15-10-2021) се налага и инсталация на допълнителен feature, който се намира [тук](https://marketplace.eclipse.org/content/java-17-support-eclipse-2021-09-421) (за да го инсталирате, просто drag-вате `Install` върху отворения workspace).
 
 #### Полезни Eclipse Shortcuts
 
@@ -102,7 +102,7 @@ Beginner's Tutorial за дебъгване в _IntelliJ IDEA_ може да н�
 
 #### JUnit Тестове
 
-Към условието на всяка задача са прикачени и тестове за примерния вход и изход от условието. Ако след като сложите файла с тестовете в проекта си, виждате грешки от вида `the import org.junit cannot be resolved`, ще е необходимо да добавите _JUnit_ в _Build Path_ на проекта. Бихте могли ръчно да добавите `JUnit` в `Build Path` като следвате стъпките [тук](https://www.tutorialspoint.com/junit/junit_plug_with_eclipse.htm).
+Към условието на някои задачи са прикачени и тестове за примерния вход и изход от условието. Ако след като сложите файла с тестовете в проекта си, виждате грешки от вида `the import org.junit cannot be resolved`, ще е необходимо да добавите _JUnit_ в _Build Path_ на проекта. Бихте могли ръчно да добавите `JUnit` в `Build Path` като следвате стъпките [тук](https://www.tutorialspoint.com/junit/junit_plug_with_eclipse.htm).
 
 Пускане на тестовете - отворете файла с тестове в _IDE_-то и натиснете `Mouse Right Click -> Run As -> JUnit Test`.
 
