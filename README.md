@@ -6,7 +6,7 @@
 
 | # | Лекция                                                                                                           | Дата       | Видео |
 |---| ---------------------------------------------------------------------------------------------------------------- |:----------:|:------:|
-| 1 | [Въведение в Java](https://fmi.github.io/java-course/01-intro-to-java/lecture/slides.html)                   | 13.10.2021 | |
+| 1 | [Въведение в Java](https://fmi.github.io/java-course/01-intro-to-java/lecture/slides.html)                   | 13.10.2021 | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/ZeQC_pJhwyY) |
 
 ### Материали от предходни издания
 
