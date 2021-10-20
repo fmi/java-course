@@ -44,10 +44,37 @@ input::-moz-focus-inner {
   border: 0;
 }
 
+/* .noborder.st-hline[ */
+
 /* 去掉各Table cell 的边距并让其边重合 */
 table {
-  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom-width: 2px;
+  margin-bottom: 0px;
+  width: 100%;
+  max-width: 100%;
   border-spacing: 0;
+  font-size: 18px;
+}
+
+table thead th {
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom-width: 2px;
+}
+
+table td {
+    border-width: 0px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    background-color: transparent;
 }
 
 /* 去除默认边框 */
@@ -87,7 +114,7 @@ del {
   text-decoration: line-through;
 }
 
-address, caption, cite, code, dfn, em, th, var {
+address, caption, cite, code, dfn, th, var {
   font-style: normal;
   font-weight: 400;
 }
