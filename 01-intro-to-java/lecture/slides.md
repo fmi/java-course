@@ -147,8 +147,6 @@ Hello world!
 
 ### Примитивни типове данни
 
-.center.st.noborder.st-hline.font-md.mb-xs[
-
 | Тип данни | Размер  | Минимум         | Максимум                   |
 | :-------- | :------ | :-------------- | :------------------------- |
 | boolean   | -       | -               | -                          |
@@ -160,8 +158,6 @@ Hello world!
 | float     | 32 бита | IEEE754         | IEEE754                    |
 | double    | 64 бита | IEEE754         | IEEE754                    |
 | void      | -       | -               | -                          |
-
-]
 
 ---
 
@@ -192,15 +188,11 @@ Long.MAX_VALUE // 9223372036854775807
 
 ### Типът char
 
-.center.st.noborder.st-hline.font-md.mb-xs[
-
 | Code point | Unicode escape | Печатна репрезентация | Описание                  |
 | ---------- | -------------- | --------------------- | :------------------------ |
 | 33         | \u0021         | !                     | Символ за удивителна      |
 | 50         | \u0032         | 2                     | Цифра 2                   |
 | 65         | \u0041         | A                     | Главна латинска буква 'A' |
-
-]
 
 ---
 
@@ -256,8 +248,6 @@ int mask     = 0b1010_1010_1010;
 
 ### Стойности по подразбиране
 
-.center.st.noborder.st-hline.font-md.mb-xs[
-
 | Тип данни        | Стойност по подразбиране |
 | :--------------- | :----------------------- |
 | boolean          | false                    |
@@ -269,8 +259,6 @@ int mask     = 0b1010_1010_1010;
 | char             | '\u0000'                 |
 | Reference типове | null                     |
 
-]
-
 ---
 
 ### Конвертиране на типовете
@@ -280,8 +268,6 @@ int mask     = 0b1010_1010_1010;
 
 <br>
 
-.center.st.noborder.st-hline.font-md.mb-xs[
-
 | Израз             | Тип на израза | Стойност на израза |
 | :---------------- | :------------ | :----------------- |
 | "1234" + 99       | String        | "123499"           |
@@ -290,8 +276,6 @@ int mask     = 0b1010_1010_1010;
 | (int) 11 \* 0.3   | double        | 3.3                |
 | 11 \* (int) 0.3   | int           | 0                  |
 | (int) (11 \* 0.3) | int           | 3                  |
-
-]
 
 ---
 
@@ -400,8 +384,6 @@ int mask     = 0b1010_1010_1010;
 
 ### Примитивни типове и wrapper типове
 
-.center.st.noborder.st-hline.font-md.mb-xs[
-
 | Тип данни | Размер  | Минимум         | Максимум                   | Wrapper   |
 | :-------- | :------ | :-------------- | :--------------------------| :-------- |
 | boolean   | -       | -               | -                          | Boolean   |
@@ -413,8 +395,6 @@ int mask     = 0b1010_1010_1010;
 | float     | 32 бита | IEEE754         | IEEE754                    | Float     |
 | double    | 64 бита | IEEE754         | IEEE754                    | Double    |
 | void      | -       | -               | -                          | Void      |
-
-]
 
 ---
 
@@ -577,15 +557,11 @@ int year = Integer.parseInt(tokens[3]);
 
 <br>
 
-.center.st.noborder.st-hline.font-md.mb-xs[
-
 | Class name    | Mutable | Performant        | Thread-safe |
 | :------------ | :------ | :---------------- | :---------- |
 | String        | no      | slow, if modified | yes         |
 | StringBuilder | yes     | fast              | no          |
 | StringBuffer  | yes     | slower            | yes         |
-
-]
 
 ---
 
