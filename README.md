@@ -2,12 +2,12 @@
 
 ![Java 17](web/images/java-17.png)
 
-### Лекции
+### Лекции и упражнения 2021/2022
 
-| # | Лекция                                                                                                           | Дата       | Видео |
-|---| ---------------------------------------------------------------------------------------------------------------- |:----------:|:------:|
-| 1 | [Въведение в Java](https://fmi.github.io/java-course/01-intro-to-java/lecture/slides.html)                   | 13.10.2021 | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/ZeQC_pJhwyY) |
-| 2 | [ООП с Java (част I)](https://fmi.github.io/java-course/02-oop-in-java-i/lecture/slides.html)                   | 20.10.2021 | |
+| # | Тема | Лекция | Видео | Дата | Упражение | Видео | Дата |
+| - | :--- | :----- | :---- | :--- | :-------- | :---- | :--- |
+| 1 | Въведение в Java | [слайдове](https://fmi.github.io/java-course/01-intro-to-java/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/ZeQC_pJhwyY) | 13.10 | [задача](https://github.com/fmi/java-course/tree/master/01-intro-to-java/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/7sq9CgPNrHs) | 16.10 |
+| 2 | ООП с Java (част I) | [слайдове](https://fmi.github.io/java-course/02-oop-in-java-i/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/tLABwV78QY8) | 20.10 | | | |
 
 ### Материали от предходни издания
 
