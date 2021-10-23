@@ -7,7 +7,7 @@
 | # | Тема | Лекция | Видео | Дата | Упражение | Видео | Дата |
 | - | :--- | :----- | :---- | :--- | :-------- | :---- | :--- |
 | 1 | Въведение в Java | [слайдове](https://fmi.github.io/java-course/01-intro-to-java/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/ZeQC_pJhwyY) | 13.10 | [задача](https://github.com/fmi/java-course/tree/master/01-intro-to-java/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/7sq9CgPNrHs) | 16.10 |
-| 2 | ООП с Java (част I) | [слайдове](https://fmi.github.io/java-course/02-oop-in-java-i/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/tLABwV78QY8) | 20.10 | [задача](https://github.com/fmi/java-course/tree/master/02-oop-in-java-i/lab) | | 23.10 |
+| 2 | ООП с Java (част I) | [слайдове](https://fmi.github.io/java-course/02-oop-in-java-i/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/tLABwV78QY8) | 20.10 | [задача](https://github.com/fmi/java-course/tree/master/02-oop-in-java-i/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/AM6IDrru2lw) | 23.10 |
 
 ### Материали от предходни издания
 
