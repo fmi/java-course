@@ -120,8 +120,13 @@ address, caption, cite, code, dfn, th, var {
 }
 
 /* 去掉列表前的标识, li 会继承，大部分网站通常用列表来很多内容，所以应该当去 */
-ul, ol {
+ul {
   list-style: disc;
+  padding-left: 3em;
+}
+
+ol {
+  list-style: decimal;
   padding-left: 3em;
 }
 
