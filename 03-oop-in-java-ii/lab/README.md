@@ -136,8 +136,8 @@ public interface Playable {
     /**
      * Simulates playing of the content, which results in increment of the total plays count,
      * and returns a message for the user. The message has the following format:
-     * "Currently playing <type> content: <content_name>", where <type> is the type (case-insensitive) of the playable content, and
-     * <content_name> is its name.
+     * "Currently playing <type> content: <content_title>", where <type> is the type (case-insensitive) of the playable content, and
+     * <content_title> is its title.
      */
     String play();
 
