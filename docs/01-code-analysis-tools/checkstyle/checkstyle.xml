@@ -1,0 +1,399 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+
+<!--
+  Checkstyle configuration for Web-CAT JavaTddPlugin
+-->
+
+<module name="Checker">
+
+  <!-- Checks whether files end with a new line.                        -->
+  <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
+  <!-- <module name="NewlineAtEndOfFile"/>
+    Doesn't seem to work under windows or something: false triggering!
+  -->
+  
+  <module name="LineLength">
+    <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
+	<property name="max" value="120"/>
+    <message key="maxLineLen"
+      value="This line is longer than {0,number,integer} characters. Break it into multiple lines so that it is easier to read."/>
+  </module>
+
+  <module name="TreeWalker">
+
+    <property name="tabWidth" value="4" />
+
+
+    <!-- Checks for Naming Conventions.                  -->
+    <!-- See http://checkstyle.sf.net/config_naming.html -->
+    <module name="ConstantName">
+      <property name="format" value="^([A-Z][A-Z0-9]*(_[A-Z0-9]+)*|log)$"/>
+      <message key="name.invalidPattern"
+        value="Constants (fields declared to be final) should be named in all capital letters with _ between words. Rename the constant ''{0}''."/>
+    </module>
+    <module name="LocalVariableName">
+      <message key="name.invalidPattern"
+        value="Variables should be named in camelCase where the name starts with a lowercase letter and the first letter of each subsequent word is capitalized. Rename the variable ''{0}''."/>
+    </module>
+    <module name="LocalFinalVariableName">
+      <message key="name.invalidPattern"
+        value="Variables should be named in camelCase where the name starts with a lowercase letter and the first letter of each subsequent word is capitalized. Rename the variable ''{0}''."/>
+    </module>
+    <module name="MemberName">
+      <message key="name.invalidPattern"
+        value="Fields should be named in camelCase where the name starts with a lowercase letter and the first letter of each subsequent word is capitalized. Rename the field ''{0}''."/>
+    </module>
+    <module name="MethodName">
+      <!--  PMD generates the message for class named methods, so skip here -->
+      <property name="allowClassName" value="true"/>
+      <message key="name.invalidPattern"
+        value="Methods should be named in camelCase where the name starts with a lowercase letter and the first letter of each subsequent word is capitalized. Rename the method ''{0}''."/>
+    </module>
+    <!-- Common conventions (e.g., Sun coding conventions, etc.) indicate
+         package names should be all lower-case "to avoid conflict with
+         the names of classes or interfaces" (from the Java Tutorial).  For
+         professional developers, underscores are used in place of hyphens
+         or to separate lower-case words.  But many educational courses use
+         course-specific packages with camelCase names or with upper case
+         letters (violating the Sun conventions).  Since these two
+         conventions clash with each other, no one pattern works well for
+         everyone, so this rule is commented out.
+    <module name="PackageName">
+      <message key="name.invalidPattern"
+        value="Packages should be named in all lower case. Periods should separate the parts of the package. Rename the package ''{0}''."/>
+    </module>
+    -->
+    <module name="ParameterName">
+      <message key="name.invalidPattern"
+        value="Parameters should be named in camelCase where the name starts with a lowercase letter and the first letter of each subsequent word is capitalized. Rename the parameter ''{0}''."/>
+    </module>
+    <module name="StaticVariableName">
+      <message key="name.invalidPattern"
+        value="Fields should be named in camelCase where the name starts with a lowercase letter and the first letter of each subsequent word is capitalized. Rename the field ''{0}''."/>
+    </module>
+    <module name="TypeName">
+      <message key="name.invalidPattern"
+        value="Classes and interfaces should be named in CamelCase where the name starts with a capital letter and the first letter of each subsequent word is also capitalized. Rename the class/interface ''{0}''."/>
+    </module>
+    <module name="MethodTypeParameterName">
+      <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+      <message key="name.invalidPattern"
+        value="Generic parameter names that represent types should be named in CamelCase where the name starts with a capital letter and the first letter of each subsequent word is also capitalized. Rename the parameter ''{0}''."/>
+    </module>
+    <module name="ClassTypeParameterName">
+      <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+      <message key="name.invalidPattern"
+        value="Generic parameter names that represent types should be named in CamelCase where the name starts with a capital letter and the first letter of each subsequent word is also capitalized. Rename the parameter ''{0}''."/>
+    </module>
+
+
+    <!-- Checks for Headers                              -->
+    <!-- See http://checkstyle.sf.net/config_header.html -->
+    <!--
+    <module name="Header"> -->
+      <!-- The follow property value demonstrates the ability     -->
+      <!-- to have access to ANT properties. In this case it uses -->
+      <!-- the ${basedir} property to allow Checkstyle to be run  -->
+      <!-- from any directory within a project.                   -->
+      <!--
+      <property name="headerFile" value="${basedir}/java.header"/>
+    </module>
+    -->
+
+    <!-- Following interprets the header file as regular expressions. -->
+    <!-- <module name="RegexpHeader"/>                                -->
+
+
+    <!-- Checks for imports                              -->
+    <!-- See http://checkstyle.sf.net/config_import.html -->
+    <!-- <module name="AvoidStarImport"/> -->
+    <!-- <module name="IllegalImport"/> -->
+      <!-- defaults to sun.* packages -->
+    <!-- <module name="RedundantImport"/> -->
+    <!-- <module name="UnusedImports"/> -->
+
+
+    <!-- Checks for Size Violations.                    -->
+    <!-- See http://checkstyle.sf.net/config_sizes.html -->
+    <!--
+    <module name="FileLength">
+      <property name="max" value="2700"/>
+    </module>
+    -->
+    <!-- <module name="MethodLength"/> -->
+    <!-- <module name="ParameterNumber"/> -->
+
+
+    <!-- Checks for whitespace                               -->
+    <!-- See http://checkstyle.sf.net/config_whitespace.html -->
+    <module name="Indentation">
+      <property name="basicOffset" value="4"/>
+      <property name="braceAdjustment" value="0"/>
+      <property name="caseIndent" value="4"/>
+      <message key="indentation.error"
+        value="To improve readability, each line of code should be indented under its parent (i.e. methods should be indented under the class, code in methods should be indented under the method, code in if statements should be indented under the if, etc.). This {0} is {1} spaces from the margin and it should be at {2} spaces."/>
+      <message key="indentation.child.error"
+        value="To improve readability, each line of code should be indented under its parent (i.e. methods should be indented under the class, code in methods should be indented under the method, code in if statements should be indented under the if, etc.). This {0} is {1} spaces from the margin and it should be at {2} spaces."/>
+    </module>
+    <!--
+    <module name="EmptyForIteratorPad">
+      <property name="option" value="space"/>
+    </module>
+    -->
+    <module name="NoWhitespaceAfter">
+      <property name="tokens"
+        value="BNOT,DEC,DOT,INC,LNOT,UNARY_MINUS,UNARY_PLUS"/>
+      <property name="allowLineBreaks" value="false"/>
+      <message key="ws.followed"
+        value="''{0}'' is followed by whitespace (i.e. a space, tab, or new line) and it should not be.  For readablilty, remove the spaces between ''{0}'' and the next value."/>
+    </module>
+    <module name="NoWhitespaceBefore">
+      <property name="tokens" value="POST_DEC,POST_INC"/>
+      <message key="ws.preceded"
+        value="''{0}'' is preceded by whitespace (i.e. a space, tab, or new line) and it should not be.  For readablilty, remove the spaces before ''{0}''."/>
+    </module>
+    <module name="NoWhitespaceBefore">
+      <property name="tokens" value="DOT"/>
+      <property name="allowLineBreaks" value="true"/>
+      <message key="ws.preceded"
+        value="''{0}'' is preceded by whitespace (i.e. a space or a tab) and it should not be.  For readablilty, remove the spaces before ''{0}''."/>
+    </module>
+    <!--
+    <module name="OperatorWrap">
+      <message key="line.new"
+        value="''{0}'' should be on a new line. In general, operators should not end a line but should be at the start on the next line."/>
+      <message key="line.previous"
+        value="''{0}'' should be on the previous line. This operator should be at the end of the previous line instead of at the beginning of this line."/>
+    </module>
+    <module name="OperatorWrap">
+      <property name="tokens"
+        value="ASSIGN, DIV_ASSIGN, PLUS_ASSIGN, MINUS_ASSIGN, STAR_ASSIGN, MOD_ASSIGN, SR_ASSIGN, BSR_ASSIGN, SL_ASSIGN, BXOR_ASSIGN, BOR_ASSIGN, BAND_ASSIGN"/>
+      <property name="option" value="eol"/>
+      <message key="line.new"
+        value="''{0}'' should be on a new line. In general, operators should not end a line but should be at the start on the next line."/>
+      <message key="line.previous"
+        value="''{0}'' should be on the previous line. This operator should be at the end of the previous line instead of at the beginning of this line."/>
+    </module>
+    -->
+    <module name="WhitespaceAfter">
+      <property name="tokens" value="COMMA, SEMI"/>
+      <message key="ws.notFollowed"
+        value="''{0}'' is not followed by whitespace (i.e. a space, tab, or new line). Add a space after the ''{0}''."/>
+    </module>
+    <module name="WhitespaceAround">
+      <property name="tokens"
+        value="ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, EQUAL, GE, GT, LAND, LCURLY, LE, LITERAL_ASSERT, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR, LITERAL_IF, LITERAL_RETURN, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE, LOR, LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, NOT_EQUAL, PLUS, PLUS_ASSIGN, RCURLY, SL, SLIST, SL_ASSIGN, SR, SR_ASSIGN, STAR, STAR_ASSIGN, TYPE_EXTENSION_AND, QUESTION"/>
+      <message key="ws.notPreceded"
+        value="''{0}'' is not preceded with whitespace (i.e. a space, tab, or new line). Most operators should have spaces both before and after them to improve readability."/>
+      <message key="ws.notFollowed"
+        value="''{0}'' is not followed by whitespace (i.e. a space, tab, or new line). Most operators should have spaces both before and after them to improve readability."/>
+    </module>
+    <module name="MethodParamPad">
+      <message key="ws.preceded"
+        value="''{0}'' is preceded by whitespace (i.e. a space, tab, or new line) and it should not be.  For readablilty, remove the spaces before ''{0}''."/>
+      <message key="ws.notPreceded"
+        value="''{0}'' is not preceded by whitespace (i.e. a space, tab, or new line) and it should be.  For readablilty, add a space before ''{0}''."/>
+      <message key="line.previous"
+        value="''{0}'' should be on the previous line with the name of the method/constructor."/>
+    </module>
+    <module name="GenericWhitespace">
+      <message key="ws.followed"
+        value="''{0}'' is followed by whitespace (i.e. a space, tab, or new line). There should not be a space after a &lt; or after a &gt; in a generic parameter list.  If there are multiple &gt;''s in the generic parameter list, there should not be spaces between them."/>
+      <message key="ws.illegalFollow"
+        value="''{0}'' is followed by an illegal character. There should be a space after the last &gt; in generic parameter list."/>
+      <message key="ws.preceded"
+        value="''{0}'' is preceded by whitespace (i.e. a space, tab, or new line). There should not be a space before a &lt; or before a &gt; in a generic parameter list. If there are multiple &gt;''s in a generic parameter list, there should not be spaces between them."/>
+      <!-- The next message is never used, since it contradicts the rule,
+           which is non-configurable. -->
+      <message key="ws.notPreceded"
+        value="''{0}'' is not preceded by whitespace (i.e. a space, tab, or new line). There should be a space before the first &lt; in generic value."/>
+    </module>
+
+
+    <!-- Modifier Checks                                    -->
+    <!-- See http://checkstyle.sf.net/config_modifiers.html -->
+    <!-- <module name="ModifierOrder"/> -->
+    <!-- <module name="RedundantModifier"/> -->
+
+
+    <!-- Checks for blocks. You know, those {}'s         -->
+    <!-- See http://checkstyle.sf.net/config_blocks.html -->
+    <!--
+    <module name="AvoidNestedBlocks">
+      <property name="allowInSwitchCase" value="true"/>
+    </module>
+    -->
+    <!-- <module name="EmptyBlock"/> :let PMD handle other empty blocks -->
+    <module name="EmptyBlock">
+      <property name="option" value="text"/>
+	  <property name="tokens" value="LITERAL_CATCH"/>
+    </module>
+    <!--
+    <module name="LeftCurly">
+      <property name="option" value="nl"/>
+    </module>
+    -->
+    <!-- PMD handles required braces, except for do loops -->
+    <module name="NeedBraces">
+      <property name="tokens" value="LITERAL_DO"/>
+      <message key="needBraces"
+        value="Loops, if statements and else blocks should always include '''{ }''' around their statements.  Add braces to the ''{0}'' construct."/>
+    </module>
+	<!--
+    <module name="RightCurly">
+      <property name="option" value="alone"/>
+      <message key="line.alone" value="This ''{0}'' should be alone on a line (i.e. no other code should be after it on the same line)."/>
+      <message key="line.new" value="This ''{0}'' should be on a new line instead of on the same line as other code."/>
+      <message key="line.same" value="This ''{0}'' should be on the same line as the code above it."/>
+    </module>
+	-->
+
+    <!-- Checks for common coding problems               -->
+    <!-- See http://checkstyle.sf.net/config_coding.html -->
+    <!-- <module name="AvoidInlineConditionals"/> -->
+    <module name="CovariantEquals">
+      <message key="covariant.equals"
+        value="This class defines a ''covariant'' equals() method (i.e., where the argument is the same type as this class), but it does not override the method equals(Object).  Mistakenly defining equals() with the wrong parameter type is an error that can produce unexpected run-time behavior.  Add a meaningful definition for equals(Object), or correct your existing equals() method."/>
+    </module>
+    <module name="EmptyStatement">
+      <message key="empty.statement"
+        value="This statement is just a '';'' and, therefore, does nothing.  You may have added a '';'' in an inappropriate location (like after an if or a for loop). See if you are missing code or just delete the extra '';''."/>
+    </module>
+    <!-- <module name="EqualsAvoidNull"/> -->
+    <!-- <module name="EqualsHashCode"/> :let PMD handle this -->
+    <!-- <module name="FinalLocalVariable"/> -->
+	<!--
+    <module name="HiddenField">
+      <property name="ignoreConstructorParameter" value="true"/>
+      <property name="ignoreSetter" value="true"/>
+      <property name="ignoreAbstractMethods" value="true"/>
+      <message key="hidden.field"
+        value="''{0}'' has the same name as one of the class's fields.  This is generally confusing and should be avoided.  Rename the parameter or local variable so that there is no conflict."/>
+    </module>
+	-->
+    <!-- <module name="IllegalInstantiation"/> -->
+    <!-- <module name="IllegalToken"/> -->
+    <!-- <module name="InnerAssignment"/> :let PMD handle this -->
+    
+    <module name="MagicNumber">
+	 <!-- STOYO: ignore magic numbers in hashCode() -->
+	  <property name="ignoreHashCodeMethod" value="true"/>
+      <message key="magic.number"
+        value="''{0}'' is a magic number and should be made into a constant. You can declare it locally with ''final'' or as part of the class with ''static final''."/>
+    </module>
+    
+    <!-- <module name="MissingSwitchDefault"/> :let PMD handle this -->
+    <!-- <module name="ModifiedControlVariable"/> -->
+    <!-- <module name="SimplifyBooleanExpression"/> :let PMD handle this -->
+    <module name="SimplifyBooleanReturn">
+	  <message key="simplify.boolreturn" value="This if statement can be removed. 
+	  If you are returning true when the if statement's Boolean condition is true,
+	  and false when the statement's condition is false, then you can simply return 
+	  the condition instead (i.e. return x &lt; 5;).  If you are returning false when 
+	  he if statment's condition is true and returning true in the else branch, you can 
+	  just return the NOT (!) of the condition instead (i.e. return !okay;)."/>
+	</module>
+    <module name="StringLiteralEquality">
+      <message key="string.literal.equality"
+        value="Literal Strings should be compared using equals(), not ''{0}''.  The == and != operators compare the references of objects, not their values.  Using the equals() (or equalsIgnoreCase()) method will compare the values of the Strings instead."/>
+    </module>
+    <!-- <module name="NestedForDepth"/> -->
+    <!-- <module name="NestedIfDepth"/> -->
+    <!-- <module name="NestedTryDepth"/> -->
+    <!-- <module name="NoClone"/> -->
+    <!-- <module name="NoFinalizer"/> -->
+    <!-- <module name="SuperClone"/> -->
+    <!-- <module name="SuperFinalize"/> -->
+    <!-- <module name="IllegalCatch"/> -->
+    <!-- <module name="IllegalThrows"/> -->
+    <!-- <module name="PackageDeclaration"/> -->
+    <!-- <module name="JUnitTestCase"/> -->
+    <!-- <module name="ReturnCount"/> -->
+    <!-- <module name="IllegalType"/> -->
+    <!-- <module name="DeclarationOrder"/> -->
+    <!-- <module name="ParameterAssignment"/> -->
+    <!-- <module name="ExplicitInitialization"/> -->
+    <module name="DefaultComesLast">
+      <message key="default.comes.last"
+        value="To improve readability, the default case should be the last case in a switch statement."/>
+    </module>
+    <!-- <module name="MissingCtor"/> -->
+    <module name="FallThrough">
+      <message key="fall.through"
+        value="The case above will fall through and run the code in this case too.  This may be an indication that a break statement is missing at the end of the previous case.  If this is the intended functionality, add a comment on the last line of the previous case with the phrase ''falls through'' to indicate that."/>
+    </module>
+    <!-- <module name="MultipleStringLiterals"/> -->
+    <module name="MultipleVariableDeclarations">
+      <message key="multiple.variable.declarations.comma"
+        value="To make the code more readable, place each variable or field in its own declaration on a separate line."/>
+      <message key="multiple.variable.declarations"
+        value="To make the code more readable, place each variable or field in its own declaration on a separate line."/>
+    </module>
+    <!-- <module name="RequireThis"/> -->
+    <!-- <module name="UnnecessaryParentheses"/> -->
+    <module name="OneStatementPerLine">
+      <message key="multiple.statements.line"
+        value="To make the code more readable, place each statement on a separate line."/>
+    </module>
+
+
+    <!-- Checks for class design                         -->
+    <!-- See http://checkstyle.sf.net/config_design.html -->
+    <!-- <module name="DesignForExtension"/> -->
+    <!-- <module name="FinalClass"/> -->
+    <!-- <module name="HideUtilityClassConstructor"/> -->
+    <!-- <module name="InterfaceIsType"/> -->
+	<!--
+    <module name="VisibilityModifier">
+      <message key="variable.notPrivate"
+        value="The field ''{0}'' should be declared private.  Only constants (static final fields) are allowed to be public.  If this field is intended to represent a constant value, declare it to be static and final."/>
+    </module>
+	-->
+
+    <!-- Miscellaneous other checks.                   -->
+    <!-- See http://checkstyle.sf.net/config_misc.html -->
+    <module name="ArrayTypeStyle">
+      <message key="array.type.style"
+        value="Use the Java style of declaring arrays with the [] coming after the type name instead of after the variable name.  That is, use ''int[] x'' instead of ''int x[]''."/>
+    </module>
+    <!-- <module name="FinalParameters"/> -->
+    <module name="InnerAssignment">
+      <message key="assignment.inner.avoid"
+        value="Avoid assigning values to variables as part of a larger expression.  It is difficult to read correctly and may cause confusion.  Make each assignment a separate statement."/>
+    </module>
+    <!--
+    <module name="GenericIllegalRegexp">
+      <property name="format" value="\s+$"/>
+      <property name="message" value="Line has trailing spaces."/>
+    </module>
+    -->
+    <module name="TodoComment">
+      <property name="format" value="TODO|FIX\s*ME"/>
+      <message key="todo.match"
+        value="TODO and FIX ME comment are indicators that something is not complete in your code.  Address the issue and then remove the notation."/>
+    </module>
+    <module name="UpperEll">
+      <message key="upperEll"
+        value="When declaring a literal long value, use an uppercase ''L'' instead of a lowercase ''l''.  This avoids the confusion between the lowercase ''l'' (ell) and the number ''1''."/>
+    </module>
+
+  </module>
+
+  <!-- disallow System.out.print in the code
+  
+  <module name="RegexpMultiline">
+    <property name="format" value="System\.\n?out\.\n?print"/>
+    <property name="message"
+      value="Do not use System.out for output.  Use a PrintWriter instead."/>
+  </module>
+  -->
+  <!-- New check.  Goes along with SimplifyBooleanReturn but catches the
+       case where the second return is not in an else -->
+
+  <!-- duplicate code checks.               -->
+  <!-- <module name="StrictDuplicateCode"/> -->
+
+</module>

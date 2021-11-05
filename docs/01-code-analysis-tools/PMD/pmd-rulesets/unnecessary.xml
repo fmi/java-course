@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<ruleset name="Unnecessary Code Rules (JavaTddPlugin version)"
+    xmlns="http://pmd.sf.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+  <description>
+    The Unnecessary Code Ruleset contains rules that find unnecessary.
+    This version of the ruleset includes alternate messages from the main PMD
+    rulesets/java/unnecessary.xml ruleset.
+  </description>
+
+  <rule ref="rulesets/java/unnecessary.xml/UnnecessaryConversionTemporary"
+    message="Do not allocate a new object to convert a primitive
+    value to a string.  For example, use Integer.toString(x) instead
+    of new Integer(x).toString()."/>
+
+  <rule ref="rulesets/java/unnecessary.xml/UnnecessaryReturn"
+    message="Including a return statement at the end of a method with
+    a void return type is unnecessary."/>
+
+  <rule ref="rulesets/java/unnecessary.xml/UnnecessaryFinalModifier"
+    message="When a class has the final modifier, all the methods are
+    automatically final, so the final modifier on this method is
+    redundant."/>
+
+  <!-- rule ref="rulesets/java/unnecessary.xml/UselessOverridingMethod"
+    message="The body of this overriding method does not add any
+    behavior--><!--it only calls the inherited version.  If you want the
+    method to behave differently than in the parent class, change the
+    body.  Otherwise, remove it from the subclass."/ -->
+
+  <rule ref="rulesets/java/unnecessary.xml/UselessOperationOnImmutable"
+    message="An operation on an immutable object (a String, BigDecimal or
+    BigInteger object) will not change the object itself, and so it will
+    have no effect as a statement by itself (and it probably a bug)."/>
+
+  <!--  currently, broken in PMD XPath validation, so skipping
+  <rule ref="rulesets/java/unnecessary.xml/UnusedNullCheckInEquals"
+    message="After checking an object reference for null, you should
+    invoke equals() on that object rather than passing it to another
+    object's equals() method."/>
+  -->
+
+</ruleset>

@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<ruleset name="Strict Exception Rules (JavaTddPlugin version)"
+    xmlns="http://pmd.sf.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+  <description>
+    These rules provide some strict guidelines about throwing and
+    catching exceptions.   This version of the ruleset includes
+    alternate messages from the main PMD rulesets/java/strictexception.xml
+    ruleset.
+  </description>
+
+  <!-- AvoidCatchingThrowable -->
+
+  <!-- SignatureDeclareThrowsException -->
+
+  <!-- ExceptionAsFlowControl -->
+
+  <!-- AvoidCatchingNPE -->
+
+  <!-- AvoidThrowingRawExceptionTypes -->
+
+  <rule
+    ref="rulesets/java/strictexception.xml/AvoidThrowingNullPointerException"
+    message="Avoid throwing NullPointerExceptions. These are confusing because
+    most people will assume that the virtual machine threw it. Consider using
+    an IllegalArgumentException instead; this will be clearly seen as a
+    programmer-initiated exception."/>
+
+  <rule ref="rulesets/java/strictexception.xml/AvoidRethrowingException"
+    message="Avoid simply rethrowing an exception within a catch block. Catch
+    blocks that merely rethrow a caught exception only add to code size and
+    runtime complexity."/>
+
+  <rule ref="rulesets/java/strictexception.xml/DoNotExtendJavaLangError"
+    message="Errors are system exceptions. Do not extend them."/>
+
+  <rule ref="rulesets/java/strictexception.xml/DoNotThrowExceptionInFinally"
+    message="Throwing exceptions within a 'finally' block is confusing since
+    they may mask other exceptions or code defects."/>
+
+  <rule
+    ref="rulesets/java/strictexception.xml/AvoidThrowingNewInstanceOfSameException"
+    message="Do not create a new instance of the same class of exception
+    to wrap the original exception.  Instead, throw the original exception
+    itself."/>
+
+  <!-- AvoidCatchingGenericException -->
+
+  <!-- AvoidLosingExceptionInformation -->
+
+</ruleset>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<ruleset name="JUnit Rules (JavaTddPlugin version)"
+    xmlns="http://pmd.sf.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+  <description>
+    These rules deal with different problems that can occur with JUnit
+    tests.  This version of the ruleset includes alternate messages
+    from the main PMD rulesets/java/design.xml ruleset.
+  </description>
+
+  <rule ref="rulesets/java/junit.xml/JUnitStaticSuite"/>
+  <rule ref="rulesets/java/junit.xml/JUnitSpelling"
+    message="You may have misspelled a JUnit framework method (setUp() or
+    tearDown()).  Double-check your capitalization."/>
+
+  <!-- rule
+  ref="rulesets/java/junit.xml/JUnitAssertionsShouldIncludeMessage"
+    not included, since students usually don't use messages when
+    writing test cases "in the small", and that is basically OK. -->
+  <!-- rule name="JUnitTestsShouldIncludeAssert"
+    use VT rule instead, until we can check out the differences -->
+  <!-- rule name="TestClassWithoutTestCases"
+    use VT rule instead, until we can check out the differences -->
+  <!-- rule name="UnnecessaryBooleanAssertion"
+    use VT rule instead, since it catches all compile-time constants -->
+
+  <!-- UseAssertEqualsInsteadOfAssertTrue" -->
+  <rule ref="rulesets/java/junit.xml/UseAssertSameInsteadOfAssertTrue"
+    message="This assertEquals() test uses == to compare object references.
+    Ensure that you mean to compare object references rather than the
+    values of the corresponding objects, since this could be a bug.  If you
+    intend to compare object references only, use assertSame(x, y) instead of
+    assertTrue(x == y), or assertNotSame(x, y) instead of
+    assertFalse(x == y)."/>
+  <rule ref="rulesets/java/junit.xml/UseAssertNullInsteadOfAssertTrue"
+    message="Use assertNull(x) instead of assertTrue(x == null), or
+    assertNotNull(x) vs assertFalse(x == null)."/>
+  <rule ref="rulesets/java/junit.xml/SimplifyBooleanAssertion"
+    message="Avoid negation in an assertTrue() or assertFalse() test. For
+    example, rephrase: assertTrue(!expr); as: assertFalse(expr);."/>
+
+  <!-- JUnitTestContainsTooManyAsserts -->
+  <!-- UseAssertTrueInsteadOfAssertEquals -->
+
+</ruleset>

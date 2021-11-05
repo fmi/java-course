@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<ruleset name="Naming Rules (JavaTddPlugin version)"
+    xmlns="http://pmd.sf.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+  <description>
+    The Naming Ruleset contains a collection of rules about names -
+    too long, too short, and so forth.  This version of the ruleset
+    includes alternate messages from the main PMD rulesets/java/naming.xml
+    ruleset.
+  </description>
+
+  <!-- ShortVariable -->
+
+  <!-- rule ref="rulesets/java/naming.xml/LongVariable"
+    message="The variable name ''{0}'' seems a little longer than
+    necessary. It is important to use descriptive names, but
+    excessively long variable names can increase typing errors. Try to
+    find a slightly shorter (less than 17 characters) but still
+    descriptive variable name."/ -->
+
+  <!--  rule ref="rulesets/java/naming.xml/ShortMethodName"
+    message="The name of this method is probably not very
+    descriptive. Using descriptive method names (at least three
+    characters) makes it easier for a reader to understand what the
+    method is supposed to do."/ -->
+
+  <!-- VariableNamingConventions -->
+
+  <!-- MethodNamingConventions -->
+
+  <!-- ClassNamingConventions -->
+
+  <!-- AbstractNaming -->
+
+  <!-- AvoidDollarSigns -->
+
+  <rule ref="rulesets/java/naming.xml/MethodWithSameNameAsEnclosingClass"
+    message="This method has the same name as the class that contains
+    it.  Did you intend this method to be a constructor? If so,
+    remember constructors do not have a return type. If not, you
+    should pick a new name for this method."/>
+
+  <rule ref="rulesets/java/naming.xml/SuspiciousHashcodeMethodName"
+    message="This method looks like it is intended to override the
+    hashCode() method, but it does not.  If you intend to override
+    hashCode(), fix the method declaration.  Otherwise, change the
+    name of this method so that it will not be confused with hashCode()."/>
+
+  <!-- SuspiciousConstantFieldName -->
+
+  <!-- SuspiciousEqualsMethodName -->
+
+  <rule ref="rulesets/java/naming.xml/AvoidFieldNameMatchingTypeName"
+    message="This field has the same name as the class that contains
+    it. This is not illegal but it can be very confusing and is best
+    avoided. You should pick a new name for this field."/>
+
+  <!-- AvoidFieldNameMatchingMethodName -->
+
+  <!-- NoPackage -->
+
+  <!-- PackageCase -->
+
+  <!-- MisleadingVariableName -->
+
+  <!-- BooleanGetMethodName -->
+
+  <!-- ShortClassName -->
+
+  <!-- GenericsNaming -->
+
+</ruleset>

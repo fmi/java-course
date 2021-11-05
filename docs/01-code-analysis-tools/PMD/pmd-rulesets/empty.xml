@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<ruleset name="Empty Code Rules (JavaTddPlugin version)"
+    xmlns="http://pmd.sf.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+  <description>
+    The Empty Code Ruleset contains rules that find empty statements of any
+    kind (empty method, empty block statement, empty try or catch block,...).
+    This version of the ruleset includes alternate messages from the main PMD
+    rulesets/java/empty.xml ruleset.
+  </description>
+
+  <rule ref="rulesets/java/empty.xml/EmptyCatchBlock"
+    message="The body of this catch block is empty, so the caught
+    exception will be thrown away with no action.  If this is what
+    you intend, please provide an appropriate comment inside the
+    braces.">
+    <properties>
+        <property name="allowCommentedBlocks" value="true"/>
+    </properties>
+  </rule>
+
+  <rule ref="rulesets/java/empty.xml/EmptyIfStmt"
+    message="The body of this if statement is empty. Make sure you do
+    not have a ; following the if by mistake.  Otherwise, there is
+    probably a more efficient way to write the code."/>
+
+  <rule ref="rulesets/java/empty.xml/EmptyWhileStmt"
+    message="The body of this while loop is empty. Make sure you do
+    not have a semicolon (;) after the while by mistake.  If you do
+    not need to do anything in the body of the loop you can probably
+    omit the loop entirely."/>
+
+  <rule ref="rulesets/java/empty.xml/EmptyTryBlock"
+    message="The body of this try block is empty, so the entire
+    try/catch does nothing.  Add statements to the block or remove it
+    entirely."/>
+
+  <rule ref="rulesets/java/empty.xml/EmptyFinallyBlock"
+    message="The body of this finally block is empty.  Add statements
+    to the block or remove it entirely."/>
+
+  <rule ref="rulesets/java/empty.xml/EmptySwitchStatements"
+    message="This switch statement is empty.  Add cases with statements
+    or remove the switch entirely."/>
+
+  <rule ref="rulesets/java/empty.xml/EmptySynchronizedBlock"
+    message="This synchronized block is empty.  Add statements to the
+    block or remove it entirely."/>
+
+  <!-- Checkstyle handles this, since it also flags loop usage
+  <rule ref="rulesets/java/empty.xml/EmptyStatementNotInLoop"
+    message="A semicolon (;) on its own line or extra semicolons at
+    the end of a line represent empty statements. Empty statements are
+    unnecessary and should be removed."/>
+  -->
+
+  <rule ref="rulesets/java/empty.xml/EmptyInitializer"
+    message="This initializer block is empty.  Add statements
+    to the block or remove it entirely."/>
+
+  <rule ref="rulesets/java/empty.xml/EmptyStatementBlock"
+    message="This block is empty.  Add statements to the
+    block or remove it entirely."/>
+
+  <rule ref="rulesets/java/empty.xml/EmptyStaticInitializer"
+    message="This static initializer block is empty.  Add statements
+    to the block or remove it entirely."/>
+
+</ruleset>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<ruleset name="Code Size Rules (JavaTddPlugin version)"
+    xmlns="http://pmd.sf.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+  <description>
+    The Code Size Ruleset contains a collection of rules that find
+    code size related problems.  This version of the ruleset includes
+    alternate messages from the main PMD rulesets/java/codesize.xml ruleset.
+  </description>
+
+  <rule ref="rulesets/java/codesize.xml/ExcessiveMethodLength"
+    message="This method seems to be excessively long.  Very long
+    methods indicate a lack of cohesion.  Perhaps you could factor out
+    some of the code into helper methods."/>
+
+  <rule ref="rulesets/java/codesize.xml/ExcessiveParameterList"
+    message="This method seems to have an excessive number of formal
+    parameters. Could a collection of these parameters become a new
+    object?  If so perhaps a new class should be created to
+    encapsulate some of these parameters. Then pass an object of that
+    type to this method instead."/>
+
+  <rule ref="rulesets/java/codesize.xml/ExcessiveClassLength"
+    message="This class seems to be excessively long.  Very long
+    classes indicate a lack of cohesion.  Perhaps this class is trying
+    to represent more than one object. Could it be broken into several
+    more cohesive classes?  Or could composition be used to simplify
+    the code in this class?"/>
+
+  <rule ref="rulesets/java/codesize.xml/TooManyFields"
+    message="This class seems to have an excessive number of fields. A
+    very large number of fields indicates a lack of cohesion.  Perhaps
+    this class is trying to represent more than one object. Could it
+    be broken into several more cohesive classes? Alternatively, might
+    it be better to replace a collection of fields with an ArrayList
+    or another collection class?">
+    <properties>
+        <property name="maxfields" value="30"/>
+    </properties>
+  </rule>
+
+</ruleset>

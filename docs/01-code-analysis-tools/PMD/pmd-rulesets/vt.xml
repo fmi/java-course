@@ -1,0 +1,289 @@
+<?xml version="1.0"?>
+<ruleset name="Virginia Tech Rules"
+    xmlns="http://pmd.sf.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+  <description>
+    Contains custom PMD rules written at Virginia Tech, mostly
+    regarding JUnit tests.
+  </description>
+
+    <rule name="JUnit3TestsHaveAssertions"
+          language="java"
+          message="A test case method should use one or more 'assert...()'
+          methods to check that the desired behavior is actually occurring."
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+      externalInfoURL="http://wiki.web-cat.org/WCWiki/PmdRules/VtRules#JUnit3TestsHaveAssertions">
+      <description>
+      All JUnit test methods should contain at least one assertion.
+      </description>
+        <properties>
+        <property name="xpath">
+            <value>
+                <![CDATA[
+  //MethodDeclaration
+[starts-with(MethodDeclarator/@Image, 'test')]
+[not(descendant::StatementExpression/PrimaryExpression/PrimaryPrefix/Name
+        [starts-with(@Image, 'assert') or contains(@Image,'.assert')
+          or @Image = 'fail' or contains(@Image,'.fail')] )]
+[ancestor::ClassOrInterfaceDeclaration[
+    count( ExtendsList[
+        ClassOrInterfaceType[ends-with(@Image, 'TestCase')]]
+    ) > 0
+    ]]
+                ]]>
+            </value>
+        </property>
+        </properties>
+        <priority>2</priority>
+
+      <example>
+  <![CDATA[
+  import junit.framework.*;
+  public class Foo extends TestCase {
+   public void test1() {} // oops, no assertion!
+  }
+  ]]>
+      </example>
+      </rule>
+
+    <rule name="JUnit4TestsHaveAssertions"
+          language="java"
+          message="A test case method should use one or more 'assert...()' methods to check that the desired behavior is actually occurring."
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+      externalInfoURL="http://web-cat.cs.vt.edu/WCWiki/PmdRules/VtRules#JUnit4TestsHaveAssertions">
+      <description>
+      All JUnit 4.x test methods should contain at least one assertion.
+      </description>
+        <properties>
+        <property name="xpath">
+            <value>
+                <![CDATA[
+  //MethodDeclaration
+[parent::ClassOrInterfaceBodyDeclaration[
+    child::Annotation[descendant::Name/@Image = "Test"]
+]]
+[not(descendant::StatementExpression/PrimaryExpression/PrimaryPrefix/Name
+        [starts-with(@Image, 'assert') or contains(@Image,'.assert')
+          or @Image = 'fail' or contains(@Image,'.fail')] )]
+                ]]>
+            </value>
+        </property>
+        </properties>
+        <priority>2</priority>
+
+      <example>
+  <![CDATA[
+  import org.junit.*;
+  public class Foo {
+   @Test
+   public void test1() {} // oops, no assertion!
+  }
+  ]]>
+      </example>
+      </rule>
+
+    <rule name="JUnit3ConstantAssertion"
+          language="java"
+          message="This assertion uses only values known at compile time, so
+          it cannot test any useful behavior exhibited by your code at
+          run-time."
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+      externalInfoURL="http://web-cat.cs.vt.edu/WCWiki/PmdRules/VtRules#JUnitConstantAssertion">
+      <description>
+      All assertEquals() or assertTrue() assertions in JUnit test methods
+      should contain one or more non-literal parameters.
+      </description>
+        <properties>
+        <property name="xpath">
+            <value>
+                <![CDATA[
+//StatementExpression/PrimaryExpression[
+  PrimaryPrefix/Name/@Image='assertTrue' or
+  PrimaryPrefix/Name/@Image='assertFalse' or
+  PrimaryPrefix/Name/@Image='assertNotNull' or
+  PrimaryPrefix/Name/@Image='assertNull' or
+  PrimaryPrefix/Name/@Image='assertNotSame' or
+  PrimaryPrefix/Name/@Image='assertSame' or
+  PrimaryPrefix/Name/@Image='assertEquals']
+  [not(PrimarySuffix/Arguments/ArgumentList/descendant::PrimaryPrefix/Name or
+  PrimarySuffix/Arguments/ArgumentList/descendant::PrimaryExpression/PrimaryPrefix[@Label='this'])]
+  [ancestor::ClassOrInterfaceDeclaration[
+    count( ExtendsList[
+        ClassOrInterfaceType[ends-with(@Image, 'TestCase')]]
+    ) > 0
+    ]]
+                ]]>
+            </value>
+        </property>
+        </properties>
+        <priority>2</priority>
+
+      <example>
+  <![CDATA[
+  import junit.framework.*;
+  public class Foo extends TestCase {
+   public void test1() {
+       assertTrue( true );    // oops, does not test anything useful!
+       assertEquals( 0, 0 );  // oops, does not test anything useful!
+   }
+  }
+  ]]>
+      </example>
+      </rule>
+
+    <rule name="JUnit4ConstantAssertion"
+          language="java"
+          message="This assertion uses only values known at compile time, so
+          it cannot test any useful behavior exhibited by your code at
+          run-time."
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+      externalInfoURL="http://web-cat.cs.vt.edu/WCWiki/PmdRules/VtRules#JUnitConstantAssertion">
+      <description>
+      All assertEquals() or assertTrue() assertions in JUnit 4.x test methods
+      should contain one or more non-literal parameters.
+      </description>
+        <properties>
+        <property name="xpath">
+            <value>
+                <![CDATA[
+//StatementExpression/PrimaryExpression[
+  PrimaryPrefix/Name/@Image='assertTrue' or
+  PrimaryPrefix/Name/@Image='assertFalse' or
+  PrimaryPrefix/Name/@Image='assertNotNull' or
+  PrimaryPrefix/Name/@Image='assertNull' or
+  PrimaryPrefix/Name/@Image='assertNotSame' or
+  PrimaryPrefix/Name/@Image='assertSame' or
+  PrimaryPrefix/Name/@Image='assertEquals']
+  [not(PrimarySuffix/Arguments/ArgumentList/descendant::PrimaryPrefix/Name or
+  PrimarySuffix/Arguments/ArgumentList/descendant::PrimaryExpression/PrimaryPrefix[@Label='this'])]
+  [ancestor::MethodDeclaration
+    [parent::ClassOrInterfaceBodyDeclaration[
+      child::Annotation[descendant::Name/@Image = "Test"]
+    ]]]
+                ]]>
+            </value>
+        </property>
+        </properties>
+        <priority>2</priority>
+
+      <example>
+  <![CDATA[
+  import org.junit.*;
+  public class Foo {
+   @Test
+   public void test1() {
+       assertTrue( true );    // oops, does not test anything useful!
+       assertEquals( 0, 0 );  // oops, does not test anything useful!
+   }
+  }
+  ]]>
+      </example>
+      </rule>
+
+    <rule name="JUnitTestClassNeedsTestCase"
+          language="java"
+          message="This JUnit test class does not contain any actual tests."
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+      externalInfoURL="http://web-cat.cs.vt.edu/WCWiki/PmdRules/VtRules#JUnitTestClassNeedsTestCase">
+      <description>
+      All JUnit test classes should contain a test method.
+      </description>
+        <properties>
+        <property name="xpath">
+            <value>
+                <![CDATA[
+//ClassOrInterfaceDeclaration[
+    count( ExtendsList[
+        ClassOrInterfaceType[ends-with(@Image, 'TestCase')]]
+    ) > 0
+    ][
+  not(descendant::MethodDeclaration[
+    starts-with(MethodDeclarator/@Image, 'test')])]
+                ]]>
+            </value>
+        </property>
+        </properties>
+        <priority>2</priority>
+
+      <example>
+  <![CDATA[
+  import junit.framework.*;
+  public class Foo extends TestCase {
+           // oops, no test cases!
+   }
+  }
+  ]]>
+      </example>
+    </rule>
+
+    <rule name="FormalParametersNeedMeaningfulNames"
+          language="java"
+          message="A formal parameter has been left with its auto-generated
+          default name instead of a more meaningful name."
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+        externalInfoURL="http://web-cat.cs.vt.edu/WCWiki/PmdRules/VtRules#FormalParametersNeedMeaningfulNames">
+        <description>
+        When using a development environment that can auto-generate empty
+        method definitions, you should change the auto-generated formal
+        parameter names to something more meaningful.
+        </description>
+        <properties>
+        <property name="xpath">
+            <value>
+  <![CDATA[
+  //MethodDeclaration/MethodDeclarator/FormalParameters/FormalParameter/VariableDeclaratorId[matches(@Image, '^arg[0-9]+$')]
+  ]]>
+            </value>
+        </property>
+        </properties>
+        <priority>2</priority>
+
+      <example>
+  <![CDATA[
+  public class FooClass
+  {
+      public void foo(int arg0, String arg1)
+      {
+      }
+  }
+  ]]>
+      </example>
+    </rule>
+
+    <rule name="ProhibitedGreenfootImport"
+          language="java"
+          message="Do not import greenfoot.* packages or classes, since
+          they are not available under Android."
+          class="net.sourceforge.pmd.lang.rule.XPathRule"
+        externalInfoURL="http://web-cat.cs.vt.edu/WCWiki/PmdRules/VtRules#ProhibitedGreenfootImport">
+        <description>
+        When using Greenfoot4Sofia, do not import any greenfoot.* packages
+        or classes, since these are not intended for use by user projects
+        and are completely unavailable under Android.
+        </description>
+        <properties>
+        <property name="xpath">
+            <value>
+  <![CDATA[
+    //ImportDeclaration/Name[starts-with(@Image, 'greenfoot.')]
+    [//ImportDeclaration/Name[starts-with(@Image, 'sofia.') or @Image='sofia']]
+  ]]>
+            </value>
+        </property>
+        </properties>
+        <priority>2</priority>
+
+      <example>
+  <![CDATA[
+  import greenfoot.sofiainternal.*;
+  public class FooClass
+  {
+      // ...
+  }
+  ]]>
+      </example>
+    </rule>
+
+</ruleset>

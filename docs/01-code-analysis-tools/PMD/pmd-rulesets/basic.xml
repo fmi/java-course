@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<ruleset name="Basic Rules (JavaTddPlugin version)"
+    xmlns="http://pmd.sf.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+  <description>
+    The Basic Ruleset contains a collection of good practices which
+    everyone should follow.  This version of the ruleset
+    includes alternate messages from the main PMD
+    rulesets/java/basic.xml ruleset.
+  </description>
+
+  <rule ref="rulesets/java/basic.xml/JumbledIncrementer"
+    message="Check the update part of the inner for loop. It appears
+    that you are incrementing the wrong loop variable. It is either a
+    mistake, or it will be confusing to others."/>
+
+  <rule ref="rulesets/java/basic.xml/ForLoopShouldBeWhileLoop"
+    message="If a for loop does not have an initialization expression
+    or an update expression, you should use a while loop instead."/>
+
+  <!-- OverrideBothEqualsAndHashcode: omitted, since students often
+    learn how to override equals() before they know anything about
+    the hashCode() method. -->
+
+  <rule ref="rulesets/java/basic.xml/DoubleCheckedLocking"/>
+
+  <rule ref="rulesets/java/basic.xml/ReturnFromFinallyBlock"
+    message="Do not place return statements in finally blocks, since
+    that may silently discard meaningful exceptions."/>
+
+  <rule ref="rulesets/java/basic.xml/UnconditionalIfStatement"
+    message="The condition of this if statement is always true or
+    always false, so you do not need the if statement at all."/>
+
+  <rule ref="rulesets/java/basic.xml/BooleanInstantiation"
+    message="Avoid use new to create Boolean objects.  Instead, use
+    the predefined objects Boolean.TRUE or Boolean.FALSE, or call
+    Boolean.valueOf() instead."/>
+
+  <rule ref="rulesets/java/basic.xml/CollapsibleIfStatements"
+    message="These two if statements should be combined into one using
+     &amp;amp;&amp;amp;."/>
+
+  <rule ref="rulesets/java/basic.xml/ClassCastExceptionWithToArray"/>
+
+  <rule ref="rulesets/java/basic.xml/AvoidDecimalLiteralsInBigDecimalConstructor"/>
+
+  <rule ref="rulesets/java/basic.xml/MisplacedNullCheck"
+    message="The null check in this condition is in the wrong place;
+    if the variable is null, there will be a NullPointerException.
+    Consider re-ordering the expressions in your condition."/>
+
+  <!-- AvoidThreadGroup: omitted for simplicity ... -->
+
+  <rule ref="rulesets/java/basic.xml/BrokenNullCheck"
+    message="This conditional expression will produce a
+    NullPointerException.  You may have used || instead of &amp;amp;&amp;amp;
+    or vice versa."/>
+
+  <rule ref="rulesets/java/basic.xml/AvoidUsingOctalValues"
+    message="This literal number starts with a zero, indicating it is written
+    in octal (base 8).  Avoid octal literals, because they are easily confused
+    with decimal (base 10).  To improve readability, replace this with a
+    decimal value instead."/>
+
+  <rule ref="rulesets/java/basic.xml/AvoidMultipleUnaryOperators"
+    message="Using multiple unary operators may be a bug, and is confusing.
+    To improve readability, simplify your expression or split it into
+    multiple statements (with comments explaining what is going on)."/>
+
+  <rule ref="rulesets/java/basic.xml/ExtendsObject"/>
+
+  <rule ref="rulesets/java/basic.xml/AvoidBranchingStatementAsLastInLoop"
+    message="Avoid using a branching statement as the last in a loop.  This
+    is confusing, and may be a bug.  Ensure that it is not a bug, and then
+    restructure your loop's logic to avoid this situation."/>
+
+  <rule ref="rulesets/java/basic.xml/DontCallThreadRun"/>
+
+  <!--
+  <rule ref="rulesets/java/basic.xml/DontUseFloatTypeForLoopIndices"/>
+  -->
+
+</ruleset>

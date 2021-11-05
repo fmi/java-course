@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<ruleset name="Design Rules (JavaTddPlugin version)"
+    xmlns="http://pmd.sf.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+  <description>
+    The Design Ruleset contains a collection of rules that find
+    questionable designs.  This version of the ruleset includes
+    alternate messages from the main PMD rulesets/java/design.xml ruleset.
+  </description>
+
+  <!--  <rule ref="rulesets/java/design.xml/UseSingleton"/> -->
+
+  <!--  Checkstyle is handling this one
+  <rule ref="rulesets/java/design.xml/SimplifyBooleanReturns"
+    message="This if statement can be removed.  If you are returning true
+    when the if statement's Boolean condition is true, and false when the
+    statement's condition is false, then you can simply return the condition
+    instead (i.e. return x &lt; 5;).  If you are returning false when the
+    if statment's condition is true and returning true in the else branch,
+    you can just return the NOT (!) of the condition instead
+    (i.e. return !okay;)."/>
+  -->
+
+  <rule ref="rulesets/java/design.xml/SimplifyBooleanExpressions"
+    message="This boolean expression can be rewritten more simply.
+    Hint: x == true is the same as x.  Also, x == false is the same as
+    !x."/>
+
+  <rule ref="rulesets/java/design.xml/SwitchStmtsShouldHaveDefault"
+    message="This switch statement does not have a default case, which can
+    lead to errors.  Add a default case (with an explicit comment, if no
+    action is intended when no other case applies)."/>
+
+  <!-- AvoidDeeplyNestedIfStmts -->
+
+  <!--  Too many people like to do this when applying default or
+        corrective parameter value transformations
+  <rule ref="rulesets/java/design.xml/AvoidReassigningParameters"
+    message="It is a bad idea to assign a new value to a formal parameter
+    within a method, which can decrease readability. Consider using a local
+    variable instead."/>
+  -->
+
+  <!-- SwitchDensity -->
+
+  <!-- ConstructorCallsOverridableMethod -->
+
+  <!-- AccessorClassGeneration -->
+
+  <!-- FinalFieldCouldBeStatic -->
+
+  <!-- CloseResource -->
+
+  <!-- NonStaticInitializer -->
+
+  <!-- DefaultLabelNotLastInSwitchStmt -->
+
+  <rule ref="rulesets/java/design.xml/NonCaseLabelInSwitchStatement"
+    message="This label is not a case label.  Such labels decrease readability
+    and cause confusion in a case statement.  Remove it, or refactor your
+    code."/>
+
+  <!-- OptimizeToArrayCall -->
+
+  <!-- BadComparison -->
+
+  <rule ref="rulesets/java/design.xml/EqualsNull"
+    message="When comparing an object reference to the value null you
+    want to use ==, not the .equals() method."/>
+
+  <!-- ConfusingTernary -->
+
+  <rule ref="rulesets/java/design.xml/InstantiationToGetClass"
+    message="Avoid instantiating an object just to call getClass() on it.
+    Use the .class public member instead (i.e., use ''SomeClassName.class''
+    instead of ''new SomeClassName().getClass()'')."/>
+
+  <rule ref="rulesets/java/design.xml/IdempotentOperations"
+    message="This operation has no effect.  Examine it to make sure it is
+    not a bug, then remove it."/>
+
+  <!-- SimpleDateFormatNeedsLocale -->
+
+  <!--  ImmutableField -->
+
+  <!--  UseLocaleWithCaseConversions -->
+
+  <!-- AvoidProtectedFieldInFinalClass -->
+
+  <!--  AssignmentToNonFinalStatic -->
+
+  <rule
+    ref="rulesets/java/design.xml/MissingStaticMethodInNonInstantiatableClass"
+    message="This class cannot be instantiated, since it has only private
+    constructor(s). But this class has no static methods or fields.  A class
+    that has private constructors and does not have any static methods or
+    fields cannot be used."/>
+
+  <!-- AvoidSynchronizedAtMethodLevel -->
+
+  <!-- MissingBreakInSwitch -->
+
+  <!-- UseNotifyAllInsteadOfNotify -->
+
+  <!-- AvoidInstanceofChecksInCatchClause -->
+
+  <!-- AbstractClassWithoutAbstractMethod -->
+
+  <rule ref="rulesets/java/design.xml/SimplifyConditional"
+    message="It is unnecessary to check for null before instanceof.  The
+    instanceof keyword returns false when given a null argument."/>
+
+  <!-- rule ref="rulesets/java/design.xml/CompareObjectsWithEquals"
+    message="When comparing two objects you probably want to use the
+    .equals method, not the equality operator (==)."/ -->
+
+  <!-- PositionLiteralsFirstInComparisons -->
+
+  <!-- UnnecessaryLocalBeforeReturn -->
+
+  <!-- NonThreadSafeSingleton -->
+
+  <rule ref="rulesets/java/design.xml/UncommentedEmptyMethod"
+    message="This method does not contain any code. Should it be doing
+    something? Or can it be removed?  If you need to keep it, add a
+    comment to the body explaining why it is empty."/>
+
+  <rule ref="rulesets/java/design.xml/UncommentedEmptyConstructor"
+    message="This constructor does not contain any code. Should it be
+    doing something?  Add a comment to the body explaining why it is empty."/>
+
+  <!-- AvoidConstantsInterface -->
+
+  <!-- UnsynchronizedStaticDateFormatter -->
+
+  <!-- PreserveStackTrace -->
+
+  <!-- UseCollectionIsEmpty -->
+
+  <!-- ClassWithOnlyPrivateConstructorsShouldBeFinal -->
+
+  <!-- EmptyMethodInAbstractClassShouldBeAbstract -->
+
+  <!-- Sometimes this isn't really an error, but far too often for students
+       it really is, so a diagnostic is more valuable that the (rare)
+       false positives. -->
+  <rule ref="rulesets/java/design.xml/SingularField"
+    message="This field is only used in one method (or constructor) in this
+    class. Make it a local variable within the method instead."/>
+
+  <!-- ReturnEmptyArrayRatherThanNull -->
+
+  <!-- AbstractClassWithoutAnyMethod -->
+
+  <rule ref="rulesets/java/design.xml/TooFewBranchesForASwitchStatement"
+    message="This switch statement has too few branches--rewrite it as an
+    if statement instead.  Switch statements are intended for more complex
+    multi-way branching behavior. Using a switch for only a few cases is not
+    advised, since switches are not as easy to understand as if-then
+    statements."/>
+
+  <rule ref="rulesets/java/design.xml/LogicInversion"
+    message="Instead of using unary not (!) around the whole expression, use
+    the opposite comparison operation instead (e.g., use != instead of ==, or
+    &gt;= instead of &lt;, etc.)"/>
+
+  <!-- UseVarargs -->
+
+  <!-- FieldDeclarationsShouldBeAtStartOfClass -->
+
+  <!-- GodClass -->
+
+</ruleset>

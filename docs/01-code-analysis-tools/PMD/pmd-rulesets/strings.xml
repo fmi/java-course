@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<ruleset name="String and StringBuffer Rules (JavaTddPlugin version)"
+    xmlns="http://pmd.sf.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+  <description>
+    These rules deal with different problems that can occur with
+    manipulation of the class String or StringBuffer.  This version of
+    the ruleset includes alternate messages from the main PMD
+    rulesets/java/strings.xml ruleset.
+  </description>
+
+  <!-- AvoidDuplicateLiterals -->
+
+  <rule ref="rulesets/java/strings.xml/StringInstantiation"
+    message="Avoid using the new operator on the String class.  Strings
+    are immutable, so they can be safely shared.  Also, string literals
+    denote objects of class String (i.e., instead of
+    String s = new String(''hello'');, simply use String s = ''hello'';)."/>
+
+  <!-- StringToString -->
+
+  <!-- InefficientStringBuffering -->
+
+  <rule ref="rulesets/java/strings.xml/UnnecessaryCaseChange"
+    message="Use equalsIgnoreCase() instead of using toUpperCase().equals() or
+    toLowerCase().equals(), since it is faster and simpler.  Remember that
+    equalsIgnoreCase() does not require converting to all-upper or all-lower
+    case, either."/>
+
+  <!-- UseStringBufferLength -->
+
+  <!-- AppendCharacterWithChar -->
+
+  <!-- ConsecutiveLiteralAppends -->
+
+  <!-- UseIndexOfChar -->
+
+  <!-- InefficientEmptyStringCheck -->
+
+  <!-- InsufficientStringBufferDeclaration -->
+
+  <!-- UselessStringValueOf -->
+
+  <!-- StringBufferInstantiationWithChar -->
+
+  <!-- UseEqualsToCompareStrings -->
+
+  <!-- AvoidStringBufferField -->
+
+</ruleset>

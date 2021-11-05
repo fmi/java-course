@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<ruleset name="Braces Rules (JavaTddPlugin version)"
+    xmlns="http://pmd.sf.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+  <description>
+    The Braces Ruleset contains a collection of braces rules.  This
+    version of the ruleset includes alternate messages from the main
+    PMD rulesets/java/braces.xml ruleset.
+  </description>
+
+  <rule ref="rulesets/java/braces.xml/IfStmtsMustUseBraces"
+    message="It is a good idea to always enclose the code in the body
+    of an if statement in braces. It helps to reduce the likelihood of
+    errors."/>
+
+  <rule ref="rulesets/java/braces.xml/WhileLoopsMustUseBraces"
+    message="It is a good idea to always enclose the code in the body
+    of a while loop in braces. It helps to reduce the likelihood of
+    errors."/>
+
+  <rule ref="rulesets/java/braces.xml/IfElseStmtsMustUseBraces"
+    message="It is a good idea to always enclose the code in the body
+    of both the if and the else clauses in braces. It helps to reduce
+    the likelihood of errors."/>
+
+  <rule ref="rulesets/java/braces.xml/ForLoopsMustUseBraces"
+    message="It is a good idea to always enclose the code in the body
+    of a for loop in braces. It helps to reduce the likelihood of
+    errors."/>
+
+</ruleset>
