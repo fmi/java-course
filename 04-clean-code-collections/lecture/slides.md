@@ -1,6 +1,6 @@
 class: center, middle
 
-## Качествен (Clean) Code
+# Качествен (Clean) Code
 
 03.11.2021
 
