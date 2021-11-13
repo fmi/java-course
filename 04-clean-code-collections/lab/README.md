@@ -17,7 +17,7 @@ package bg.sofia.uni.fmi.mjt.investment.wallet;
 import java.util.Collection;
 import java.util.Set;
 
-import bg.sofia.uni.fmi.mjt.investment.wallet.aquisition.Acquisition;
+import bg.sofia.uni.fmi.mjt.investment.wallet.acquisition.Acquisition;
 import bg.sofia.uni.fmi.mjt.investment.wallet.asset.Asset;
 import bg.sofia.uni.fmi.mjt.investment.wallet.exception.InsufficientResourcesException;
 import bg.sofia.uni.fmi.mjt.investment.wallet.exception.OfferPriceException;
