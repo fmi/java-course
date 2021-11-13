@@ -40,7 +40,8 @@ public interface Gift<T extends Priceable> {
 
     /**
      * @param t the item to remove from this gift
-     * @return true if the @t was contained in this gift, false otherwise
+     * @return true if the @t was contained in this gift, false otherwise.
+     *         In particular, if @t is null, return false.
      */
     boolean removeItem(T t);
 
@@ -51,6 +52,7 @@ public interface Gift<T extends Priceable> {
 
     /**
      * @return the most expensive item in this gift. If there is a tie, return any of them.
+     *         If the gift contains no items, return null.
      */
     T getMostExpensiveItem();
 
@@ -115,7 +117,7 @@ public interface Person<I> {
     /**
      * @param person the sender of the gifts.
      *               If there are no gifts sent by @person to this person, return an empty collection.
-     * @return an unmodifiable copy of the gifts sent by @person.
+     * @return an unmodifiable copy of the gifts sent by @person, in undefined order
      * @throws IllegalArgumentException if @person is null
      */
     Collection<Gift<?>> getGiftsBy(Person<?> person);
