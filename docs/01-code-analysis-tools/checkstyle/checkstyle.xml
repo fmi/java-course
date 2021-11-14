@@ -360,10 +360,12 @@
         value="Use the Java style of declaring arrays with the [] coming after the type name instead of after the variable name.  That is, use ''int[] x'' instead of ''int x[]''."/>
     </module>
     <!-- <module name="FinalParameters"/> -->
+	<!--
     <module name="InnerAssignment">
       <message key="assignment.inner.avoid"
         value="Avoid assigning values to variables as part of a larger expression.  It is difficult to read correctly and may cause confusion.  Make each assignment a separate statement."/>
     </module>
+	-->
     <!--
     <module name="GenericIllegalRegexp">
       <property name="format" value="\s+$"/>
