@@ -830,7 +830,8 @@ public class UserServiceTest {
 
 ### Полезни четива
 
-- [JUnit javadoc](https://junit.org/junit4/javadoc/latest/index.html)
+- [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/index.html)
+- [JUnit 5 javadoc](https://junit.org/junit5/docs/current/user-guide/index.html)
 - [Unit Testing with JUnit](http://www.vogella.com/tutorials/JUnit/article.html)
 - [Mocks aren't stubs](https://martinfowler.com/articles/mocksArentStubs.html) by Martin Fowler
 - [Writing good tests](https://github.com/mockito/mockito/wiki/How-to-write-good-tests) by Mockito team
