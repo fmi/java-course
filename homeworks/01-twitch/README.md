@@ -34,10 +34,11 @@ public interface StreamingPlatform {
      * @param title    the title of the stream
      * @param category the {@link Category} of the stream
      * @return the started {@link Stream}
-     * @throws UserNotFoundException  if a user with this username is not found in
-     *                                the service
-     * @throws UserStreamingException if a user with this username is currently
-     *                                streaming
+     * @throws IllegalArgumentException if any of the parameters are null or if strings are empty
+     * @throws UserNotFoundException    if a user with this username is not found in
+     *                                  the service
+     * @throws UserStreamingException   if a user with this username is currently
+     *                                  streaming
      */
     Stream startStream(String username, String title, Category category) throws UserNotFoundException, UserStreamingException;
 
@@ -48,10 +49,11 @@ public interface StreamingPlatform {
      * @param username the username of the streamer
      * @param stream   the stream to end
      * @return the created {@link Video}
-     * @throws UserNotFoundException  if a user with this username is not found in
-     *                                the service
-     * @throws UserStreamingException if a user with this username is currently not
-     *                                streaming
+     * @throws IllegalArgumentException if any of the parameters are null or if {@code username} is empty
+     * @throws UserNotFoundException    if a user with this username is not found in
+     *                                  the service
+     * @throws UserStreamingException   if a user with this username is currently not
+     *                                  streaming
      */
     Video endStream(String username, Stream stream) throws UserNotFoundException, UserStreamingException;
 
@@ -60,10 +62,11 @@ public interface StreamingPlatform {
      *
      * @param username the username of the watcher
      * @param content  the content to watch
-     * @throws UserNotFoundException  if a user with this username is not found in
-     *                                the service
-     * @throws UserStreamingException if the user with the specified username is
-     *                                currently streaming
+     * @throws IllegalArgumentException if any of the parameters are null or if {@code username} is empty
+     * @throws UserNotFoundException    if a user with this username is not found in
+     *                                  the service
+     * @throws UserStreamingException   if the user with the specified username is
+     *                                  currently streaming
      */
     void watch(String username, Content content) throws UserNotFoundException, UserStreamingException;
 
@@ -89,6 +92,7 @@ public interface StreamingPlatform {
      *
      * @return the {@link Content} from user with name username which has the most
      *         views in the service.
+     * @throws IllegalArgumentException if {@code username} is null or empty
      * @throws UserNotFoundException if a user with this username is not found in
      *                               the service
      */
@@ -101,6 +105,7 @@ public interface StreamingPlatform {
      * @param username
      * @return an immutable copy of a sorted list of the watched categories by user
      *         with name username in descending order of the count
+     * @throws IllegalArgumentException if {@code username} is null or empty
      * @throws UserNotFoundException if a user with this username is not found in
      *                               the service
      */
