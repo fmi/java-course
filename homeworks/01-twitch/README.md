@@ -34,11 +34,11 @@ public interface StreamingPlatform {
      * @param title    the title of the stream
      * @param category the {@link Category} of the stream
      * @return the started {@link Stream}
-     * @throws IllegalArgumentException if any of the parameters are null or empty
-     * @throws UserNotFoundException  if a user with this username is not found in
-     *                                the service
-     * @throws UserStreamingException if a user with this username is currently
-     *                                streaming
+     * @throws IllegalArgumentException if any of the parameters are null or if strings are empty
+     * @throws UserNotFoundException    if a user with this username is not found in
+     *                                  the service
+     * @throws UserStreamingException   if a user with this username is currently
+     *                                  streaming
      */
     Stream startStream(String username, String title, Category category) throws UserNotFoundException, UserStreamingException;
 
@@ -49,11 +49,11 @@ public interface StreamingPlatform {
      * @param username the username of the streamer
      * @param stream   the stream to end
      * @return the created {@link Video}
-     * @throws IllegalArgumentException if any of the parameters are null or empty
-     * @throws UserNotFoundException  if a user with this username is not found in
-     *                                the service
-     * @throws UserStreamingException if a user with this username is currently not
-     *                                streaming
+     * @throws IllegalArgumentException if any of the parameters are null or if {@code username} is empty
+     * @throws UserNotFoundException    if a user with this username is not found in
+     *                                  the service
+     * @throws UserStreamingException   if a user with this username is currently not
+     *                                  streaming
      */
     Video endStream(String username, Stream stream) throws UserNotFoundException, UserStreamingException;
 
@@ -62,11 +62,11 @@ public interface StreamingPlatform {
      *
      * @param username the username of the watcher
      * @param content  the content to watch
-     * @throws IllegalArgumentException if any of the parameters are null or empty
-     * @throws UserNotFoundException  if a user with this username is not found in
-     *                                the service
-     * @throws UserStreamingException if the user with the specified username is
-     *                                currently streaming
+     * @throws IllegalArgumentException if any of the parameters are null or if {@code username} is empty
+     * @throws UserNotFoundException    if a user with this username is not found in
+     *                                  the service
+     * @throws UserStreamingException   if the user with the specified username is
+     *                                  currently streaming
      */
     void watch(String username, Content content) throws UserNotFoundException, UserStreamingException;
 
@@ -249,29 +249,29 @@ public enum Category {
 src
 ╷
 └─ bg/sofia/uni/fmi/mjt/twitch
-   └─ StreamingPlatform.java
-   └─ Twitch.java
-   └─ (...)
-   bg/sofia/uni/fmi/mjt/twitch/content
-   └─ Category.java
-   └─ Content.java
-   └─ Metadata.java
-   └─ (...)
-   bg/sofia/uni/fmi/mjt/twitch/content/stream
-   └─ Stream.java
-   └─ (...)
-   bg/sofia/uni/fmi/mjt/twitch/content/video
-   └─ Video.java
-   └─ (...)
-   bg/sofia/uni/fmi/mjt/twitch/user
-   └─ User.java
-   └─ UserNotFoundException.java
-   └─ UserStatus.java
-   └─ UserStreamingException.java
-   └─ (...)
-   bg/sofia/uni/fmi/mjt/twitch/user/service
-   └─ UserService.java
-   └─ (...)
+    ├── content
+    │      ├─ stream
+    │      │     ├─ Stream.java
+    │      │     └─ (...)
+    │      ├─ video
+    │      │     ├─ Video.java
+    │      │     └─ (...)
+    │      ├─ Category.java
+    │      ├─ Content.java
+    │      ├─ Metadata.java
+    │      └─ (...)
+    ├── user
+    │      ├─ service
+    │      │     ├─ UserService.java
+    │      │     └─ (...)
+    │      ├─ User.java
+    │      ├─ UserNotFoundException.java
+    │      ├─ UserStatus.java
+    │      ├─ UserStreamingException.java
+    │      └─ (...)
+    ├── StreamingPlatform.java
+    ├── Twitch.java
+    └── (...)
 ```
 
 ### **Предаване**
