@@ -34,6 +34,7 @@ public interface StreamingPlatform {
      * @param title    the title of the stream
      * @param category the {@link Category} of the stream
      * @return the started {@link Stream}
+     * @throws IllegalArgumentException if any of the parameters are null or empty
      * @throws UserNotFoundException  if a user with this username is not found in
      *                                the service
      * @throws UserStreamingException if a user with this username is currently
@@ -48,6 +49,7 @@ public interface StreamingPlatform {
      * @param username the username of the streamer
      * @param stream   the stream to end
      * @return the created {@link Video}
+     * @throws IllegalArgumentException if any of the parameters are null or empty
      * @throws UserNotFoundException  if a user with this username is not found in
      *                                the service
      * @throws UserStreamingException if a user with this username is currently not
@@ -60,6 +62,7 @@ public interface StreamingPlatform {
      *
      * @param username the username of the watcher
      * @param content  the content to watch
+     * @throws IllegalArgumentException if any of the parameters are null or empty
      * @throws UserNotFoundException  if a user with this username is not found in
      *                                the service
      * @throws UserStreamingException if the user with the specified username is
@@ -89,6 +92,7 @@ public interface StreamingPlatform {
      *
      * @return the {@link Content} from user with name username which has the most
      *         views in the service.
+     * @throws IllegalArgumentException if {@code username} is null or empty
      * @throws UserNotFoundException if a user with this username is not found in
      *                               the service
      */
@@ -101,6 +105,7 @@ public interface StreamingPlatform {
      * @param username
      * @return an immutable copy of a sorted list of the watched categories by user
      *         with name username in descending order of the count
+     * @throws IllegalArgumentException if {@code username} is null or empty
      * @throws UserNotFoundException if a user with this username is not found in
      *                               the service
      */
@@ -244,29 +249,29 @@ public enum Category {
 src
 ╷
 └─ bg/sofia/uni/fmi/mjt/twitch
-    ├── content
-    │      ├─ stream
-    │      │     ├─ Stream.java
-    │      │     └─ (...)
-    │      ├─ video
-    │      │     ├─ Video.java
-    │      │     └─ (...)
-    │      ├─ Category.java
-    │      ├─ Content.java
-    │      ├─ Metadata.java
-    │      └─ (...)
-    ├── user
-    │      ├─ service
-    │      │     ├─ UserService.java
-    │      │     └─ (...)
-    │      ├─ User.java
-    │      ├─ UserNotFoundException.java
-    │      ├─ UserStatus.java
-    │      ├─ UserStreamingException.java
-    │      └─ (...)
-    ├── StreamingPlatform.java
-    ├── Twitch.java
-    └── (...)
+   └─ StreamingPlatform.java
+   └─ Twitch.java
+   └─ (...)
+   bg/sofia/uni/fmi/mjt/twitch/content
+   └─ Category.java
+   └─ Content.java
+   └─ Metadata.java
+   └─ (...)
+   bg/sofia/uni/fmi/mjt/twitch/content/stream
+   └─ Stream.java
+   └─ (...)
+   bg/sofia/uni/fmi/mjt/twitch/content/video
+   └─ Video.java
+   └─ (...)
+   bg/sofia/uni/fmi/mjt/twitch/user
+   └─ User.java
+   └─ UserNotFoundException.java
+   └─ UserStatus.java
+   └─ UserStreamingException.java
+   └─ (...)
+   bg/sofia/uni/fmi/mjt/twitch/user/service
+   └─ UserService.java
+   └─ (...)
 ```
 
 ### **Предаване**
