@@ -550,12 +550,13 @@ public class InMemoryUserRepositoryStubImpl implements UserRepository {
 ### The stub way
 
 ```java
-@Test(expected = UserAlreadyExistsException.class)
+@Test
 public void testRegisterThrowsAppropriateException() {
     UserService service =
             new UserService(new PositiveUserRepositoryStubImpl());
 
-    service.register("test@test.com", "weak");
+    assertThrows(UserAlreadyExistsException.class, () -> service.register("test@test.com", "weak"),
+            "UserAlreadyExistsException expected");
 }
 ```
 
@@ -589,13 +590,15 @@ public void testRegisterThrowsAppropriateException() {
 ### The mock way
 
 ```java
-@Test(expected = UserAlreadyExistsException.class)
+@Test
 public void testRegisterThrowsAppropriateException() {
     UserRepository mock = mock(UserRepository.class);
     when(mock.exists("test@test.com")).thenReturn(true);
 
     UserService service = new UserService(mock);
-    service.register("test@test.com", "weak");
+
+    assertThrows(UserAlreadyExistsException.class, () -> service.register("test@test.com", "weak"),
+        "UserAlreadyExistsException expected");
 }
 ```
 
@@ -729,7 +732,7 @@ public void testBuyTicket() {
 
 - Mockito е външна библиотека
 - Може да я изтеглите от [тук](https://mvnrepository.com/artifact/org.mockito/mockito-core/4.0.0)
-- Изтеглете mockito-core jar-a и 3-те му dependency-та, както и mockito-junit-jupiter
+- Изтеглете mockito-core jar-a и 3-те му dependency-та, както и [mockito-junit-jupiter](https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter/4.0.0)
 - Ако ползвате IDE, добавете въпросните jar-ки в class path-a на проекта си
 - Алтернативно, ако сте запознати с maven/gradle, ползвайте тях :)
 
@@ -798,20 +801,18 @@ mockedList.get(999);
 ### `@Mock` анотацията
 
 ```java
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
     @Mock
     private UserRepository repositoryMock;
 
-    @Test(expected = UserAlreadyExistsException.class)
+    @Test
     public void testRegisterThrowsAppropriateException() {
-        when(repositoryMock.exists("test@test.com"))
-                .thenReturn(true);
+        when(repositoryMock.exists("test@test.com")).thenReturn(true);
 
-        UserService service =
-            new UserService(repositoryMock);
-
-        service.register("test@test.com", "weak");
+        UserService service = new UserService(repositoryMock);
+        assertThrows(UserAlreadyExistsException.class, () -> service.register("test@test.com", "weak"),
+            "UserAlreadyExistsException expected");
     }
 }
 ```
