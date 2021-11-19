@@ -44,23 +44,23 @@ static <K, V> Cache<K, V> getInstance(Storage<K, V> storage, EvictionPolicy poli
 
 Проектът ви трябва да има следната структура:
 
-```bash
-  src
-  └─ bg/sofia/uni/fmi/mjt/cache/
+```
+src
+└─ bg/sofia/uni/fmi/mjt/cache/
     ├─ factory/
-    |  ├─ CacheFactory.java
-    |  └─ EvictionPolicy.java
+    |    ├─ CacheFactory.java
+    |    └─ EvictionPolicy.java
     ├─ storage/
-    |  └─ Storage.java
+    |    └─ Storage.java
     ├─ exception/
-    |  └─ ItemNotFound.java
+    |    └─ ItemNotFound.java
     |
     ├─ CacheBase.java
     ├─ Cache.java
     ├─ LeastFrequentlyUsedCache.java
     └─ LeastRecentlyUsedCache.java
-  test
-  └─ bg/sofia/uni/fmi/mjt/cache/
+test
+└─ bg/sofia/uni/fmi/mjt/cache/
     └─ (...)
 ```
 
