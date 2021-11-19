@@ -811,6 +811,7 @@ public class UserServiceTest {
         when(repositoryMock.exists("test@test.com")).thenReturn(true);
 
         UserService service = new UserService(repositoryMock);
+
         assertThrows(UserAlreadyExistsException.class, () -> service.register("test@test.com", "weak"),
             "UserAlreadyExistsException expected");
     }
