@@ -39,19 +39,19 @@ public class OrderedTest {
     @Test
     @Order(3)
     @Disabled
-    void nullValues() {
+    void testNullValues() {
         System.out.println("Test null values");
     } // will execute third
 
     @Test
     @Order(1)
-    void emptyValues() {
+    void testEmptyValues() {
         System.out.println("Test empty values");
     } // will execute first
 
     @Test
     @Order(2)
-    void validValues() {
+    void testValidValues() {
         System.out.println("Test valid values");
     } // will execute second
 

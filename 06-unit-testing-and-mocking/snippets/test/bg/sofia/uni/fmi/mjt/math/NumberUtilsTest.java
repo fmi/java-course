@@ -16,50 +16,50 @@ public class NumberUtilsTest {
 
     @Test
     @Order(1)
-    public void testIsPrimeNegativeArgument() {
+    void testIsPrimeNegativeArgument() {
         assertThrows(IllegalArgumentException.class, () -> NumberUtils.isPrime(-16),
             "Negative numbers are not a legal argument");
     }
 
     @Test
     @Order(2)
-    public void testIsPrimeZero() {
+    void testIsPrimeZero() {
         assertThrows(IllegalArgumentException.class, () -> NumberUtils.isPrime(0), "Zero is not a legal argument");
     }
 
     @Test
     @Order(3)
-    public void testIsPrimeOne() {
+    void testIsPrimeOne() {
         assertThrows(IllegalArgumentException.class, () -> NumberUtils.isPrime(1), "One is not a legal argument");
     }
 
     @Test
     @Order(4)
-    public void testIsPrimeTwo() {
+    void testIsPrimeTwo() {
         assertTrue(NumberUtils.isPrime(2), "Two is prime");
     }
 
     @Test
     @Order(5)
-    public void testIsPrimeFour() {
+    void testIsPrimeFour() {
         assertFalse(NumberUtils.isPrime(4), "Four is not prime");
     }
 
     @Test
     @Order(6)
-    public void testIsPrimeNine() {
+    void testIsPrimeNine() {
         assertFalse(NumberUtils.isPrime(9), "Nine is not prime");
     }
 
     @Test
     @Order(7)
-    public void testIsPrimeEleven() {
+    void testIsPrimeEleven() {
         assertTrue(NumberUtils.isPrime(11), "Eleven is prime");
     }
 
     @Test
     @Order(8)
-    public void testIsPrimeTwelve() {
+    void testIsPrimeTwelve() {
         assertFalse(NumberUtils.isPrime(12), "Twelve is not prime");
     }
 

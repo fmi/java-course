@@ -43,7 +43,6 @@ public class CurrencyExchangeTest {
 
     @Test
     public void testCurrencyExchangeUnknownCurrencyThrowsException() throws UnknownCurrencyException {
-        exchange = new CurrencyExchange(currencyConverterMock);
 
         when(currencyConverterMock.getExchangeRate(Currency.BGN, Currency.USD))
             .thenThrow(new UnknownCurrencyException(

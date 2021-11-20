@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CalcTest {
 
     @Test
-    public void testMultiplyByZeroShouldReturnZero() {
+    void testMultiplyByZeroShouldReturnZero() {
         // Calc is tested
         Calc calc = new Calc();
 

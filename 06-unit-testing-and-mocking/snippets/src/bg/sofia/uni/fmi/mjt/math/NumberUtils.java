@@ -2,7 +2,7 @@ package bg.sofia.uni.fmi.mjt.math;
 
 public class NumberUtils {
 
-    public static boolean isPrime(int n) throws IllegalArgumentException {
+    public static boolean isPrime(int n) {
 
         if (n < 2) {
             throw new IllegalArgumentException("Number not in the domain of function");
