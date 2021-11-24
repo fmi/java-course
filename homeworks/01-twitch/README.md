@@ -72,26 +72,28 @@ public interface StreamingPlatform {
 
     /**
      * Returns the {@link User} which has the most watched {@link Content} in the
-     * service.
+     * service or null if there is no such user.
      *
      * @return the {@link User} which has the most watched {@link Content} in the
-     *         service
+     *         service or null if there is no such user
      */
     User getMostWatchedStreamer();
 
     /**
-     * Returns the {@link Content} which has the most views in the service.
+     * Returns the {@link Content} which has the most views in the service 
+     * or null if there is not such content.
      *
-     * @return the {@link Content} which has the most views in the service.
+     * @return the {@link Content} which has the most views in the service
+     * or null if there is not such content
      */
     Content getMostWatchedContent();
 
     /**
      * Returns the {@link Content} from user with name username which has the most
-     * views in the service.
+     * views in the service or null if there is not such content.
      *
      * @return the {@link Content} from user with name username which has the most
-     *         views in the service.
+     *         views in the service or null if there is not such content
      * @throws IllegalArgumentException if {@code username} is null or empty
      * @throws UserNotFoundException if a user with this username is not found in
      *                               the service
@@ -208,9 +210,9 @@ public interface Content {
     void startWatching(User user);
 
     /**
-     * {@link User} starts watching the content.
+     * {@link User} stops watching the content.
      *
-     * @param user which starts watching the content
+     * @param user which stops watching the content
      */
     void stopWatching(User user);
 

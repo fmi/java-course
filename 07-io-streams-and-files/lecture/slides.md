@@ -934,6 +934,12 @@ Path createTempDirectory(String prefix, FileAttribute<?>... attrs)
 
 ---
 
+### Полезни четива
+
+.center[![Java I/O, NIO and NIO.2](images/07.10-java-io-nio-nio2)]
+
+---
+
 ## Въпроси?
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
