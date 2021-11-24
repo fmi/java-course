@@ -208,9 +208,9 @@ public interface Content {
     void startWatching(User user);
 
     /**
-     * {@link User} starts watching the content.
+     * {@link User} stops watching the content.
      *
-     * @param user which starts watching the content
+     * @param user which stops watching the content
      */
     void stopWatching(User user);
 
