@@ -754,7 +754,6 @@ DirectoryStream<Path> newDirectoryStream(Path dir, String glob)
 // които отговарят на шаблона за търсене glob
 // например, итерираме всички файлове с разширение .java
 
-
 Path dir = Path.of("/somedir");
 
 try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*.java")) {
@@ -837,16 +836,16 @@ Path writeString(Path file, CharSequence lines, Charset cs, OpenOption[] options
 
 -  *Дял* (*partition*) e ОС-специфична част от пространството за съхранение с файлова система
 - Определянето на размера на свободното пространство е важно за някои приложения, например инсталатори
-- Java предоставя ОС-независимо API за това като методи в `java.io.File`
+- Java предоставя ОС-независимо API за това чрез класовете `FileSystems` и `FileStore` в пакета `java.nio.file`
 
   ```java
-  File[] roots = File.listRoots(); // връща масив от всички дялове
-
-  for (File root : roots) {
-      System.out.println("Partition: " + root);
-      System.out.println("Free space on this partition = " + root.getFreeSpace());
-      System.out.println("Usable space on this partition = " + root.getUsableSpace());
-      System.out.println("Total space on this partition = " + root.getTotalSpace());
+  // обхождаме всички дялове на файловата система по подразбиране
+  Iterable<FileStore> partitions = FileSystems.getDefault().getFileStores();
+  for (FileStore fs : partitions) {
+      System.out.println("Partition: " + fs.name());
+      System.out.println("Total space: " + fs.getTotalSpace());
+      System.out.println("Unallocated space: " + fs.getUnallocatedSpace());
+      System.out.println("Usable space: " + fs.getUsableSpace());
   }
   ```
 
