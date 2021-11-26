@@ -71,10 +71,10 @@ public interface StreamingPlatform {
     void watch(String username, Content content) throws UserNotFoundException, UserStreamingException;
 
     /**
-     * Returns the {@link User} whose {@link Content}s has the most views in the
+     * Returns the {@link User} whose {@link Content}s have the most views combined in the
      * service or null if there is no such user.
      *
-     * @return the {@link User} whose {@link Content}s has the most views in the
+     * @return the {@link User} whose {@link Content}s have the most views combined in the
      * service or null if there is no such user
      */
     User getMostWatchedStreamer();
