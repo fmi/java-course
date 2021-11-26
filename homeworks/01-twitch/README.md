@@ -71,11 +71,11 @@ public interface StreamingPlatform {
     void watch(String username, Content content) throws UserNotFoundException, UserStreamingException;
 
     /**
-     * Returns the {@link User} which has the most watched {@link Content} in the
+     * Returns the {@link User} whose {@link Content}s has the most views in the
      * service or null if there is no such user.
      *
-     * @return the {@link User} which has the most watched {@link Content} in the
-     *         service or null if there is no such user
+     * @return the {@link User} whose {@link Content}s has the most views in the
+     * service or null if there is no such user
      */
     User getMostWatchedStreamer();
 
@@ -102,7 +102,8 @@ public interface StreamingPlatform {
 
     /**
      * Returns an immutable copy of a sorted list of the watched categories by user
-     * with name username in descending order of the count
+     * with name username in descending order of the count. Categories with zero views
+     * should not be returned.
      *
      * @param username
      * @return an immutable copy of a sorted list of the watched categories by user
@@ -173,6 +174,25 @@ public interface User {
 
 }
 ```
+`UserStatus` е enum, който представлява статуса на даден потребител в платформата. При създаването си, *User*-ите са със статус ***OFFLINE***:
+```java
+package bg.sofia.uni.fmi.mjt.twitch.user;
+
+public enum UserStatus {
+
+    STREAMING("User is currently streaming"), OFFLINE("User is offline");
+
+    private final String message;
+
+    private UserStatus(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+}
+```
 
 ### **Content**
 
@@ -240,6 +260,8 @@ public enum Category {
 
 - Съдържанията в платформата се представят чрез интерфейсите `Stream` и `Video`.
 - Под `Content` в платформата, разбираме видео или стрийм, който в момента е активен.
+- Методът *getNumberOfViews* от интерфейса *Content* връща текущия брой потребители, които гледат *Stream*-а или текущия брой гледания за *Video*-то.
+- Методът *stopWatching* от интерфейса *Content*, няма да бъде извикван извън вашата програма.
 - Може да добавяте нови класове и интерфейси, но без да променяте структурата на тези от условието.
 - :exclamation::exclamation: **Решения, използващи [Java Stream API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/package-summary.html), lambdas и всичко останало, което не е покрито до момента, няма да се приемат за това домашно.**
 
