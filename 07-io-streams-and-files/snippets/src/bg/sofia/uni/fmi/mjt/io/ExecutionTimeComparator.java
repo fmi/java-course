@@ -9,7 +9,10 @@ import java.nio.file.Path;
 
 public class ExecutionTimeComparator {
 
-    public static void main(String... args) throws IOException {
+    private static final int MAX_ITERATIONS = 1_000_000;
+    private static final int BUFFER_SIZE = 8192;
+
+    public static void main(String... args) {
         System.err.println("Read time comparison results:");
 
         Path filePath = Path.of("compareExecutionTime.txt");
@@ -17,28 +20,32 @@ public class ExecutionTimeComparator {
 
         fillFileWithText(filePath, line);
 
-        System.out.println("Single byte read took: " + readFromFile(filePath) + " milliseconds");
-        System.out.println("BufferedReader read took: " + readFromFileWithBufferedReader(filePath) + " milliseconds");
-        System.out.println("BufferedInputStream read took: " + readFromFileWithBufferedInputStream(filePath) + " milliseconds");
+        System.out.println("Single byte read took: "
+                + readFromFile(filePath) + " milliseconds");
+        System.out.println("BufferedReader read took: "
+                + readFromFileWithBufferedReader(filePath) + " milliseconds");
+        System.out.println("BufferedInputStream read took: "
+                + readFromFileWithBufferedInputStream(filePath) + " milliseconds");
     }
 
     private static void fillFileWithText(Path file, String line) {
         try (Writer fileWriter = Files.newBufferedWriter(file)) {
-            for (int i = 0; i <= 1_000_000; i++) {
+            for (int i = 0; i <= MAX_ITERATIONS; i++) {
                 fileWriter.write(line);
             }
 
             fileWriter.flush();
 
-            long writtenBytesLength = line.getBytes().length * 1_000_000L;
-            long writtenMegabytesLength = writtenBytesLength / 1_000_000;
-            System.out.println("Wrote " + writtenBytesLength + " bytes (" + writtenMegabytesLength + " megabytes) to the file");
+            long writtenBytesLength = line.getBytes().length * MAX_ITERATIONS;
+            long writtenMegabytesLength = writtenBytesLength / MAX_ITERATIONS;
+            System.out.println("Wrote " + writtenBytesLength + " bytes (" + writtenMegabytesLength + " megabytes)" +
+                    " to the file");
         } catch (IOException e) {
             throw new IllegalStateException("A problem occurred while writing to a file", e);
         }
     }
 
-    private static long readFromFile(Path file) throws IOException {
+    private static long readFromFile(Path file) {
         try (InputStream inputStream = Files.newInputStream(file)) {
 
             long startTime = System.nanoTime();
@@ -49,13 +56,13 @@ public class ExecutionTimeComparator {
             long endTime = System.nanoTime();
             // System.err.println("End time is: " + endTime);
 
-            return (endTime - startTime) / 1_000_000; // milliseconds
+            return (endTime - startTime) / MAX_ITERATIONS; // milliseconds
         } catch (IOException e) {
             throw new IllegalStateException("A problem occurred while reading from a file", e);
         }
     }
 
-    private static long readFromFileWithBufferedReader(Path file) throws IOException {
+    private static long readFromFileWithBufferedReader(Path file) {
         try (BufferedReader bufferedReader = Files.newBufferedReader(file)) {
 
             long startTime = System.nanoTime();
@@ -64,7 +71,7 @@ public class ExecutionTimeComparator {
             }
             long endTime = System.nanoTime();
 
-            return (endTime - startTime) / 1_000_000;
+            return (endTime - startTime) / MAX_ITERATIONS;
         } catch (IOException e) {
             throw new IllegalStateException("A problem occurred while reading from a file", e);
         }
@@ -72,7 +79,7 @@ public class ExecutionTimeComparator {
 
     private static long readFromFileWithBufferedInputStream(Path file) {
         try (InputStream inputStream = Files.newInputStream(file)) {
-            byte[] buff = new byte[8192]; // 8K bytes buffer
+            byte[] buff = new byte[BUFFER_SIZE]; // 8K bytes buffer
             int r = 0;
 
             long startTime = System.nanoTime();
@@ -81,10 +88,10 @@ public class ExecutionTimeComparator {
             }
             long endTime = System.nanoTime();
 
-            return (endTime - startTime) / 1_000_000;
+            return (endTime - startTime) / MAX_ITERATIONS;
         } catch (Exception e) {
             throw new IllegalStateException("A problem occurred while reading from a file", e);
         }
     }
 
-
+}
