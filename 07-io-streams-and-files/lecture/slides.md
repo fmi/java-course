@@ -436,7 +436,7 @@ while ((line = bufferedReader.readLine()) != null) {
 
   - Windows: `\r\n`
   - UNIX/Linux: `\n`
-  - MacOS: `\r`
+  - MacOS: `\n` (`\r` преди MacOS X)
 
 За да си гарантирате, че Java кодът ви ще работи коректно на всяка OS, вместо тези символи, трябва да ползвате
 
