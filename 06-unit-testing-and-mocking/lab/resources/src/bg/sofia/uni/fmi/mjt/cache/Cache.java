@@ -25,11 +25,11 @@ public interface Cache<K, V> {
 
     /**
      * @return the percentage of the successful hits for this cache. It is a
-     * double-precision number in the interval [0.0, 1.0] and is equal to the ratio
-     * of get(K, V) calls that returned a non-null value versus the calls that
-     * returned null. If there is not a single successful hit, the hit rate is 0.0.
-     * If there is at least one successful hit and the missed hits are zero, the hit
-     * rate is 1.0
+     * double-precision number in the interval [0.0, 1.0] and is equal to the proportion
+     * of get(K) calls that returned a value found in the cache (without reverting to
+     * the primary storage) versus the total number of calls. If there is not a single successful hit,
+     * the hit rate is 0.0. If there is at least one successful hit and the missed hits are zero,
+     * the hit rate is 1.0
      */
     double getHitRate();
 
