@@ -125,7 +125,7 @@ public class PeakExplorer {
             .filter(p -> !p.range().contains("Himalaya"))
             .sorted(Comparator.comparing(Peak::prominence).reversed())
             .map(Peak::name)
-            .collect(Collectors.toList());
+            .toList();
     }
 
     /**
@@ -159,7 +159,7 @@ public class PeakExplorer {
     }
 
     /**
-     * Определете n-те най-рано изкачени върха и върнете имената им като един единствен String,
+     * Определя n-те най-рано изкачени върха и върнете имената им като един единствен String,
      * разделени със запетаи
      */
     public String getEarliestAscendedPeaks(int n) {
@@ -172,7 +172,7 @@ public class PeakExplorer {
     }
 
     /**
-     * Определете върха с най-голяма изпъкналост, изкачен през конкретна година
+     * Определя върха с най-голяма изпъкналост, изкачен през конкретна година
      */
     public Optional<String> getPeakAscendedInYearWithHighestProminence(int year) {
         return peaks.stream()
