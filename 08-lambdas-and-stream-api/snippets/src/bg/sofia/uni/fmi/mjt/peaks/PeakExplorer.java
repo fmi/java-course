@@ -112,7 +112,7 @@ public class PeakExplorer {
         return peaks.stream()
             .filter(p -> p.firstAscent() == year)
             .max(Comparator.comparingDouble(Peak::height))
-            .orElseThrow(IllegalArgumentException::new);
+            .orElseThrow(() -> new IllegalArgumentException("No peaks have been ascended in " + year));
     }
 
     /**
@@ -172,13 +172,14 @@ public class PeakExplorer {
     }
 
     /**
-     * Определя върха с най-голяма изпъкналост, изкачен през конкретна година
+     * Определя името на върха с най-голяма изпъкналост, изкачен през конкретна година
      */
     public Optional<String> getPeakAscendedInYearWithHighestProminence(int year) {
         return peaks.stream()
             .filter(p -> p.firstAscent() == year)
             .max(Comparator.comparing(Peak::prominence))
-            .map(Peak::name);
+            .map(Peak::name); // method of java.util.Optional
+                              // do not confuse it with map() in java.util.stream.Stream
     }
 
 }
