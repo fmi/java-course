@@ -1,9 +1,7 @@
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class BankAccount {
 
-    // You can test removing static synchronization and use AtomicInteger
-    private static AtomicInteger opCount = new AtomicInteger(0);
+    // You can test removing explicit synchronization and use AtomicInteger here
+    private static int opCount = 0;
 
     // Holder's name
     protected String name;
@@ -34,12 +32,14 @@ public class BankAccount {
         return name;
     }
 
-    public synchronized static void incrementOpCount() {
-        opCount.incrementAndGet();
+    // is this thread-safe?
+    public static void incrementOpCount() {
+        opCount++;
     }
 
-    public synchronized static int getOpCount() {
-        return opCount.get();
+    // is this thread-safe?
+    public static int getOpCount() {
+        return opCount;
     }
 
     @Override

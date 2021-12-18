@@ -18,6 +18,7 @@ public class RaceConditionExample {
 
         // Result should be consistent, if BankAccount is thread-safe
         System.out.println(acc);
+        System.out.println("Operations: " + BankAccount.getOpCount());
     }
 
 }

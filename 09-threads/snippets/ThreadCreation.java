@@ -26,7 +26,7 @@ public class ThreadCreation {
         Thread customThread5 = new Thread(() -> System.out.println("Hello world, from a lambda!"));
         customThread5.start();
 
-        // Sleeps are used to stress that the threads are executiong asynchronous
+        // Sleeps are used to stress that the threads are executing asynchronously
         for (int i = 0; i < 10; i++) {
             Thread.sleep(1);
             System.out.println("Hello world from main thread");
@@ -36,7 +36,7 @@ public class ThreadCreation {
 }
 
 /**
- * Sample thread implementation. A thread subclass is ordinary java object
+ * Sample thread implementation. A thread subclass is an ordinary java class -
  * it may have state, custom constructor and additional methods.
  */
 class CustomThread extends Thread {
@@ -52,7 +52,6 @@ class CustomThread extends Thread {
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             System.out.println("Hello world from custom " + name);
@@ -70,7 +69,6 @@ class CustomRunnable implements Runnable {
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             System.out.println("Hello world from runnable");

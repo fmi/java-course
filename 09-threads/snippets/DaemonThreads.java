@@ -13,7 +13,7 @@ public class DaemonThreads {
 }
 
 /**
- * The thread will count to 1000 in background.
+ * The thread will count to 1000 in the background.
  */
 class BackgroundTask extends Thread {
     public BackgroundTask() {
