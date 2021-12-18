@@ -103,7 +103,7 @@ public class Pit {
         throw new UnsupportedOperationException("Method not yet implemented");
     }
 
-    public synchronized Car getCar() {
+    public Car getCar() {
         throw new UnsupportedOperationException("Method not yet implemented");
     }
 
@@ -115,7 +115,7 @@ public class Pit {
         throw new UnsupportedOperationException("Method not yet implemented");
     }
 
-    public synchronized void finishRace() {
+    public void finishRace() {
         throw new UnsupportedOperationException("Method not yet implemented");
     }
 
