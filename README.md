@@ -15,6 +15,7 @@
 | 7 | Входно-изходни потоци и файлове | [слайдове](https://fmi.github.io/java-course/07-io-streams-and-files/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/grN2iGUIEGA) | 24.11 | [задача](https://github.com/fmi/java-course/tree/master/07-io-streams-and-files/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/iZR4L8GGMbw) | 27.11 |
 | 8 | Ламбда изрази и Stream API | [слайдове](https://fmi.github.io/java-course/08-lambdas-and-stream-api/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/AVepiC1zOdw) | 01.12 | [задача](https://github.com/fmi/java-course/tree/master/08-lambdas-and-stream-api/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/dgXd6mHkuro) | 04.12 |
 | 9 | Многонишково програмиране | [слайдове](https://fmi.github.io/java-course/09-threads/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/1fT95VfOmWs) | 15.12 | [задача](https://github.com/fmi/java-course/tree/master/09-threads/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/feZVVuaiZkA) | 18.12 |
+| 10 | Мрежово програмиране | [слайдове](https://fmi.github.io/java-course/10-network/lecture/slides.html) | | 22.12 | | | |
 
 ### Материали от предходни издания
 
