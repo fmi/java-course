@@ -183,7 +183,7 @@ public class PitTeam extends Thread {
 src
 └─ bg.sofia.uni.fmi.mjt.race.track
     ├── pit
-    ├    ├─ Pit.java
+    │    ├─ Pit.java
     │    ├─ PitTeam.java
     │    └─ (...)
     ├── Car.java
