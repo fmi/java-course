@@ -186,7 +186,6 @@ public interface StatisticsAnalyzer {
 
     /**
      * @return the average playtime for all game categories - the map key matches a category name.
-     * In case the dataset contains no games, returns 0.0.
      */
     Map<String, Double> getAveragePlayingTimeByCategory();
 
