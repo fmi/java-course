@@ -211,7 +211,7 @@ BlockingQueue<String> queue = new ArrayBlockingQueue<>(4);
 - Synchronizers: Semaphores, Latches, Barriers, Exchangers
 
 ---
-git add .
+
 ### Полезни четива
 
 .center[![Java Concurrency in Practice](images/09.6-java-concurrency-in-practice.jpg)]
