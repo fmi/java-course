@@ -117,6 +117,7 @@ public interface Recommender {
      * @return a list of top n similar games to the provided one, ordered in descending order by their match.
      * Note that the game passed as argument should not be part of the result, even if present in the dataset.
      * The returned games share at least one common category. The similarity metric is described in the assignment.
+     * In case of ties, the relative order of the respective games with equal match according to the metric, is undefined.
      */
     List<BoardGame> getSimilarTo(BoardGame game, int n);
 
