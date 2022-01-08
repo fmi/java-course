@@ -16,10 +16,8 @@ public class EchoServer {
         try (ServerSocket serverSocket = new ServerSocket(SERVER_PORT);) {
             System.out.println("Server started and listening for connect request");
 
-            Socket clientSocket = serverSocket.accept();
-            System.out.println("Accepted connection request from client " + clientSocket.getInetAddress());
-
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            try (Socket clientSocket = serverSocket.accept();
+                 BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                  PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
                 String inputLine;
