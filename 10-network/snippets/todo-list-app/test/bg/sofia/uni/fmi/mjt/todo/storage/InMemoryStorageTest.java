@@ -3,10 +3,10 @@ package bg.sofia.uni.fmi.mjt.todo.storage;
 import java.util.Collections;
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InMemoryStorageTest {
 
@@ -16,8 +16,7 @@ public class InMemoryStorageTest {
     private final String testTodo = "testTodo";
     private int testTodoID;
 
-
-    @Before
+    @BeforeEach
     public void setUp() {
         storage = new InMemoryStorage();
         testTodoID = storage.add(testUser, testTodo);
@@ -28,7 +27,7 @@ public class InMemoryStorageTest {
         Map<Integer, String> expected = Collections.emptyMap();
         Map<Integer, String> actual = storage.list("unknown");
 
-        assertEquals("expected empty map for unknown user", expected, actual);
+        assertEquals(expected, actual, "expected empty map for unknown user");
     }
 
     @Test
@@ -36,7 +35,7 @@ public class InMemoryStorageTest {
         Map<Integer, String> expected = Collections.singletonMap(testTodoID, testTodo);
         Map<Integer, String> actual = storage.list(testUser);
 
-        assertEquals("unexpected map for known user", expected, actual);
+        assertEquals(expected, actual, "unexpected map for known user");
     }
 
     @Test
@@ -44,14 +43,14 @@ public class InMemoryStorageTest {
         Map<Integer, String> expectedBefore = Collections.singletonMap(testTodoID, testTodo);
         Map<Integer, String> actualBefore = storage.list(testUser);
 
-        assertEquals("test prerequisite failed: user todo list is not correct", expectedBefore, actualBefore);
+        assertEquals(expectedBefore, actualBefore, "test prerequisite failed: user todo list is not correct");
 
         storage.remove(testUser, testTodoID);
 
         Map<Integer, String> expectedAfter = Collections.emptyMap();
         Map<Integer, String> actualAfter = storage.list(testUser);
 
-        assertEquals("expected empty map for user with recently removed item", expectedAfter, actualAfter);
+        assertEquals(expectedAfter, actualAfter, "expected empty map for user with recently removed item");
     }
 
     @Test
@@ -60,7 +59,7 @@ public class InMemoryStorageTest {
         storage.remove("unknown", 1);
         Map<Integer, String> actual = storage.list(testUser);
 
-        assertEquals("map shouldn't change when unknown user is given", expected, actual);
+        assertEquals(expected, actual, "map shouldn't change when unknown user is given");
     }
 
 
@@ -70,6 +69,6 @@ public class InMemoryStorageTest {
         storage.remove(testUser, 123);
         Map<Integer, String> actual = storage.list(testUser);
 
-        assertEquals("map shouldn't change when unknown to-do ID is given", expected, actual);
+        assertEquals(expected, actual, "map shouldn't change when unknown to-do ID is given");
     }
 }

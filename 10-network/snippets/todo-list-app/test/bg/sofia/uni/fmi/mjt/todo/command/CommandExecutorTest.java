@@ -3,10 +3,10 @@ package bg.sofia.uni.fmi.mjt.todo.command;
 import java.util.Collections;
 
 import bg.sofia.uni.fmi.mjt.todo.storage.Storage;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -30,7 +30,7 @@ public class CommandExecutorTest {
     private Command complete = new Command("complete-todo", new String[]{testUser, String.format("%d", testID)});
     private Command list = new Command("list", new String[]{testUser});
 
-    @Before
+    @BeforeEach
     public void setUp() {
         storage = mock(Storage.class);
         cmdExecutor = new CommandExecutor(storage);
@@ -42,7 +42,7 @@ public class CommandExecutorTest {
         String expected = String.format("Added new To Do with ID %s for user %s", testID, testUser);
         String actual = cmdExecutor.execute(add);
 
-        assertEquals("unexpected output for 'add-todo'", expected, actual);
+        assertEquals(expected, actual, "unexpected output for 'add-todo'");
     }
 
     @Test
@@ -50,7 +50,7 @@ public class CommandExecutorTest {
         String expected = String.format(INVALID_ARGS_COUNT_MESSAGE_FORMAT, ADD, 2, ADD + " <username> <todo_item>");
         String actual = cmdExecutor.execute(new Command("add-todo", new String[]{testUser}));
 
-        assertEquals("unexpected output for 'complete-todo' when the provided arguments are less than two", expected, actual);
+        assertEquals(expected, actual, "unexpected output for 'complete-todo' when the provided arguments are less than two");
     }
 
     @Test
@@ -58,7 +58,7 @@ public class CommandExecutorTest {
         String expected = String.format(INVALID_ARGS_COUNT_MESSAGE_FORMAT, ADD, 2, ADD + " <username> <todo_item>");
         String actual = cmdExecutor.execute(new Command("add-todo", new String[]{testUser, testTodo, testTodo}));
 
-        assertEquals("unexpected output for 'complete-todo' when the provided arguments are more than two", expected, actual);
+        assertEquals(expected, actual, "unexpected output for 'complete-todo' when the provided arguments are more than two");
     }
 
     @Test
@@ -67,7 +67,7 @@ public class CommandExecutorTest {
         String actual = cmdExecutor.execute(complete);
 
         verify(storage, times(1)).remove(testUser, testID);
-        assertEquals("unexpected output for 'complete-todo' when the user and ID are present in the storage", expected, actual);
+        assertEquals(expected, actual, "unexpected output for 'complete-todo' when the user and ID are present in the storage");
     }
 
     @Test
@@ -75,7 +75,7 @@ public class CommandExecutorTest {
         String expected = String.format(INVALID_ARGS_COUNT_MESSAGE_FORMAT, COMPLETE, 2, COMPLETE + " <username> <todo_item_id>");
         String actual = cmdExecutor.execute(new Command(COMPLETE, new String[]{testUser}));
 
-        assertEquals("unexpected output for 'complete-todo' when the provided arguments are less than two", expected, actual);
+        assertEquals(expected, actual, "unexpected output for 'complete-todo' when the provided arguments are less than two");
     }
 
     @Test
@@ -83,7 +83,7 @@ public class CommandExecutorTest {
         String expected = String.format(INVALID_ARGS_COUNT_MESSAGE_FORMAT, COMPLETE, 2, COMPLETE + " <username> <todo_item_id>");
         String actual = cmdExecutor.execute(new Command(COMPLETE, new String[]{testUser, String.format("%d", testID), testTodo}));
 
-        assertEquals("unexpected output for 'complete-todo' when the provided arguments are more than two", expected, actual);
+        assertEquals(expected, actual, "unexpected output for 'complete-todo' when the provided arguments are more than two");
     }
 
     @Test
@@ -91,7 +91,7 @@ public class CommandExecutorTest {
         String expected = "Invalid ID provided for command \"complete-todo\": only integer values are allowed";
         String actual = cmdExecutor.execute(new Command(COMPLETE, new String[]{testUser, testUser}));
 
-        assertEquals("unexpected output for 'complete-todo' when the provided to-do ID is not a number", expected, actual);
+        assertEquals(expected, actual, "unexpected output for 'complete-todo' when the provided to-do ID is not a number");
     }
 
     @Test
@@ -100,7 +100,7 @@ public class CommandExecutorTest {
         String expected = String.format("To-Do list of user %s:%n[%d] %s%n", testUser, testID, testTodo);
         String actual = cmdExecutor.execute(list);
 
-        assertEquals("unexpected output for 'list' when to-do list for user has one entry", expected, actual);
+        assertEquals(expected, actual, "unexpected output for 'list' when to-do list for user has one entry");
     }
 
     @Test
@@ -109,7 +109,7 @@ public class CommandExecutorTest {
         String expected = "No To-Do items found for user with name " + testUser;
         String actual = cmdExecutor.execute(list);
 
-        assertEquals("unexpected output for 'list' when to-do list for user is empty", expected, actual);
+        assertEquals(expected, actual, "unexpected output for 'list' when to-do list for user is empty");
     }
 
     @Test
@@ -117,7 +117,7 @@ public class CommandExecutorTest {
         String expected = String.format(INVALID_ARGS_COUNT_MESSAGE_FORMAT, LIST, 1, LIST + " <username>");
         String actual = cmdExecutor.execute(new Command(LIST, new String[]{}));
 
-        assertEquals("unexpected output for 'list' with no arguments", expected, actual);
+        assertEquals(expected, actual, "unexpected output for 'list' with no arguments");
     }
 
     @Test
@@ -125,7 +125,7 @@ public class CommandExecutorTest {
         String expected = String.format(INVALID_ARGS_COUNT_MESSAGE_FORMAT, LIST, 1, LIST + " <username>");
         String actual = cmdExecutor.execute(new Command(LIST, new String[]{testUser, testUser}));
 
-        assertEquals("unexpected output for 'list' with no arguments", expected, actual);
+        assertEquals(expected, actual, "unexpected output for 'list' with no arguments");
     }
 
     @Test
@@ -133,7 +133,7 @@ public class CommandExecutorTest {
         String expected = "Unknown command";
         String actual = cmdExecutor.execute(new Command("test", new String[]{}));
 
-        assertEquals("unexpected output for unknown command", expected, actual);
+        assertEquals(expected, actual, "unexpected output for unknown command");
     }
 
 }

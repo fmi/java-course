@@ -1,9 +1,9 @@
 package bg.sofia.uni.fmi.mjt.todo.command;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CommandCreatorTest {
 
@@ -12,9 +12,9 @@ public class CommandCreatorTest {
         String command = "test";
         Command cmd = CommandCreator.newCommand(command);
 
-        assertEquals("unexpected command returned for command 'test'", command, cmd.command());
-        assertNotNull("command arguments should not be null", cmd.arguments());
-        assertEquals("unexpected command arguments count", 0, cmd.arguments().length);
+        assertEquals(command, cmd.command(), "unexpected command returned for command 'test'");
+        assertNotNull(cmd.arguments(), "command arguments should not be null");
+        assertEquals(0, cmd.arguments().length, "unexpected command arguments count");
     }
 
     @Test
@@ -22,10 +22,10 @@ public class CommandCreatorTest {
         String command = "test abcd";
         Command cmd = CommandCreator.newCommand(command);
 
-        assertEquals("unexpected command returned for command 'test abcd'", command.split(" ")[0], cmd.command());
-        assertNotNull("command arguments should not be null", cmd.arguments());
-        assertEquals("unexpected command arguments count", 1, cmd.arguments().length);
-        assertEquals("unexpected argument returned for command 'test abcd'", command.split(" ")[1], cmd.arguments()[0]);
+        assertEquals(command.split(" ")[0], cmd.command(), "unexpected command returned for command 'test abcd'");
+        assertNotNull(cmd.arguments(), "command arguments should not be null");
+        assertEquals(1, cmd.arguments().length, "unexpected command arguments count");
+        assertEquals(command.split(" ")[1], cmd.arguments()[0], "unexpected argument returned for command 'test abcd'");
     }
 
     @Test
@@ -33,10 +33,10 @@ public class CommandCreatorTest {
         String command = "test \"abcd 1234\"";
         Command cmd = CommandCreator.newCommand(command);
 
-        assertEquals("unexpected command returned for command 'test \"abcd 1234\"'", command.split(" ")[0], cmd.command());
-        assertNotNull("command arguments should not be null", cmd.arguments());
-        assertEquals("unexpected command arguments count", 1, cmd.arguments().length);
-        assertEquals("multi-word argument is not respected", "abcd 1234", cmd.arguments()[0]);
+        assertEquals(command.split(" ")[0], cmd.command(), "unexpected command returned for command 'test \"abcd 1234\"'");
+        assertNotNull(cmd.arguments(), "command arguments should not be null");
+        assertEquals(1, cmd.arguments().length, "unexpected command arguments count");
+        assertEquals("abcd 1234", cmd.arguments()[0], "multi-word argument is not respected");
     }
 
 }
