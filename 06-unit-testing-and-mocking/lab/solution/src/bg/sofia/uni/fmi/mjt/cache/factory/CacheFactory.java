@@ -30,8 +30,8 @@ public interface CacheFactory<K, V> {
      */
     static <K, V> Cache<K, V> getInstance(Storage<K, V> storage, EvictionPolicy policy) {
         return switch (policy) {
-            case LEAST_FREQUENTLY_USED -> new LeastRecentlyUsedCache<>(storage, DEFAULT_CAPACITY);
-            case LEAST_RECENTLY_USED -> new LeastFrequentlyUsedCache<>(storage, DEFAULT_CAPACITY);
+            case LEAST_FREQUENTLY_USED -> new LeastFrequentlyUsedCache<>(storage, DEFAULT_CAPACITY);
+            case LEAST_RECENTLY_USED -> new LeastRecentlyUsedCache<>(storage, DEFAULT_CAPACITY);
         };
     }
 
