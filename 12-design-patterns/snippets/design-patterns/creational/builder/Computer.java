@@ -3,19 +3,19 @@ package creational.builder;
 public class Computer {
 
     // required parameters
-    private String HDD;
-    private String RAM;
+    private String hdd;
+    private String ram;
 
     // optional parameters
     private boolean isGraphicsCardEnabled;
     private boolean isBluetoothEnabled;
 
-    public String getHDD() {
-        return HDD;
+    public String getHdd() {
+        return hdd;
     }
 
-    public String getRAM() {
-        return RAM;
+    public String getRam() {
+        return ram;
     }
 
     public boolean isGraphicsCardEnabled() {
@@ -31,8 +31,8 @@ public class Computer {
     }
 
     private Computer(ComputerBuilder builder) {
-        this.HDD = builder.HDD;
-        this.RAM = builder.RAM;
+        this.hdd = builder.hdd;
+        this.ram = builder.ram;
         this.isGraphicsCardEnabled = builder.isGraphicsCardEnabled;
         this.isBluetoothEnabled = builder.isBluetoothEnabled;
     }
@@ -41,16 +41,16 @@ public class Computer {
     public static class ComputerBuilder {
 
         // required parameters
-        private String HDD;
-        private String RAM;
+        private String hdd;
+        private String ram;
 
         // optional parameters
         private boolean isGraphicsCardEnabled;
         private boolean isBluetoothEnabled;
 
         private ComputerBuilder(String hdd, String ram) {
-            this.HDD = hdd;
-            this.RAM = ram;
+            this.hdd = hdd;
+            this.ram = ram;
         }
 
         public ComputerBuilder setGraphicsCardEnabled(boolean isGraphicsCardEnabled) {

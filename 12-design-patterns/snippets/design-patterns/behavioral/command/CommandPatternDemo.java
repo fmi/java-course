@@ -1,6 +1,7 @@
 package behavioral.command;
 
 public class CommandPatternDemo {
+
     public static void main(String[] args) {
         Stock abcStock = new Stock();
 
@@ -13,4 +14,5 @@ public class CommandPatternDemo {
 
         broker.placeOrders();
     }
+
 }

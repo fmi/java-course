@@ -8,9 +8,9 @@ public class SingletonPatternDemo {
         // SingleObject object = new SingleObject();
 
         // Get the only object available
-        SingleObject object = SingleObject.getInstance();
+        SingleObject object1 = SingleObject.getInstance();
+        SingleObject object2 = SingleObject.getInstance();
 
-        // show the message
-        object.showMessage();
+        System.out.println("object1: " + object1.hashCode() + ", object2: " + object2.hashCode());
     }
 }
