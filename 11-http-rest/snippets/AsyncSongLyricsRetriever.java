@@ -37,7 +37,7 @@ public class AsyncSongLyricsRetriever {
     }
 
     public static void main(String... args) throws Exception {
-        new AsyncSongLyricsRetriever().getLyricsAsync("Billie Eilish", "Lovely");
+        AsyncSongLyricsRetriever.getLyricsAsync("Billie Eilish", "Lovely");
     }
 
 }
