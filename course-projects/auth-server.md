@@ -104,7 +104,7 @@
   При изход, сесията се инвалидира и подаденото session ID не може да бъде използвано повторно за логин.
 
   ```bash
-  logout –session-id <sessionId>
+  logout –-session-id <sessionId>
   ```
 
 #### Администраторски команди
@@ -114,14 +114,14 @@
   Администраторите могат да създават нови администратори. Правата на новите администратори влизат в действие веднага, без да има необходимост от повторен логин.
 
   ```bash
-  add-admin-user –session-id <sessionId> –username <username>
+  add-admin-user –-session-id <sessionId> –-username <username>
   ```
 - **Премахване на администраторски права на потребител**
 
   Администраторите могат да премахват правата на други администратори. Правата се премахват веднага, без необходимост от повторен логин.
 
   ```bash
-  remove-admin-user –session-id <sessionId> –username <username>
+  remove-admin-user –-session-id <sessionId> –-username <username>
   ```
   Aдминистраторът може да премахне дори своите собствени права, освен, ако не е единствен администратор на сървъра.
 
@@ -130,7 +130,7 @@
   Администраторите имат право да премахнат даден регистриран потребител.
 
   ```bash
-  delete-user –session-id <sessionId> –username <username>
+  delete-user –-session-id <sessionId> –-username <username>
   ```
 
   При изтриване на user, се премахва всяка пазена информация за него (без тази в audit log-a), както и се инвалидира сесията му, ако има валидна такава.
