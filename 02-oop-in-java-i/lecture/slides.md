@@ -956,4 +956,4 @@ public class Door implements OptimisticLockable, PessimisticLockable {
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
 
-.font-xl[.ri-youtube-fill.icon-inline[[MJT2023](https://www.youtube.com/playlist?list=PLew34f6r0PxyUcIg370lv9jHDwFeMDa7e)]]
+.font-xl[.ri-youtube-fill.icon-inline[[MJT2023](https://www.youtube.com/playlist?list=PLew34f6r0PxyQmWCgCP5gKeoBuzXJxq1w)]]
