@@ -18,9 +18,9 @@ public static int getCommunicatingServersCount(int[][] map)
 
 | Извикване                                                                                          | Резултат |
 | :------------------------------------------------------------------------------------------------- | :------- |
-| `getCommunicatingServersCount(new int[][]{{1, 0}, {0, 1}})`                                        | `0`      |
-| `getCommunicatingServersCount(new int[][]{{1, 0}, {1, 1}})`                                        | `3`      |
-| `getCommunicatingServersCount(new int[][]{{1, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}}` | `4`      |
+| `getCommunicatingServersCount(new int[][]{ {1, 0}, {0, 1} })`                                        | `0`      |
+| `getCommunicatingServersCount(new int[][]{ {1, 0}, {1, 1} })`                                        | `3`      |
+| `getCommunicatingServersCount(new int[][]{ {1, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 1, 0}, {0, 0, 0, 1} }` | `4`      |
 
 ### :warning: Забележки
 
