@@ -126,6 +126,8 @@ public interface Criterion {
 }
 ```
 
+`LocationCriterion` трябва да има публичен конструктор `(Location currentLocation, double maxDistance)`, a `PriceCriterion` трябва да има публичен конструктор `(double minPrice, double maxPrice)`.
+
 ### Подсказка
 
 :point_right: За работа с дати и часове, може да използвате [`java.time`](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/package-summary.html) API, обръщайки по-специално внимание на [`LocalDateTime`](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/LocalDateTime.html) класа и неговите методи.
@@ -137,7 +139,7 @@ public interface Criterion {
 ```bash
 src
 └─ bg.sofia.uni.fmi.mjt.airbnb
-    ├─── accomodation
+    ├─── accommodation
     │       ├─── location
     │       │       └─ Location.java
     │       ├─ Apartment.java
