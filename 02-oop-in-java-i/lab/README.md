@@ -62,7 +62,8 @@ public interface Bookable {
      * @return the unique ID of the Bookable.
      * It is String with prefix the first three letters (all-caps) of the accommodation type,
      * a dash and a sequential number counting the number of created accommodation instances of the respective type:
-     * e.g. "HOT-45", "APA-12", "VIL-7". Note that counting starts from 0 and is done separately for the different types.
+     * e.g. "HOT-45", "APA-12", "VIL-7". Note that counting starts from 0
+     * and is done separately for the different types.
      */
     String getId();
 
@@ -85,13 +86,14 @@ public interface Bookable {
      * @param checkOut check-out date
      * @return true, if the accommodation is booked successfully.
      * If the accommodation has been previously booked, does nothing and returns false.
-     * If checkIn or checkOut is null, or checkIn is in the past, or checkIn is not strictly before checkOut, returns false
+     * If checkIn or checkOut is null, or checkIn is in the past,
+     * or checkIn is not strictly before checkOut, returns false
      */
     boolean book(LocalDateTime checkIn, LocalDateTime checkOut);
 
     /**
-     * @return If the accommodation is booked, returns the total price of the stay: the number of nights of the booking,
-     * multiplied by the price per night. If the accommodation is not booked, returns 0.0.
+     * @return If the accommodation is booked, returns the total price of the stay: the number of nights
+     * of the booking, multiplied by the price per night. If the accommodation is not booked, returns 0.0.
      */
     double getTotalPriceOfStay();
 
