@@ -1,15 +1,13 @@
 # Съвременни Java Технологии @ ФМИ
 
-![Java 17](web/images/java-17.png)
+<img src="web/images/java-19.jpg"  width="10%" height="10%">
 
-### Лекции и упражнения 2021/2022
+### Лекции и упражнения 2022/2023
 
 | # | Тема | Лекция | Видео | Дата | Упражение | Видео | Дата |
 | - | :--- | :----- | :---- | :--- | :-------- | :---- | :--- |
 | 1 | Въведение в Java | [слайдове](https://fmi.github.io/java-course/01-intro-to-java/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/JiYPC4q1JaE) | 12.10 | [задача](https://github.com/fmi/java-course/tree/master/01-intro-to-java/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/dEzuloW41lY) | 15.10 |
 | 2 | ООП с Java (част I) | [слайдове](https://fmi.github.io/java-course/02-oop-in-java-i/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/gnYBfgxcYrw) | 15.10 | [задача](https://github.com/fmi/java-course/tree/master/02-oop-in-java-i/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/H1YnHFIJFss) | 19.10 |
-
-
 
 ### Материали от предходни издания
 
