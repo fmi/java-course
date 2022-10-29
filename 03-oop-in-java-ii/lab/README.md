@@ -95,7 +95,8 @@ public interface EscapeRoomPortalAPI {
     void reviewEscapeRoom(String roomName, Review review) throws RoomNotFoundException;
 
     /**
-     * Returns all reviews for the escape room with the specified name, in the order they have been added - from oldest to newest.
+     * Returns all reviews for the escape room with the specified name,
+     * in the order they have been added - from oldest to newest.
      * If there are no reviews, returns an empty array.
      *
      * @param roomName the name of the escape room.
@@ -145,7 +146,7 @@ public interface Ratable {
 
 }
 ```
-> **:warning: Бележка:** Преди да сте се замислили по въпроса - в конкретния scope на задачата този общ интерфейс не е особено полезен - просто демонстрираме, че на практика различни неща могат да имат някакви сходства и в определен контекст могат да бъдат разглеждани заедно. Например, ако имахме потребителски интерфейс с leader board, който показва табличка с подадени ratable елементи в real time и слага :trophy: emoji на първия елемент - тогава компонента, който прави тази визуализация не се интересува от типа на елементите, които визуализира, а само от това, че те имат някаква семантика за наредба и за "текущ победител".
+> **:warning: Бележка:** Преди да сте се замислили по въпроса - в конкретния scope на задачата, този общ интерфейс не е особено полезен - просто демонстрираме, че на практика различни неща могат да имат някакви сходства и в определен контекст могат да бъдат разглеждани заедно. Например, ако имахме потребителски интерфейс с leader board, който показва табличка с подадени ratable елементи в realtime и слага :trophy: emoji на първия елемент - тогава компонентът, който прави тази визуализация, не се интересува от типа на елементите, които визуализира, а само от това, че те имат някаква семантика за наредба и за "текущ победител".
 
 `EscapeRoom` съдържа следните методи (при нужда или желание, може да добавяте допълнителни):
 
