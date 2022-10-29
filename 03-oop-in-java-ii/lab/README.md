@@ -146,6 +146,9 @@ public interface Ratable {
 
 }
 ```
+
+Рейтингът на escape стаите е число с плаваща запетая в интервала [0.0, 10.0] и се смята като средноаритметично на рейтингите на потребителите, добавили мнение (`Review`) за съответната стая. Ако за дадена стая няма добавено нито едно мнение, приемаме, че рейтингът ѝ е 0.0. 
+
 > **:warning: Бележка:** Преди да сте се замислили по въпроса - в конкретния scope на задачата, този общ интерфейс не е особено полезен - просто демонстрираме, че на практика различни неща могат да имат някакви сходства и в определен контекст могат да бъдат разглеждани заедно. Например, ако имахме потребителски интерфейс с leader board, който показва табличка с подадени ratable елементи в realtime и слага :trophy: emoji на първия елемент - тогава компонентът, който прави тази визуализация, не се интересува от типа на елементите, които визуализира, а само от това, че те имат някаква семантика за наредба и за "текущ победител".
 
 `EscapeRoom` съдържа следните методи (при нужда или желание, може да добавяте допълнителни):
@@ -181,6 +184,11 @@ public interface Ratable {
 
     /**
      * Adds a user review for this escape room.
+     * The platform keeps just the latest up to {@code maxReviewsCount} reviews and in case the capacity is full,
+     * a newly added review would overwrite the oldest added one, so the platform contains
+     * {@code maxReviewsCount} at maximum, at any given time. Note that, despite older reviews may have been
+     * overwritten, the rating of the room averages all submitted review ratings, regardless of whether all reviews
+     * themselves are still stored in the platform.
      *
      * @param review the user review to add.
      */
@@ -231,7 +239,7 @@ public enum Difficulty {
 
 ## Review
 
-Потребителите могат да предоставят мнение за дадена стая, което се моделира от `record`-a `Review(int rating, String reviewText)`, чиито компоненти са съответно рейтинг и текст на мнението. `Review` трябва да има компактен конструктор, който да валидира, че рейтингът е число между 0 и 10, а текстът на мнението не е `null` и дължината му не надхвърля 200 символа. При неуспешна валидация, конструкторът трябва да хвърля `IllegalArgumentException`.
+Потребителите могат да предоставят мнение за дадена стая, което се моделира от `record`-a `Review(int rating, String reviewText)`, чиито компоненти са съответно рейтинг и текст на мнението. `Review` трябва да има компактен конструктор, който да валидира, че рейтингът е число в интервала [0, 10], а текстът на мнението не е `null` и дължината му не надхвърля 200 символа. При неуспешна валидация, конструкторът трябва да хвърля `IllegalArgumentException`.
 
 ## Отбори
 
