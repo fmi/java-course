@@ -95,7 +95,7 @@ public interface EscapeRoomPortalAPI {
     void reviewEscapeRoom(String roomName, Review review) throws RoomNotFoundException;
 
     /**
-     * Returns all reviews for the escape room with the specified name, in the order they have been added.
+     * Returns all reviews for the escape room with the specified name, in the order they have been added - from oldest to newest.
      * If there are no reviews, returns an empty array.
      *
      * @param roomName the name of the escape room.
