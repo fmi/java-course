@@ -31,7 +31,7 @@ public interface EscapeRoomAdminAPI {
      * @throws PlatformCapacityExceededException if the maximum number of escape rooms has already been reached.
      * @throws RoomAlreadyExistsException        if the specified room already exists in the platform.
      */
-    void addEscapeRoom(EscapeRoom room);
+    void addEscapeRoom(EscapeRoom room) throws RoomAlreadyExistsException;
 
     /**
      * Removes the escape room with the specified name from the platform.
@@ -145,6 +145,7 @@ public interface Ratable {
 
 }
 ```
+> **:warning: Бележка:** Преди да сте се замислили по въпроса - в конкретния scope на задачата този общ интерфейс не е особено полезен - просто демонстрираме, че на практика различни неща могат да имат някакви сходства и в определен контекст могат да бъдат разглеждани заедно. Например, ако имахме потребителски интерфейс с leader board, който показва табличка с подадени ratable елементи в real time и слага :trophy: emoji на първия елемент - тогава компонента, който прави тази визуализация не се интересува от типа на елементите, които визуализира, а само от това, че те имат някаква семантика за наредба и за "текущ победител".
 
 `EscapeRoom` съдържа следните методи (при нужда или желание, може да добавяте допълнителни):
 
