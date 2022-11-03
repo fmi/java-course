@@ -416,7 +416,7 @@ public static void main(String... args) {
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
 
-.font-xl[.ri-youtube-fill.icon-inline[[MJT2022](https://www.youtube.com/playlist?list=PLew34f6r0PxyUcIg370lv9jHDwFeMDa7e)]]
+.font-xl[.ri-youtube-fill.icon-inline[[MJT2023](https://www.youtube.com/playlist?list=PLew34f6r0PxyQmWCgCP5gKeoBuzXJxq1w)]]
 
 ---
 
@@ -481,7 +481,7 @@ class: center, middle
 
 ### Итератори
 
-- Итераторите предоставят унифициран начин за обхождане на елементите на дадена колекция.
+- Итераторите предоставят унифициран начин за обхождане на елементите на дадена колекция
 - Колекциите (както и масивите) могат да се обхождат с for-each loop
 
 ---
@@ -642,7 +642,7 @@ List<E> subList(int fromIndex, int toIndex)
 - `ArrayList` - resize-ващ се (динамичен) масив
 - `LinkedList` - двойно свързан списък
 - `Vector` - resize-ващ се (динамичен) масив. Synchronized. Legacy → замества се от `ArrayList`
-- `Stack` - наследява Vector. Legacy → замества се от `Dequeue`
+- `Stack` - наследява Vector. Legacy → замества се от `Deque`
 
 ---
 
@@ -709,7 +709,7 @@ HashSet(int initialCapacity, float loadFactor);
 
 // Since Java 19
 // Similar factory methods exist also for LinkedHashSet, HashMap and LinkedHashMap
-HashSet.newHashSet(intNumElements);
+HashSet.newHashSet(int numElements);
 ```
 
 ---
@@ -1065,7 +1065,7 @@ Set<String> namesSet = new HashSet<>();
 namesSet.add("Paul");
 namesSet.add("Anna");
 
-// static factory методи за създаване на unmodifiable колекции като копие на колекции (от Java 10).
+// static factory методи, създаващи unmodifiable колекции като копие на колекции (от Java 10).
 // Последващи промени в оригиналната колекция не се отразяват на копията ѝ.
 
 Set<String> moreNamesYet = Set.copyOf(namesSet);
