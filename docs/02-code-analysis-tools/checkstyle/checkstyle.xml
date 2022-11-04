@@ -231,11 +231,7 @@
       <property name="option" value="text"/>
 	  <property name="tokens" value="LITERAL_CATCH"/>
     </module>
-    <!--
-    <module name="LeftCurly">
-      <property name="option" value="nl"/>
-    </module>
-    -->
+    <module name="LeftCurly"/>
     <!-- PMD handles required braces, except for do loops -->
     <module name="NeedBraces">
       <property name="tokens" value="LITERAL_DO"/>
