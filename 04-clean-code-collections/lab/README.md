@@ -36,7 +36,8 @@ public interface FlightScannerAPI {
     /**
      * Returns a list of flights from start to destination airports with minimum number of transfers.
      * If there are several such flights with equal minimum number of transfers, returns any of them.
-     * If the destination is not reachable with any sequence of flights from the start airport, returns an empty list.
+     * If the destination is not reachable with any sequence of flights from the start airport,
+     * returns an empty list.
      *
      * @param from the start airport.
      * @param to   the destination airport.
@@ -98,7 +99,7 @@ public interface Flight {
      * Adds a passenger to this flight.
      *
      * @param passenger the passenger to add.
-     * @throws FlightCapacityExceededException, in case the flight is already fully booked (there are no free seats).
+     * @throws FlightCapacityExceededException, if the flight is already fully booked (there are no free seats).
      */
     void addPassenger(Passenger passenger) throws FlightCapacityExceededException;
 
