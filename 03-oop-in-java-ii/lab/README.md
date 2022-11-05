@@ -101,7 +101,7 @@ public interface EscapeRoomPortalAPI {
      *
      * @param roomName the name of the escape room.
      * @return the reviews for the escape room with the specified name
-     * @throws IllegalArgumentException if the room name is null, empty or blank, or if the review is null
+     * @throws IllegalArgumentException if the room name is null, empty or blank
      * @throws RoomNotFoundException    if the platform does not contain an escape room with the specified name.
      */
     Review[] getReviews(String roomName) throws RoomNotFoundException;
