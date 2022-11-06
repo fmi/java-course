@@ -731,11 +731,11 @@ TreeSet(SortedSet<E> s);
 ```java
 // естествена подредба
 public interface Comparable<T> {
-    public int compareTo(T o);
+    int compareTo(T o);
 }
 
 public interface Comparator<T> {
-    public int compare(T o1, T o2);
+    int compare(T o1, T o2);
 }
 ```
 
