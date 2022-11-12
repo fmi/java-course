@@ -22,12 +22,20 @@ class Student extends Human {
         super(name);
         this.fn = fn;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+            "fn=" + fn +
+            '}';
+    }
 }
 
 class FMIStudent extends Student {
     public FMIStudent(String name, int fn) {
         super(name, fn);
     }
+
 }
 
 public class GenericsPlayground {
@@ -52,9 +60,14 @@ public class GenericsPlayground {
         listOfSuperHumans.add(new Student("Georgi Todorov", 62348));
         listOfSuperHumans.add(new Human("Anelia Angelova"));
         listOfSuperHumans.add(new FMIStudent("Zahari Zvezdomirov", 62216));
+        // listOfSuperHumans.add(new LivingThing()); // will not compile, why?
 
         // if we get, we can just rely on getting a java.lang.Object
         Object o = listOfSuperHumans.get(0);
+        if (o instanceof Student) {
+            System.out.println(((Student) o).getName());
+        }
+        System.out.println(o);
 
     }
 
@@ -65,6 +78,7 @@ public class GenericsPlayground {
 
         // we can only put null
         listOfUnknown.add(null);
+        // listOfUnknown.add("kuku"); // will not compile
 
         // we can use only methods that are agnostic to the type of elements
         return listOfUnknown.size();
