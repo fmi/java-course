@@ -125,8 +125,6 @@ class: center, middle
 
 .center[![Wrapping I/O Streams](images/07.8-wrapping-io-streams.png)]
 
-<br>
-
   `.close()`-ването на wrapper потока автоматично `.close()`-ва и тези, които той wrap-ва
 
 ---
