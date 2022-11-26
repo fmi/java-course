@@ -25,7 +25,7 @@ public class WritingToAndReadingFromFile {
     }
 
     private static void readFromFile(Path filePath) {
-        try (BufferedReader bufferedReader = Files.newBufferedReader(filePath)) {
+        try (var bufferedReader = Files.newBufferedReader(filePath)) {
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {
