@@ -38,13 +38,12 @@
 ```java
 package bg.sofia.uni.fmi.mjt.mail;
 
-import bg.sofia.uni.fmi.mjt.mail.exceptions.AccountAlreadyExists;
-import bg.sofia.uni.fmi.mjt.mail.exceptions.AccountNotFound;
-import bg.sofia.uni.fmi.mjt.mail.exceptions.ConditionAlreadyDefined;
-import bg.sofia.uni.fmi.mjt.mail.exceptions.FolderAlreadyExists;
-import bg.sofia.uni.fmi.mjt.mail.exceptions.FolderNotFound;
+import bg.sofia.uni.fmi.mjt.mail.exceptions.AccountAlreadyExistsException;
+import bg.sofia.uni.fmi.mjt.mail.exceptions.AccountNotFoundException;
+import bg.sofia.uni.fmi.mjt.mail.exceptions.RuleAlreadyDefinedException;
+import bg.sofia.uni.fmi.mjt.mail.exceptions.FolderAlreadyExistsException;
+import bg.sofia.uni.fmi.mjt.mail.exceptions.FolderNotFoundException;
 import bg.sofia.uni.fmi.mjt.mail.exceptions.InvalidPathException;
-import bg.sofia.uni.fmi.mjt.mail.exceptions.InvalidRuleDefinition;
 
 import java.util.Collection;
 
@@ -56,8 +55,8 @@ public interface MailClient {
      * @param accountName short name of the account
      * @param email       email of the account
      * @return the created Account
-     * @throws IllegalArgumentException if any of the string parameters is null, empty or blank
-     * @throws AccountAlreadyExists     if account with the same name is already present in the client
+     * @throws IllegalArgumentException      if any of the string parameters is null, empty or blank
+     * @throws AccountAlreadyExistsException if account with the same name is already present in the client
      */
     Account addNewAccount(String accountName, String email);
 
@@ -65,12 +64,12 @@ public interface MailClient {
      * @param accountName name of the account for which the folder is created
      * @param path        full path to the folder. The root folder and the path separator character
      *                    is forward slash ('/')
-     * @throws IllegalArgumentException if any of the string parameters is null, empty or blank
-     * @throws AccountNotFound          if the account is not present
-     * @throws InvalidPathException     if the folder path does not start from the root folder of received mails,
-     *                                  or if some intermediate folders do not exist
-     * @throws FolderAlreadyExists      if folder with the same absolute path is already present
-     *                                  for the provided account
+     * @throws IllegalArgumentException     if any of the string parameters is null, empty or blank
+     * @throws AccountNotFoundException     if the account is not present
+     * @throws InvalidPathException         if the folder path does not start from the root folder
+     *                                      of received mails, or if some intermediate folders do not exist
+     * @throws FolderAlreadyExistsException if folder with the same absolute path is already present
+     *                                      for the provided account
      */
     void createFolder(String accountName, String path);
 
@@ -91,12 +90,11 @@ public interface MailClient {
      * @param folderPath     full path of the destination folder
      * @param ruleDefinition string definition of the rule
      * @param priority       priority of the rule - [1,10], 1 = highest priority
-     * @throws IllegalArgumentException if any of the string parameters is null, empty or blank,
-     *                                  or the priority of the rule is not within the expected range
-     * @throws InvalidRuleDefinition    if the rule definition contains a condition twice or contains
-     *                                  unknown conditions
-     * @throws AccountNotFound          if the account does not exist
-     * @throws FolderNotFound           if the folder does not exist
+     * @throws IllegalArgumentException    if any of the string parameters is null, empty or blank,
+     *                                     or the priority of the rule is not within the expected range
+     * @throws AccountNotFoundException    if the account does not exist
+     * @throws FolderNotFoundException     if the folder does not exist
+     * @throws RuleAlreadyDefinedException if the rule definition contains a rule/condition that already exists
      */
     void addRule(String accountName, String folderPath, String ruleDefinition, int priority);
 
@@ -111,15 +109,15 @@ public interface MailClient {
      * The order is not determined and the list might not be full. Example:
      * sender: testy@gmail.com
      * subject: Hello, MJT!
-     * recipients: pesho@gmail.com, gosho@gmail.com
+     * recipients: pesho@gmail.com, gosho@gmail.com,
      * received: 2022-12-08 14:14
      *
      * @param accountName  the recipient account
      * @param mailMetadata metadata, including the sender, all recipients, subject, and receiving time
      * @param mailContent  content of the mail
      * @throws IllegalArgumentException if any of the parameters is null, empty or blank
-     * @throws AccountNotFound          if the account does not exist
-     * @throws FolderNotFound           if the folder does not exist
+     * @throws AccountNotFoundException if the account does not exist
+     * @throws FolderNotFoundException  if the folder does not exist
      */
     void receiveMail(String accountName, String mailMetadata, String mailContent);
 
@@ -130,8 +128,8 @@ public interface MailClient {
      * @param folderPath full path of the folder
      * @return collections of mails available in the folder
      * @throws IllegalArgumentException if any of the parameters is null, empty or blank
-     * @throws AccountNotFound          if the account does not exist
-     * @throws FolderNotFound           if the folder does not exist
+     * @throws AccountNotFoundException if the account does not exist
+     * @throws FolderNotFoundException  if the folder does not exist
      */
     Collection<Mail> getMailsFromFolder(String account, String folderPath);
 
@@ -186,15 +184,17 @@ src
     ├── exceptions
     │   ├── AccountAlreadyExistsException.java
     │   ├── AccountNotFoundException.java
-    │   ├── ConditionAlreadyDefinedException.java
     │   ├── FolderAlreadyExistsException.java
     │   ├── FolderNotFoundException.java
     │   ├── InvalidPathException.java
-    │   └── InvalidRuleDefinitionException.java
+    │   └── RuleAlreadyDefinedException.java
     ├── Account.java
     ├── Mail.java
     ├── MailClient.java
     └── Outlook.java
+test
+└─ bg.sofia.uni.fmi.mjt.mail
+    └─ (...)
 ```
 
 ### Предаване
