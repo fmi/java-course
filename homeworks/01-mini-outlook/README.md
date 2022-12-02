@@ -85,6 +85,10 @@ public interface MailClient {
      * subject-includes: mjt, izpit, 2022
      * subject-or-body-includes: izpit
      * from: stoyo@fmi.bg
+     * 
+     * For subject-includes and subject-or-body-includes rules, if more than one keywords is specified, all must
+     * be contained for the rule to match, i.e. it is a conjunction condition. For recipients-includes,
+     * it's enough for one listed recipient to match (disjunction condition). For from, it should be exact match.
      *
      * @param accountName    name of the account for which the rule is applied
      * @param folderPath     full path of the destination folder
