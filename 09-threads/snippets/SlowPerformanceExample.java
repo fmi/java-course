@@ -33,8 +33,8 @@ public class SlowPerformanceExample {
         long resultSlow = testBankAccount(new SlowPrintableBankAccount("Ivan"));
         long resultFast = testBankAccount(new FastPrintableBankAccount("Pesho"));
 
-        System.out.println("Slow implementation executed for : " + resultSlow + " sec.");
-        System.out.println("Fast implementation executed for : " + resultFast + " sec.");
+        System.out.println("Slow implementation executed for : " + resultSlow + " ms.");
+        System.out.println("Fast implementation executed for : " + resultFast + " ms.");
     }
 }
 

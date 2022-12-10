@@ -21,6 +21,12 @@ class TimerBomb extends Thread {
     public void run() {
         for (String c : count) {
             System.out.println(c);
+            
+            try {
+                Thread.sleep(1_500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

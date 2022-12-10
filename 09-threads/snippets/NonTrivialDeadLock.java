@@ -4,8 +4,8 @@
 public class NonTrivialDeadLock {
 
     public static void main(String[] args) throws Exception {
-        BankAccount ivan = new BankAccount("Ivan", 1000);
-        BankAccount pesho = new BankAccount("Pesho", 1000);
+        BankAccount ivan = new BankAccount("Ivan", 1_000);
+        BankAccount pesho = new BankAccount("Pesho", 1_000);
 
         Thread t1 = new Thread(() -> transfer(ivan, pesho, 100));
 

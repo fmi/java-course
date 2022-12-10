@@ -54,7 +54,7 @@ class CreditBankAccount extends BankAccount {
         }
 
         withdraw(monthFee);
-        System.out.println("Successfully withdraw money. Remaining balance " + balance);
+        System.out.println("Successfully withdrew money. Remaining balance " + balance);
     }
 }
 
