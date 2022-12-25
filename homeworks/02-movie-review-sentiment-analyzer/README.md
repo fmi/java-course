@@ -62,7 +62,7 @@
 Kато трите параметъра са съответно поток за четене на [stopwords.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-movie-review-sentiment-analyzer/resources/stopwords.txt), поток за четене на [reviews.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-movie-review-sentiment-analyzer/resources/reviews.txt) и поток за писане в [reviews.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-movie-review-sentiment-analyzer/resources/reviews.txt).
 
 ```java
-package bg.uni.sofia.fmi.mjt.sentiment;
+package bg.sofia.uni.fmi.mjt.sentiment;
 
 import java.util.List;
 
