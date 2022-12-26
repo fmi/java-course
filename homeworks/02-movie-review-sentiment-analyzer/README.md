@@ -34,7 +34,7 @@
 
 Ще използваме data set от сайта [Rotten Tomatoes](https://www.rottentomatoes.com/), използван за престижния [Кaggle machine learning competition](https://www.kaggle.com/c/sentiment-analysis-on-movie-reviews).
 
-Данните са налични в текстовия файл [reviews.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-movie-review-sentiment-analyzer/resources/reviews.txt), като всеки ред от файла започва с рейтинг, следван от интервал и текста на отзива, например:
+Данните са налични в текстовия файл [movieReviews.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-movie-review-sentiment-analyzer/resources/movieReviews.txt), като всеки ред от файла започва с рейтинг, следван от интервал и текста на отзива, например:
 
 ```
 4 The performances are an absolute joy .
@@ -48,7 +48,7 @@
 
 Обучение:
 
-1. Изчитат се отзивите в [reviews.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-movie-review-sentiment-analyzer/resources/reviews.txt)
+1. Изчитат се отзивите в [movieReviews.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-movie-review-sentiment-analyzer/resources/movieReviews.txt)
 2. Изчислява се sentiment score на всяка дума като средно аритметично (без закръгляване) на всички рейтинги, в които участва дадената дума. Дума е последователност от малки и главни латински букви, цифри и символа за апостроф (') с дължина поне два символа. Думите са case-insensitive, т.е. "Movie", "movie" и "movIE" се третират като една и съща дума. Един отзив се състои от думи, разделени с разделители: интервали, табулации и препинателни знаци - въобще, всеки символ, който не е буква, цифра или апостроф. Stopwords се игнорират, т.е. не се взимат под внимание.
 
 Разпознаване:
