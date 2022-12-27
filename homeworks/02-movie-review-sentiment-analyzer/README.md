@@ -91,12 +91,14 @@ public interface SentimentAnalyzer {
 
     /**
      * @param word
-     * @return the number of occurrences of the word in all reviews
+     * @return the number of occurrences of the word in all reviews.
+     * If {@code word} is a stopword, the result is undefined.
      */
     int getWordFrequency(String word);
 
     /**
-     * Returns a list of the n most frequent words found in the reviews, sorted by frequency in decreasing order
+     * Returns a list of the n most frequent words found in the reviews, sorted by frequency in decreasing order.
+     * Stopwords are ignored and should not be included in the result.
      *
      * @throws {@link IllegalArgumentException}, if n is negative
      */
