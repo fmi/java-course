@@ -49,7 +49,7 @@
 Обучение:
 
 1. Изчитат се отзивите в [movieReviews.txt](https://github.com/fmi/java-course/tree/master/homeworks/02-movie-review-sentiment-analyzer/resources/movieReviews.txt)
-2. Изчислява се sentiment score на всяка дума като средно аритметично (без закръгляване) на всички рейтинги, в които участва дадената дума. Дума е последователност от малки и главни латински букви, цифри и символа за апостроф (') с дължина поне два символа. Думите са case-insensitive, т.е. "Movie", "movie" и "movIE" се третират като една и съща дума. Един отзив се състои от думи, разделени с разделители: интервали, табулации и препинателни знаци - въобще, всеки символ, който не е буква, цифра или апостроф. Stopwords се игнорират, т.е. не се взимат под внимание.
+2. Изчислява се sentiment score на всяка дума като средно аритметично (без закръгляване) на всички рейтинги, в които участва дадената дума. Ако дадена дума се среща повече от веднъж в един и същи отзив, това не се отразява на sentiment score-а ѝ. Дума е последователност от малки и главни латински букви, цифри и символа за апостроф (') с дължина поне два символа. Думите са case-insensitive, т.е. "Movie", "movie" и "movIE" се третират като една и съща дума. Един отзив се състои от думи, разделени с разделители: интервали, табулации и препинателни знаци - въобще, всеки символ, който не е буква, цифра или апостроф. Тирето също е разделител. Stopwords се игнорират, т.е. не се взимат под внимание.
 
 Разпознаване:
 
@@ -78,26 +78,31 @@ public interface SentimentAnalyzer {
     /**
      * @param review the text of the review
      * @return the review sentiment as a name: "negative", "somewhat negative",
-     * "neutral", "somewhat positive", "positive" or "unknown"
+     * "neutral", "somewhat positive", "positive" or "unknown".
+     * As the review sentiment is a floating-point number, the sentiment name is defined
+     * by the integer number closest to it, i.e. the sentiment is rounded to integer.
      */
     String getReviewSentimentAsName(String review);
 
     /**
      * @param word
      * @return the review sentiment of the word as a floating-point number in the
-     * interval [0.0, 4.0] if known, and -1.0 if unknown
+     * interval [0.0, 4.0] if known, and -1.0 if unknown. The word is considered case-insensitive.
      */
     double getWordSentiment(String word);
 
     /**
      * @param word
-     * @return the number of occurrences of the word in all reviews.
+     * @return the number of all occurrences of the word in all reviews. Repeating occurrences of the word
+     * in the same review are also counted for the frequency. The word is considered case-insensitive.
      * If {@code word} is a stopword, the result is undefined.
      */
     int getWordFrequency(String word);
 
     /**
      * Returns a list of the n most frequent words found in the reviews, sorted by frequency in decreasing order.
+     * Repeating occurrences of a word in the same review are also counted for the frequency.
+     * Words are considered case-insensitive.
      * Stopwords are ignored and should not be included in the result.
      *
      * @throws {@link IllegalArgumentException}, if n is negative
@@ -105,14 +110,16 @@ public interface SentimentAnalyzer {
     List<String> getMostFrequentWords(int n);
 
     /**
-     * Returns a list of the n most positive words in the reviews, sorted by sentiment score in decreasing order
+     * Returns a list of the n most positive words in the reviews, sorted by sentiment score in decreasing order.
+     * Words are considered case-insensitive.
      *
      * @throws {@link IllegalArgumentException}, if n is negative
      */
     List<String> getMostPositiveWords(int n);
 
     /**
-     * Returns a list of the n most negative words in the reviews, sorted by sentiment score in ascending order
+     * Returns a list of the n most negative words in the reviews, sorted by sentiment score in ascending order.
+     * Words are considered case-insensitive.
      *
      * @throws {@link IllegalArgumentException}, if n is negative
      */
@@ -122,7 +129,7 @@ public interface SentimentAnalyzer {
      * Appends a review to the end of the data set.
      * Any information from the data set stored in memory should be automatically updated.
      *
-     * @param review    The text part of the review
+     * @param review    The text part of the review. Note that it does not include the rating of the review.
      * @param sentiment the given rating
      * @return true if the operation was successful and false if an issue has occurred and the review is not stored
      * @throws {@link IllegalArgumentException}, if review is null, empty or blank,
@@ -136,7 +143,7 @@ public interface SentimentAnalyzer {
     int getSentimentDictionarySize();
 
     /**
-     * Returns whether a word is a stopword
+     * Returns whether a word is a stopword. The word is considered case-insensitive.
      */
     boolean isStopWord(String word);
 
@@ -146,7 +153,7 @@ public interface SentimentAnalyzer {
 Нашият data set от ревюта трябва да може да се разширява. Това ще допринесе за допълнителна точност при определяне на sentiment във времето. Точно това е идеята и на `Writer`-a и метода `appendReview(String review, int sentiment)` - чрез тях ще добавяме нови ревюта към `MovieReviews.txt`.
 
 Текстът на ревюто не може да съдържа символ за нов ред. Уверете се обаче, че при `appendReview`-a добавяте и `System.lineSeparator()`, така че всяко ревю да е на отделен ред.
-При добавяне на нови ревюта и оценки, преизчисляваме sentiment-a на всички думи в data set-a. 
+При добавяне на нови ревюта и оценки, преизчисляваме sentiment-a на всички думи в data set-a. Това обаче по никакъв начин не се отразява на вече съществуващите в dataset-a ревюта - освен добавянето на нов ред, останалото съдържание на data set файла остава без промяна.
 
 ### **Предаване**
 
