@@ -20,7 +20,7 @@
 | 10 | Многонишково програмиране (част II) | [слайдове](https://fmi.github.io/java-course/10-network/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/V2SpRSpWbPg) | 14.12 | [задача](https://github.com/fmi/java-course/tree/master/09-threads/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/ZKK9I9ZHxpU) | 17.12 |
 | 10 | Мрежово програмиране (част I) | [слайдове](https://fmi.github.io/java-course/10-network/lecture/slides.html#20) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/V2SpRSpWbPg) | 14.12 | [задача](https://github.com/fmi/java-course/tree/master/09-threads/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/ZKK9I9ZHxpU) | 17.12 |
 | 11 | Мрежово програмиране (част II) | [слайдове](https://fmi.github.io/java-course/11-network-ii/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/jkHDOOXt1oY) | 21.12 | [задача](https://github.com/fmi/java-course/tree/master/11-network-ii/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/oHGTXxaaRAk) | 07.01 |
-| 12 | HTTP, REST и JSON | [слайдове](https://fmi.github.io/java-course/12-http-rest/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/2kis0g6MSBU) | 04.01 |  |  |  |
+| 12 | HTTP, REST и JSON | [слайдове](https://fmi.github.io/java-course/12-http-rest/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/g9WWEaXaWMs) | 04.01 |  |  |  |
 | 13 | Design Patterns | [слайдове](https://fmi.github.io/java-course/13-design-patterns/lecture/slides.html) |  | 11.01 |  |  |  |
 
 ### Материали от предходни издания
