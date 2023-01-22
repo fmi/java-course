@@ -22,7 +22,7 @@ public class CodePostGrader implements AdminGradingAPI {
         for (int i = 0; i < numberOfAssistants; i++) {
             Assistant assistant = new Assistant("Assistant " + i, this);
             assistants.add(assistant);
-            new Thread(assistant).start();
+            assistant.start();
         }
     }
 
