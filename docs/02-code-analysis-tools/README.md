@@ -31,6 +31,11 @@ $ java -jar checkstyle-10.4-all.jar -c $CHECKS my-fancy-project/
    - _Use a local Checkstyle file_ → _Browse_, като може да си свалите [този](https://github.com/fmi/java-course/blob/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml) от нашия грейдър
    - _Use a Checkstyle file accessible via HTTP_ и в полето _URL_ задавате локация на remote файл, например [този](https://raw.githubusercontent.com/fmi/java-course/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml) от нашия грейдър
 
+За да настроите автоматичното конфигуриране на правилата, при създаването на всеки нов проект:
+
+1. _File_ → _New Project Setup_ → _Settings For New Projects..._ → _Tools_ → _Checkstyle_
+2. Прилагате стъпки 2 и 3 от стандартното конфигуриране
+
 За да настроите автоматичното форматиране в IDE-то (това, което задействате с Ctrl+Alt+L) да ползва същата custom конфигурация:
 
 1. _File_ → _Settings..._ → _Editor_ → _Code Style_ → _Java_
