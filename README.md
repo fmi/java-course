@@ -1,6 +1,6 @@
 # Съвременни Java Технологии @ ФМИ
 
-<img src="web/images/java-19.jpg"  width="10%" height="10%">
+<img src="web/images/java-21.png"  width="10%" height="10%">
 
 [График на курса](https://github.com/fmi/java-course/tree/master/docs/00-schedule)
 
