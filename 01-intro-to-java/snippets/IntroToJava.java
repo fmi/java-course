@@ -95,8 +95,8 @@ public class IntroToJava {
 		
 		// 7. String templating - note that this is a preview feature
 		String coder = "100yo";
-//		String greeting = STR."Good morning \{coder} Vellev";
-//		System.out.println(greeting);
+		String greeting = STR."Good morning \{coder} Vellev";
+		System.out.println(greeting);
 
 		// 8. Emojis
 		System.out.println("I am from \uD83C\uDDE7\uD83C\uDDEC");
