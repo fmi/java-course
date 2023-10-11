@@ -15,7 +15,7 @@ public class AdmissionTestProblems {
 		for (int i = 0; i < s1.length(); ++i) {
 			differences += (s1.charAt(i) == s2.charAt(i)) ? 0 : 1;
 		}
-		
+
 		return differences / 2;
 	}
 
@@ -31,6 +31,7 @@ public class AdmissionTestProblems {
 			result += i / (double) denominator;
 			denominator *= m;
 		}
+		
 		return result;
 	}
 
