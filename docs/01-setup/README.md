@@ -4,32 +4,31 @@
 - [Integrated Development Environment](#integrated-development-environment)
     - [IntelliJ IDEA](#intellij-idea)
     - [Eclipse](#eclipse)
-- [Online Auto Grader](#online-auto-grader)
-    - [Eclipse Plugin за Grader](#eclipse-plugin-за-grader)
+- [Online Auto Grader](#autograder)
 
 ## Java Development Kit
 
-- [Инсталация за Windows](https://docs.oracle.com/en/java/javase/19/install/installation-jdk-microsoft-windows-platforms.html#GUID-DAF345BA-B3E7-4CF2-B87A-B6662D691840)
+- [Инсталация за Windows](https://docs.oracle.com/en/java/javase/21/install/installation-jdk-microsoft-windows-platforms.html#GUID-DAF345BA-B3E7-4CF2-B87A-B6662D691840)
 
-- [Инсталация на Linux](https://docs.oracle.com/en/java/javase/19/install/installation-jdk-linux-platforms.html#GUID-A35B89D1-7EBB-4463-B293-55C8E9713357)
+- [Инсталация на Linux](https://docs.oracle.com/en/java/javase/21/install/installation-jdk-linux-platforms.html#GUID-A35B89D1-7EBB-4463-B293-55C8E9713357)
 
-- [Инсталация на Mac OS](https://docs.oracle.com/en/java/javase/19/install/installation-jdk-macos.html#GUID-EB197354-E07E-4C6A-8AF6-642E23241D39)
+- [Инсталация на Mac OS](https://docs.oracle.com/en/java/javase/21/install/installation-jdk-macos.html#GUID-EB197354-E07E-4C6A-8AF6-642E23241D39)
 
-**Забележка:** Изтеглете JDK 19 от **Builds** за вашата операционна система от [тук](
-https://jdk.java.net/19).
+**Забележка:** Изтеглете JDK 21 от **Builds** за вашата операционна система от [тук](
+https://jdk.java.net/21).
 
 **Забележка:** Уверете се, че инсталацията е успешна:
 
 ```console
 $ java -version
-openjdk version "19" 2022-09-20
-OpenJDK Runtime Environment (build 19+36-2238)
-OpenJDK 64-Bit Server VM (build 19+36-2238, mixed mode, sharing)
+openjdk version "21" 2023-09-19
+OpenJDK Runtime Environment (build 21+35-2513)
+OpenJDK 64-Bit Server VM (build 21+35-2513, mixed mode, sharing)
 ```
 
 ## Integrated Development Environment
 
-Може да използате което и да е _IDE_ или любимия ви текстов редактор. Все пак, ние бихме препоръчали _IntelliJ IDEA_ или_Eclipse_:
+Може да използате което и да е _IDE_ или любимия ви текстов редактор. Все пак, ние бихме препоръчали _IntelliJ IDEA_ или _Eclipse_:
 
 ### IntelliJ IDEA
 
@@ -37,11 +36,11 @@ OpenJDK 64-Bit Server VM (build 19+36-2238, mixed mode, sharing)
 
 #### Инсталация на IntelliJ IDEA и Hello World
 
-- официалната документация на _IntelliJ IDEA_ има подробни [стъпки за инсталация](https://www.jetbrains.com/help/idea/installation-guide.html)
+- Официалната документация на _IntelliJ IDEA_ има подробни [стъпки за инсталация](https://www.jetbrains.com/help/idea/installation-guide.html)
 
-- [кратко и полезно видео](https://www.youtube.com/watch?time_continue=245&v=c0efB_CKOYo) за създаване, пускане и конфигуриране на Hello World проект
+- [Кратко и полезно видео](https://www.youtube.com/watch?time_continue=245&v=c0efB_CKOYo) за създаване, пускане и конфигуриране на Hello World проект
 
-- подобно на горното видео, но в текстов вариант: [създаване и стартиране на Hello World приложение](https://www.jetbrains.com/help/idea/creating-and-running-your-first-java-application.html)
+- Подобно на горното видео, но в текстов вариант: [създаване и стартиране на Hello World приложение](https://www.jetbrains.com/help/idea/creating-and-running-your-first-java-application.html)
 
 #### Полезни IntelliJ IDEA Shortcuts
 
@@ -57,9 +56,9 @@ Beginner's Tutorial за дебъгване в _IntelliJ IDEA_ може да н�
 
 #### Инсталация на Eclipse и Hello World
 
-Един [подробен tutorial](https://www.vogella.com/tutorials/Eclipse/article.html) за подготовка на [Eclipse]((https://www.eclipse.org/downloads/eclipse-packages/)), включващ описание как да си го инсталирате и как да направите първия си проект.
+Един [подробен tutorial](https://www.vogella.com/tutorials/Eclipse/article.html) за подготовка на [Eclipse](https://www.eclipse.org/downloads/eclipse-packages/), включващ описание как да си го инсталирате и как да направите първия си проект.
 
-**Забележка**: За да използвате Java 19, ще ви трябва [Eclipse 2022‑09](https://www.eclipse.org/downloads/) или по-нов. За момента (към 14-10-2022) се налага и инсталация на допълнителен feature, който се намира [тук](https://marketplace.eclipse.org/content/java-19-support-eclipse-2022-09-425) (за да го инсталирате, просто drag-вате `Install` върху отворения workspace).
+**Забележка**: За да използвате Java 21, ще ви трябва [Eclipse 2023-09](https://www.eclipse.org/downloads/) или по-нов. За момента (към 12-10-2023) се налага и инсталация на допълнителен feature, който се намира [тук](https://marketplace.eclipse.org/content/java-21-support-eclipse-2023-09-429) (за да го инсталирате, просто drag-вате `Install` върху отворения workspace).
 
 #### Полезни Eclipse Shortcuts
 
@@ -98,5 +97,5 @@ Beginner's Tutorial за дебъгване в _IntelliJ IDEA_ може да н�
 
 Онлайн системата за автоматично тестване e [codepost.it](https://codepost.io/).
 
-Ще я ползваме както за упражненията, така и за домашните и курсовия проект.
-Ще получите от екипа на курса указания за регистрация и насоки как се използва.
+1. Ще я ползваме както за упражненията, така и за домашните и курсовия проект.
+2. Ще получите от екипа на курса указания за регистрация и насоки как се използва.
