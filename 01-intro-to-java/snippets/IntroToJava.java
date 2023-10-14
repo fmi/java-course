@@ -95,7 +95,7 @@ public class IntroToJava {
 
         // 7. String templating - note that this is a Java 21 preview feature
         String coder = "100yo";
-        String greeting = STR. "Good morning, \{ coder } Vellev" ;
+        String greeting = STR. "Good morning, \{ coder } Vellev";
         System.out.println(greeting);
 
         // 8. Emojis
