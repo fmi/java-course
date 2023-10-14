@@ -7,8 +7,9 @@ public class AdmissionTestProblems {
     {
         int i, total, n = a.length;
         total  = n * (n + 1) / 2;
-        for ( i = 0; i < n; i++)
+        for (i = 0; i < n; i++) {
             total -= a[i];
+        }
         return total;
     }
 
