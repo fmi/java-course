@@ -48,6 +48,21 @@ OpenJDK 64-Bit Server VM (build 21+35-2513, mixed mode, sharing)
 
 Кратко описание на UI-а, както и полезни shortcut-и са включени в [IntelliJ IDEA overview](https://www.jetbrains.com/help/idea/discover-intellij-idea.html).
 
+#### IntelliJ Live Templates
+
+*Live Templates* са бърз и удобен начин да пишем често повтарящи се езикови конструкции, въвеждайки само няколко букви (*hint*) и оставяйки IDE-то да генерира целия код. Ето най-често използваните:
+
+| Hint              | Шаблон                                       |
+| :---------------- | :------------------------------------------- |
+| `psvm` или `main` | `public static void main(String[] args) { }` |
+| `psf`             | `public static final `                       |
+| `prsf`            | `private static final `                      |
+| `sout`            | `System.out.println();`                      |
+| `fori`            | `for (int i = 0; i < ; i++) { }`             |
+| `ifn`             | `if (var == null) { }`                       |
+
+Може да разгледаш [документацията](https://www.jetbrains.com/help/idea/using-live-templates.html), а най-якото е, че може да ги "тунинговаш" според предпочитанията ти и дори [да създаваш нови](https://www.jetbrains.com/help/idea/creating-and-editing-live-templates.html).
+
 #### Дебъгване в IntelliJ IDEA
 
 Beginner's Tutorial за дебъгване в _IntelliJ IDEA_ може да намерите [тук](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html).
