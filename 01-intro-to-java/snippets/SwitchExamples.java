@@ -32,7 +32,7 @@ public class SwitchExamples {
 	}
 
 	private static String java15FoodGrader(String food) {
-		String grade = switch (food) {
+        var grade = switch (food) {
 		case "PIZZA" -> "NICE!";
 		case "RAMEN" -> "OOOH FANCY!";
 		case "SNAILS" -> "ARE YOU OUT OF YOUR MIND?!?";
@@ -42,7 +42,7 @@ public class SwitchExamples {
 		return grade;
 	}
 
-	// Preview feature since JDK 17. Is to be finalized with JDK 21
+	// Preview feature since JDK 17, finalized with JDK 21
 	private static String switchPatternMatchingStringConvert(Object inputObject) {
 		return switch (inputObject) {
 		case char[] charArray -> Arrays.toString(charArray);
@@ -51,7 +51,7 @@ public class SwitchExamples {
 																					// but instead scold the programmer.
 																					// Note: Also a preview-feature in JDK 21
 		case null -> "It's a null reference"; // able to handle null references
-		default -> "It is none of the known data types";
+        default -> "It is none of the known data types";
 		};
 	}
 }
