@@ -8,7 +8,7 @@
 
 Класът `Portfolio` в пакета `bg.sofia.uni.fmi.mjt.trading121` представлява инвестиционен портфейл - съвкупността от различни активи (в нашата платформа - засега само акции), в които собственикът на портфейла е инвестирал към даден момент.
 
-В този клас имплементирайте 2 публични конструктора:
+В този клас имплементирайте два публични конструктора:
 * `Portfolio(String owner, PriceChartAPI priceChart, double budget, int maxSize)` - когато до момента няма покупки на акции
 * `Portfolio(String owner, PriceChartAPI priceChart, StockPurchase[] stockPurchases, double budget, int maxSize)` - когато вече има реализирани `stockPurchases` покупки на акции
   
@@ -70,11 +70,13 @@ public interface PortfolioAPI {
 }
 ```
 
-#### Забележка: Навсякъде в задачата, където се връща double, обозначаващ сума пари, закръгляме с точност до 2 знака след десетичната запетая, като при >=0.005 закръгляме нагоре
+### Забележка
+
+Навсякъде в задачата, където се връща double, обозначаващ сума пари, закръгляме с точност до 2 знака след десетичната запетая, като при >=0.005 закръгляме нагоре
 
 ### Покупка на акции
 
-Като млада платформа за търговия с активи, все още не можем да поддържаме обширен асортимент от акции. За момент допускаме търговия с акции само на Microsoft(ticker=MSFT), Amazon(ticker=AMZ) и Google(ticker=GOOG). Класовете, което символизират покупка на даден тип акции са съответно `MicrosoftStockPurchase`, `AmazonStockPurchase` и `GoogleStockPurchase` в пакета `bg.sofia.uni.fmi.mjt.trading121.stock`, като те имплеметират следния интерфейс:
+Като млада платформа за търговия с активи, все още не можем да поддържаме обширен асортимент от акции. За момента допускаме търговия с акции само на Microsoft (ticker = MSFT), Amazon (ticker = AMZ) и Google (ticker = GOOG). Класовете, които символизират покупка на даден тип акции, са съответно `MicrosoftStockPurchase`, `AmazonStockPurchase` и `GoogleStockPurchase` в пакета `bg.sofia.uni.fmi.mjt.trading121.stock`, като те имплементират следния интерфейс:
 
 ```java
 package bg.sofia.uni.fmi.mjt.trading121.stock;
@@ -118,7 +120,7 @@ public interface StockPurchase {
 
 ### Цена на акции
 
-Цената на акциите е динамична и се определя от търсенето. За тази цел обаче е необходимо да имаме механизъм за следене на текущата цена и нейната промяна, когато това се налага. В пакета `bg.sofia.uni.fmi.mjt.trading121.price` създайте клас `PriceChart` с публичен конструктор `PriceChart(double microsoftStockPrice, double googleStockPrice, double amazonStockPrice)`, който имплементира следния интерфейс:
+Цената на акциите е динамична и се определя от търсенето. За тази цел обаче, е необходимо да имаме механизъм за следене на текущата цена и нейната промяна, когато това се налага. В пакета `bg.sofia.uni.fmi.mjt.trading121.price` създайте клас `PriceChart` с публичен конструктор `PriceChart(double microsoftStockPrice, double googleStockPrice, double amazonStockPrice)`, който имплементира следния интерфейс:
 
 ```java
 package bg.sofia.uni.fmi.mjt.trading121.price;
