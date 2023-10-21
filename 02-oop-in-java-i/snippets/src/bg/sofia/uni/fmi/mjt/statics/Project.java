@@ -7,12 +7,15 @@ public class Project {
 
     private String name;
 
-    public Project(String name) {
+    public Project() {
         // We can use static variable to count the number of Project instances created.
         // All instances of Project will share the same copy of the variable.
-        totalProjectInstances++;
 
-        this.name = name;
+        name = PROJECT_PREFIX + totalProjectInstances++;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public static int getTotalProjectInstances() {
@@ -28,4 +31,10 @@ public class Project {
     //    System.out.println(name);
     //}
 
+    public static void main(String... s) {
+        System.out.println(new Project().getName());
+        System.out.println(new Project().getName());
+        System.out.println(new Project().getName());
+    }
+    
 }
