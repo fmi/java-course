@@ -116,7 +116,7 @@ public interface StockPurchase {
 }
 ```
 
-И трите имплеметации на `StockPurchase` трябва да имат публичен конструктор с параметри `(String ticker, int quantity, LocalDateTime purchaseTimestamp, double purchasePricePerUnit)`.
+И трите имплеметации на `StockPurchase` трябва да имат публичен конструктор с параметри `(int quantity, LocalDateTime purchaseTimestamp, double purchasePricePerUnit)`.
 
 ### Цена на акции
 
