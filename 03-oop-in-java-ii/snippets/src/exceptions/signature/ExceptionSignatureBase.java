@@ -9,6 +9,7 @@ public class ExceptionSignatureBase {
     }
 
 }
+
 class MyExceptionBase extends IOException {
 
 }
