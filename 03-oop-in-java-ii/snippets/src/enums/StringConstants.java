@@ -3,7 +3,7 @@ package enums;
 public class StringConstants {
 
     // 1. This approach can lead to performance problems because it relies on string comparisons
-    // 2. If the constants contain typos they will escape detection at compile time and result in bugs at runtime
+    // 2. If the constants contain typos, they will escape detection at compile time and result in bugs at runtime
     // 3. There is no way to iterate over all enumerated types
     // 4. There is no type safety
     public static final String MONDAY = "monday";
@@ -18,4 +18,5 @@ public class StringConstants {
     public static void printDayMessage(String day) {
         // Print some message according to the day
     }
+
 }

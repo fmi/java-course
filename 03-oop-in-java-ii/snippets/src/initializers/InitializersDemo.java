@@ -11,7 +11,7 @@ class InitializersDemoBase {
 
     static {
         InitializersDemoBase.y = 1;
-        System.out.println("parent static initializer executed");
+        System.out.println("Parent static initializer executed");
     }
 
     public InitializersDemoBase() {
