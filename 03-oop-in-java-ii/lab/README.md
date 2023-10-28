@@ -322,7 +322,7 @@ public interface Purchasable {
     /**
      * Returns true if and only if the object is purchased.
      */
-    int isPurchased();
+    boolean isPurchased();
 }
 ```
 
