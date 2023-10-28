@@ -143,6 +143,7 @@ public enum AccountType {
      * @param course the course which will be bought.
      * @throws IllegalArgumentException if the account buyer is of type BusinessAccount and course has category which is not among the permitted for this account
      * @throws InsufficientBalanceException if the account does not have enough funds in its balance.
+     * @throws CourseAlreadyPurchasedException if the course is already purchased for this account.
      * @throws MaxCourseCapacityReachedException if the account has reached the maximum allowed course capacity.
      */
     void buyCourse(Course course) throws InsufficientBalanceException, CourseAlreadyPurchasedException, MaxCourseCapacityReachedException;
@@ -152,6 +153,7 @@ public enum AccountType {
      *
      * @param resources the resources which will be completed.
      * @param course the course in which the resources will be completed.
+     * @throws IllegalArgumentException if course or resourcesToComplete are null.
      * @throws CourseNotPurchasedException if course is not currently purchased for this account.
      * @throws ResourceNotFoundException if a certain resource could not be found in the course.
      */
@@ -162,7 +164,7 @@ public enum AccountType {
      *
      * @param course the course which will be completed.
      * @param grade the grade with which the course will be completed.
-     * @throws IllegalArgumentException if grade is not in range [2.00, 6.00].
+     * @throws IllegalArgumentException if grade is not in range [2.00, 6.00] or course is null.
      * @throws CourseNotPurchasedException if course is not currently purchased for this account.
      * @throws CourseNotCompletedException if there is a resource in the course which is not completed.
      */
@@ -178,6 +180,14 @@ public enum AccountType {
 
 В пакета `bg.sofia.uni.fmi.mjt.udemy.account` създайте три класа - `StandardAccount`, `EducationalAccount` и `BusinessAccount`, които наслеядават абстрактния клас `AccountBase`.
 Приемаме, че даден акаунт може да закупи най-много **100** курса.
+
+### BusinessAccount
+
+Kласът `BusinessAccount` има следния конструктор:
+
+ ```java
+public BusinessAccount(String username, double balance, Category[] allowedCategories)
+ ```
 
 ### Course
 
@@ -238,6 +248,7 @@ public Course(String name, String description, double price, Resource[] content,
      * Completes a resource from the course.
      * 
      * @param resourceToComplete the resource which will be completed.
+     * @throws IllegalArgumentException if resourceToComplete is null.
      * @throws ResourceNotFoundException if the resource could not be found in the course.
      */
     public void completeResource(Resource resourceToComplete) throws ResourceNotFoundException {
