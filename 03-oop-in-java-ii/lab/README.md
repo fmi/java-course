@@ -151,7 +151,7 @@ public enum AccountType {
     /**
      * Completes the given resources that belong to the given course provided that the course was previously purchased by this account.
      *
-     * @param resources the resources which will be completed.
+     * @param resourcesToComplete the resources which will be completed.
      * @param course the course in which the resources will be completed.
      * @throws IllegalArgumentException if course or resourcesToComplete are null.
      * @throws CourseNotPurchasedException if course is not currently purchased for this account.
