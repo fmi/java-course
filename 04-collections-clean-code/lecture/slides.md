@@ -1070,7 +1070,7 @@ public static void main(String... args) {
 
 ```java
 // Good
-private static int readAndValidate(Scanner sc) { // handle input
+private static int readInput(Scanner sc) { // handle input
     int n = -1;
     do {
         System.out.println("Въведи число:");
