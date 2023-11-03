@@ -8,24 +8,24 @@
 
 ```bash
 # point to our checkstyle rules
-$ export CHECKS=https://raw.githubusercontent.com/fmi/java-course/master/docs/01-code-analysis-tools/checkstyle/checkstyle.xml
+$ export CHECKS=https://raw.githubusercontent.com/fmi/java-course/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml
 
 # run for single .java file
-$ java -jar checkstyle-10.4-all.jar -c $CHECKS Main.java
+$ java -jar checkstyle-10.12.4-all.jar -c $CHECKS Main.java
 
 # run for the whole project
-$ java -jar checkstyle-10.4-all.jar -c $CHECKS my-fancy-project/
+$ java -jar checkstyle-10.12.4-all.jar -c $CHECKS my-fancy-project/
 ```
 
 - From IntelliJ
 
-1. _File_ → _Settings..._ → _Plugins_ → _Marketplace_
+1. _IntelliJ IDEA_ → _Settings..._ → _Plugins_ → _Marketplace_
 2. Търсите "CheckStyle-IDEA" → _Install_
 3. Рестартирате IDE-то
 
 За да конфигурирате правилата:
 
-1. _File_ → _Settings..._ → _Plugins_ → _Tools_ → _Checkstyle_
+1. _IntelliJ IDEA_ → _Settings..._ → _Plugins_ → _Tools_ → _Checkstyle_
 2. В секцията _Configuration File_ имате две предварително инсталирани конфигурации, _Sun Checks_ и _Google Checks_
 3. За да добавите custom конфигурация, натискате _+_, слагате в _Description_ описание тип "MJT" и избирате локален или remote Checkstyle конфигурационен файл ще ползвате:
    - _Use a local Checkstyle file_ → _Browse_, като може да си свалите [този](https://github.com/fmi/java-course/blob/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml) от нашия грейдър
@@ -38,7 +38,7 @@ $ java -jar checkstyle-10.4-all.jar -c $CHECKS my-fancy-project/
 
 За да настроите автоматичното форматиране в IDE-то (това, което задействате с Ctrl+Alt+L) да ползва същата custom конфигурация:
 
-1. _File_ → _Settings..._ → _Editor_ → _Code Style_ → _Java_
+1. _IntelliJ IDEA_ → _Settings..._ → _Editor_ → _Code Style_ → _Java_
 2. В полето _Scheme_ до drop down-а цъкате бутончето със зъбното колело → _Import Scheme_ → _Checkstyle Configuration_ и избирате локацията на конфигурационния файл
 
 - From Eclipse
