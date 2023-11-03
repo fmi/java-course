@@ -457,20 +457,20 @@ SequencedCollection<E> reversed() // returns a reversed-order view of this colle
 ### Интерфейсът `SequencedMap` (от Java 21)
 
 ```java
-Entry<K, V> firstEntry()
-Entry<K, V> lastEntry() 
+default Entry<K, V> firstEntry()
+default Entry<K, V> lastEntry() 
 
-Entry<K, V> pollFirstEntry()
-Entry<K, V> pollLastEntry()
+default Entry<K, V> pollFirstEntry()
+default Entry<K, V> pollLastEntry()
 
-V putFirst(K, V)
-V putLast(K, V)
+default V putFirst(K, V)
+default V putLast(K, V)
 
 SequencedMap<K, V> reversed()
 
-SequencedSet sequencedKeySet()
-SequencedCollection<V> sequencedValues()
-SequencedSet<Entry<K,V>> sequencedEntrySet()
+default SequencedSet sequencedKeySet()
+default SequencedCollection<V> sequencedValues()
+default SequencedSet<Entry<K,V>> sequencedEntrySet()
 ```
 
 ---
