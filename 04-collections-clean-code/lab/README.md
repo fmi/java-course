@@ -199,7 +199,7 @@ public enum Gender {
 public record Address(double longitude, double latitude)
 ```
 
-В него имплементирайте метод, който връща разстоянието до друг адрес и има следнат сигнатура:
+В него имплементирайте метод, който връща разстоянието до друг адрес (за простота ще приемем, че това е разстоянието в Евклидовата равнина) и има следнат сигнатура:
 
 ```java
 public double getDistanceTo(Address other)
@@ -250,3 +250,4 @@ src
 ### :warning: Забележки
 
 - Не променяйте по никакъв начин интерфейсите, дадени в условието.
+- Използването на [Java Stream API](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/package-summary.html) и/или [lambdas](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html) **не е разрешено**. Задачата трябва да се реши с помощта на знанията от курса до момента.
