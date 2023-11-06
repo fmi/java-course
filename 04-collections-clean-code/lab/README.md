@@ -170,7 +170,7 @@ public interface GymMember {
      *
      * @param day       - DayOfWeek to train the exercise.
      * @param exercises - list of the trained Exercises
-     * @throws DayOffException          if the Workout on this day is null or the exercises list is empty.
+     * @throws DayOffException          if the Workout on this day is null
      * @throws IllegalArgumentException if day is null or exercises is null or empty
      */
     void addExercises(DayOfWeek day, List<Exercise> exercises);
