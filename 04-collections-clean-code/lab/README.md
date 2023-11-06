@@ -81,6 +81,7 @@ public interface GymAPI {
 
     /**
      * Returns an unmodifiable Map representing each day and the names of the members that do this exercise on it.
+     * The map should contain only the days on which at least one member is doing this exercise.
      *
      * @param exerciseName - the name of the exercise being done
      * @throws IllegalArgumentException if exerciseName is null or empty
