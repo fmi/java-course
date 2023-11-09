@@ -620,7 +620,7 @@ objects = strings; // will not compile: incompatible types
 
 ---
 
-### Предпочитай `List` вместо масив
+### Предпочитай `List<E>` вместо масив
 
 ```java
 // Fails at runtime
