@@ -57,7 +57,7 @@ class EmployeeStorage extends EntityStorage<Employee> {
     }
 
     // Due to type erasure, the getEntity method in the EmployeeStorage class has erased signature.
-    // The compiler generates bridge method in the EmployeeStorage class to ensure that the
+    // The compiler generates a bridge method in the EmployeeStorage class to ensure that the
     // overridden method in the EntityStorage<Employee> interface adhere to the erasure rules.
     //
     // Bridge methods are synthetic methods added by the compiler to maintain polymorphism
