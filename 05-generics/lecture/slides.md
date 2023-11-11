@@ -238,6 +238,7 @@ areEqual = Util.areEqual(p1, p2);
     - `S[]` е наследник на `T[]`, ако `S` е наследник на `T`
 
 <br>
+
 ```java
 Integer[] intArr = new Integer[5];
 Number[] numArr = intArr; // ОК
