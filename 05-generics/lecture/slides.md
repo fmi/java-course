@@ -372,6 +372,10 @@ public static double sumOfList(List<? extends Number> list) {
 }
 ```
 
+<br>
+
+За разлика от обикновените ограничени generic типове, които могат да имат няколко ограничителни типа, wilcard, ограничен отгоре, може да има само един ограничителен тип.
+
 ---
 
 ### Wildcards, ограничени отдолу
@@ -548,9 +552,21 @@ class Rectangle extends Shape { /* ... */ }
 
 ```java
 public static <T extends Shape> void draw(T shape) { /* ... */ }
+public static void draw(Shape shape) { /* ... */ } // after erasure
+```
 
+---
 
-public static void draw(Shape shape) { /* ... */ }
+### Ако са ограничени отгоре – заместват се с техния ограничителен тип
+
+Ако имат няколко ограничителни типа, заместват се с първия (най-левия) от тях в списъка, независимо дали е клас или интерфейс:
+
+```java
+public static <T extends Number & Comparable<T>> T maximum(T x, T y, T z) { /* ... */ }
+public static Number maximum(Number x, Number y, Number z) { /* ... */ } // after erasure
+
+public static <T extends Cloneable & Serializable> void someFun(T input) { /* ... */ }
+public static void someFun(Cloneable input) { /* ... */ } // after erasure
 ```
 
 ---
