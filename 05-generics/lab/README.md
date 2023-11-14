@@ -188,7 +188,7 @@ public interface UtilityServiceAPI {
      *
      * @param utilityType The utility type used for the costs' calculation.
      * @param billable    The billable building for which the utility costs will be calculated.
-     * @return The cost of the specified utility for the billable building, rounded up to two decimal places.
+     * @return The cost of the specified utility for the billable building.
      * @throws IllegalArgumentException if the utility or billable is null.
      */
     <T extends Billable> double getUtilityCosts(UtilityType utilityType, T billable);
@@ -197,7 +197,7 @@ public interface UtilityServiceAPI {
      * Calculates the total utility costs for a given billable building.
      *
      * @param billable The billable building for which total utility costs are calculated.
-     * @return The total cost of all utilities for the billable building, rounded up to two decimal places.
+     * @return The total cost of all utilities for the billable building.
      * @throws IllegalArgumentException if the billable is null.
      */
     <T extends Billable> double getTotalUtilityCosts(T billable);
@@ -208,7 +208,7 @@ public interface UtilityServiceAPI {
      * @param firstBillable  The first billable building used for the cost comparison.
      * @param secondBillable The second billable building used for the cost comparison.
      * @return An unmodifiable map containing the absolute difference in costs between the buildings for each
-     * utility. Each cost difference is rounded up to two decimal places.
+     * utility.
      * @throws IllegalArgumentException if any billable is null.
      */
     <T extends Billable> Map<UtilityType, Double> computeCostsDifference(T firstBillable, T secondBillable);
