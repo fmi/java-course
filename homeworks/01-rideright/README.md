@@ -170,6 +170,7 @@ src
     ├── City.java
     ├── ItineraryPlanner.java
     ├── Journey.java
+    ├── Location.java
     ├── RideRight.java
     └── (...)
 ```
