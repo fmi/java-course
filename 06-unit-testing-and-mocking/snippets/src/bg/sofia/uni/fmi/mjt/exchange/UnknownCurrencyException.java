@@ -6,4 +6,8 @@ public class UnknownCurrencyException extends Exception {
         super(message);
     }
 
+    public UnknownCurrencyException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
 }

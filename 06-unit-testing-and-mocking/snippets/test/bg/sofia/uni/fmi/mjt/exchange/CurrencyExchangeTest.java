@@ -20,6 +20,8 @@ public class CurrencyExchangeTest {
     private CurrencyConverter currencyConverterMock;
     // the equivalent "manual" mock initialization would be:
     //private CurrencyConverter currencyConverterMock = Mockito.mock(CurrencyConverter.class);
+    // or just
+    //private CurrencyConverter currencyConverterMock = Mockito.mock(); // since Mockito 3.4.0
 
     @InjectMocks
     private CurrencyExchange exchange;
