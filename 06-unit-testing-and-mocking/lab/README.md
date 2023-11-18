@@ -70,7 +70,7 @@ public interface IoTDevice {
 Типът на устройството е представен с `enum` със стойности `SMART_SPEAKER`, `BULB` и `THERMOSTAT`.
 
 ```java
-package bg.sofia.uni.fmi.mjt.intelligenthome.enums;
+package bg.sofia.uni.fmi.mjt.intelligenthome.device;
 
 public enum DeviceType {
 
@@ -104,7 +104,7 @@ ID-то на устройствата се конструира по следн�
 Основната логика на системата се съдържа в класа`IntelligentHomeCenter`, чиято имплементация може да разгледате подробно в конкретния файл, където се намира класа му.
 
 ```java
-package bg.sofia.uni.fmi.mjt.intelligenthome;
+package bg.sofia.uni.fmi.mjt.intelligenthome.center;
 
 import bg.sofia.uni.fmi.mjt.intelligenthome.device.IoTDevice;
 
