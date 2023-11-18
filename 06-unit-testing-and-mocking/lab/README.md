@@ -67,7 +67,7 @@ public interface IoTDevice {
 
 #### DeviceType
 
-Типовете устройства представляват `enum` със стойности `SMART_SPEAKER`, `BULB` и `THERMOSTAT`.
+Типът на устройството е представен с `enum` със стойности `SMART_SPEAKER`, `BULB` и `THERMOSTAT`.
 
 ```java
 package bg.sofia.uni.fmi.mjt.intelligenthome.enums;
@@ -90,8 +90,6 @@ public enum DeviceType {
 
 }
 ```
-
-Типът на устройството е представен с `enum` със стойности `SMART_SPEAKER`, `BULB` и `THERMOSTAT`.
 
 #### ID
 
