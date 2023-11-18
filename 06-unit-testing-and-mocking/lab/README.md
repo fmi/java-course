@@ -191,6 +191,14 @@ public class IntelligentHomeCenter {
 ```
 src
 └── bg.sofia.uni.fmi.mjt.intelligenthome
+     ├── center
+     │     ├── comparator
+     │     │      ├── KWhComparator.java
+     │     │      └── RegistrationComparator.java
+     │     ├── exceptions
+     │     │      ├── DeviceAlreadyRegisteredException.java
+     │     │      └── DeviceNotFoundException.java
+     │     └── IntelligentHomeCenter.java
      ├── device
      │     ├── AmazonAlexa.java
      │     ├── DeviceType.java
@@ -198,14 +206,6 @@ src
      │     ├── IoTDeviceBase.java
      │     ├── RgbBulb.java
      │     └── WiFiThermostat.java
-     ├── hub
-     │     ├── IntelligentHomeCenter.java
-     │     ├── comparator
-     │     │      ├── KWhComparator.java
-     │     │      └── RegistrationComparator.java
-     │     └── exceptions
-     │            ├── DeviceAlreadyRegisteredException.java
-     │            └── DeviceNotFoundException.java
      └── storage
            ├── DeviceStorage.java
            └── MapDeviceStorage.java
