@@ -734,7 +734,7 @@ DirectoryStream<Path> newDirectoryStream(Path dir)
 Path dir = Path.of("/somedir");
 try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 
-    for (Path fileOrSubDir: stream) {
+    for (Path fileOrSubDir : stream) {
         // употреба на fileOrSubDir
     }
 
