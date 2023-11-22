@@ -29,7 +29,7 @@ public class CurrencyExchangeTest {
     //private CurrencyExchange exchange = new CurrencyExchange(currencyConverterMock);
 
     @Test
-    public void testCurrencyExchangeEURtoUSD() throws UnknownCurrencyException {
+    void testCurrencyExchangeEURtoUSD() throws UnknownCurrencyException {
 
         when(currencyConverterMock.getExchangeRate(Currency.EUR, Currency.USD))
             .thenReturn(1.11);
@@ -44,7 +44,7 @@ public class CurrencyExchangeTest {
     }
 
     @Test
-    public void testCurrencyExchangeUnknownCurrencyThrowsException() throws UnknownCurrencyException {
+    void testCurrencyExchangeUnknownCurrencyThrowsException() throws UnknownCurrencyException {
 
         when(currencyConverterMock.getExchangeRate(Currency.BGN, Currency.USD))
             .thenThrow(new UnknownCurrencyException(
