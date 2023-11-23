@@ -133,7 +133,7 @@ public class IntelligentHomeCenter {
     /**
      * Returns a IoTDevice with an ID @id.
      *
-     * @throws IllegalArgumentException in case @id is null or empty.
+     * @throws IllegalArgumentException in case @id is null or blank.
      * @throws DeviceNotFoundException in case device with ID @id is not found.
      */
     public IoTDevice getDeviceById(String id) throws DeviceNotFoundException {
