@@ -194,21 +194,25 @@ src
      ├── center
      │     ├── comparator
      │     │      ├── KWhComparator.java
-     │     │      └── RegistrationComparator.java
+     │     │      └── (...)
      │     ├── exceptions
      │     │      ├── DeviceAlreadyRegisteredException.java
-     │     │      └── DeviceNotFoundException.java
-     │     └── IntelligentHomeCenter.java
+     │     │      ├── DeviceNotFoundException.java
+     │     │      └── (...)
+     │     ├── IntelligentHomeCenter.java
+     │     └── (...)
      ├── device
      │     ├── AmazonAlexa.java
      │     ├── DeviceType.java
      │     ├── IoTDevice.java
      │     ├── IoTDeviceBase.java
      │     ├── RgbBulb.java
-     │     └── WiFiThermostat.java
+     │     ├── WiFiThermostat.java
+     │     └── (...)
      └── storage
            ├── DeviceStorage.java
-           └── MapDeviceStorage.java
+           ├── MapDeviceStorage.java
+           └── (...)
 test
 └── bg.sofia.uni.fmi.mjt.intelligenthome
      └── (...)
