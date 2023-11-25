@@ -79,7 +79,7 @@ public class CipherExample {
     }
 
     private static void encryptData(SecretKey secretKey) throws Exception {
-        Cipher cipher = Cipher.getInstance("AES");
+        Cipher cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
 
         try (var outputStream = new CipherOutputStream(new FileOutputStream("encryptedText.txt"), cipher)) {

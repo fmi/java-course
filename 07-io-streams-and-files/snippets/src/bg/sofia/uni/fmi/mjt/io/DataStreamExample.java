@@ -15,7 +15,7 @@ public class DataStreamExample {
 
     /**
      * Writes structured data using DataOutputStream
-     * https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/DataOutputStream.html
+     * https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/DataOutputStream.html
      */
     private static void writeWithDataStream() {
         try (var dataOutputStream = new DataOutputStream(new FileOutputStream("test.dat"))) {
@@ -30,7 +30,7 @@ public class DataStreamExample {
 
     /**
      * Reads structured data using DataInputStream
-     * https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/DataInputStream.html
+     * https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/DataInputStream.html
      */
     private static void readDataStream() {
         try (var dataInputStream = new DataInputStream(new FileInputStream("test.dat"))) {
