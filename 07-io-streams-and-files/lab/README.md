@@ -61,7 +61,7 @@ Markdown:
 
 ```java
 public CsvProcessor() {
-    this(new Table());
+    this(new BaseTable());
 }
         
 public CsvProcessor(Table table) {
