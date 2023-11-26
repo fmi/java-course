@@ -172,7 +172,7 @@ public interface Column {
 
 ```java
     public BaseColumn() {
-        this(new HashSet<>());
+        this(new LinkedHashSet<>());
     }
 
     public BaseColumn(Set<String> values) {
