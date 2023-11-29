@@ -36,16 +36,16 @@ class: center, middle
 ```java
 public class NamesSorter {
     public static void main(String[] args) {
-        List<String> names = Arrays.asList("Peter", "Anna", "Mike", "Xenia");
-        Collections.sort(names, new NamesComparator());
-        System.out.println(names);
+        List<String> names = Arrays.asList("Peter", "Anastasia", "Mike", "Bob");
+        Collections.sort(names, new NamesLengthComparator());
+        System.out.println(names); // [Bob, Mike, Peter, Anastasia]
     }
 }
 
-class NamesComparator implements Comparator<String> {
+class NamesLengthComparator implements Comparator<String> {
     @Override
     public int compare(String o1, String o2) {
-        return o1.compareTo(o2);
+        return Integer.compare(o1.length(), o2.length());
     }
 }
 
@@ -61,14 +61,14 @@ class NamesComparator implements Comparator<String> {
 // но пак има доста boilerplate код
 public class NamesSorter {
     public static void main(String[] args) {
-        List<String> names = Arrays.asList("Peter", "Anna", "Mike", "Xenia");
+        List<String> names = Arrays.asList("Peter", "Anastasia", "Mike", "Bob");
         Collections.sort(names, new Comparator<String>() {
             @Override
             public int compare(String a, String b) {
-                return a.compareTo(b);
+                return Integer.compare(a.length(), b.length());
             }
         });
-        System.out.println(names);
+        System.out.println(names); // [Bob, Mike, Peter, Anastasia]
     }
 }
 // Има ли начин да подадем само дефиниция на функция като аргумент?
@@ -82,20 +82,20 @@ public class NamesSorter {
 Collections.sort(names, new Comparator<String>() {
     @Override
     public int compare(String a, String b) {
-        return a.compareTo(b);
+        return Integer.compare(a.length(), b.length());
     }
 });
 
 // define just the function
 Collections.sort(names, (String a, String b) -> {
-    return a.compareTo(b);
+    return Integer.compare(a.length(), b.length());
 });
 
 // omit {} and return
-Collections.sort(names, (String a, String b) -> a.compareTo(b));
+Collections.sort(names, (String a, String b) -> Integer.compare(a.length(), b.length()));
 
 // infer argument types
-Collections.sort(names, (a, b) -> a.compareTo(b));
+Collections.sort(names, (a, b) -> Integer.compare(a.length(), b.length()));
 ```
 
 ---
@@ -437,14 +437,17 @@ Function<Integer, Integer> z2 = f.andThen(g);
 ```java
 int x = 7;
 Function<Integer, Integer> multiply = i -> i * x;
-// x++; would cause compilation error on the line above
+//x++; // would cause compilation error on the line above
+       // java: local variables referenced from a lambda expression must be final
+       // or effectively final
 ```
 
 ---
 
-### Ключовата дума `this`
+### Ключовите думи `this` и `super`
 
-- Ключовата дума `this` в ламбда израз реферира инстанцията на обхващащия клас, която се нарича още *обхващаща инстанция (enclosing instance)*, *обхващащ контекст* или *обхващащ scope*.
+- Ключовата дума `this` в ламбда израз реферира инстанцията на обхващащия клас, която се нарича още *обхващаща инстанция (enclosing instance)*, *обхващащ контекст* или *обхващащ scope*
+- Ключовата дума `super` в ламбда израз реферира инстанцията на родителя на обхващащия клас
 
 ---
 
@@ -814,7 +817,7 @@ employees.takeWhile(e -> e.getName().startsWith("A"));
   employees.mapToDouble(e -> e.getSalary());
 
   // the same as the above but with method reference
-  employees.mapToDouble(Employee::getSalary());
+  employees.mapToDouble(Employee::getSalary);
   ```
 
 ---
