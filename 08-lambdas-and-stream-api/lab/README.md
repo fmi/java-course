@@ -25,11 +25,17 @@
         List<Position> positions, String nationality, int overallRating, int potential, long valueEuro, long wageEuro,
         Foot preferredFoot)`,
 
-който представлява футболист от *dataset*-a.
+който представлява футболист от *dataset*-a. Инстанции на `Player` се създават чрез публичен статичен factory метод
+
+```java
+public static Player of(String line)
+```
+
+където `line` е низ, представляващ правилно форматиран ред с данни за футболист от CSV файла.
 
 Възможните позиции на футболист се представляват от `enum`-a
 
-```
+```java
 public enum Position {
     // Diagram: https://fifauteam.com/fifa-21-positions/
 
@@ -53,7 +59,7 @@ public enum Position {
 
 Предпочитаният крак на футболист се представлява от `enum`-a 
 
-```
+```java
 public enum Foot {
     LEFT, RIGHT;
 }
