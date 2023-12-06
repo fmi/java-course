@@ -875,4 +875,4 @@ isInterrupted() // не изчиства флага (не-статичен)
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
 
-.font-xl[.ri-youtube-fill.icon-inline[[MJT2023](https://www.youtube.com/playlist?list=PLew34f6r0PxyQmWCgCP5gKeoBuzXJxq1w)]]
+.font-xl[.ri-youtube-fill.icon-inline[[MJT2024](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]
