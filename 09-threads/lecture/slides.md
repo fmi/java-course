@@ -151,18 +151,23 @@ Concurrency е много общ термин и може да се използ
 
 - Platform threads
   - представляват wrapper на kernel нишките, менажирани от операционната система (1 платформена : 1 OS нишка)
-    - сравнително скъп и ограничен ресурс (~2-10 MB памет)
+    - сравнително скъп и ограничен ресурс: ~2-10 MB памет, ~1 ms за създаване, CPU-intensive context switching
 - Virtual threads (since Java 21)
-  - lightweight
-  - една виртуална нишка не е постоянно свързана с конкретна OS нишка
-    - N виртуални : 1 OS нишка
+  - lightweight, *стартират* с ~1 KB памет, <1 µs за създаване, по-бърз context switching
+  - една виртуална нишка не е постоянно свързана с конкретна OS нишка: N виртуални : 1 OS нишка
   - менажират се от JVM-a
 
 ---
 
 ### Platform vs. Virtual Threads
 
-.center[![Platform vs. Virtual Threads](images/09.5.1-platform-virtual-threads.png)]
+.center[![Platform vs. Virtual Threads](images/09.6-platform-virtual-threads.png)]
+
+---
+
+### Споделяне на carrier платформена нишка от няколко виртуални
+
+.center[![Platform vs. Virtual Threads](images/09.7-virtual-threads-sharing-carrier.png)]
 
 ---
 
@@ -345,7 +350,7 @@ void yield()
 
 <br>
 
-.center[![Thread Join](images/09.6-thread-join.png)]
+.center[![Thread Join](images/09.8-thread-join.png)]
 
 ---
 
@@ -400,7 +405,7 @@ void setDaemon(boolean flag)
 
 ---
 
-.center[![Thread States](images/09.7-thread-states.jpg)]
+.center[![Thread States](images/09.9-thread-states.jpg)]
 
 ---
 
@@ -480,7 +485,7 @@ i++; // this is equivalent to i = i + 1,
 
 ### Атомарни типове данни
 
-- Предоставят възможност за атомарни съставни операции
+- Предоставят атомарни алтернативи на съставните операции на съответния примитивен тип
 - Използват специални CPU инструкции ("compare-and-swap", [CAS](https://en.wikipedia.org/wiki/Compare-and-swap)), които позволяват избягването на синхронизация чрез ключалки, което ги прави много бързи
 
 ---
@@ -721,7 +726,7 @@ public synchronized double getBalance() {
 }
 
 // Бъг - този метод също трябва да е синхронизиран
-public void verifyAndWithdraw(double amount) {
+public void withdrawChecked(double amount) {
     if (getBalance() >= amount) {
         withdraw(amount);
     }
@@ -734,7 +739,7 @@ public void verifyAndWithdraw(double amount) {
 
 Получава се, когато две или повече нишки се блокират една друга, всяка от тях притежаваща ключалка, от която друга нишка има нужда, но чакайки за ключалка, която някоя от другите нишки притежава.
 
-.center[![deadlock](images/09.8-deadlock.jpg)]
+.center[![deadlock](images/09.10-deadlock.jpg)]
 
 ---
 
