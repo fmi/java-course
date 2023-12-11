@@ -33,7 +33,7 @@ public interface MonochromeAlbumCreator {
      *                        throw the appropriate exception if there are issues with loading the files.
      * @param outputDirectory the directory where the output b&w images are stored, if it does not exist, it is created.
      */
-    public void processImages(String sourceDirectory, String outputDirectory);
+    void processImages(String sourceDirectory, String outputDirectory);
 
 }
 ```
