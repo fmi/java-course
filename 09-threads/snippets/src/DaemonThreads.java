@@ -3,7 +3,7 @@
  */
 public class DaemonThreads {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         BackgroundTask backgroundTask = new BackgroundTask();
         backgroundTask.start();
 
@@ -24,7 +24,7 @@ class BackgroundTask extends Thread {
 
     @Override
     public void run() {
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 1_000; i++) {
             System.out.println(i);
         }
         System.out.printf("%s thread terminates", (isDaemon() ? "Daemon" : "Non-daemon"));

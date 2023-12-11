@@ -3,6 +3,7 @@ public class RaceConditionExample {
     public static void main(String[] args) throws Exception {
         // Shared bank account
         BankAccount acc = new BankAccount("Anonymous");
+        BankAccount acc2 = new BankAccount("Second...");
 
         // Many threads will concurrently deposit money into the same account
         Depositor[] depositors = new Depositor[100];

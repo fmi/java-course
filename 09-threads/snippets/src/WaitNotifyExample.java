@@ -42,8 +42,8 @@ class CreditBankAccount extends BankAccount {
     }
 
     public synchronized void withdrawCreditPayment(double monthFee) {
-        // Wait guarded - we check in while block whether the condition is met
-        // if no - the thread will wait again. This enables us to safely use notifyAll
+        // Guarded wait - we check in while block whether the condition is met
+        // if not - the thread will wait again. This enables us to safely use notifyAll
         while (balance < monthFee) {
             System.out.println("Not enough money, thread will wait");
             try {

@@ -11,6 +11,7 @@ public class AtomicIntegerExample {
                 atomicInt.getAndIncrement();
                 nonAtomicInt.getAndIncrement();
             }
+            System.out.println("Сбогом, жесток свят " + Thread.currentThread().getName());
         };
 
         Thread t1 = new Thread(r);
@@ -33,17 +34,17 @@ public class AtomicIntegerExample {
     }
 
     public static class NonAtomicInteger {
-        private int i = 0;
+        private int i;
 
         public NonAtomicInteger() {
             i = 0;
         }
 
-        public int getAndIncrement() {
+        public synchronized int getAndIncrement() {
             return i++;
         }
 
-        public int get() {
+        public synchronized int get() {
             return i;
         }
     }
