@@ -16,30 +16,12 @@ Consumer нишките ни ще имат фиксиран брой и зада
 - да обработят снимката - да я направят черно бяла. За тази цел ще получите готов метод, който да използвате;
 - да запазят обработената снимка в друга директория, която отново е дадена и която може и все още да не съществува на файловата система - т.е. може да трябва да я създадем.
 
-#### Създайте клас `MonochromeAlbum`
-
-Класът `MonochromeAlbum` има публичен конструктор с параметри`(int imageProcessorsCount)`, който приема цяло число - броят на нишките, които обработват цветните ни снимки и ги запазват като черно-бели.
+#### Създайте интерфайс `MonochromeAlbumCreator`
 
 ```java
 package bg.sofia.uni.fmi.mjt.photoalbum;
 
-import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Stream;
-
-public class MonochromeAlbum {
-
-    private int imageProcessorsCount;
-
-    public MonochromeAlbum(int imageProcessorsCount) {
-        this.imageProcessorsCount = imageProcessorsCount;
-    }
+public class MonochromeAlbumCreator {
 
     /**
      * Iterates over all files from @sourceDirectory and picks up image ones - those with extensions jpeg, jpg, and png.
@@ -52,12 +34,14 @@ public class MonochromeAlbum {
      * @param outputDirectory the directory where the output b&w images are stored, if it does not exist, it is created.
      * @throws InterruptedException
      */
-    public void processImages(String sourceDirectory, String outputDirectory) throws InterruptedException {
-        // implementation
-    }
+    public void processImages(String sourceDirectory, String outputDirectory);
 
 }
 ```
+
+#### Създайте клас `ParallelMonochromeAlbumCreator`
+
+Класът имплементира `MonochromeAlbumCreator` и има публичен конструктор с параметри`(int imageProcessorsCount)`, който приема цяло число - броят на нишките, които обработват цветните ни снимки и ги запазват като черно-бели.
 
 #### Обработване на снимките
 
