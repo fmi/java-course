@@ -21,7 +21,7 @@ Consumer нишките ни ще имат фиксиран брой и зада
 ```java
 package bg.sofia.uni.fmi.mjt.photoalbum;
 
-public class MonochromeAlbumCreator {
+public interface MonochromeAlbumCreator {
 
     /**
      * Iterates over all files from @sourceDirectory and picks up image ones - those with extensions jpeg, jpg, and png.
