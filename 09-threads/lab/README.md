@@ -32,7 +32,6 @@ public class MonochromeAlbumCreator {
      * @param sourceDirectory directory from where the image files are taken. The directory should exist,
      *                        throw the appropriate exception if there are issues with loading the files.
      * @param outputDirectory the directory where the output b&w images are stored, if it does not exist, it is created.
-     * @throws InterruptedException
      */
     public void processImages(String sourceDirectory, String outputDirectory);
 
