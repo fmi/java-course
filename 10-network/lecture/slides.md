@@ -581,7 +581,7 @@ OutputStream getOutputStream() // връща изходен поток за пи
 
 ### Сокети (Sockets)
 
-.center[![Socket Calls](images/10.5-network-sockets.png)]
+<img src="images/10.5-network-sockets.png" width="100%" height="100%">
 
 ---
 
@@ -593,7 +593,7 @@ OutputStream getOutputStream() // връща изходен поток за пи
 
 ### java.net: blocking мрежова комуникация
 
-.center[![Blocking IO](images/10.7-java-net-blocking-io.png)]
+<img src="images/10.7-java-net-blocking-io.png" width="100%" height="100%">
 
 ---
 
@@ -605,7 +605,19 @@ OutputStream getOutputStream() // връща изходен поток за пи
 
 ### java.net | Архитектура
 
-.center[![Java.net Architecture](images/10.9-java-net-multithreading.png)]
+<img src="images/10.9-java-net-multithreading.png" width="95%" height="95%">
+
+---
+
+### java.net | Архитектура
+
+<img src="images/10.10-java-net-multithreading.png" width="95%" height="95%">
+
+---
+
+### java.net | Архитектура
+
+<img src="images/10.11-java-net-multithreading.png" width="95%" height="95%">
 
 ---
 
