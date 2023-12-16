@@ -677,7 +677,7 @@ public void testRegisterThrowsAppropriateException() {
 
 ### Setup (ръчно сваляне от mvnrepository-то)
 
-- Mockito е външна библиотека, която може да бъде изтегледна от mvnrepository-то
+- Mockito е външна библиотека, която може да бъде изтеглена от mvnrepository-то
 - Изтеглете [mockito-core@5.7.0](https://mvnrepository.com/artifact/org.mockito/mockito-core/5.7.0) jar-a и 3-те му dependency-та
 - Ако искате да боравите с `@Mock` анотацията, изтеглете и [mockito-junit-jupiter@5.7.0](https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter/5.7.0)
 - В IDE-то добавете въпросните jar-ки в class path-a на проекта си

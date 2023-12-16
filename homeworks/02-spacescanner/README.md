@@ -74,7 +74,7 @@ public interface SpaceScannerAPI {
     Map<String, Collection<Mission>> getMissionsPerCountry();
 
     /**
-     * Returns the top N the least expensive missions, ordered from cheapest to more expensive.
+     * Returns the top N least expensive missions, ordered from cheapest to more expensive.
      * If there are no missions, return an empty list.
      *
      * @param n             the number of missions to be returned
@@ -122,7 +122,7 @@ public interface SpaceScannerAPI {
     Map<String, Optional<String>> getWikiPageForRocket();
 
     /**
-     * Returns the wiki pages for the rockets used in most expensive missions.
+     * Returns the wiki pages for the rockets used in the N most expensive missions.
      * If there are no missions, return an empty list.
      *
      * @param n             the number of missions to be returned
@@ -162,7 +162,7 @@ Mission(String id, String company, String location, LocalDate date, Detail detai
 public record Detail(String rocketName, String payload)
 ```
 
-който се състои от двa компонента, разделени в data set-a една от друга с "|". Форматът е: `<rocketName>|<payload>`.
+който се състои от двa компонента, разделени в data set-a един от друг с "|". Форматът е: `<rocketName>|<payload>`.
 
 Възможните резултати за всяка мисия са един от `Success, Failure, Partial Failure, Prelaunch Failure` и се моделират от следния `enum`:
 
@@ -197,7 +197,7 @@ public enum MissionStatus {
 public record Rocket(String id, String name, Optional<String> wiki, Optional<Double> height)
 ```
 
-След дадена масия, изполваната ракета може да бъде все още активна (**StatusActive**), или вече да е в експлоатация (**StatusRetired**).
+След дадена масия, изполваната ракета може да бъде все още активна (**StatusActive**), или вече да не е в експлоатация (**StatusRetired**). 
 Моделираме го със следния `enum`:
 
 #### Enum `RocketStatus`

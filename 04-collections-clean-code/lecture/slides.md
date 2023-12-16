@@ -1103,7 +1103,7 @@ public static long factorial(int n) { // business logic
 }
 
 public static void main(String... args) {
-    int input = readAndValidate(new Scanner(System.in));
+    int input = readInput(new Scanner(System.in));
     long result = factorial(input);
     printOutput(result);
 }
