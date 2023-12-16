@@ -6,7 +6,7 @@
 
 ## Intelligent Home :bulb:
 
-Умните устройства в днешно време придават модерна визия на дома. Разполагаме със система за съхранение на информация за *умни* устройства, инсталирани в даден дом, наречена `IntellgentHome`.
+Умните устройства в днешно време придават модерна визия на дома. Разполагаме със система за съхранение на информация за *умни* устройства, инсталирани в даден дом, наречена *IntelligentHome*`*.
 Тя предоставя възможност за:
 - регистриране и изтриване на *умни* устройства
 - извличане и сортиране на *умни* устройства по определен критерий
@@ -133,7 +133,7 @@ public class IntelligentHomeCenter {
     /**
      * Returns a IoTDevice with an ID @id.
      *
-     * @throws IllegalArgumentException in case @id is null or empty.
+     * @throws IllegalArgumentException in case @id is null or blank.
      * @throws DeviceNotFoundException in case device with ID @id is not found.
      */
     public IoTDevice getDeviceById(String id) throws DeviceNotFoundException {
@@ -194,21 +194,25 @@ src
      ├── center
      │     ├── comparator
      │     │      ├── KWhComparator.java
-     │     │      └── RegistrationComparator.java
+     │     │      └── (...)
      │     ├── exceptions
      │     │      ├── DeviceAlreadyRegisteredException.java
-     │     │      └── DeviceNotFoundException.java
-     │     └── IntelligentHomeCenter.java
+     │     │      ├── DeviceNotFoundException.java
+     │     │      └── (...)
+     │     ├── IntelligentHomeCenter.java
+     │     └── (...)
      ├── device
      │     ├── AmazonAlexa.java
      │     ├── DeviceType.java
      │     ├── IoTDevice.java
      │     ├── IoTDeviceBase.java
      │     ├── RgbBulb.java
-     │     └── WiFiThermostat.java
+     │     ├── WiFiThermostat.java
+     │     └── (...)
      └── storage
            ├── DeviceStorage.java
-           └── MapDeviceStorage.java
+           ├── MapDeviceStorage.java
+           └── (...)
 test
 └── bg.sofia.uni.fmi.mjt.intelligenthome
      └── (...)
