@@ -11,7 +11,7 @@
 
 Ще използваме data set от [kaggle](https://www.kaggle.com). Данните за мисиите са налични в CSV файлa [all-missions-from-1957.csv](./resources/all-missions-from-1957.csv). Данните за ракетите са налични в CSV файла [all-rockets-from-1957.csv](./resources/all-rockets-from-1957.csv).
 
-Имайте предвид, че е възможно в real-life data set да има непълни записи, т.е. да липсва информация за дадена колона.
+Имайте предвид, че е възможно в real-life data set да има непълни записи, т.е. да липсва информация за дадена колона. Освен това обърнете внимание, че символът за запетая участва както като разделител между колоните, така и като част от данните в самите тях.
 Такива ще моделираме с `Optional`.
 
 ### Задължителни интерфейси и класове
@@ -74,7 +74,7 @@ public interface SpaceScannerAPI {
     Map<String, Collection<Mission>> getMissionsPerCountry();
 
     /**
-     * Returns the top N least expensive missions, ordered from cheapest to more expensive.
+     * Returns the top N the least expensive missions, ordered from cheapest to more expensive.
      * If there are no missions, return an empty list.
      *
      * @param n             the number of missions to be returned
@@ -122,7 +122,7 @@ public interface SpaceScannerAPI {
     Map<String, Optional<String>> getWikiPageForRocket();
 
     /**
-     * Returns the wiki pages for the rockets used in the N most expensive missions.
+     * Returns the wiki pages for the rockets used in most expensive missions.
      * If there are no missions, return an empty list.
      *
      * @param n             the number of missions to be returned
@@ -141,7 +141,8 @@ public interface SpaceScannerAPI {
      * @param to           the inclusive end of the time frame
      * @throws IllegalArgumentException if outputStream, from or to is null
      */
-    void saveMostReliableRocket(OutputStream outputStream, LocalDate from, LocalDate to) throws Exception;
+    void saveMostReliableRocket(OutputStream outputStream, LocalDate from, LocalDate to)
+            throws NoSuchPaddingException, IOException, NoSuchAlgorithmException, InvalidKeyException;
 }
 ```
 
@@ -161,7 +162,7 @@ Mission(String id, String company, String location, LocalDate date, Detail detai
 public record Detail(String rocketName, String payload)
 ```
 
-който се състои от двa компонента, разделени в data set-a един от друг с "|". Форматът е: `<rocketName>|<payload>`.
+който се състои от двa компонента, разделени в data set-a една от друга с "|". Форматът е: `<rocketName>|<payload>`.
 
 Възможните резултати за всяка мисия са един от `Success, Failure, Partial Failure, Prelaunch Failure` и се моделират от следния `enum`:
 
@@ -196,7 +197,7 @@ public enum MissionStatus {
 public record Rocket(String id, String name, Optional<String> wiki, Optional<Double> height)
 ```
 
-След дадена масия, изполваната ракета може да бъде все още активна (**StatusActive**), или вече да не е в експлоатация (**StatusRetired**). 
+След дадена масия, изполваната ракета може да бъде все още активна (**StatusActive**), или вече да е в експлоатация (**StatusRetired**).
 Моделираме го със следния `enum`:
 
 #### Enum `RocketStatus`
@@ -237,9 +238,25 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public interface SymmetricBlockCipher {
-    void encrypt(InputStream inputStream, OutputStream outputStream) throws Exception;
+    /**
+     * encrypts the data from inputStream and puts it into outputStream
+     *
+     * @param inputStream the input stream where the data is read from
+     * @param outputStream the output stream where the encrypted result is written into
+     * @throws IllegalArgumentException if inputStream or outputStream are null
+     */
+    void encrypt(InputStream inputStream, OutputStream outputStream)
+            throws NoSuchPaddingException, IOException, NoSuchAlgorithmException, InvalidKeyException;
 
-    void decrypt(InputStream inputStream, OutputStream outputStream) throws Exception;
+    /**
+     * decrypts the data from inputStream and puts it into outputStream
+     *
+     * @param inputStream the input stream where the data is read from
+     * @param outputStream the output stream where the decrypted result is written into
+     * @throws IllegalArgumentException if inputStream or outputStream are null
+     */
+    void decrypt(InputStream inputStream, OutputStream outputStream)
+            throws NoSuchPaddingException, IOException, NoSuchAlgorithmException, InvalidKeyException;
 }
 
 ```
