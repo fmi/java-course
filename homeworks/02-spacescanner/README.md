@@ -140,6 +140,7 @@ public interface SpaceScannerAPI {
      * @param from         the inclusive beginning of the time frame
      * @param to           the inclusive end of the time frame
      * @throws IllegalArgumentException if outputStream, from or to is null
+     * @throws CipherException if the encrypt/decrypt operation cannot be completed successfully
      */
     void saveMostReliableRocket(OutputStream outputStream, LocalDate from, LocalDate to) throws CipherException;
 }
@@ -242,6 +243,7 @@ public interface SymmetricBlockCipher {
      *
      * @param inputStream the input stream where the data is read from
      * @param outputStream the output stream where the encrypted result is written into
+     * @throws CipherException if the encrypt/decrypt operation cannot be completed successfully
      */
     void encrypt(InputStream inputStream, OutputStream outputStream) throws CipherException;
 
@@ -250,6 +252,7 @@ public interface SymmetricBlockCipher {
      *
      * @param inputStream the input stream where the data is read from
      * @param outputStream the output stream where the decrypted result is written into
+     * @throws CipherException if the encrypt/decrypt operation cannot be completed successfully
      */
     void decrypt(InputStream inputStream, OutputStream outputStream) throws CipherException;
 }
