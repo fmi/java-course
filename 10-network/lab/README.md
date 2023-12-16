@@ -226,7 +226,7 @@ public record Response(Status status, String additionalInfo, Collection<Order> o
 }
 ```
 
-Respons-ите имат следния формат:
+Response-ите имат следния формат:
 - При създаване на нова поръчка:
   - ако е валидна: `{"status":"CREATED", "additionalInfo":"ORDER_ID=\<id\>"}`
   - ако е невалидна: `{"status":"DECLINED", "additionalInfo":"invalid:size,color,destination"}`. Редът на проверка за невалидни аргументи е: size, color, destination.
