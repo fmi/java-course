@@ -406,7 +406,9 @@ void setDaemon(boolean flag)
 
 ---
 
-.center[![Thread States](images/09.9-thread-states.jpg)]
+### Състояние на нишка
+
+.center[<img src="images/09.9-thread-states.png" width="65%" height="65%">]
 
 ---
 
