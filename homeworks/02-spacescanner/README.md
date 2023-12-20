@@ -12,7 +12,7 @@
 Ще използваме data set от [kaggle](https://www.kaggle.com). Данните за мисиите са налични в CSV файлa [all-missions-from-1957.csv](./resources/all-missions-from-1957.csv). Данните за ракетите са налични в CSV файла [all-rockets-from-1957.csv](./resources/all-rockets-from-1957.csv).
 
 Имайте предвид, че е възможно в real-life data set да има непълни записи, т.е. да липсва информация за дадена колона.
-Такива ще моделираме с `Optional`.
+Такива ще моделираме с `Optional`. Обърнете внимание, че символът за запетая участва както като разделител между колоните, така и като част от данните в самите тях.
 
 ### Задължителни интерфейси и класове
 
@@ -140,8 +140,9 @@ public interface SpaceScannerAPI {
      * @param from         the inclusive beginning of the time frame
      * @param to           the inclusive end of the time frame
      * @throws IllegalArgumentException if outputStream, from or to is null
+     * @throws CipherException if the encrypt/decrypt operation cannot be completed successfully
      */
-    void saveMostReliableRocket(OutputStream outputStream, LocalDate from, LocalDate to) throws Exception;
+    void saveMostReliableRocket(OutputStream outputStream, LocalDate from, LocalDate to) throws CipherException;
 }
 ```
 
@@ -237,9 +238,23 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public interface SymmetricBlockCipher {
-    void encrypt(InputStream inputStream, OutputStream outputStream) throws Exception;
+    /**
+     * Encrypts the data from inputStream and puts it into outputStream
+     *
+     * @param inputStream the input stream where the data is read from
+     * @param outputStream the output stream where the encrypted result is written into
+     * @throws CipherException if the encrypt/decrypt operation cannot be completed successfully
+     */
+    void encrypt(InputStream inputStream, OutputStream outputStream) throws CipherException;
 
-    void decrypt(InputStream inputStream, OutputStream outputStream) throws Exception;
+    /**
+     * Decrypts the data from inputStream and puts it into outputStream
+     *
+     * @param inputStream the input stream where the data is read from
+     * @param outputStream the output stream where the decrypted result is written into
+     * @throws CipherException if the encrypt/decrypt operation cannot be completed successfully
+     */
+    void decrypt(InputStream inputStream, OutputStream outputStream) throws CipherException;
 }
 
 ```
@@ -259,6 +274,7 @@ src
     │    ├── Rijndael.java
     │    └── SymmetricBlockCipher.java
     ├── exception
+    │    ├── CipherException.java
     │    └── TimeFrameMismatchException.java
     ├── mission
     │    ├── Detail.java
