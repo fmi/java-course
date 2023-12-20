@@ -19,6 +19,7 @@
 | 9 | Многонишково програмиране (част I) | [слайдове](https://fmi.github.io/java-course/09-threads/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/ijBbXDpYZuM) | 06.12 | [задача](https://github.com/fmi/java-course/tree/master/09-threads/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/YRVDTKPLCkg) | 11.12 |
 | 10 | Многонишково програмиране (част II) | [слайдове](https://fmi.github.io/java-course/10-network/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/IA81iE5Rmzk) | 13.12 | [задача](https://github.com/fmi/java-course/tree/master/10-network/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/K5yuHoj3Y5M) | 16.12 |
 | 10 | Мрежово програмиране (част I) | [слайдове](https://fmi.github.io/java-course/10-network/lecture/slides.html#22) | [![Video](web/images/mjt-on-youtube.png)](https://www.youtube.com/watch?v=IA81iE5Rmzk&t=1h21m36s) | 13.12 | [задача](https://github.com/fmi/java-course/tree/master/10-network/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/K5yuHoj3Y5M) | 16.12 |
+| 11 | Мрежово програмиране (част II) | [слайдове](https://fmi.github.io/java-course/11-network-ii/lecture/slides.html) |  | 20.12 |  |  |  |
 
 ### Материали от предходни издания
 
