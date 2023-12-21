@@ -136,7 +136,7 @@ public interface SpaceScannerAPI {
                                                                    RocketStatus rocketStatus);
 
     /**
-     * Saves the most reliable rocket in a given time period in an encrypted format.
+     * Saves the name of the most reliable rocket in a given time period in an encrypted format.
      *
      * @param outputStream the output stream where the encrypted result is written into
      * @param from         the inclusive beginning of the time frame
