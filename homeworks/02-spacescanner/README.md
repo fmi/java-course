@@ -223,7 +223,7 @@ public enum RocketStatus {
 
 Трите record-a: `Mission`, `Detail` и `Rocket` трябва да имат публичен каноничен конструктор.
 
-## Rocket reliability
+#### Rocket reliability
 
 Reliability-то на дадена ракета ще пресмятаме по следната формула:
 
