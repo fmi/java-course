@@ -64,6 +64,7 @@ public interface SpaceScannerAPI {
      * @param from the inclusive beginning of the time frame
      * @param to   the inclusive end of the time frame
      * @throws IllegalArgumentException if from or to is null
+     * @throws TimeFrameMismatchException if to is before from
      */
     String getCompanyWithMostSuccessfulMissions(LocalDate from, LocalDate to);
 
@@ -97,6 +98,7 @@ public interface SpaceScannerAPI {
      * @param from the inclusive beginning of the time frame
      * @param to   the inclusive end of the time frame
      * @throws IllegalArgumentException if from or to is null
+     * @throws TimeFrameMismatchException if to is before from
      */
     Map<String, String> getLocationWithMostSuccessfulMissionsPerCompany(LocalDate from, LocalDate to);
 
@@ -134,13 +136,14 @@ public interface SpaceScannerAPI {
                                                                    RocketStatus rocketStatus);
 
     /**
-     * Saves the most reliable rocket in a given time period in an encrypted format.
+     * Saves the name of the most reliable rocket in a given time period in an encrypted format.
      *
      * @param outputStream the output stream where the encrypted result is written into
      * @param from         the inclusive beginning of the time frame
      * @param to           the inclusive end of the time frame
      * @throws IllegalArgumentException if outputStream, from or to is null
      * @throws CipherException if the encrypt/decrypt operation cannot be completed successfully
+     * @throws TimeFrameMismatchException if to is before from
      */
     void saveMostReliableRocket(OutputStream outputStream, LocalDate from, LocalDate to) throws CipherException;
 }
