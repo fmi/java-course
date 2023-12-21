@@ -86,6 +86,15 @@ private Image convertToBlackAndWhite(Image image) {
 
     return new Image(image.name, processedData);
 }
+
+public void saveImage(Image image) {
+    try {
+        ImageIO.write(image.data, "png", new File(destinationDirectory, image.name));
+        System.out.println("Saved " + image.name + " to " + destinationDirectory);
+    } catch (IOException e) {
+        throw new UncheckedIOException(String.format("While saving image %s", image.name), e);
+    }
+}
 ```
 
 ⭐ Бележки:
