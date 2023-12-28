@@ -70,7 +70,7 @@ public class Image {
 # java.io.IOException;
 # java.io.UncheckedIOException;
 # java.nio.file.Path;
-public Image loadImage(Path imagePath) {
+private Image loadImage(Path imagePath) {
     try {
         BufferedImage imageData = ImageIO.read(imagePath.toFile());
         return new Image(imagePath.getFileName().toString(), imageData);
@@ -85,6 +85,15 @@ private Image convertToBlackAndWhite(Image image) {
     processedData.getGraphics().drawImage(image.data, 0, 0, null);
 
     return new Image(image.name, processedData);
+}
+
+private void saveImage(Image image) {
+    try {
+        ImageIO.write(image.data, "png", new File(destinationDirectory, image.name));
+        System.out.println("Saved " + image.name + " to " + destinationDirectory);
+    } catch (IOException e) {
+        throw new UncheckedIOException(String.format("While saving image %s", image.name), e);
+    }
 }
 ```
 
