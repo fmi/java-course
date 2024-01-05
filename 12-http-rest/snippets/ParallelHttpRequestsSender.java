@@ -30,7 +30,7 @@ public class ParallelHttpRequestsSender {
         // send some asynchronous requests and measure time
         long startTime = System.currentTimeMillis();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < PARALLEL_REQUESTS; i++) {
             futures.add(client.sendAsync(request, BodyHandlers.ofString()).thenApply(x -> {
                 System.out.println("thenApply() thread: " + Thread.currentThread().getName());
                 return x.body();

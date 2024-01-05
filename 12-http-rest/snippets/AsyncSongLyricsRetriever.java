@@ -30,14 +30,14 @@ public class AsyncSongLyricsRetriever {
         }, executor);
         System.out.println("The HTTP call is fired. Performing some other work...");
 
-        // wait the async HTTP call which is executed in daemon thread
+        // wait the async HTTP call which is executed in a daemon thread
         future.join();
 
         executor.shutdown();
     }
 
     public static void main(String... args) throws Exception {
-        AsyncSongLyricsRetriever.getLyricsAsync("Billie Eilish", "Lovely");
+        AsyncSongLyricsRetriever.getLyricsAsync("Adele", "Hello");
     }
 
 }

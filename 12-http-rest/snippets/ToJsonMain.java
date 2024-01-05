@@ -8,6 +8,7 @@ public class ToJsonMain {
         DevManager devManager = new DevManager("Mike", "Google AI R&D", 7);
 
         Gson gson = new Gson();
+        //Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String devJson = gson.toJson(dev);
         System.out.println(devJson);
 

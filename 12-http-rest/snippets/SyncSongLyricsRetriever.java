@@ -16,7 +16,7 @@ public class SyncSongLyricsRetriever {
     }
 
     public static void main(String... args) throws Exception {
-        System.out.println(new SyncSongLyricsRetriever().getLyricsSync("Billie Eilish", "Lovely"));
+        System.out.println(new SyncSongLyricsRetriever().getLyricsSync("Adele", "Hello"));
     }
 
 }
