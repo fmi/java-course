@@ -47,7 +47,7 @@ public class EchoClientNio {
                 buffer.get(byteArray);
                 String reply = new String(byteArray, "UTF-8"); // buffer drain
 
-                // if buffer is a non-direct one, is has a wrapped array and we can get it
+                // if the buffer is a non-direct one, it has a wrapped array and we can get it
                 //String reply = new String(buffer.array(), 0, buffer.position(), "UTF-8"); // buffer drain
 
                 System.out.println("The server replied <" + reply + ">");
