@@ -47,21 +47,22 @@ public class ParallelHttpRequestsSender {
     }
 
     public static void main(String... args) throws Exception {
-        ExecutorService executor = Executors.newCachedThreadPool();
-        HttpClient client =
+        try (ExecutorService executor = Executors.newCachedThreadPool()) {
+            HttpClient client =
                 HttpClient.newBuilder().executor(executor).build(); // configure custom executor or use the default
 
-        // build a request
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(WEB_SITE)).build();
+            // build a request
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(WEB_SITE)).build();
 
-        var sender = new ParallelHttpRequestsSender();
+            var sender = new ParallelHttpRequestsSender();
 
-        long syncExecutionTime = sender.executeRequestsSync(client, request);
-        long asyncExecutionTime = sender.executeRequestsAsync(client, request);
+            long syncExecutionTime = sender.executeRequestsSync(client, request);
+            long asyncExecutionTime = sender.executeRequestsAsync(client, request);
 
-        System.out.println("Async: " + asyncExecutionTime + " Sync: " + syncExecutionTime);
+            System.out.println("Async: " + asyncExecutionTime + " Sync: " + syncExecutionTime);
 
-        executor.shutdown();
+            // ExecutorService is AutoCloseable since Java 19, so its shutdown() method will be automatically invoked.
+        }
     }
 
 }
