@@ -7,6 +7,7 @@ public class BuyStock implements Order {
         this.abcStock = abcStock;
     }
 
+    @Override
     public void execute() {
         abcStock.buy();
     }

@@ -15,7 +15,7 @@ public class StrategyPatternDemo {
         cart.pay(new PaypalStrategy("jeff.bezos@amazon.com", "mypwd"));
 
         // pay by credit card
-        cart.pay(new CreditCardStrategy("Jeff Bezos", "1234567890123456", "786", "12/22"));
+        cart.pay(new CreditCardStrategy("Jeff Bezos", "1234567890123456", "786", "12/24"));
     }
 
 }
