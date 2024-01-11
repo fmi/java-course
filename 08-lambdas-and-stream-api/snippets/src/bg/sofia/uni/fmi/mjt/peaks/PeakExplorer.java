@@ -19,11 +19,8 @@ public class PeakExplorer {
     private final List<Peak> peaks;
 
     public PeakExplorer(Reader dataInput) {
-        try (var reader = new BufferedReader(dataInput)) {
-            peaks = reader.lines().map(Peak::of).toList();
-        } catch (IOException e) {
-            throw new UncheckedIOException("A problem occurred while reading from the file", e);
-        }
+        var reader = new BufferedReader(dataInput);
+        peaks = reader.lines().map(Peak::of).toList();
     }
 
     private static void optionalUsageExample(Optional<String> optionalPeakName) {
