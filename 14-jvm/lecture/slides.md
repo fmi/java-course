@@ -337,7 +337,7 @@ class: center, middle
 
 ### Two-region GC
 
-- Паметта е разделена на два региона: *Young* и *OldО* (*Tenured*)
+- Паметта е разделена на два региона: *Young* и *Old* (*Tenured*)
 - *Young* регионът има три части: *Eden* и два (еднакви) *Survivor* области
 - Нови обекти се създават в *Еden* space-а
 - Когато *Eden* се напълни, обектите отиват в празния *Survivor* space
