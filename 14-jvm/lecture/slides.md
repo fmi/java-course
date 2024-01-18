@@ -406,6 +406,12 @@ class: center, middle
 
 ---
 
+### Полезни четива
+
+- [HotSpot Virtual Machine Garbage Collection Tuning Guide](https://docs.oracle.com/en/java/javase/21/gctuning/available-collectors.html)
+
+---
+
 ## Оттук накъде?
 
 .center[![Duke Thinking](images/13.18-duke-thinking.png)]
@@ -422,7 +428,7 @@ class: center, middle
 - Дефинирането на всички спецификации става през т.нар. Java Community Process
 - JDK не е всичко
   - Open Source обществата играят голяма роля в екосистемата на Java
-    - Eclipse - 375+ проекта, основно Java
+    - Eclipse - 425+ проекта, основно Java
     - Apache - 340+ проекта, не само Java
 
 ---
@@ -435,7 +441,7 @@ class: center, middle
 
 <br>
 
-.center[![BGJUG](images/13.20-bgjug.png)]
+.center[<img src="images/13.20-bgjug.png" alt="Bulgarian Java User Group" width="60%" height="60%">]
 
 ---
 
