@@ -439,6 +439,12 @@ while (buf.hasRemaining()) {
 
 ---
 
+### Production-ready NIO сървър архитектура
+
+.center[<img src="images/11.11-1-production-ready-nio-server.png" alt="Production-ready NIO Server" width="90%" height="90%">]
+
+---
+
 ### Полезни четива
 
 .center[![Java NIO](images/11.12-java-nio-oreilly.jpg)]

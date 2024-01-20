@@ -19,7 +19,7 @@
 ### Описание на клиентските команди
 
 ```bash
-- request size=<t-shirt size> color=<t-shirt color> shipTo=<t-shirt destination> - изпраща заявка за създаване на нова поръчка на тениска
+- request size=<t-shirt size> color=<t-shirt color> destination=<t-shirt destination> - изпраща заявка за създаване на нова поръчка на тениска
   с дадените размер, цвят и дестинация за доставка. Опциите се изброяват на командния ред като
   се разделят с whitespace.
 
@@ -38,24 +38,24 @@
 
 # 2 Request T-Shirts
 # 2.1. Create a new request for t-shirt with valid options
-=> request size=L color=BLACK shipTo=EUROPE
+=> request size=L color=BLACK destination=EUROPE
 => {"status":"CREATED", "additionalInfo":"ORDER_ID=1"}
 
 # 2.2. Create a new request for t-shirt with invalid t-shirt size
-=> request size=K color=BLACK shipTo=EUROPE
-=> {"status":"DECLINED", "additionalInfo":"invalid:size"}
+=> request size=K color=BLACK destination=EUROPE
+=> {"status":"DECLINED", "additionalInfo":"invalid: size"}
 
 # 2.3. Create a new request for t-shirt with invalid color
-=> request size=L color=ORANGE shipTo=EUROPE
-=> {"status":"DECLINED", "additionalInfo":"invalid:color"}
+=> request size=L color=ORANGE destination=EUROPE
+=> {"status":"DECLINED", "additionalInfo":"invalid: color"}
 
 # 2.4. Create a new request for t-shirt with invalid destination
-=> request size=L color=BLACK shipTo=NARNIA
-=> {"status":"DECLINED", "additionalInfo":"invalid:destination"}
+=> request size=L color=BLACK destination=NARNIA
+=> {"status":"DECLINED", "additionalInfo":"invalid: destination"}
 
 # 2.5. Create a new request for a t-shirt with multiple invalid parameters
-=> request size=K color=ORANGE shipTo=NARNIA
-=> {"status":"DECLINED", "additionalInfo":"invalid:size,color,destination"}
+=> request size=K color=ORANGE destination=NARNIA
+=> {"status":"DECLINED", "additionalInfo":"invalid: size,color,destination"}
 
 # 3 Get T-Shirts
 # 3.1. get all requested t-shirts (valid and invalid)
@@ -101,6 +101,7 @@ public interface OrderRepository {
      * @param size        - size of the requested T-Shirt
      * @param color       - color of the requested T-Shirt
      * @param destination - destination of the requested T-Shirt
+     * @throws IllegalArgumentException if either size, color or destination is null
      *
      * @return response which contains status and additional info (orderId or invalid parameters if there are such)
      */
@@ -111,6 +112,7 @@ public interface OrderRepository {
      *
      * @param id order id
      * @return response which contains status and an order with the given id
+     * @throws IllegalArgumentException if id is a non-positive number
      */
     Response getOrderById(int id);
 
@@ -270,14 +272,14 @@ public record Response(Status status, String additionalInfo, Collection<Order> o
 Response-ите имат следния формат:
 - При създаване на нова поръчка:
   - ако е валидна: `{"status":"CREATED", "additionalInfo":"ORDER_ID=\<id\>"}`
-  - ако е невалидна: `{"status":"DECLINED", "additionalInfo":"invalid:size,color,destination"}`. Редът на проверка за невалидни аргументи е: size, color, destination.
+  - ако е невалидна: `{"status":"DECLINED", "additionalInfo":"invalid: size,color,destination"}`. Редът на проверка за невалидни аргументи е: size, color, destination.
     - Невалидните поръчки се запазват в паметта с id -1
 - При вземане на всички поръчки:
   - включително невалидните: `{"status":"OK", "orders":[{"id":1, "tShirt":{size":"L", "color":"BLACK"}, "destination":"EUROPE"},
     {"id":-1, "tShirt":{"size":"L", "color":"UNKNOWN"}, "destination":"EUROPE"}]`
-  - само успешните: `{"status":"OK", "orders":[{"id": 1, "tShirt":{size":"L", "color":"BLACK"}, "shipTo":"EUROPE"}]}`
+  - само успешните: `{"status":"OK", "orders":[{"id": 1, "tShirt":{size":"L", "color":"BLACK"}, "destination":"EUROPE"}]}`
 - При вземане на една валидна поръчка:
-  - когато съществува: `{"status":"OK", "orders":[{"id": 1, "tShirt":{size":"L", "color":"BLACK"}, "shipTo":"EUROPE"}]}`
+  - когато съществува: `{"status":"OK", "orders":[{"id": 1, "tShirt":{size":"L", "color":"BLACK"}, "destination":"EUROPE"}]}`
   - когато не съществува: `{"status":"NOT_FOUND", "additionalInfo":"Order with id = <id> does not exist."}`
 ### Тестване
 
@@ -298,10 +300,7 @@ Response-ите имат следния формат:
 ```
 src
 └─ bg.sofia.uni.fmi.mjt.order.server
-    ├── repository
-    │    ├─ exception
-    │    │    ├── OrderNotFoundException.java
-    │    │    └── (...)           
+    ├── repository    
     │    ├─ MJTOrderRepository.java
     │    ├─ OrderRepository.java
     │    └── (...)
