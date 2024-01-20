@@ -14,7 +14,13 @@
   <!-- <module name="NewlineAtEndOfFile"/>
     Doesn't seem to work under windows or something: false triggering!
   -->
-  
+
+  <!--  Workaround for string templates (preview feature in Java 21)-->
+  <property name="haltOnException" value="false"/>
+  <module name="SuppressionSingleFilter">
+    <property name="message" value=".*IllegalStateException occurred while parsing file.*"/>
+  </module>
+
   <module name="LineLength">
     <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
 	<property name="max" value="120"/>
