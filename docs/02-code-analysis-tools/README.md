@@ -8,7 +8,7 @@
 
 ```bash
 # point to our checkstyle rules
-$ export CHECKS=https://raw.githubusercontent.com/fmi/java-course/master/docs/01-code-analysis-tools/checkstyle/checkstyle.xml
+$ export CHECKS=https://raw.githubusercontent.com/fmi/java-course/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml
 
 # run for single .java file
 $ java -jar checkstyle-10.4-all.jar -c $CHECKS Main.java
