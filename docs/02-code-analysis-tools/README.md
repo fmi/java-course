@@ -8,7 +8,7 @@
 
 ```bash
 # point to our checkstyle rules
-$ export CHECKS=https://raw.githubusercontent.com/fmi/java-course/master/docs/01-code-analysis-tools/checkstyle/checkstyle.xml
+$ export CHECKS=https://raw.githubusercontent.com/fmi/java-course/mjt-2022-2023/docs/02-code-analysis-tools/checkstyle/checkstyle.xml
 
 # run for single .java file
 $ java -jar checkstyle-10.4-all.jar -c $CHECKS Main.java
@@ -28,8 +28,8 @@ $ java -jar checkstyle-10.4-all.jar -c $CHECKS my-fancy-project/
 1. _File_ → _Settings..._ → _Plugins_ → _Tools_ → _Checkstyle_
 2. В секцията _Configuration File_ имате две предварително инсталирани конфигурации, _Sun Checks_ и _Google Checks_
 3. За да добавите custom конфигурация, натискате _+_, слагате в _Description_ описание тип "MJT" и избирате локален или remote Checkstyle конфигурационен файл ще ползвате:
-   - _Use a local Checkstyle file_ → _Browse_, като може да си свалите [този](https://github.com/fmi/java-course/blob/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml) от нашия грейдър
-   - _Use a Checkstyle file accessible via HTTP_ и в полето _URL_ задавате локация на remote файл, например [този](https://raw.githubusercontent.com/fmi/java-course/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml) от нашия грейдър
+   - _Use a local Checkstyle file_ → _Browse_, като може да си свалите [този](/docs/02-code-analysis-tools/checkstyle/checkstyle.xml) от нашия грейдър
+   - _Use a Checkstyle file accessible via HTTP_ и в полето _URL_ задавате локация на remote файл, например [този](https://raw.githubusercontent.com/fmi/java-course/mjt-2022-2023/docs/02-code-analysis-tools/checkstyle/checkstyle.xml) от нашия грейдър
 
 За да настроите автоматичното конфигуриране на правилата, при създаването на всеки нов проект:
 
@@ -53,7 +53,7 @@ $ java -jar checkstyle-10.4-all.jar -c $CHECKS my-fancy-project/
 3. _Local Check Configurations..._ > _New..._.
 4. Избирате _Remote Configuration_ за _Type_.
 5. Давате му име - например _mjt_.
-6. Поставяте [този линк](https://raw.githubusercontent.com/fmi/java-course/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml) за _Location_ и избирате _OK_.
+6. Поставяте [този линк](https://raw.githubusercontent.com/fmi/java-course/mjt-2022-2023/docs/02-code-analysis-tools/checkstyle/checkstyle.xml) за _Location_ и избирате _OK_.
 7. Връщате се в _Main_ и избирате вашия checkstyle, който току-що създадохте.
 8. Избирате _Apply and Close_.
 9. Вече би трябвало да виждате checkstyle съобщенията.

@@ -14,7 +14,7 @@ public static int getCommunicatingServersCount(int[][] map)
 
 ### Примери
 
-<img src="https://github.com/fmi/java-course/blob/master/01-intro-to-java/lecture/images/communicating-servers.png" alt="Communicating servers">
+<img src="/01-intro-to-java/lecture/images/communicating-servers.png" alt="Communicating servers">
 
 | Извикване                                                                                          | Резултат |
 | :------------------------------------------------------------------------------------------------- | :------- |
