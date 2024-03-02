@@ -28,7 +28,7 @@ $ java -jar checkstyle-10.4-all.jar -c $CHECKS my-fancy-project/
 1. _File_ → _Settings..._ → _Plugins_ → _Tools_ → _Checkstyle_
 2. В секцията _Configuration File_ имате две предварително инсталирани конфигурации, _Sun Checks_ и _Google Checks_
 3. За да добавите custom конфигурация, натискате _+_, слагате в _Description_ описание тип "MJT" и избирате локален или remote Checkstyle конфигурационен файл ще ползвате:
-   - _Use a local Checkstyle file_ → _Browse_, като може да си свалите [този](https://github.com/fmi/java-course/blob/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml) от нашия грейдър
+   - _Use a local Checkstyle file_ → _Browse_, като може да си свалите [този](/docs/02-code-analysis-tools/checkstyle/checkstyle.xml) от нашия грейдър
    - _Use a Checkstyle file accessible via HTTP_ и в полето _URL_ задавате локация на remote файл, например [този](https://raw.githubusercontent.com/fmi/java-course/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml) от нашия грейдър
 
 За да настроите автоматичното конфигуриране на правилата, при създаването на всеки нов проект:
