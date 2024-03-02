@@ -267,7 +267,7 @@ class: center, middle
 
 ### Design Patterns - примери с код
 
-- може да разгледате приложените [code snippets](https://github.com/fmi/java-course/tree/master/13-design-patterns/snippets/design-patterns)
+- може да разгледате приложените [code snippets](/13-design-patterns/snippets/design-patterns)
 - хубави обяснения и примери с псевдокод [Refactoring Guru: Design Patterns](https://refactoring.guru/design-patterns)
 - тук може да намерите информация и примери с код на Java за голям брой design patterns (не само 23-те от *Gang-of-Four*): [Java Design Patterns](https://github.com/iluwatar/java-design-patterns)
 
