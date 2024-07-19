@@ -97,7 +97,7 @@ void execute(Runnable command)
 <T> Future<T> submit(Callable<T> task)
 
 // java.util.concurrent.ScheduledExecutorService  
-// Задачите могат да се пускат след опредено закъснение
+// Задачите могат да се пускат след определено закъснение
 // или периодично на зададен интервал
 
 ScheduledFuture<?> schedule(Runnable r, long delay, TimeUnit tu)
