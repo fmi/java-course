@@ -8,7 +8,7 @@
 
 | # | Тема | Лекция | Видео | Дата | Упражение | Видео | Дата |
 | - | :--- | :----- | :---- | :--- | :-------- | :---- | :--- |
-| 1 | Въведение в Java | [слайдове](https://fmi.github.io/java-course/01-intro-to-java/lecture/slides.html) |  | 09.10 |  |  | 12.10 |
+| 1 | Въведение в Java | [слайдове](https://fmi.github.io/java-course/01-intro-to-java/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/X1bh5oAggsQ) | 09.10 |  |  | 12.10 |
 
 ### Материали от предходни издания
 
