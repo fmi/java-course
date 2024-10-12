@@ -12,12 +12,12 @@ public static int maxNonOverlappingCourses(int[][] courses)
 
 ### Примери
 
-| Извикване                                                                                           | Резултат |
-| :-------------------------------------------------------------------------------------------------- | :------- |
-| `maxNonOverlappingCourses(new int[][]{{9, 11}, {10, 12}, {11, 13}, {15, 16}}))`                     | `3`      |
-| `maxNonOverlappingCourses(new int[][]{{19, 22}, {17, 19}, {9, 12}, {9, 11}, {15, 17}, {15, 17}}))`  | `4`      |
-| `maxNonOverlappingCourses(new int[][]{{19, 22}}))`                                                  | `1`      |
-| `maxNonOverlappingCourses(new int[][]{{13, 15}, {13, 17}, {11, 17}}))`                              | `1`      |
+| Извикване                                                                                          | Резултат |
+| :------------------------------------------------------------------------------------------------- | :------- |
+| `maxNonOverlappingCourses(new int[][]{{9, 11}, {10, 12}, {11, 13}, {15, 16}})`                     | `3`      |
+| `maxNonOverlappingCourses(new int[][]{{19, 22}, {17, 19}, {9, 12}, {9, 11}, {15, 17}, {15, 17}})`  | `4`      |
+| `maxNonOverlappingCourses(new int[][]{{19, 22}})`                                                  | `1`      |
+| `maxNonOverlappingCourses(new int[][]{{13, 15}, {13, 17}, {11, 17}})`                              | `1`      |
 
 ### :warning: Забележки
 
