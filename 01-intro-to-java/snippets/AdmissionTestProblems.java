@@ -60,7 +60,7 @@ public class AdmissionTestProblems {
         if (n == 0) {
             return sum;
         } else {
-            return sumRecCalc(n - 1, sum += 1.0 / denominator, denominator * 2);
+            return sumRecCalc(n - 1, sum + 1.0 / denominator, denominator * 2);
         }
     }
 
