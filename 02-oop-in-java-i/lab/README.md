@@ -19,7 +19,7 @@ package bg.sofia.uni.fmi.mjt.gameplatform.store.item;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public interface `StoreItem` {
+public interface StoreItem {
 
     /**
      * Returns the title of the store item.
@@ -196,6 +196,7 @@ public interface StoreAPI {
 ### Подсказка
 
 👉 За работа с дати и часове, може да използвате [`java.time`](https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/package-summary.html) API, обръщайки по-специално внимание на [`LocalDateTime`](https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/time/LocalDateTime.html) класа и неговите методи.
+
 👉 Цените представяме с референтния тип [`java.math.BigDecimal`](https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/math/BigDecimal.html), разгледайте и неговата документация.
 
 ### :warning: Промокод
