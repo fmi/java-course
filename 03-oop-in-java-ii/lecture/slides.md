@@ -282,6 +282,33 @@ public class EnumExample {
 
 ---
 
+### Enum
+
+```java
+public class EnumExample {
+    public enum VehicleType {
+        CAR(4),
+        BICYCLE(2),
+        BOAT(0);
+
+        private final int numberOfWheels;
+
+        VehicleType(int numberOfWheels) {
+            this.numberOfWheels = numberOfWheels;
+        }
+
+        public int getNumberOfWheels() { return numberOfWheels; }
+    }
+
+    public static void main(String[] args) {
+        for (VehicleType vt : VehicleType.values()) {
+            System.out.printf("A %s has %d wheels \n", vt, vt.getNumberOfWheels());
+        }
+    }
+}
+```
+---
+
 class: center, middle
 
 ## Records
@@ -533,35 +560,82 @@ class: center, middle
 
 ---
 
-### Sealed класове и интерфейси
+### Sealed класове и интерфейси: какъв проблем решават?
+
+Имаме йерархия от класове, която има ограничен брой типове - подобно на enums.
+
+Например:
+
+.center[![Hierarchy Example](images/03.6-sealed-hierarchy-1.png)]
+
+---
+
+### Sealed класове и интерфейси: какъв проблем решават?
+
+На теория, стига да са `public` и да **не са** `final` или с `private`, всички класове могат да бъдат наследени:
+
+.center[![Hierarchy Extensibility](images/03.6-sealed-hierarchy-2.png)]
+
+---
+
+### Sealed класове и интерфейси: какъв проблем решават?
+
+#### Решение без sealed класове/интерфейси:
+
+* дефинираме ги като `final`
+* дефинираме ги като package-private (което обаче ограничава достъпа до този клас)
+* дефинираме `private` или `package-private` конструктори  (това прави класа видим, но дава много ограничен контрол върху конкретните типове, които могат да го наследят)
+
+---
+
+### Sealed класове и интерфейси: какъв проблем решават?
+
+#### Решение без sealed класове/интерфейси:
+
+.center[![Non-Sealed Hierarchy](images/03.6-sealed-hierarchy-3.png)]
+
+---
+
+### Sealed класове и интерфейси: какъв проблем решават?
+
+#### Решение със sealed класове/интерфейси:
+* намерението да ограничим йерархията от класове е дефинирано _**експлицитно**_ (и лесно)
+* разделяме *достъпността* (*accessibility*) от *разширяемостта* (*extensibility*) на класовете
+
+.center[![Sealed Hierarchy](images/03.6-sealed-hierarchy-4.png)]
+---
+
+### Sealed класове
+
+- наследниците на `sealed` клас могат да бъдат `final`, `sealed` или `non-sealed`
+- `sealed` клас може да бъде и абстрактен
+- `sealed` класът и неговите permitted класове **трябва да са в един пакет**
+- ако `sealed` класовете са кратки и малък брой, те могат да се дефинират в същия сорс файл като родителския клас
+  - в този случай, `permits` клаузата може да се пропусне - компилаторът приема за имплицитно permitted класовете в дадения сорс файл
+
+---
+
+### Sealed класове: дефиниции
 
 ```java
 // sealed класовете декларират, кои класове могат да ги наследяват
 public abstract sealed class Shape
-    permits Circle, Rectangle {...}
+    permits Circle, Rectangle, Parallelogram, WeirdShape {...}
 
-// дефиниране на класове - наследници на sealed клас
-public class Circle extends Shape {...} // OK
-public class Rectangle extends Shape {...} // OK
+// дефиниране на класове - final наследници на sealed клас
+public final class Circle extends Shape {...} // OK
+public final class Parallelogram extends Shape {...} // OK
+
+// дефиниране на класове - sealed наследници на sealed клас
+public sealed class Rectangle extends Shape permits Square {...} // OK
+public final class Square extends Rectangle {...} // OK
+
+// дефиниране на класове - non-sealed наследници на sealed клас
+public non-sealed class WeirdShape extends Shape {...} // OK 
+
+// не можем да разширяваме йерархията извън зададените ограничения
 public class Triangle extends Shape {...} // Compile error
-
-// sealed класове като селектор на switch
-// No need for default case if all permitted types are covered
-double area = switch (shape) {
-    case Circle c    -> Math.pow(c.radius(), 2) * Math.PI
-    case Rectangle r -> r.a() * r.b()
-};
 ```
-
----
-
-### Sealed класове и интерфейси
-
-- Като разрешаваме само на предварително дефинирано множество от класове да наследяват даден клас, може да разделим *достъпността* (*accessibility*) от *разширяемостта* (*extensibility*) на класовете
-- С други думи, може да направим `sealed` клас достъпен за други пакети, и въпреки това да контролираме, кой може да го наследява
-- Преди Java 17, за постигнем подобен ефект, имаше две опции:
-    - да направим класа package-private (което обаче ограничава достъпа до този клас)
-    - да направим класа `public`, но с `private` или package-private конструктори (това прави класа видим, но дава много ограничен контрол върху конкретните типове, които могат да го наследят)
 
 ---
 
@@ -569,35 +643,20 @@ double area = switch (shape) {
 
 - При `sealed` класовете и интерфейсите, съществува изчерпателен списък от наследниците, който е известен на компилатора, IDE-то и JVM-a, което позволява по-мощен анализ на кода
     - например, `instanceof` и casts могат да проверяват цялата йерархия статично
-
+    - може да изпозлваме "умен" `switch`, който няма нужда от `default` case, ако всички класове са изброени
 ---
+### Sealed класове и интерфейси
 
-### Sealed класове
-
-- наследниците на `sealed` клас могат да бъдат `final`, `non-sealed` или `sealed`
-- `sealed` клас може да бъде и абстрактен
-- `sealed` класът и неговите permitted класове трябва да са в един пакет
-- ако `sealed` класовете са кратки и малък брой, те могат да се дефинират в същия сорс файл като родителския клас
-  - в този случай, `permits` клаузата може да се пропусне - компилаторът приема за имплицитно permitted класовете в дадения сорс файл
-
----
-
-### Sealed класове
-
+Sealed класове като селектор на switch:
 ```java
-public sealed class Plant permits Herb, Shrub, Climber {}
-
-
-final class Herb extends Plant {}
-
-non-sealed class Shrub extends Plant {}
-
-sealed class Climber extends Plant permits Cucumber{}
-
-final class Cucumber extends Climber {}
+// няма нужда от default case, ако всички позволени класове са изброени
+double area = switch (shape) {
+    case Circle c    -> Math.pow(c.radius(), 2) * Math.PI
+    case Rectangle r -> r.a() * r.b()
+};
 ```
-
 ---
+
 
 ### Sealed интерфейси
 
@@ -637,11 +696,6 @@ final class Karate implements Kick {}
 
 ---
 
-### Нововъведенията в Java в 2021
-
-.center[![Stack vs. heap](images/03.1-favorite-new-java-features.png)]
-
----
 
 class: center, middle
 
@@ -738,6 +792,12 @@ class: center, middle
 - Мрежата се е разкачила по време на комуникация
 - Свършила е паметта на виртуалната машина
 - ...
+
+---
+
+### Какво представляват изключенията?
+* Нормални java обекти, целящи да опишат възникналия проблем.
+* Инстанции са на "специални" класове, които също имат йерархия (ще я разгледаме по-късно).
 
 ---
 
@@ -1016,4 +1076,4 @@ Exception in thread "main" java.lang.NullPointerException:
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
 
-.font-xl[.ri-youtube-fill.icon-inline[[MJT2023](https://www.youtube.com/playlist?list=PLew34f6r0PxyQmWCgCP5gKeoBuzXJxq1w)]]
+.font-xl[.ri-youtube-fill.icon-inline[[MJT2024](https://www.youtube.com/watch?v=nUqYohPFCfE&list=PLew34f6r0Pxys4arinMND8JUh7JyXzeMw)]]
