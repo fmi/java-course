@@ -6,7 +6,7 @@ public enum Day {
 
     SUNDAY("Sun."), MONDAY("Mon."), TUESDAY("Tu."), WEDNESDAY("Wed."), THURSDAY("Th."), FRIDAY("Fr."), SATURDAY("Sat.");
 
-    private String abbreviation;
+    private final String abbreviation;
 
     // Constructor is always private or default.
     // You cannot create an instance of enum using the new operator.
