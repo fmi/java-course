@@ -28,9 +28,9 @@ import java.time.LocalDateTime;
 public class RentalService {
 
     /**
-     * Simulates renting of the vehicle. Makes all required validations then, the provided driver "rents" the provided
+     * Simulates renting of the vehicle. Makes all required validations and then the provided driver "rents" the provided
      * vehicle with start time @startOfRent
-     * @throws IllegalArgumentException if any of the passed arguments is null
+     * @throws IllegalArgumentException if any of the passed arguments are null
      * @throws VehicleAlreadyRentedException in case the provided vehicle is already rented
      * @param driver the designated driver of the vehicle
      * @param vehicle the chosen vehicle to be rented
@@ -57,25 +57,25 @@ public class RentalService {
 
 ```
 ## Driver
-Шофьорите са репрезентирани от проста структура (каква ли?) със следния конструктор:
+Шофьорите са репрезентирани от проста структура със следния конструктор:
 
 ```java
 public Driver(AgeGroup group){}
 ```
-където `AgeGroup` се използва, за репрецентиране на възрастовата група на водача, представена от изброен тип `AgeGroup` със стойности:
+където `AgeGroup` е възрастовата група на водача, представена от изброен тип `AgeGroup` със стойности:
 - `JUNIOR`
 - `EXPERIENCED`
 - `SENIOR`
 
 ### Такса "млад шофьор"
-Както забелязвате, `returnVehicle` методът връща цена за наем, която включва и такса, свързана с възрастта на шофьора. Това е честа практика при компаниите, отдаващи автомобили под наем - смята се, че по-младите и по-възрастните водачи са по-склонни към произшествия и затова те дължат по-голям депозит. В нашия случай, за простота, добавяме такса, която се начислява към крайната сума за наем вместо депозит.
+Както забелязвате, `returnVehicle` методът връща цена за наем, която включва и такса, свързана с възрастта на шофьора. Това е честа практика при компаниите, отдаващи автомобили под наем - смята се, че по-младите и по-възрастните водачи са по-склонни към произшествия и затова те дължат по-голям депозит. В нашия случай, за простота, добавяме дневна такса, която се начислява към крайната сума за наем вместо депозит.
 
 Таксите са както следва:
 - `JUNIOR`: 10
 - `EXPERIENCED`: 0
 - `SENIOR`: 15
 
-:warning: **Важно:** Таксите не се начисляват, ако наетото превозно средство е колело.
+:warning: **Важно:** Таксите **не се** начисляват, ако наетото превозно средство е **колело**.
 
 ## Vehicle
 Дадена е йерархия от класове, моделираща поддържаните превозни средства: като основен клас имаме `Vehicle`, който има три наследника - `Bicycle`, `Car` и `Caravan`.
@@ -96,7 +96,6 @@ import java.util.Objects;
 
 public class Vehicle {
     
-
     public Vehicle(String id, String model) {
         this.id = id;
         this.model = model;
@@ -200,7 +199,7 @@ public static void main(String[] args) {
     
     Vehicle dieselCar = new Car("2", "Toyota Auris", FuelType.DIESEL, 4, 500, 80, 5);
     rentalService.rentVehicle(experiencedDriver, dieselCar, rentStart);
-    double priceToPay = rentalService.returnVehicle(dieselCar, rentStart.plusDays(5)); // 445.0
+    priceToPay = rentalService.returnVehicle(dieselCar, rentStart.plusDays(5)); // 445.0
 }
 ```
 
@@ -213,16 +212,16 @@ public static void main(String[] args) {
 src
 └─ bg/sofia/uni/fmi/mjt/vehiclerent
     ├─ driver/
-	│  ├─ Driver.java
+    │  ├─ Driver.java
     │  └─ AgeGroup.java
     ├─ exception/
-	│  ├─ InvalidRentingPeriodException.java
-	│  ├─ VehicleAlreadyRentedException.java
+    │  ├─ InvalidRentingPeriodException.java
+    │  ├─ VehicleAlreadyRentedException.java
     │  └─ VehicleNotRentedException.java
-	├─ vehicle/
-	│  ├─ FuelType.java
-	│  ├─ Bicycle.java
-	│  ├─ Car.java
+    ├─ vehicle/
+    │  ├─ FuelType.java
+    │  ├─ Bicycle.java
+    │  ├─ Car.java
     │  └─ Caravan.java
     └─ RentalService.java
 ```
