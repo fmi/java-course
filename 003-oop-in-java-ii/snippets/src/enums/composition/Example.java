@@ -42,7 +42,7 @@ public class Example {
 
     public static void main(String[] args) {
         StringOperation trim = BasicStringOperation.TRIM;
-        ExtendedStringOperation md5 = ExtendedStringOperation.MD5_ENCODE;
+        StringOperation md5 = ExtendedStringOperation.MD5_ENCODE;
 
         System.out.println(trim.getDescription());
         System.out.println(md5.getDescription());
