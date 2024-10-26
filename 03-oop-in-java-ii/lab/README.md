@@ -213,17 +213,18 @@ public static void main(String[] args) {
 src
 └─ bg/sofia/uni/fmi/mjt/vehiclerent
     ├─ driver/
-    │  ├─ Driver.java
-    │  └─ AgeGroup.java
+    │  ├─ AgeGroup.java
+    │  └─ Driver.java
     ├─ exception/
     │  ├─ InvalidRentingPeriodException.java
     │  ├─ VehicleAlreadyRentedException.java
     │  └─ VehicleNotRentedException.java
     ├─ vehicle/
-    │  ├─ FuelType.java
     │  ├─ Bicycle.java
     │  ├─ Car.java
-    │  └─ Caravan.java
+    │  ├─ Caravan.java
+    │  ├─ FuelType.java
+    │  └─ Vehicle.java   
     └─ RentalService.java
 ```
 
