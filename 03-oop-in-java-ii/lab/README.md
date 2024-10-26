@@ -110,7 +110,7 @@ public class Vehicle {
      * @param startRentTime the start time of the rent
      * @throws VehicleAlreadyRentedException in case the vehicle is already rented by someone else or by the same driver.
      */
-    public void rent(Driver driver, LocalDateTime startRentTime) throws VehicleAlreadyRentedException {
+    public void rent(Driver driver, LocalDateTime startRentTime) {
         throw new UnsupportedOperationException("Dear Student, Remove this Exception and Implement this method");
     }
 
