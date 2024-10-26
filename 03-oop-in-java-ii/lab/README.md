@@ -47,7 +47,9 @@ public class RentalService {
      * additional tax for the driver, if it is applicable 
      * @param vehicle the rented vehicle
      * @param endOfRent the end time of the rental
-     * @return
+     * @return price for the rental
+     * @throws IllegalArgumentException in case @endOfRent or @vehicle is null
+     * @throws VehicleNotRentedException in case the vehicle is not rented at all
      * @throws InvalidRentingPeriodException in case the endOfRent is before the start of rental, or the vehicle 
      * does not allow the passed period for rental, e.g. Caravans must be rented for at least a day.
      */
