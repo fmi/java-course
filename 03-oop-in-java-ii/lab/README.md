@@ -200,7 +200,7 @@ public static void main(String[] args) {
     
     Vehicle dieselCar = new Car("2", "Toyota Auris", FuelType.DIESEL, 4, 500, 80, 5);
     rentalService.rentVehicle(experiencedDriver, dieselCar, rentStart);
-    priceToPay = rentalService.returnVehicle(dieselCar, rentStart.plusDays(5)); // 445.0
+    priceToPay = rentalService.returnVehicle(dieselCar, rentStart.plusDays(5)); // 80*5 + 3*5 + 4*5 = 435.0
 }
 ```
 
