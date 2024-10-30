@@ -1076,4 +1076,4 @@ Exception in thread "main" java.lang.NullPointerException:
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
 
-.font-xl[.ri-youtube-fill.icon-inline[[MJT2024](https://www.youtube.com/watch?v=nUqYohPFCfE&list=PLew34f6r0Pxys4arinMND8JUh7JyXzeMw)]]
+.font-xl[.ri-youtube-fill.icon-inline[[MJT2025](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]
