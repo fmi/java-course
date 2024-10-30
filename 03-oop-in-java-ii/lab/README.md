@@ -22,6 +22,7 @@ package bg.sofia.uni.fmi.mjt.vehiclerent;
 
 import bg.sofia.uni.fmi.mjt.vehiclerent.driver.Driver;
 import bg.sofia.uni.fmi.mjt.vehiclerent.exception.InvalidRentingPeriodException;
+import bg.sofia.uni.fmi.mjt.vehiclerent.exception.VehicleAlreadyRentedException;
 import bg.sofia.uni.fmi.mjt.vehiclerent.vehicle.Vehicle;
 
 import java.time.LocalDateTime;
