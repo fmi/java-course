@@ -11,7 +11,7 @@
 | 1 | Въведение в Java | [слайдове](https://fmi.github.io/java-course/01-intro-to-java/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/X1bh5oAggsQ) | 09.10 | [задача](https://github.com/fmi/java-course/tree/master/01-intro-to-java/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/Bs3v6fr_qHk) | 12.10 |
 | 2 | ООП с Java (част I) | [слайдове](https://fmi.github.io/java-course/02-oop-in-java-i/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/nUqYohPFCfE) | 16.10 | [задача](https://github.com/fmi/java-course/tree/master/02-oop-in-java-i/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/XMIRX9M9zmI) | 19.10 |
 | 3 | ООП с Java (част II) | [слайдове](https://fmi.github.io/java-course/03-oop-in-java-ii/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/BwdJJoqO798) | 23.10 | [задача](https://github.com/fmi/java-course/tree/master/03-oop-in-java-ii/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/Un5xsZj_5ug) | 26.10 |
-| 4 | Collections \| Clean Code | [слайдове](https://fmi.github.io/java-course/04-collections-clean-code/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/h-FNxLIp4DY) | 30.10 |  |  | 02.11 |
+| 4 | Collections \| Clean Code | [слайдове](https://fmi.github.io/java-course/04-collections-clean-code/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/h-FNxLIp4DY) | 30.10 | [задача](https://github.com/fmi/java-course/tree/master/04-collections-clean-code/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/gWVSCUfa_qc) | 02.11 |
 
 ### Материали от предходни издания
 
