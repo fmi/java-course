@@ -241,7 +241,7 @@ src
     │      ├── Payload.java 
     │      └── (...)
     ├── exception
-    │      └── MissingSubscriptionException
+    │      └── MissingSubscriptionException.java
     ├── subscribers
     │      ├── DeferredEventSubscriber.java
     │      ├── Subscriber.java
