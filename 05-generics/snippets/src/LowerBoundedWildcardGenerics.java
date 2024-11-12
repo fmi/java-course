@@ -1,3 +1,5 @@
+// Imagine we cannot modify the Shape interface (e.g. it comes from a 3rd-party library),
+// or we don't want to force all implementers to be comparable.
 interface Shape {
     double area();
 }
@@ -39,18 +41,15 @@ class Square extends Rectangle {
     }
 }
 
-// A utility class that will use lower-bounded wildcard generics
 class ShapeUtils {
 
     // This method leverages generics and bounded wildcards to handle a flexible range of types
-    // while maintaining type safety.
-    public static <T extends Shape> T findLargestShape(T[] shapes) {
+    // while maintaining type safety. The lower bound (`super`) wildcard allows the method to accept
+    // an array of shapes that are comparable based on the interface of the same type or a supertype.
+    public static <T extends Shape & Comparable<? super T>> T findLargestShape(T[] shapes) {
         T largest = shapes[0];
         for (T shape : shapes) {
-            // The expression `Comparable<? super T>` is used to cast `shape` to ensure compatibility
-            // with the `compareTo` method. The lower bound (`super`) is necessary for handling the case where `T`
-            // could be a subtype of `Rectangle`, allowing comparison across derived classes like `Square`.
-            if (((Comparable<? super T>) shape).compareTo(largest) > 0) {
+            if (shape.compareTo(largest) > 0) {
                 largest = shape;
             }
         }
@@ -60,11 +59,11 @@ class ShapeUtils {
     // Note that if we change the generic type of the method above to <T extends Shape & Comparable<T>>,
     // the `shapes` array can only contain elements of the same type `T`, because `Comparable<T>` restricts `T`
     // to be compared only with objects of the same type.
-    // As a result, it would not be possible to use this method with an array of mixed types like
-    // `[Rectangle, Rectangle, Square, Square]`, reducing its flexibility.
+    // As a result, it would not be possible to use this method with an array of mixed types like `rectangles` below,
+    // reducing its flexibility.
+    
 }
 
-// Main class to test the implementation
 public class LowerBoundedWildcardGenerics {
     public static void main(String[] args) {
         Rectangle rect1 = new Rectangle(4, 5);
@@ -77,10 +76,11 @@ public class LowerBoundedWildcardGenerics {
         Square[] squares = {square1, square2};
 
         // Find the largest shape
-        Shape largestShape = ShapeUtils.findLargestShape(shapes);
-        //Shape largestRectangle = ShapeUtils.findLargestShape(rectangles);
-        //Shape largestSquare = ShapeUtils.findLargestShape(squares);
+        //Shape largestShape = ShapeUtils.findLargestShape(shapes); // Won't compile: not every shape is comparable
+        Shape largestRectangle = ShapeUtils.findLargestShape(rectangles);
+        Shape largestSquare = ShapeUtils.findLargestShape(squares);
 
-        System.out.println("The largest shape is: " + largestShape);
+        System.out.println(largestRectangle);
+        System.out.println(largestSquare);
     }
 }
