@@ -13,6 +13,8 @@
 | 3 | ООП с Java (част II) | [слайдове](https://fmi.github.io/java-course/03-oop-in-java-ii/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/BwdJJoqO798) | 23.10 | [задача](https://github.com/fmi/java-course/tree/master/03-oop-in-java-ii/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/Un5xsZj_5ug) | 26.10 |
 | 4 | Collections \| Clean Code | [слайдове](https://fmi.github.io/java-course/04-collections-clean-code/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/h-FNxLIp4DY) | 30.10 | [задача](https://github.com/fmi/java-course/tree/master/04-collections-clean-code/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/gWVSCUfa_qc) | 02.11 |
 | 5 | Generics | [слайдове](https://fmi.github.io/java-course/05-generics/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/a0XvgZUd5dE) | 06.11 | [задача](https://github.com/fmi/java-course/tree/master/05-generics/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/0HrQUcQ0EwE) | 09.11 |
+| 6 | Unit Testing & Mocking | [слайдове](https://fmi.github.io/java-course/06-unit-testing-and-mocking/lecture/slides.html) |  | 13.11 |  |  | 16.11 |
+
 
 ### Материали от предходни издания
 
