@@ -47,7 +47,7 @@ public class MJTOlympics implements Olympics {
 			throw new IllegalArgumentException("Competition cannot be null");
 		}
 
-		if (registeredCompetitors.containsAll(competition.competitors())) {
+		if (!registeredCompetitors.containsAll(competition.competitors())) {
 			throw new IllegalArgumentException("Not all competitors are registered for the Olympics");
 		}
 	}
