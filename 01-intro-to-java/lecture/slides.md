@@ -2,7 +2,7 @@ class: center, middle
 
 # Въведение в Java
 
-11.10.2023
+09.10.2024
 
 ---
 
@@ -60,7 +60,7 @@ class: center, middle
 ### Езикът Java
 
 - Създаден през 1995 от James Gosling (Sun Microsystems)
-- Актуална версия: Java 21 (released 19.09.2023)
+- Актуална версия: Java 23 (released 17.09.2024)
 
 ![Java logo and mascot](images/01.5-java-logo-mascot.png)
 
@@ -74,9 +74,15 @@ class: center, middle
 
 ### Езикът Java
 
-- Обектно-ориентиран
+- Модерен
+- С общо предназначение
 - Със C/C++ синтаксис
-- "Write once, run anywhere"
+- Статично типизиран
+- Мултипарадигмен
+  - обектноориентиран
+  - с функционални елементи 
+- Garbage-collected
+- Преносим: "Write once, run anywhere"
 
 ---
 
@@ -100,21 +106,21 @@ Hello world!
 
 ---
 
-### Hello world, Java 21 style!
+### Hello world, Java 23 style!
 
-![Hello World 21 style](images/01.7-hello-world-21.jpeg)
+![Hello World 23 style](images/01.7-hello-world-23.jpeg)
 
 ```java
-// Java 21 preview: Unnamed Classes and Instance Main Methods
+// Java 23 preview: Unnamed Classes and Instance Main Methods & Automatic Static Imports
 void main() {
-    System.out.println("Hello world!");
+    println("Hello world!");
 }
 ```
 
 <br>
 
 ```bash
-$ javac --enable-preview --source 21 HelloWorld.java
+$ javac --enable-preview --source 23 HelloWorld.java
 $ java --enable-preview HelloWorld
 Hello world!
 ```
@@ -158,7 +164,7 @@ Hello world!
 ### Tипове данни и променливи
 
 - Тип данни == множество стойности + операции върху тях
-- Java е статично типизиран език → всички променливи трябва да бъдат декларирани, преди да бъдат използвани, и типът на дадена променлива се фиксира в декларацията ѝ и не може да се променя
+- Java е статично типизиран език → всички променливи трябва да бъдат декларирани, преди да бъдат използвани, и типът на дадена променлива се фиксира в нейната декларацията и не може да се променя
 - Декларацията включва името и типа, и може да е съчетана (или не) с инициализация
 
 ---
@@ -453,7 +459,7 @@ char c2 = ch1;
 
 ### Низове в Java
 
-- Низовете са reference тип, а не примитивен
+- Низовете са референтен тип, а не примитивен
 - Инстанции са на `String` класа
 - Immutable са: всяка промяна води до създаване на нов `String` обект, а старият остава непроменен
 
@@ -509,7 +515,7 @@ System.out.println(literalOne == intern); // true
 String language = "Java";
 String tbd = null;
 String message = "I <3 " + language;
-String year = "The current year is " + 2023;
+String year = "The current year is " + 2024;
 ```
 
 ---
@@ -555,14 +561,14 @@ String sorted = String.valueOf(ca); // "Fbdeiirr"
 ### String.split()
 
 ```java
-String str1 = "Current year is 2023";
+String str1 = "Current year is 2024";
 
 String[] tokens = str1.split(" "); // разделител – интервал
 
-// tokens = ["Current", "year", "is", "2023"]
+// tokens = ["Current", "year", "is", "2024"]
 
 int year = Integer.parseInt(tokens[3]); 
-// year == 2023
+// year == 2024
 ```
 
 ---
@@ -570,7 +576,7 @@ int year = Integer.parseInt(tokens[3]);
 ### Други операции с низове
 
 Класът `String` има още много методи, реализиращи операции, които ще ни потрябват.
-Разгледайте ги в [документацията](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html) на класа.
+Разгледайте ги в [документацията](https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/String.html) на класа.
 
 ---
 
@@ -810,6 +816,21 @@ String s = switch(obj) {
 };
 ```
 
+Като preview feature в Java 23, switch може да се прави и по всеки примитивен тип.
+
+```java
+double value = ...
+switch (value) {
+  case byte   b -> System.out.println(value + " instanceof byte:   " + b);
+  case short  s -> System.out.println(value + " instanceof short:  " + s);
+  case char   c -> System.out.println(value + " instanceof char:   " + c);
+  case int    i -> System.out.println(value + " instanceof int:    " + i);
+  case long   l -> System.out.println(value + " instanceof long:   " + l);
+  case float  f -> System.out.println(value + " instanceof float:  " + f);
+  case double d -> System.out.println(value + " instanceof double: " + d);
+}
+```
+
 ---
 
 ### Масиви
@@ -960,4 +981,4 @@ String lineRead = sc.nextLine();
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
 
-.font-xl[.ri-youtube-fill.icon-inline[[MJT2024](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]
+.font-xl[.ri-youtube-fill.icon-inline[[MJT2025](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]

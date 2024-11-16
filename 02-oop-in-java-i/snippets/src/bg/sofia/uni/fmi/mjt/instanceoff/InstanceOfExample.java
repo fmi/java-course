@@ -21,12 +21,13 @@ class Rectangle extends Shape {
 }
 
 public class InstanceOfExample {
+
     public static void main(String[] args) {
-        Shape[] shapes = new Shape[]{
-                new Circle(),
-                new Rectangle(),
-                new Circle(),
-                new Rectangle(),
+        Shape[] shapes = new Shape[] {
+            new Circle(),
+            new Rectangle(),
+            new Circle(),
+            new Rectangle(),
         };
 
         // old-school way:
@@ -48,18 +49,11 @@ public class InstanceOfExample {
         // equivalent with enhanced switch
         for (Shape shape : shapes) {
             switch (shape) {
-                case Circle c -> {
-                    {
-                        c.draw();
-                    }
-                }
-                case Rectangle r -> {
-                    {
-                        r.draw();
-                    }
-                }
+                case Circle c -> c.draw();
+                case Rectangle r -> r.draw();
                 default -> System.out.println("Unexpected value: " + shape);
             }
         }
     }
+
 }

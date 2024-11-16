@@ -4,7 +4,7 @@ class: center, middle
 
 ![Java OOP](images/02.1-oop.jpg)
 
-18.10.2023
+16.10.2024
 
 ---
 
@@ -90,15 +90,12 @@ stringArr = new String[]{"Changed", "my", "mind"}; // explicit
 ```java
 public class AdmissionTestProblems {
 
-    public static int getMissingNo(int a[]) {
-        int i, total, n = a.length;
-        total  = n * (n + 1) / 2;
-
-        for (i = 0; i < n; i++) {
-            total -= a[i];
+    public static double sumRec(int n) {
+        if (n == 0) {
+            return 1.0;
+        } else {
+            return 1.0 / Math.pow(2, n) + sumRec(n - 1);
         }
-
-        return total;
     }
 
 }
@@ -500,6 +497,17 @@ public class Student extends Human {
 
 ---
 
+### Flexible Constructor Bodies - Java 22 & 23 preview
+
+- Преди Java 22, ако в конструктор има извикване на друг конструктор с `this(...)` или `super(...)`, това извикване трябва да е първият statement в тялото на конструктора
+- От Java 22 това ограничение отпада
+- От Java 23 е възможно и да *инициализираме* полета на конструиращия се в момента обект
+- Кодът преди `this(...)` или `super(...)` се нарича *пролог*
+- Кодът след `this(...)` или `super(...)` или в тяло на конструктор без тях се нарича *епилог*
+- Кодът в пролога може да инициализира полета, но не трябва да достъпва/чете полета на класа и не трябва да вика нестатични методи на класа
+
+---
+
 ### Йерархията от класове в Java
 
 - Всички класове в Java са (преки или косвени) наследници на класа `java.lang.Object`
@@ -577,6 +585,21 @@ if (obj instanceof String s) {
     int stringLength = s.length();
 }
 ```
+
+---
+
+### Primitive types in pattern matching (since Java 23)
+
+```java
+int value = ...
+if (value instanceof byte b && b > 0) {
+  System.out.println("b = " + b);
+}
+```
+
+<br/>
+
+Семантиката е: "ако стойността на value може да се съхрани в byte променлива и е положителна, то я присвои на b и я изведи"
 
 ---
 
@@ -973,4 +996,4 @@ public class Door implements OptimisticLockable, PessimisticLockable {
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
 
-.font-xl[.ri-youtube-fill.icon-inline[[MJT2024](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]
+.font-xl[.ri-youtube-fill.icon-inline[[MJT2025](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]

@@ -51,7 +51,8 @@ public class GenericsPlayground {
             System.out.println(h.getName());
         }
 
-        // we can only put null
+        // we cannot add any elements to the list, because the compiler cannot verify the type safety.
+        // The only exception to this is adding `null`, as `null` is a valid value for any reference type.
         listOfHumans.add(null);
 
     }
@@ -78,7 +79,7 @@ public class GenericsPlayground {
         // if we get, we can just rely on getting a java.lang.Object
         Object o = listOfUnknown.get(0);
 
-        // we can only put null
+        // we can add only `null`
         listOfUnknown.add(null);
         // listOfUnknown.add("kuku"); // will not compile
 

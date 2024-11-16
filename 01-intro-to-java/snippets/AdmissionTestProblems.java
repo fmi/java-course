@@ -1,19 +1,36 @@
 public class AdmissionTestProblems {
 
-    // Create a function that takes an array containing N different integers in the [O, N] interval
-    // and returns the missing number in this interval.
-    // For example, if the input array is [0, 1, 3], the function should return 2.
-    public static int getMissingNo(int a[])
-    {
-        int i, total, n = a.length;
-        total  = n * (n + 1) / 2;
-        for (i = 0; i < n; i++) {
-            total -= a[i];
+    // An online text processing service needs a feature that compresses strings to save space
+    // and reduce transmission time – you're the developer assigned to this task.
+    // Implement a function that performs a basic string compression using the counts
+    // of repeated characters. For example, the string "aabcccccaaa" would become "a2b1c5a3".
+    public static String compressString(String input) {
+        if (input == null || input.length() <= 1) {
+            return input;
         }
-        return total;
+
+        StringBuilder compressed = new StringBuilder();
+        int count = 1;  // Initialize the count of matching characters
+
+        for (int i = 1; i < input.length(); i++) {
+            if (input.charAt(i) == input.charAt(i - 1)) {
+                count++;  // Increment the count if the current character matches the previous one
+            } else {
+                // Append the character and its count to the compressed string
+                compressed.append(input.charAt(i - 1)).append(count);
+                count = 1;  // Reset count for the new character
+            }
+        }
+
+        // Append the last character and its count
+        compressed.append(input.charAt(input.length() - 1)).append(count);
+
+        // Check if the compressed string is actually shorter than the original string
+        String compressedString = compressed.toString();
+        return compressedString.length() < input.length() ? compressedString : input;
     }
 
-    // Create two versions of a function that, for a given integer N,
+    // Create two versions of a function that, for a given integer N >= 0,
     // calculates a real number: the sum
     //     1 + 1/2 + 1/4 + 1/8 + ... + 1/2^N
     // One of the versions should use recursion, the other – iteration.
@@ -43,12 +60,12 @@ public class AdmissionTestProblems {
         if (n == 0) {
             return sum;
         } else {
-            return sumRecCalc(n - 1, sum += 1.0 / denominator, denominator * 2);
+            return sumRecCalc(n - 1, sum + 1.0 / denominator, denominator * 2);
         }
     }
 
     public static void main(String[] args) {
-        System.out.println(getMissingNo(new int[]{0, 1, 3}));
+        System.out.println(compressString("aabcccccaaa"));
         System.out.println(sumIter(2)); // 1.75
         System.out.println(sumRec(3)); // 1.875
     }

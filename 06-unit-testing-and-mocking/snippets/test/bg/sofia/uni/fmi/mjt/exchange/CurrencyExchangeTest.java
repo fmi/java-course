@@ -29,7 +29,7 @@ public class CurrencyExchangeTest {
     //private CurrencyExchange exchange = new CurrencyExchange(currencyConverterMock);
 
     @Test
-    void testCurrencyExchangeEURtoUSD() throws UnknownCurrencyException {
+    void testExchangeSumEURtoUSD() throws UnknownCurrencyException {
 
         when(currencyConverterMock.getExchangeRate(Currency.EUR, Currency.USD))
             .thenReturn(1.11);
@@ -41,10 +41,11 @@ public class CurrencyExchangeTest {
         verify(currencyConverterMock, times(1)).getExchangeRate(Currency.EUR, Currency.USD);
         // uncomment the next line to play with mock verification failure
         //verify(currencyConverterMock).getExchangeRate(Currency.EUR, Currency.BGN);
+
     }
 
     @Test
-    void testCurrencyExchangeUnknownCurrencyThrowsException() throws UnknownCurrencyException {
+    void testExchangeSumUnknownCurrencyThrowsException() throws UnknownCurrencyException {
 
         when(currencyConverterMock.getExchangeRate(Currency.BGN, Currency.USD))
             .thenThrow(new UnknownCurrencyException(
@@ -52,6 +53,7 @@ public class CurrencyExchangeTest {
 
         assertThrows(UnknownCurrencyException.class, () -> exchange.exchangeSum(Currency.BGN, Currency.USD, 10),
             "UnknownCurrencyException expected to be thrown when converting between currencies one of which is unknown");
+
     }
 
 }

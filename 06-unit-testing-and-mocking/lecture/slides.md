@@ -2,7 +2,7 @@ class: center, middle
 
 # Unit Testing & Mocking
 
-15.11.2023
+13.11.2024
 
 .center[![Relative cost of fixing defects](images/06.0-unit-testing-and-mocking.png)]
 
@@ -122,7 +122,7 @@ class: center, middle
 
 - JUnit е най-популярният и *de facto* стандартният testing framework в Java
 - Open source проект в [GitHub](https://github.com/junit-team/junit5)
-- Актуалната версия е [JUnit 5.10.1](https://junit.org/junit5/)
+- Актуалната версия е [JUnit 5.11.3](https://junit.org/junit5/)
 
 .center[![JUnit 5](images/06.4-junit5.jpeg)]
 
@@ -575,7 +575,7 @@ public class InMemoryUserRepositoryStubImpl implements UserRepository {
 
 ```java
 @Test
-public void testRegisterThrowsAppropriateException() {
+void testRegisterThrowsAppropriateException() {
     UserRepository repository = new PositiveUserRepositoryStubImpl()
     UserService service = new UserService(repository);
 
@@ -617,7 +617,7 @@ public void testRegisterThrowsAppropriateException() {
 
 ```java
 @Test
-public void testRegisterThrowsAppropriateException() {
+void testRegisterThrowsAppropriateException() {
     UserRepository mock = mock();
     when(mock.exists("test@test.com")).thenReturn(true);
 
@@ -646,7 +646,7 @@ public void testRegisterThrowsAppropriateException() {
 ### Mocking библиотеки
 
 - [Mockito](https://github.com/mockito/mockito)
-  - Ще разглеждаме mockito (5.7.0) като mocking библиотека
+  - Ще разглеждаме mockito (5.14.x) като mocking библиотека
   - Една от 10-те най-популярни Java библиотеки изобщо
   - JUnit е стандарт за unit testing framework, mockito е стандарт за mocking библиотека
   - Open-source
@@ -678,8 +678,8 @@ public void testRegisterThrowsAppropriateException() {
 ### Setup (ръчно сваляне от mvnrepository-то)
 
 - Mockito е външна библиотека, която може да бъде изтеглена от mvnrepository-то
-- Изтеглете [mockito-core@5.7.0](https://mvnrepository.com/artifact/org.mockito/mockito-core/5.7.0) jar-a и 3-те му dependency-та
-- Ако искате да боравите с `@Mock` анотацията, изтеглете и [mockito-junit-jupiter@5.7.0](https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter/5.7.0)
+- Изтеглете [mockito-core@5.14.2](https://mvnrepository.com/artifact/org.mockito/mockito-core/5.14.2) jar-a и 3-те му dependency-та
+- Ако искате да боравите с `@Mock` анотацията, изтеглете и [mockito-junit-jupiter@5.14.2](https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter/5.14.2)
 - В IDE-то добавете въпросните jar-ки в class path-a на проекта си
 
 ---
@@ -690,7 +690,7 @@ public void testRegisterThrowsAppropriateException() {
 1. From `Project Settings`, select `Libraries`
 1. Click on the `+` to add a new project library
 1. Choose `From Maven...`
-1. In the search bar, type `mockito-core` and choose `org.mockito:mockito-core:5.7.0`
+1. In the search bar, type `mockito-core` and choose `org.mockito:mockito-core:5.14.2`
 1. Select `Download to` and make sure the `lib/` dir in the project root is configured
 1. Click `Apply`, then click `Ok`
 1. Ensure that jar files of mockito and its dependencies are downloaded under `lib/`
@@ -706,10 +706,10 @@ fancy-project
     ├─ test/
     │   └─ (...)
     └─ lib/
-        ├─ byte-buddy-1.14.9.jar
-        ├─ byte-buddy-agent-1.14.9.jar
-        ├─ mockito-junit-jupiter-5.7.0.jar
-        ├─ mockito-core-5.7.0.jar
+        ├─ byte-buddy-1.15.4.jar
+        ├─ byte-buddy-agent-1.15.4.jar
+        ├─ mockito-junit-jupiter-5.14.2.jar
+        ├─ mockito-core-5.14.2.jar
         └─ objenesis-3.3.jar
 ```
 
@@ -788,4 +788,4 @@ mockedList.add("foobar");  // returns true
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
 
-.font-xl[.ri-youtube-fill.icon-inline[[MJT2024](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]
+.font-xl[.ri-youtube-fill.icon-inline[[MJT2025](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]

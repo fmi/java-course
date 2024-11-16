@@ -75,7 +75,7 @@ public class CollectionsExamples {
         System.out.println(Collections.frequency(numList, 7)); // 2
 
         // 6. Collection static factory methods
-        List<String> listOfWords = List.of("Java", "21", "rulez");
+        List<String> listOfWords = List.of("Java", "23", "rulez");
 
         int thirteen = 13;
         Set<Integer> setOfInts = Set.of(1, 2, 3, 5, 8, thirteen, 8 + thirteen);
@@ -135,7 +135,7 @@ public class CollectionsExamples {
         return carsByBrand;
     }
 
-    public static void main(String[] args) {
+    public static void main(String... args) {
         exploreCollections();
         findDistinctWords(new String[] {"car", "cat", "dog", "cat", "dog"}); // 3 distinct words: [car, cat, dog]
         List<String> words = new ArrayList<>(Arrays.asList("car", "cat", "dog"));

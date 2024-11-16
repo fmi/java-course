@@ -26,15 +26,15 @@ public class IntroToJava {
 
         // 2. string concatenation and splitting
         System.out.println("==============2==============");
-        int year = 2023;
+        int year = 2024;
         String message = "Current year is ";
         message += year + "."; // Strings are immutable so this will create a new String object and some
         // garbage
 
-        String[] words = message.split(" "); // {"Current", "year", "is", "2023."}
+        String[] words = message.split(" "); // {"Current", "year", "is", "2024."}
         System.out.println(words); // Will not print a human-readable representation. Instead it will print
         // something like [Ljava.lang.String;@1dbd16a6
-        System.out.println(Arrays.toString(words)); // "[Current, year, is, 2023.]"
+        System.out.println(Arrays.toString(words)); // "[Current, year, is, 2024.]"
 
         // 3. string iteration and conversion String -> char array
         System.out.println("==============3==============");
@@ -93,12 +93,7 @@ public class IntroToJava {
         boolean isBlank = "  ".isBlank(); // true
         boolean equalIgnoringCapitalization = "Java".equalsIgnoreCase("jAVA"); // true
 
-        // 7. String templating - note that this is a Java 21 preview feature
-        String coder = "100yo";
-        String greeting = STR. "Good morning, \{ coder } Vellev";
-        System.out.println(greeting);
-
-        // 8. Emojis
+        // 7. Emojis
         System.out.println("I am from \uD83C\uDDE7\uD83C\uDDEC");
 
         System.out.println((Character.toChars(9203)));
@@ -142,7 +137,7 @@ public class IntroToJava {
 
         for (int i = 0; i < 100; i++) {
             doubleMatrix[i] =
-                new double[10]; // array now initialized. Note that rows need not be of the same length - called jagged array
+                new double[10]; // array now initialized. Note that rows need not be of the same length - called jagged (or ragged) array
         }
 
         int[] intArray = {1, 6, 7, 3};
@@ -169,7 +164,7 @@ public class IntroToJava {
         boolean isWinning = Arrays.deepEquals(currentBoard, winBoard); // true
     }
 
-    public static void main(String... args) {
+    public static void main(String[] args) {
         exploreString();
         exploreStringBuilder();
         exploreArrays();

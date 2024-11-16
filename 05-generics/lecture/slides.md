@@ -2,7 +2,7 @@ class: center, middle
 
 # Generics
 
-08.11.2023
+06.11.2024
 
 .center[![Java Generics](images/05.0-java-generics.jpg)]
 
@@ -217,8 +217,14 @@ Pair<Integer, String> p2 = new Pair<>(2, "pear");
 boolean areEqual = Util.<Integer, String>areEqual(p1, p2);
 
 // Short syntax
-areEqual = Util.areEqual(p1, p2);
+boolean areEqual = Util.areEqual(p1, p2);
 ```
+
+---
+
+class: center, middle
+
+# Ковариантност, контравариантност и инвариантност
 
 ---
 
@@ -233,7 +239,7 @@ areEqual = Util.areEqual(p1, p2);
 
 ### Ковариантност, контравариантност и инвариантност
 
-- Например, в Java масивите за ковариантни. Това има две следствия:
+- Например, в Java масивите са ковариантни. Това има две следствия:
     - `T[]` може да съдържа елементи от тип `T` и негови наследници
     - `S[]` е наследник на `T[]`, ако `S` е наследник на `T`
 
@@ -529,8 +535,13 @@ public class Box<T> {
     public T getValue() { return value; }
     public void setValue(T value) { this.value = value; }
 }
+```
+
+<br>
 
 
+```java
+// after erasure
 public class Box {
     private Object value;
     public Object getValue() { return value; }
@@ -552,7 +563,13 @@ class Rectangle extends Shape { /* ... */ }
 
 ```java
 public static <T extends Shape> void draw(T shape) { /* ... */ }
-public static void draw(Shape shape) { /* ... */ } // after erasure
+```
+
+<br>
+
+```java
+// after erasure
+public static void draw(Shape shape) { /* ... */ }
 ```
 
 ---
@@ -563,9 +580,23 @@ public static void draw(Shape shape) { /* ... */ } // after erasure
 
 ```java
 public static <T extends Number & Comparable<T>> T maximum(T x, T y, T z) { /* ... */ }
-public static Number maximum(Number x, Number y, Number z) { /* ... */ } // after erasure
+```
 
+<br>
+
+```java
+public static Number maximum(Number x, Number y, Number z) { /* ... */ } // after erasure
+```
+
+<br>
+
+```java
 public static <T extends Cloneable & Serializable> void someFun(T input) { /* ... */ }
+```
+
+<br>
+
+```java
 public static void someFun(Cloneable input) { /* ... */ } // after erasure
 ```
 
@@ -740,4 +771,4 @@ public class Example {
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
 
-.font-xl[.ri-youtube-fill.icon-inline[[MJT2024](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]
+.font-xl[.ri-youtube-fill.icon-inline[[MJT2025](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]

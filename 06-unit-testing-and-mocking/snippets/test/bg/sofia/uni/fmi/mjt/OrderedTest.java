@@ -59,7 +59,7 @@ public class OrderedTest {
     void testDepositPerformance() {
         System.out.println("Test performance");
 
-        assertTimeout(ofMillis(200), () -> Thread.sleep(120), //wallet.deposit(1250.0),
+        assertTimeout(ofMillis(200), () -> Thread.sleep(220), //wallet.deposit(1250.0),
             "Deposit amount too slow");
     }
 

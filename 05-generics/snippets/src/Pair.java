@@ -30,9 +30,9 @@ public class Pair<K, V> {
     @Override
     public String toString() {
         return "Pair{" +
-                "key=" + key +
-                ", value=" + value +
-                '}';
+            "key=" + key +
+            ", value=" + value +
+            '}';
     }
 
     public static void main(String[] args) {
@@ -41,7 +41,19 @@ public class Pair<K, V> {
 
         Pair<Double, Double> pair3 = new Pair<>(1.0, 1.0);
 
-        Pair<List<String>, Set<Integer>> pair4 = new Pair<>(List.of("FMI", "rulez"), Set.of(2022, 2023));
+        System.out.println(Util.areEqual(pair1, pair2));
+        // the next line will not compile: "reason: Incompatible equality constraint: Double and String"
+        //System.out.println(Util.areEqual(pair1, pair3));
+
+        Pair<List<String>, Set<Integer>> pair4 = new Pair<>(List.of("FMI", "rulez"), Set.of(2024, 2025));
     }
 
+}
+
+class Util {
+    // Generic static method
+    public static <K, V> boolean areEqual(Pair<K, V> p1, Pair<K, V> p2) {
+        return p1.getKey().equals(p2.getKey()) &&
+            p1.getValue().equals(p2.getValue());
+    }
 }

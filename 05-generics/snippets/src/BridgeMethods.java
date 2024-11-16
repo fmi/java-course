@@ -23,10 +23,10 @@ class BoxOfInt extends Box<Integer> {
 
     To solve this, the compiler generates a synthetic method in BoxOfInt, called a "bridge method":
 
-    public void setValue(Object value) { this.value = (Integer) value; }  // in BoxOfInt
+    public void setValue(Object value) { setValue((Integer) value); }  // in BoxOfInt
 
     Bridge methods are not visible in the source code but can be seen in the resulting bytecode.
-    Have a look disassembling it with javap -c BoxOfInt.class
+    Have a look disassembling it with javap -c -v BoxOfInt.class
  */
 
 }

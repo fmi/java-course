@@ -2,7 +2,7 @@ class: center, middle
 
 ## Структури от данни
 
-02.11.2023
+30.10.2024
 
 .center[![Collections](images/04.6-collections.png)]
 
@@ -49,11 +49,25 @@ class: center, middle
 
 ### Колекции
 
-Някои ползи от наличието на collections framework:
+Основните структури от данни, използвани в имплементациите на колекциите, са
 
-- Не се налага да преоткриваме топлата вода
-- Увеличават се скоростта и качеството на програмите ни
-- Стимулира се преизползването на код
+- Масиви
+- Свързани списъци
+- Хеш таблици
+- Дървета
+
+.center[![Basic Data Structures | 70%](images/04.7-basic-data-structures.png)]
+
+---
+
+### Big-O Complexity Chart
+
+[.center[![Big-O Complexity Chart](images/04.7.1-big-o-chart.jpeg)]](https://www.bigocheatsheet.com/)
+
+---
+
+[.center[![Data Structures Complexity Cheatsheet](images/04.7.2-complexity-cheatsheet.png
+)]](https://www.bigocheatsheet.com/)
 
 ---
 
@@ -85,30 +99,6 @@ public interface Iterable<T> {
 - Методът `remove()` премахва от колекцията елемента, последно върнат от `next()`
 - Ако колекцията бъде модифицирана докато бъде итерирана, по какъвто и да е начин, различен от извикване на `remove()` на итератора, поведението на итератора е недефинирано
     - В частност, може да се хвърли `ConcurrentModificationException` (дори в еднонишков код)
-
----
-
-### Колекции
-
-Основните структури от данни, използвани в имплементациите на колекциите, са
-
-- Масиви
-- Свързани списъци
-- Хеш таблици
-- Дървета
-
-.center[![Basic Data Structures | 70%](images/04.7-basic-data-structures.png)]
-
----
-
-### Big-O Complexity Chart
-
-[.center[![Big-O Complexity Chart](images/04.7.1-big-o-chart.jpeg)]](https://www.bigocheatsheet.com/)
-
----
-
-[.center[![Data Structures Complexity Cheatsheet](images/04.7.2-complexity-cheatsheet.png
-)]](https://www.bigocheatsheet.com/)
 
 ---
 
@@ -399,8 +389,8 @@ Collection<V> values()
 
 ### Колекции с наредба vs. Колекции без наредба
 
-- `TreeMap`/`TreeSet` - червено-черни дървета. Запазват естествена наредба. Елементите трябва да имплементират интерфейса `Comparable` (или да се подава имплементация на `Comparator`). Логаритмична сложност за повечето операции
-- `HashMap`/`HashSet` - хеш таблици. Нямат естествена наредба. Елементите трябва да имплементират методите `hashCode()` и `equals()`. Константна сложност за повечето операции
+- `TreeMap`/`TreeSet` - червено-черни дървета. Запазват естествената наредба. Елементите трябва да имплементират интерфейса `Comparable` (или да се подава имплементация на `Comparator`). Логаритмична сложност за повечето операции
+- `HashMap`/`HashSet` - хеш таблици. Нямат наредба. Елементите трябва да имплементират методите `hashCode()` и `equals()`. Константна сложност за повечето операции
 
 ---
 
@@ -729,7 +719,7 @@ namesAgain.add("Nicky"); // will throw UnsupportedOperationException at runtime
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
 
-.font-xl[.ri-youtube-fill.icon-inline[[MJT2024](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]
+.font-xl[.ri-youtube-fill.icon-inline[[MJT2025](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]
 
 ---
 
@@ -737,7 +727,7 @@ class: center, middle
 
 # Качествен (Clean) Code
 
-02.11.2023
+30.10.2024
 
 .center[![Clean Code Zen](images/04.1-clean-code-zen.png)]
 
@@ -1173,4 +1163,4 @@ public static void main(String... args) {
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
 
-.font-xl[.ri-youtube-fill.icon-inline[[MJT2024](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]
+.font-xl[.ri-youtube-fill.icon-inline[[MJT2025](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]

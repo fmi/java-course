@@ -1,228 +1,308 @@
-# Gym :weight_lifting_man:
+# Social Network :speech_balloon:
 
-Задачата за тази седмица ще моделира фитнес, с неговите потребители и тренировките им.
+Тази седмица ще запретнем ръкави и създадем проста социална мрежа, която ще моделира потребители, мрежи от приятелства, постове и реакции.
 
-### Gym
+### Social Network
 
-В пакета `bg.sofia.uni.fmi.mjt.gym` създайте публичен клас `Gym`, който има конструктор
-
-```java
-public Gym(int capacity, Address address)
-```
-
-и имплементира интерфейса `GymAPI`:
+В пакета `bg.sofia.uni.fmi.mjt.socialnetwork` създайте публичен клас `SocialNetworkImpl`, който има публичен конструктор по подразбиране и имплементира интерфейса `SocialNetwork`:
 
 ```java
-package bg.sofia.uni.fmi.mjt.gym;
+package bg.sofia.uni.fmi.mjt.socialnetwork;
 
-import bg.sofia.uni.fmi.mjt.gym.member.GymMember;
+import bg.sofia.uni.fmi.mjt.socialnetwork.exception.UserRegistrationException;
+import bg.sofia.uni.fmi.mjt.socialnetwork.post.Post;
+import bg.sofia.uni.fmi.mjt.socialnetwork.profile.UserProfile;
 
 import java.util.Collection;
-import java.time.DayOfWeek;
-import java.util.List;
-import java.util.Map;
+import java.util.Set;
 import java.util.SortedSet;
 
-public interface GymAPI {
+public interface SocialNetwork {
 
     /**
-     * Returns an unmodifiable copy of all members of the gym.
-     * If there are no members, return an empty collection.
-     */
-    SortedSet<GymMember> getMembers();
-
-    /**
-     * Returns an unmodifiable copy of all members of the gym sorted by their name in lexicographic order.
-     * If there are no members, return an empty collection.
-     */
-    SortedSet<GymMember> getMembersSortedByName();
-
-    /**
-     * Returns an unmodifiable copy of all members of the gym sorted by their proximity to the
-     * gym in increasing order. If there are no members, return an empty collection.
-     */
-    SortedSet<GymMember> getMembersSortedByProximityToGym();
-
-    /**
-     * Adds a single member to the gym.
+     * Registers a user in the social network.
      *
-     * @param member the member to add
-     * @throws GymCapacityExceededException - if the gym is full
-     * @throws IllegalArgumentException     if member is null
+     * @param userProfile the user profile to register
+     * @throws IllegalArgumentException  if the user profile is null
+     * @throws UserRegistrationException if the user profile is already registered
      */
-    void addMember(GymMember member) throws GymCapacityExceededException;
+    void registerUser(UserProfile userProfile) throws UserRegistrationException;
 
     /**
-     * Adds a group of members to the gym. If the gym does not have the capacity to accept all the
-     * new members then no members are added
+     * Returns all the registered users in the social network.
      *
-     * @param members the members to add
-     * @throws GymCapacityExceededException if the gym is full
-     * @throws IllegalArgumentException     if members is null or empty
+     * @return unmodifiable set of all registered users (empty one if there are none).
      */
-    void addMembers(Collection<GymMember> members) throws GymCapacityExceededException;
+    Set<UserProfile> getAllUsers();
 
     /**
-     * Checks if a given member is member of the gym.
+     * Posts a new post in the social network.
      *
-     * @param member - the member
-     * @throws IllegalArgumentException if member is null
+     * @param userProfile the user profile that posts the content
+     * @param content     the content of the post
+     * @return the created post
+     * @throws UserRegistrationException if the user profile is not registered
+     * @throws IllegalArgumentException  if the user profile is null
+     * @throws IllegalArgumentException  if the content is null or empty
      */
-    boolean isMember(GymMember member);
+    Post post(UserProfile userProfile, String content) throws UserRegistrationException;
 
     /**
-     * Checks if an Exercise is trained on a given day.
+     * Returns all posts in the social network.
      *
-     * @param exerciseName - the name of the Exercise
-     * @param day          - the day for which the check is done
-     * @throws IllegalArgumentException if day is null or if exerciseName is null or empty
+     * @return unmodifiable collection of all posts (empty one if there are none).
      */
-    boolean isExerciseTrainedOnDay(String exerciseName, DayOfWeek day);
+    Collection<Post> getPosts();
 
     /**
-     * Returns an unmodifiable Map representing each day and the names of the members that do this exercise on it.
-     * The map should contain only the days on which at least one member is doing this exercise.
+     * Returns a collection of unique user profiles that can see the specified post in their feed. A
+     * user can view a post if both of the following conditions are met:
+     * <ol>
+     *     <li>The user has at least one common interest with the author of the post.</li>
+     *     <li>The user has the author of the post in their network of friends.</li>
+     * </ol>
+     * <p>
+     * Two users are considered to be in the same network of friends if they are directly connected
+     * (i.e., they are friends) or if there exists a chain of friends connecting them.
+     * </p>
      *
-     * @param exerciseName - the name of the exercise being done
-     * @throws IllegalArgumentException if exerciseName is null or empty
+     * @param post The post for which visibility is being determined
+     * @return A set of user profiles that meet the visibility criteria (empty one if there are none).
+     * @throws IllegalArgumentException if the post is <code>null</code>.
      */
-    Map<DayOfWeek, List<String>> getDailyListOfMembersForExercise(String exerciseName);
+    Set<UserProfile> getReachedUsers(Post post);
+
+    /**
+     * Returns a set of all mutual friends between the two users.
+     *
+     * @param userProfile1 the first user profile
+     * @param userProfile2 the second user profile
+     * @return a set of all mutual friends between the two users or an empty set if there are no
+     * mutual friends
+     * @throws UserRegistrationException if any of the user profiles is not registered
+     * @throws IllegalArgumentException  if any of the user profiles is null
+     */
+    Set<UserProfile> getMutualFriends(UserProfile userProfile1, UserProfile userProfile2)
+        throws UserRegistrationException;
+
+    /**
+     * Returns a sorted set of all user profiles ordered by the number of friends they have in
+     * descending order.
+     *
+     * @return a sorted set of all user profiles ordered by the number of friends they have in
+     * descending order
+     */
+    SortedSet<UserProfile> getAllProfilesSortedByFriendsCount();
+
 }
 ```
 
-### Member
+### User Profile
 
-В пакетa `bg.sofia.uni.fmi.mjt.gym.member` създайте публичен клас `Member`, чрез който се моделират потребителите на всеки `Gym`. Той трябва да имплементира интерфейса `GymMember`:
+В пакетa `bg.sofia.uni.fmi.mjt.socialnetwork.profile` създайте публичен клас `DefaultUserProfile`, чрез който ще моделираме потребителите на социалната мрежа. Той трябва да има конструктор
 
 ```java
-package bg.sofia.uni.fmi.mjt.gym.member;
+public DefaultUserProfile(String username)
+```
 
-import bg.sofia.uni.fmi.mjt.gym.workout.Exercise;
-import bg.sofia.uni.fmi.mjt.gym.workout.Workout;
+и да имплементира интерфейса `UserProfile`:
 
-import java.time.DayOfWeek;
+```java
+package bg.sofia.uni.fmi.mjt.socialnetwork.profile;
+
 import java.util.Collection;
-import java.util.List;
+
+public interface UserProfile {
+
+    /**
+     * Returns the username of the user.
+     * Each user is guaranteed to have a unique username.
+     *
+     * @return the username of the user
+     */
+    String getUsername();
+
+    /**
+     * Returns an unmodifiable view of the user's interests.
+     *
+     * @return an unmodifiable view of the user's interests
+     */
+    Collection<Interest> getInterests();
+
+    /**
+     * Adds an interest to the user's profile.
+     *
+     * @param interest the interest to be added
+     * @return true if the interest is newly added, false if the interest is already present
+     * @throws IllegalArgumentException if the interest is null
+     */
+    boolean addInterest(Interest interest);
+
+    /**
+     * Removes an interest from the user's profile.
+     *
+     * @param interest the interest to be removed
+     * @return true if the interest is removed, false if the interest is not present
+     * @throws IllegalArgumentException if the interest is null
+     */
+    boolean removeInterest(Interest interest);
+
+    /**
+     * Return unmodifiable view of the user's friends.
+     *
+     * @return an unmodifiable view of the user's friends
+     */
+    Collection<UserProfile> getFriends();
+
+    /**
+     * Adds a user to the user's friends.
+     *
+     * @param userProfile the user to be added as a friend
+     * @return true if the user is added, false if the user is already a friend
+     * @throws IllegalArgumentException if the user is trying to add themselves as a friend,
+     *                                  or if the user is null
+     */
+    boolean addFriend(UserProfile userProfile);
+
+    /**
+     * Removes a user from the user's friends.
+     *
+     * @param userProfile the user to be removed
+     * @return true if the user is removed, false if the user is not a friend
+     * @throws IllegalArgumentException if the user is null
+     */
+    boolean unfriend(UserProfile userProfile);
+
+    /**
+     * Checks if a user is already a friend.
+     *
+     * @param userProfile the user to be checked
+     * @return true if the user is a friend, false if the user is not a friend
+     * @throws IllegalArgumentException if the user is null
+     */
+    boolean isFriend(UserProfile userProfile);
+}
+```
+
+Обърнете внимание, че приятелството в нашата социална мрежа е симетрична релация.
+
+Интересите на даден потребител се моделират от следния enum:
+
+```java
+package bg.sofia.uni.fmi.mjt.socialnetwork.profile;
+
+public enum Interest {
+    SPORTS, BOOKS, TRAVEL, MUSIC, MOVIES, GAMES, FOOD
+}
+```
+
+### Post
+
+Пост в социалнта мрежа се моделира от класа `SocialFeedPost` в пакета `bg.sofia.uni.fmi.mjt.socialnetwork.post`. Класът трябва да има конструктор
+
+```java
+public SocialFeedPost(UserProfile author, String content)
+```
+и да имплементира интерфейса
+
+```java
+package bg.sofia.uni.fmi.mjt.socialnetwork.post;
+
+import bg.sofia.uni.fmi.mjt.socialnetwork.profile.UserProfile;
+
+import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.Set;
 
-public interface GymMember {
-
-    /**
-     * Returns the member's name.
-     */
-    String getName();
+public interface Post {
 
     /**
-     * Returns the member's age.
-     */
-    int getAge();
-
-    /**
-     * Returns the member's id number.
-     */
-    String getPersonalIdNumber();
-
-    /**
-     * Returns the member's gender.
-     */
-    Gender getGender();
-
-    /**
-     * Returns the member's address.
-     */
-    Address getAddress();
-
-    /**
-     * Returns an immutable Map representing the workout a member does on the DayOfWeek.
-     */
-    Map<DayOfWeek, Workout> getTrainingProgram();
-
-    /**
-     * Sets the workout for a specific day.
+     * Returns the unique id of the post.
+     * Each post is guaranteed to have a unique id.
      *
-     * @param day     - DayOfWeek on which the workout will be trained
-     * @param workout - the workout to be trained
-     * @throws IllegalArgumentException if day or workout is null.
+     * @return the unique id of the post
      */
-    void setWorkout(DayOfWeek day, Workout workout);
+    String getUniqueId();
 
     /**
-     * Returns a collection of days in undefined order on which the workout finishes with a specific exercise.
+     * Returns the author of the post.
      *
-     * @param exerciseName - the name of the exercise.
-     * @throws IllegalArgumentException if exerciseName is null or empty.
+     * @return the author of the post
      */
-    Collection<DayOfWeek> getDaysFinishingWith(String exerciseName);
+    UserProfile getAuthor();
 
     /**
-     * Adds an Exercise to the Workout trained on the given day. If there is no workout set for the day,
-     * the day is considered a day off and no exercise can be added.
+     * Returns the date and time when the post was published.
+     * A post is published once it is created.
      *
-     * @param day      - DayOfWeek to train the exercise.
-     * @param exercise - the trained Exercise.
-     * @throws DayOffException          if the Workout on this day is null.
-     * @throws IllegalArgumentException if day or exercise is null
+     * @return the date and time when the post was published
      */
-    void addExercise(DayOfWeek day, Exercise exercise);
+    LocalDateTime getPublishedOn();
 
     /**
-     * Adds Exercises to the Workout trained on the given day. If there is no workout set for the day, the day is
-     * considered a day off and no exercise can be added.
+     * Returns the content of the post.
      *
-     * @param day       - DayOfWeek to train the exercise.
-     * @param exercises - list of the trained Exercises
-     * @throws DayOffException          if the Workout on this day is null
-     * @throws IllegalArgumentException if day is null or exercises is null or empty
+     * @return the content of the post
      */
-    void addExercises(DayOfWeek day, List<Exercise> exercises);
+    String getContent();
+
+    /**
+     * Adds a reaction to the post.
+     * If the profile has already reacted to the post, the reaction is updated to the latest one.
+     * An author of a post can react to their own post.
+     *
+     * @param userProfile  the profile that adds the reaction
+     * @param reactionType the type of the reaction
+     * @return true if the reaction is added, false if the reaction is updated
+     * @throws IllegalArgumentException if the profile is null
+     * @throws IllegalArgumentException if the reactionType is null
+     */
+    boolean addReaction(UserProfile userProfile, ReactionType reactionType);
+
+    /**
+     * Removes a reaction from the post.
+     *
+     * @param userProfile the profile that removes the reaction
+     * @return true if the reaction is removed, false if the reaction is not present
+     * @throws IllegalArgumentException if the profile is null
+     */
+    boolean removeReaction(UserProfile userProfile);
+
+    /**
+     * Returns all reactions to the post.
+     * The returned map is unmodifiable.
+     *
+     * @return an unmodifiable view of all reactions to the post
+     */
+    Map<ReactionType, Set<UserProfile>> getAllReactions();
+
+    /**
+     * Returns the count of a specific reaction type to the post.
+     *
+     * @param reactionType the type of the reaction
+     * @return the count of reactions of the specified type
+     * @throws IllegalArgumentException if the reactionType is null
+     */
+    int getReactionCount(ReactionType reactionType);
+
+    /**
+     * Returns the total count of all reactions to the post.
+     *
+     * @return the total count of all reactions to the post
+     */
+    int totalReactionsCount();
 }
 ```
 
-и да има следния конструктор:
+Реакциите се моделират от следния enum:
 
 ```java
-public Member(Address address, String name, int age, String personalIdNumber, Gender gender)
-```
+package bg.sofia.uni.fmi.mjt.socialnetwork.post;
 
-Полът на даден потребител се моделира от следния enum:
-
-```java
-package bg.sofia.uni.fmi.mjt.gym.member;
-
-public enum Gender {
-    MALE, FEMALE, OTHER
+public enum ReactionType {
+    LIKE, LOVE, ANGRY, LAUGH, SAD
 }
 ```
-
-Адресът на потребителите се моделира от следния record:
-
-```java
-public record Address(double longitude, double latitude)
-```
-
-В него имплементирайте метод, който връща разстоянието до друг адрес (за простота ще приемем, че това е разстоянието в Евклидовата равнина) и има следнат сигнатура:
-
-```java
-public double getDistanceTo(Address other)
-```
-
-Членовете на фитнеса/`Member`-ите се идентифицират еднозначно по `PersonalIdNumber`.
-
-### Workout
-
-Всеки потребител има тренировъчна програма, при която на всеки ден от седмицата съответства тренировка. 
-Самата тренировка е последователност от упражнения. <br>
-Упражнение и тренировка се моделират чрез record-и, намиращи се в пакета `bg.sofia.uni.fmi.mjt.gym.workout`: 
-
- ```java
-public record Exercise(String name, int sets, int repetitions)
- ```
-
- ```java
-public record Workout(SequencedCollection<Exercise> exercises)
- ```
-
-Упражненията се идентифицират еднозначно по тяхното име.
 
 ### Пакети
 
@@ -230,25 +310,25 @@ public record Workout(SequencedCollection<Exercise> exercises)
 
 ```
 src
-└── bg.sofia.uni.fmi.mjt.gym
-    ├── member
-    │      ├── Address.java
-    │      ├── DayOffException.java
-    │      ├── Gender.java
-    │      ├── GymMember.java
-    │      ├── Member.java
+└── bg.sofia.uni.fmi.mjt.socialnetwork
+    ├── exception
+    │      └── UserRegistrationException.java 
+    ├── post
+    │      ├── Post.java
+    │      ├── ReactionType.java
+    │      ├── SocialFeedPost.java
     │      └── (...)
-    ├── workout
-    │      ├── Exercise.java
-    │      ├── Workout.java
+    ├── profile
+    │      ├── DefaultUserProfile.java
+    │      ├── Interest.java
+    │      ├── UserProfile.java
     │      └── (...)
-    ├── Gym.java
-    ├── GymAPI.java
-    ├── GymCapacityExceededException.java
+    ├── SocialNetwork.java
+    ├── SocialNetworkImpl.java
     └── (...)
 ```
 
 ### :warning: Забележки
 
 - Не променяйте по никакъв начин интерфейсите, дадени в условието.
-- Използването на [Java Stream API](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/package-summary.html) и/или [lambdas](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html) **не е разрешено**. Задачата трябва да се реши с помощта на знанията от курса до момента.
+- Използването на [Java Stream API](https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/package-summary.html) и/или [lambdas](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html) **не е разрешено**. Задачата трябва да се реши с помощта на знанията от курса до момента.

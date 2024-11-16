@@ -1,240 +1,233 @@
-# SimCity Mayor :city_sunrise:
+# Event Bus :bell:
 
-Сашко от [Lab 01](https://github.com/fmi/java-course/tree/master/01-intro-to-java/lab/03-broken-keyboard) си оправил клавиатурата и решил да се кандидатира за кмет.
+Нека упражним знанията си за Java Generics като същевременно се запознаем с някои важни концепции и архитектурни design patterns в съвременната софтуерна разработка като [Event Driven Architecture (EDA)](https://en.wikipedia.org/wiki/Event-driven_architecture).
 
-Раздал някое и друго кебапче, и спечелил изборите в града SimCity. 
+*Event Bus* (или *Event Broker*) е архитектурен design pattern, използван в софтуерните системи за управление на комуникацията между различните компоненти на дадено приложение. Той позволява на тези компоненти да публикуват *събития* и да се *абонират* да получават (да бъдат уведомявани за) тези събития, без да има нужда да знаят един за друг и да имат директна връзка помежду си. По същество, може да разглеждаме Event Bus като по-сложна и по-гъвкава реализация на [Observer Design Pattern-a](https://refactoring.guru/design-patterns/observer), подходяща за по-големи и по-сложни системи.
 
-Задачата тази седмица е да му помогнем в кметските задължения.
+Този шаблон се използва широко в съвременната софтуерна разработка, защото подобрява модулна архитектура на приложението и намалява взаимозависимостта между отделните му части, повишава производителността и *responsiveness*-a на приложението, благодарение на асинхронната комуникация между компонентите му и се среща често там, където е важна обработката на събития в реално време, като игри, чат приложения или финансови системи.
 
-SimCity представлява множество от парцели (plots) с предварително зададена площ. 
-На всеки парцел можем да строим и разрушаваме постройки, а някои постройки може да насъбират и различни видове сметки за потребления.
+Основните "действащи лица" в един Event Bus са *събитията* (Events) и *абонатите* (Subsribers).
 
-От вас се очаква да имплементирате следните класове и интерфейси:
+### Събития
 
-## Plot
-
-В пакета `bg.sofia.uni.fmi.mjt.simcity.plot` създайте публичен клас `Plot`, който има конструктор със следната сигнатура:
+Събитията са съобщения (нотификации) за нещо, случило се в системата. Ще моделираме събитията чрез класове, които имплементират следния generic интерфейс:
 
 ```java
-public Plot(int buildableArea);
-```
+package bg.sofia.uni.fmi.mjt.eventbus.events;
 
-и имплементира интерфейса `PlotAPI`: 
+import java.time.Instant;
 
-```java
-package bg.sofia.uni.fmi.mjt.simcity.plot;
-
-import bg.sofia.uni.fmi.mjt.simcity.exception.BuildableAlreadyExistsException;
-import bg.sofia.uni.fmi.mjt.simcity.exception.BuildableNotFoundException;
-import bg.sofia.uni.fmi.mjt.simcity.exception.InsufficientPlotAreaException;
-import bg.sofia.uni.fmi.mjt.simcity.property.buildable.Buildable;
-
-import java.util.Map;
-
-public interface PlotAPI<E extends Buildable> {
+public interface Event<T extends Payload<?>> {
 
     /**
-     * Constructs a buildable on the plot.
-     *
-     * @param address   the address where the buildable should be constructed.
-     * @param buildable the buildable that should be constructed on the given address.
-     * @throws IllegalArgumentException        if the address is null or blank.
-     * @throws IllegalArgumentException        if the buildable is null.
-     * @throws BuildableAlreadyExistsException if the address is already occupied on the plot.
-     * @throws InsufficientPlotAreaException   if the required area exceeds the remaining plot area.
+     * @return the time when the event was created.
      */
-    void construct(String address, E buildable);
+    Instant getTimestamp();
 
     /**
-     * Constructs multiple buildables on the plot.
-     * This method ensures that either all operations are successfully completed
-     * or no changes are made to the plot's state.
-     *
-     * @param buildables a Map containing the addresses and corresponding buildable entities.
-     * @throws IllegalArgumentException        if the map of buildables is null, empty.
-     * @throws BuildableAlreadyExistsException if any of the addresses is already occupied on the plot.
-     * @throws InsufficientPlotAreaException   if the combined area of the provided buildables exceeds
-     *                                         the remaining plot area.
+     * @return the priority of the event. Lower number denotes higher priority.
      */
-    void constructAll(Map<String, E> buildables);
+    int getPriority();
 
     /**
-     * Demolishes a buildable from the plot.
-     *
-     * @param address the address of the buildable which should be demolished.
-     * @throws IllegalArgumentException   if the provided address is null or blank.
-     * @throws BuildableNotFoundException if buildable with such address does not exist on the plot.
+     * @return the source of the event.
      */
-    void demolish(String address);
+    String getSource();
 
     /**
-     * Demolishes all buildables from the plot.
+     * @return the payload of the event.
      */
-    void demolishAll();
-
-    /**
-     * Retrieves all buildables present on the plot.
-     *
-     * @return An unmodifiable copy of the buildables present on the plot.
-     */
-    Map<String, E> getAllBuildables();
-
-    /**
-     * Retrieves the remaining buildable area on the plot.
-     *
-     * @return The remaining buildable area on the plot.
-     */
-    int getRemainingBuildableArea();
+    T getPayload();
 
 }
 ```
 
-## Buildings
-
-Всяка сграда трябва да имплементира следните интерфейси:
+Освен метаданни като timestamp, приоритет и източник, всяко събитие съдържа и пренася същинското си съдържание в имплементация на generic интерфейса `Payload`:
 
 ```java
-package bg.sofia.uni.fmi.mjt.simcity.property.billable;
+package bg.sofia.uni.fmi.mjt.eventbus.events;
 
-import bg.sofia.uni.fmi.mjt.simcity.property.buildable.Buildable;
-
-public interface Billable extends Buildable {
+public interface Payload<T> {
 
     /**
-     * Retrieves the monthly water consumption of the billable building.
-     *
-     * @return The monthly water consumption of the building in cubic meters (m³)
+     * @return the size of the payload
      */
-    double getWaterConsumption();
+    int getSize();
 
     /**
-     * Retrieves the monthly electricity consumption of the billable building.
-     *
-     * @return The monthly electricity consumption of the building in kilowatt-hours (kWh)
+     * @return the payload
      */
-    double getElectricityConsumption();
-
-    /**
-     * Retrieves the monthly natural gas consumption of the billable building.
-     *
-     * @return The monthly natural gas consumption of the building in cubic meters (m³)
-     */
-    double getNaturalGasConsumption();
+    T getPayload();
 
 }
 ```
 
+Различните видове събития имат различен по тип payload.
+
+### Абонати
+
+Абонатите са компоненти, които регистрират своя интерес към определени типове събития. Когато абонат бъде уведомен (нотифициран) за дадено събитие, той може да извърши подходящи действия според съдържанието на събитието.
+Абонатите имплементират следния прост интерфейс:
+
 ```java
-package bg.sofia.uni.fmi.mjt.simcity.property.buildable;
+package bg.sofia.uni.fmi.mjt.eventbus.subscribers;
 
-public interface Buildable {
+import bg.sofia.uni.fmi.mjt.eventbus.events.Event;
 
-    /**
-     * Retrieves the type of the building.
-     *
-     * @return The specific type of the building, represented by a BuildableType.
-     * Examples include Residential, Commercial, Industrial, etc.
-     */
-    BuildableType getType();
+public interface Subscriber<T extends Event<?>> {
 
     /**
-     * Retrieves the total area of the building.
+     * This method will be called by the EventBus when a new event for the type this subscriber is
+     * subscribed to is published.
      *
-     * @return The total area of the building in square metric units.
+     * @param event the event that was published
+     * @throws IllegalArgumentException if the event is null
      */
-    int getArea();
+    void onEvent(T event);
 
 }
 ```
 
-Всяка сграда има даден тип, моделиран от следния enum:
+`DeferredEventSubscriber` е специален вид абонат, който съхранява всички събития, които е получил, за обработка в по-късен момент. Ето негов скелет, като вашата задача е да довършите имплементацията му:
 
 ```java
-package bg.sofia.uni.fmi.mjt.simcity.property.buildable;
+package bg.sofia.uni.fmi.mjt.eventbus.subscribers;
 
-public enum BuildableType {
-    RESIDENTIAL,
-    COMMERCIAL,
-    INDUSTRIAL,
-    INFRASTRUCTURE
-}
-```
+import java.util.Iterator;
 
-## UtilityService 
+import bg.sofia.uni.fmi.mjt.eventbus.events.Event;
 
-В пакета `bg.sofia.uni.fmi.mjt.simcity.utility` създайте клас `UtilityService`, който има публичен конструктор със следната сигнатура:
-
-```java
-public UtilityService(Map<UtilityType, Double> taxRates);
-```
-
-Map-ът - параметър на конструктора съдържа данъчен процент за всяко потребление. 
-
-За да се получи дължимата сума на дадено потребление, трябва да се направи следната операция: ```taxrate * monthly consumption of utility = monthly cost of a utility to the city```
-
-Нека `UtilityService` имплементира следния интерфейс:
-
-```java
-package bg.sofia.uni.fmi.mjt.simcity.utility;
-
-import bg.sofia.uni.fmi.mjt.simcity.property.billable.Billable;
-
-import java.util.Map;
-
-public interface UtilityServiceAPI {
+public class DeferredEventSubscriber<T extends Event<?>> implements Subscriber<T>, Iterable<T> {
 
     /**
-     * Retrieves the costs of a specific utility for a given billable building.
+     * Store an event for processing at a later time.
      *
-     * @param utilityType The utility type used for the costs' calculation.
-     * @param billable    The billable building for which the utility costs will be calculated.
-     * @return The cost of the specified utility for the billable building.
-     * @throws IllegalArgumentException if the utility or billable is null.
+     * @param event the event to be processed
+     * @throws IllegalArgumentException if the event is null
      */
-    <T extends Billable> double getUtilityCosts(UtilityType utilityType, T billable);
+    @Override
+    public void onEvent(T event) {
+        throw new UnsupportedOperationException("Still not implemented");
+    }
 
     /**
-     * Calculates the total utility costs for a given billable building.
+     * Get an iterator for the unprocessed events. The iterator should provide the events sorted by
+     * their priority in descending order. Events with equal priority are ordered in ascending order
+     * of their timestamps.
      *
-     * @param billable The billable building for which total utility costs are calculated.
-     * @return The total cost of all utilities for the billable building.
-     * @throws IllegalArgumentException if the billable is null.
+     * @return an iterator for the unprocessed events
      */
-    <T extends Billable> double getTotalUtilityCosts(T billable);
+    @Override
+    public Iterator<T> iterator() {
+        throw new UnsupportedOperationException("Still not implemented");
+    }
 
     /**
-     * Computes the absolute difference in utility costs between two billable buildings for each utility type.
+     * Check if there are unprocessed events.
      *
-     * @param firstBillable  The first billable building used for the cost comparison.
-     * @param secondBillable The second billable building used for the cost comparison.
-     * @return An unmodifiable map containing the absolute difference in costs between the buildings for each
-     * utility.
-     * @throws IllegalArgumentException if any billable is null.
+     * @return true if there are unprocessed events, false otherwise
      */
-    <T extends Billable> Map<UtilityType, Double> computeCostsDifference(T firstBillable, T secondBillable);
+    public boolean isEmpty() {
+        throw new UnsupportedOperationException("Still not implemented");
+    }
 
 }
 ```
 
-Всеки плаща различни видове сметки всеки месец. 
+Класът `DeferredEventSubscriber` трябва да има публичен конструктор по подразбиране.
 
-За улеснение, ще имате само следните три за постройките - ток, вода и газ. 
+### Event Bus
 
-За това ви трябва следният enum:
+Централният компонент се моделира от класа `EventBusImpl`, който имплементира интерфейса `EventBus`:
 
 ```java
-package bg.sofia.uni.fmi.mjt.simcity.utility;
+package bg.sofia.uni.fmi.mjt.eventbus;
 
-public enum UtilityType {
-    WATER,
-    ELECTRICITY,
-    NATURAL_GAS
+import java.time.Instant;
+import java.util.Collection;
+
+import bg.sofia.uni.fmi.mjt.eventbus.events.Event;
+import bg.sofia.uni.fmi.mjt.eventbus.exception.MissingSubscriptionException;
+import bg.sofia.uni.fmi.mjt.eventbus.subscribers.Subscriber;
+
+public interface EventBus {
+
+    /**
+     * Subscribes the given subscriber to the given event type.
+     *
+     * @param eventType  the type of event to subscribe to
+     * @param subscriber the subscriber to subscribe
+     * @throws IllegalArgumentException if the event type is null
+     * @throws IllegalArgumentException if the subscriber is null
+     */
+    <T extends Event<?>> void subscribe(Class<T> eventType, Subscriber<? super T> subscriber);
+
+    /**
+     * Unsubscribes the given subscriber from the given event type.
+     *
+     * @param eventType  the type of event to unsubscribe from
+     * @param subscriber the subscriber to unsubscribe
+     * @throws IllegalArgumentException     if the event type is null
+     * @throws IllegalArgumentException     if the subscriber is null
+     * @throws MissingSubscriptionException if the subscriber is not subscribed to the event type
+     */
+    <T extends Event<?>> void unsubscribe(Class<T> eventType, Subscriber<? super T> subscriber)
+        throws MissingSubscriptionException;
+
+    /**
+     * Publishes the given event to all subscribers of the event type.
+     *
+     * @param event the event to publish
+     * @throws IllegalArgumentException if the event is null
+     */
+    <T extends Event<?>> void publish(T event);
+
+    /**
+     * Clears all subscribers and event logs.
+     */
+    void clear();
+
+    /**
+     * Returns all events of the given event type that occurred between the given timestamps. If
+     * {@code from} and {@code to} are equal the returned collection is empty.
+     * <p> {@code from} - inclusive, {@code to} - exclusive. </p>
+     *
+     * @param eventType the type of event to get
+     * @param from      the start timestamp (inclusive)
+     * @param to        the end timestamp (exclusive)
+     * @return an unmodifiable collection of events of the given event type that occurred between
+     * the given timestamps
+     * @throws IllegalArgumentException if the event type is null
+     * @throws IllegalArgumentException if the start timestamp is null
+     * @throws IllegalArgumentException if the end timestamp is null
+     */
+    Collection<? extends Event<?>> getEventLogs(Class<? extends Event<?>> eventType, Instant from,
+                                                Instant to);
+    
+    /**
+     * Returns all subscribers for the given event type in an unmodifiable collection. If there are
+     * no subscribers for the event type, the method returns an empty unmodifiable collection.
+     *
+     * @param eventType the type of event to get subscribers for
+     * @return an unmodifiable collection of subscribers for the given event type
+     * @throws IllegalArgumentException if the event type is null
+     */
+    <T extends Event<?>> Collection<Subscriber<?>> getSubscribersForEvent(Class<T> eventType);
+
 }
 ```
+
+Класът `EventBusImpl` трябва да има публичен конструктор по подразбиране.
 
 ## Подсказки
 
-:point_right: За смислена реализация и локално тестване, ще трябва да си създадете имплементации на някои от описаните интерфейси, но имате свобода да прецените, с колко и какви класове. 
+:point_right: За смислена реализация и локално тестване, ще трябва да си създадете имплементации на някои от описаните интерфейси, но имате свобода да прецените, с колко и какви класове.
+
+:point_right: За да разберем какво представлява класът [`Class<T>`](https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/Class.html), добре е да знаем, че ако `MyClass` е име на клас, то `MyClass.class` е референция към обекта, който представлява този клас, и тази референция е от тип `Class<MyClass>`.  Да речем, ако класът е `String`, може да напишем
+
+```java
+Class<String> stringClassRef = String.class;
+```
 
 ### Пакети
 
@@ -242,28 +235,23 @@ public enum UtilityType {
 
 ```
 src
-└── bg.sofia.uni.fmi.mjt.simcity
+└── bg.sofia.uni.fmi.mjt.eventbus
+    ├── events
+    │      ├── Event.java 
+    │      ├── Payload.java 
+    │      └── (...)
     ├── exception
-    │      ├── BuildableAlreadyExistsException.java
-    │      ├── BuildableNotFoundException.java
-    │      └── InsufficientPlotAreaException.java
-    ├── plot
-    │      ├── PlotAPI.java
-    │      └── Plot.java
-    ├── property
-    │      ├── billable
-    │      │      └── Billable.java
-    │      └── buildable
-    │             ├── Buildable.java
-    │             └── BuildableType.java
-    └── utility
-           ├── UtilityService.java
-           ├── UtilityServiceAPI.java
-           └── UtilityType.java
+    │      └── MissingSubscriptionException.java
+    ├── subscribers
+    │      ├── DeferredEventSubscriber.java
+    │      ├── Subscriber.java
+    │      └── (...)
+    ├── EventBus.java
+    ├── EventBusImpl.java
+    └── (...)
 ```
 
 ### :warning: Забележки
 
 - Не променяйте по никакъв начин интерфейсите, дадени в условието.
-- Задачата трябва да се реши с помощта на знанията от курса до момента. Това в частност изключва използването на ламбда изрази и Stream API.
-- НЕ очакваме да закръгляте double value-тата
+- Използването на [Java Stream API](https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/package-summary.html) и/или [lambdas](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html) **не е разрешено**. Задачата трябва да се реши с помощта на знанията от курса до момента.

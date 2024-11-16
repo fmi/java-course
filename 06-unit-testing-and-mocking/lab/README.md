@@ -4,185 +4,159 @@
 
 Целта на упражнението днес е, да създадете и изпълните JUnit тестове спрямо налична имплементация.
 
-## Intelligent Home :bulb:
+---
 
-Умните устройства в днешно време придават модерна визия на дома. Разполагаме със система за съхранение на информация за *умни* устройства, инсталирани в даден дом, наречена *IntelligentHome*`*.
-Тя предоставя възможност за:
-- регистриране и изтриване на *умни* устройства
-- извличане и сортиране на *умни* устройства по определен критерий
+## MJT Olympics  🏃‍🏊‍🚴‍🏅
 
-За съжаление, системата все още няма написани тестове и в имплементацията ѝ се крият някои **бъгове**. Ще трябва да ги откриете и отстраните в процеса на тестване. За да бъде той ефективен, първо напишете тест за някой сценарий, след това оправете бъга, който сте намерили с него. Също така, в кода има **известни отстъпления от Clean Code принципите**, които също ще трябва да коригирате.
+Добре дошли на MJT Олимпийските игри: Злато, Слава и Код!
 
 **Имплементацията може да бъде намерена в директорията [resources](./resources).**
 
-### Основни класове и тяхната функционалност
+За съжаление, в трескавата подготовка преди Игрите, време за написване на тестове за системата така и не се намери, и в резултат, в имплементацията ѝ се крият някои бъгове. Ще трябва да ги откриете и отстраните в процеса на тестване. За да бъде той ефективен, първо напишете тест за някой сценарий, след това оправете бъга, който сте намерили с него.
 
-#### IoTDevice
+## Основни класове и тяхната функционалност
 
-Всички устройства, които могат да се инсталират в нашия дом, имплементират интерфейса `IoTDevice`. Има три основни имплементации:
+### Competitor
 
-- :speaker: `AmazonAlexa`
-- :bulb: `RgbBulb`
-- :sunny: `WiFiThermostat`
+Всички състезатели в олимпийските игри имплементират интерфейса `Competitor`. Има една основна имплементация:
 
-Те трябва да имплементират интерфейса `IoTDevice`:
+ - `Athlete`
+  
+Интерфейсът `Competitor` изглежда така:
 
 ```java
-package bg.sofia.uni.fmi.mjt.intelligenthome.device;
+package bg.sofia.uni.fmi.mjt.olympics.competitor;
 
-public interface IoTDevice {
+import java.util.Collection;
+
+public interface Competitor {
 
     /**
-     * Returns the ID of the device.
+     * Returns the unique identifier of the competitor.
      */
-    String getId();
+    String getIdentifier();
 
     /**
-     * Returns the name of the device.
+     * Returns the name of the competitor.
      */
     String getName();
 
     /**
-     * Returns the power consumption of the device.
-     * For example, a lamp may consume 1kW/hour.
+     * Returns the nationality of the competitor.
      */
-    double getPowerConsumption();
+    String getNationality();
 
     /**
-     * Returns the date and time of device installation.
-     * This is a time in the past when the device was 'physically' installed.
-     * It is not related to the time when the device is registered in the Hub.
+     * Returns an unmodifiable collection of medals won by the competitor.
      */
-    LocalDateTime getInstallationDateTime();
+    Collection<Medal> getMedals();
 
     /**
-     * Returns the type of the device.
+     * Adds a medal to the competitor's collection of medals.
+     *
+     * @throws IllegalArgumentException if the medal is null.
      */
-    DeviceType getType();
+    void addMedal(Medal medal);
 
 }
 ```
 
-Всяко устройство трябва да има задължителен констуктор с параметри `(String name, double powerConsumption, LocalDateTime installationDateTime)`
+### Medal
 
-#### DeviceType
+При участието си в състезания, спортистите могат да спечелят няколко вида медали със стойности
 
-Типът на устройството е представен с `enum` със стойности `SMART_SPEAKER`, `BULB` и `THERMOSTAT`.
+- 🏅 GOLD
+- 🥈 SILVER 
+- 🥉 BRONZE 
 
 ```java
-package bg.sofia.uni.fmi.mjt.intelligenthome.device;
+package bg.sofia.uni.fmi.mjt.olympics.competitor;
 
-public enum DeviceType {
-
-    SMART_SPEAKER("SPKR"),
-    BULB("BLB"),
-    THERMOSTAT("TMST");
-
-    private final String shortName;
-
-    private DeviceType(String shortName) {
-        this.shortName = shortName;
-    }
-
-    public String getShortName() {
-        return shortName;
-    }
-
+public enum Medal {
+    GOLD, SILVER, BRONZE;
 }
 ```
 
-#### ID
+### Competition
 
-ID-то на устройствата се конструира по следния начин:
-
-**\<short name of device type\>-\<device name\>-\<unique number per device type\>**, където `number` е число, което се увеличава с 1 (започвайки от 0) при всяко създаване на устройство **от който и да е тип**. Например, ID на *WiFi* термостат би могло да бъде `TMST-livingroom-7` и не може да съществува друго устройство от какъвто и да е тип с ID **\<short name of device type\>-\<device name\>-7**
-
-Две устройства се считат за еднакви, когато ID-тата им съвпадат.
-
-### IntelligentHomeCenter
-
-Основната логика на системата се съдържа в класа`IntelligentHomeCenter`, чиято имплементация може да разгледате подробно в конкретния файл, където се намира класа му.
+Състезание в Олимпийските игри ще бъде описвано чрез следния record: 
 
 ```java
-package bg.sofia.uni.fmi.mjt.intelligenthome.center;
+package bg.sofia.uni.fmi.mjt.olympics.competition;
 
-import bg.sofia.uni.fmi.mjt.intelligenthome.device.IoTDevice;
+import bg.sofia.uni.fmi.mjt.olympics.competitor.Competitor;
 
-public class IntelligentHomeCenter {
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Set;
 
-    /**
-     * Adds a @device to the IntelligentHomeCenter.
-     *
-     * @throws IllegalArgumentException in case @device is null.
-     * @throws DeviceAlreadyRegisteredException in case the @device is already registered.
-     */
-    public void register(IoTDevice device) throws DeviceAlreadyRegisteredException {
-        throw new UnsupportedOperationException();
-    }
+/**
+ * @throws IllegalArgumentException when the competition name is null or blank
+ * @throws IllegalArgumentException when the competition discipline is null or blank
+ * @throws IllegalArgumentException when the competition's competitors is null or empty
+ */
+public record Competition(String name, String discipline, Set<Competitor> competitors) { // ... }
+```
 
-    /**
-     * Removes the @device from the IntelligentHomeCenter.
-     *
-     * @throws IllegalArgumentException in case null is passed.
-     * @throws DeviceNotFoundException in case the @device is not found.
-     */
-    public void unregister(IoTDevice device) throws DeviceNotFoundException {
-        throw new UnsupportedOperationException();
-    }
+### Olympics
 
-    /**
-     * Returns a IoTDevice with an ID @id.
-     *
-     * @throws IllegalArgumentException in case @id is null or blank.
-     * @throws DeviceNotFoundException in case device with ID @id is not found.
-     */
-    public IoTDevice getDeviceById(String id) throws DeviceNotFoundException {
-        throw new UnsupportedOperationException();
-    }
+Основната логика на системата се съдържа в класа `MJTOlympics`, който имплементира следния интерфейс:
+
+```java
+package bg.sofia.uni.fmi.mjt.olympics;
+
+import bg.sofia.uni.fmi.mjt.olympics.competition.Competition;
+import bg.sofia.uni.fmi.mjt.olympics.competitor.Competitor;
+import bg.sofia.uni.fmi.mjt.olympics.competitor.Medal;
+
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
+public interface Olympics {
 
     /**
-     * Returns the total number of devices with type @type registered in IntelligentHomeCenter.
+     * The method updates the competitors' medal statistics based on the competition result.
      *
-     * @throws IllegalArgumentException in case @type is null.
+     * @param competition the competition to update the statistics with
+     * @throws IllegalArgumentException if the competition is null.
+     * @throws IllegalArgumentException if a competitor is not registered in the Olympics.
      */
-    public int getDeviceQuantityPerType(DeviceType type) {
-        throw new UnsupportedOperationException();
-    }
+    void updateMedalStatistics(Competition competition);
 
     /**
-     * Returns a collection of IDs of the top @n devices which consumed
-     * the most power from the time of their installation until now.
-     *
-     * The total power consumption of a device is calculated by the hours elapsed
-     * between the two LocalDateTime-s: the installation time and the current time (now)
-     * multiplied by the stated nominal hourly power consumption of the device.
-     *
-     * If @n exceeds the total number of devices, return all devices available sorted by the given criterion.
-     * @throws IllegalArgumentException in case @n is a negative number.
+     * Returns the nations, sorted in descending order based on the total medal count.
+     * If two nations have an equal number of medals, they are sorted alphabetically.
      */
-    public Collection<String> getTopNDevicesByPowerConsumption(int n) {
-        throw new UnsupportedOperationException();
-    }
+    TreeSet<String> getNationsRankList();
 
     /**
-     * Returns a collection of the first @n registered devices, i.e the first @n that were added
-     * in the IntelligentHomeCenter (registration != installation).
+     * Returns the total number of medals, won by competitors from the specified nationality.
      *
-     * If @n exceeds the total number of devices, return all devices available sorted by the given criterion.
-     *
-     * @throws IllegalArgumentException in case @n is a negative number.
+     * @param nationality the nationality of the competitors
+     * @return the total number of medals
+     * @throws IllegalArgumentException when nationality is null
+     * @throws IllegalArgumentException when nationality is not registered in the olympics
      */
-    public Collection<IoTDevice> getFirstNDevicesByRegistration(int n) {
-        throw new UnsupportedOperationException();
-    }
+    int getTotalMedals(String nationality);
+
+    /**
+     * Returns a map of nations and their respective medal amount, won from each competition.
+     *
+     * @return the nations' medal table
+     */
+    Map<String, EnumMap<Medal, Integer>> getNationsMedalTable();
+
+    /**
+     * Returns the set of competitors registered for the Olympics.
+     *
+     * @return the set of registered competitors
+     */
+    Set<Competitor> getRegisteredCompetitors();
 
 }
 ```
-
-### DeviceStorage
-
-`DeviceStorage` е интерфейс, който се използва в `IntelligentHomeCenter` за съхранение на устройствата. В момента има една проста имплементация базирана на Map - `MapDeviceStorage`.
-Когато тествате `IntelligentHomeCenter` може да използвате Mockito и да мокнете `DeviceStorage` - в него не сме скрили никакви бъгове така или иначе и няма нужда да го тествате (дори и имплицитно през тестовете на `IntelligentHomeCenter`.
 
 ## Пакети
 
@@ -190,36 +164,30 @@ public class IntelligentHomeCenter {
 
 ```
 src
-└── bg.sofia.uni.fmi.mjt.intelligenthome
-     ├── center
-     │     ├── comparator
-     │     │      ├── KWhComparator.java
-     │     │      └── (...)
-     │     ├── exceptions
-     │     │      ├── DeviceAlreadyRegisteredException.java
-     │     │      ├── DeviceNotFoundException.java
-     │     │      └── (...)
-     │     ├── IntelligentHomeCenter.java
+└── bg.sofia.uni.fmi.mjt.olympics
+     ├── comparator
+     │     ├── NationMedalComparator.java
+     │     └── (...)     
+     ├── competition
+     │     ├── Competition.java
+     │     ├── CompetitionResultFetcher.java
+     │     └── (...)     
+     ├── competitor
+     │     ├── Competitor.java
+     │     ├── Medal.java
+     │     ├── Athlete.java
      │     └── (...)
-     ├── device
-     │     ├── AmazonAlexa.java
-     │     ├── DeviceType.java
-     │     ├── IoTDevice.java
-     │     ├── IoTDeviceBase.java
-     │     ├── RgbBulb.java
-     │     ├── WiFiThermostat.java
-     │     └── (...)
-     └── storage
-           ├── DeviceStorage.java
-           ├── MapDeviceStorage.java
-           └── (...)
+     ├── MJTOlympics.java
+     ├── Olympics.java
+     └── (...)     
 test
-└── bg.sofia.uni.fmi.mjt.intelligenthome
+└── bg.sofia.uni.fmi.mjt.olympics
      └── (...)
 ```
 
 ## Забележки
 
-В грейдъра качете общ .zip архив на двете директории `src` и `test`.
+- В грейдъра качете общ .zip архив на двете директории src и test.
+- Не включвайте в архива jar-ките на JUnit и Mockito библиотеките. На грейдъра ги има, няма смисъл архивът с решението ви да набъбва излишно.
 
-Успех и не се притеснявайте да задавате въпроси! :star: 
+Успех и не се притеснявайте да задавате въпроси! ⭐

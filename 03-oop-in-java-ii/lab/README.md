@@ -1,388 +1,238 @@
-# Udemy :mortar_board:
+# Обектно-ориентирано програмиране с Java (част II)
 
-[Udemy](https://www.udemy.com) е популярна платформа за обучение, особено сред програмистите. Целта на упражнението тази седмица е да създадем набор от класове и интерфейси, с които да имплементираме основните ѝ функционалности.
+## Bolt: Vehicle Renting at the Tip of Your Fingers :zap: :car: :bike: :minibus:
 
-### Udemy
+Една набираща популярност услуга е наемът на колела и автомобили за кратко - било то за няколко минути, часа, или пък за цял ден.
+Естествено, все още съществува възможността и за по-дългосрочен наем на превозно средство за няколко дни или седмици.
 
-В пакета `bg.sofia.uni.fmi.mjt.udemy` създайте публичен клас `Udemy`, който има конструктор
+Задачата ни този път е да комбинираме двете, упражнявайки знанията си за Records, Sealed Classes и Exceptions. Не всяка от тези концепции е зададена явно, така че мислете внимателно къде какво бихте могли да приложите.
 
-```java
-public Udemy(Account[] accounts, Course[] courses)
-```
+:warning: **Важно:**
+- `javaDoc` коментарите над дадените методи съдържат очакваната функционалност на задачата.
+- Всички случаи, които не са експлицитно опоменати там или в условието, няма да бъдат тествани и зависят единствено на вашето въображение и преценка.
+- Дадената йерархия от класове и методи не е изчерпателна и трябва да бъде доизградена от вас, прилагайки знанията от лекциите до сега.
+- Пълният списък от exceptions, които се очаква методите да хвърлят са изброени в техните `javaDocs`. Не всички от тях са изброени в сигнатурата (защо ли?).
 
-и имплементира интерфейса `LearningPlatform`:
+## RentalService
 
-```java
-package bg.sofia.uni.fmi.mjt.udemy;
-
-import bg.sofia.uni.fmi.mjt.udemy.account.Account;
-import bg.sofia.uni.fmi.mjt.udemy.course.Category;
-import bg.sofia.uni.fmi.mjt.udemy.course.Course;
-import bg.sofia.uni.fmi.mjt.udemy.exception.AccountNotFoundException;
-import bg.sofia.uni.fmi.mjt.udemy.exception.CourseNotFoundException;
-
-public interface LearningPlatform {
-
-    /**
-     * Returns the course with the given name.
-     * 
-     * @param name the exact name of the course.
-     * @throws IllegalArgumentException if name is null or blank.
-     * @throws CourseNotFoundException if course with the specified name is not present in the platform.
-     */
-    Course findByName(String name) throws CourseNotFoundException;
-
-    /**
-     * Returns all courses which name or description containing keyword.
-     * A keyword is a word that consists of only small and capital latin letters.
-     * 
-     * @param keyword the exact keyword for which we will search.
-     * @throws IllegalArgumentException if keyword is null, blank or not a keyword.
-     */
-    Course[] findByKeyword(String keyword);
-
-    /**
-     * Returns all courses from a given category.
-     * 
-     * @param category the exact category the courses for which we want to get.
-     * @throws IllegalArgumentException if category is null.
-     */
-    Course[] getAllCoursesByCategory(Category category);
-
-    /**
-     * Returns the account with the given name.
-     * 
-     * @param name the exact name of the account.
-     * @throws IllegalArgumentException if name is null or blank.
-     * @throws AccountNotFoundException if account with such a name does not exist in the platform.
-     */
-    Account getAccount(String name) throws AccountNotFoundException;
-
-    /**
-     * Returns the course with the longest duration in the platform.
-     * Returns null if the platform has no courses.
-     */
-    Course getLongestCourse();
-
-    /**
-     * Returns the cheapest course from the given category.
-     * Returns null if the platform has no courses.
-     * 
-     * @param category the exact category for which we want to find the cheapest course.
-     * @throws IllegalArgumentException if category is null.
-     */
-    Course getCheapestByCategory(Category category);
-}
-
-```
-
-### AccountBase
-
-Потребителските акаунти в рамките на платформата са три типа:
-
-* Стандартен (Standard), който не може да се възползва от намаление и трябва да закупува курсове на стандартната им цена.
-* Ученически (Education), който може да се възползва от намаление от 15% по следния начин:
-  * Еднократно за шестия курс, когато постигне среден успех по-голям или равен на 4.50 от пет последователно завършени курса (дори и някой от тях да е с оценка 2).
-  * Следващо намаление може да се получи едва след още пет последователно завършени курса с среден успех по-голям или равен на 4.50.
-* Бизнес (Business), който винаги ползва намаление от 20%, но само за курсовете зададените при създаването му категории. Този акаунт няма правото да купува курсове извън зададените му категории.
-
-Типът на даден потребителски акаунт се моделира от следния enum:
+Платформата за наем на превозни средства, която ще разработим е простичък клас със следната основна структура, която вие **трябва да надградите с имплементация и всичко друго, което сметнете за необходимо**:
 
 ```java
-package bg.sofia.uni.fmi.mjt.udemy.account.type;
+package bg.sofia.uni.fmi.mjt.vehiclerent;
 
-public enum AccountType {
-    STANDARD(0),
-    EDUCATION(0.15),
-    BUSINESS(0.20);
+import bg.sofia.uni.fmi.mjt.vehiclerent.driver.Driver;
+import bg.sofia.uni.fmi.mjt.vehiclerent.exception.InvalidRentingPeriodException;
+import bg.sofia.uni.fmi.mjt.vehiclerent.exception.VehicleAlreadyRentedException;
+import bg.sofia.uni.fmi.mjt.vehiclerent.vehicle.Vehicle;
 
-    private final double discount;
+import java.time.LocalDateTime;
 
-    AccountType(double discount) {
-        this.discount = discount;
+public class RentalService {
+
+    /**
+     * Simulates renting of the vehicle. Makes all required validations and then the provided driver "rents" the provided
+     * vehicle with start time @startOfRent
+     * @throws IllegalArgumentException if any of the passed arguments are null
+     * @throws VehicleAlreadyRentedException in case the provided vehicle is already rented
+     * @param driver the designated driver of the vehicle
+     * @param vehicle the chosen vehicle to be rented
+     * @param startOfRent the start time of the rental
+     */
+    public void rentVehicle(Driver driver, Vehicle vehicle, LocalDateTime startOfRent) {
+        throw new UnsupportedOperationException("Dear Student, Remove this Exception and Implement this method");
     }
 
-    public double getDiscount() {
-        return discount;
+    /**
+     * This method simulates rental return - it includes validation of the arguments that throw the listed exceptions 
+     * in case of errors. The method returns the expected total price for the rental - price for the vehicle plus
+     * additional tax for the driver, if it is applicable 
+     * @param vehicle the rented vehicle
+     * @param endOfRent the end time of the rental
+     * @return price for the rental
+     * @throws IllegalArgumentException in case @endOfRent or @vehicle is null
+     * @throws VehicleNotRentedException in case the vehicle is not rented at all
+     * @throws InvalidRentingPeriodException in case the endOfRent is before the start of rental, or the vehicle 
+     * does not allow the passed period for rental, e.g. Caravans must be rented for at least a day.
+     */
+    public double returnVehicle(Vehicle vehicle, LocalDateTime endOfRent) throws InvalidRentingPeriodException {
+        throw new UnsupportedOperationException("Dear Student, Remove this Exception and Implement this method");
     }
 }
+
 ```
-
- Акаунтите се идентифицират еднозначно по потребителското си име. В пакета `bg.sofia.uni.fmi.mjt.udemy.account` създайте абстрактен клас `AccountBase`, който има конструктор
-
- ```java
- public AccountBase(String username, double balance)
- ```
-
- и имплементира интерфейса `Account`.
+## Driver
+Шофьорите са репрезентирани от проста структура със следния конструктор:
 
 ```java
-    public interface Account {
+public Driver(AgeGroup group){}
+```
+където `AgeGroup` е възрастовата група на водача, представена от изброен тип `AgeGroup` със стойности:
+- `JUNIOR`
+- `EXPERIENCED`
+- `SENIOR`
+
+### Такса "млад шофьор"
+Както забелязвате, `returnVehicle` методът връща цена за наем, която включва и такса, свързана с възрастта на шофьора. Това е честа практика при компаниите, отдаващи автомобили под наем - смята се, че по-младите и по-възрастните водачи са по-склонни към произшествия и затова те дължат по-голям депозит. В нашия случай, за простота, добавяме еднократна такса, която се начислява към крайната сума за наем вместо депозит.
+
+Таксите са както следва:
+- `JUNIOR`: 10
+- `EXPERIENCED`: 0
+- `SENIOR`: 15
+
+:warning: **Важно:** Таксите **не се** начисляват, ако наетото превозно средство е **колело**.
+
+## Vehicle
+Дадена е йерархия от класове, моделираща поддържаните превозни средства: като основен клас имаме `Vehicle`, който има три наследника - `Bicycle`, `Car` и `Caravan`.
+Част от класа `Vehicle` изглежда по следния начин, като трябва да допълните липсващата функционалност.
+
+:warning: **Важно:** Методите, член-данните и други детайли на класа не се изчерпват с дадените по-долу.
+
+```java
+package bg.sofia.uni.fmi.mjt.vehiclerent.vehicle;
+
+import bg.sofia.uni.fmi.mjt.vehiclerent.driver.Driver;
+import bg.sofia.uni.fmi.mjt.vehiclerent.exception.InvalidRentingPeriodException;
+import bg.sofia.uni.fmi.mjt.vehiclerent.exception.VehicleAlreadyRentedException;
+import bg.sofia.uni.fmi.mjt.vehiclerent.exception.VehicleNotRentedException;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+public class Vehicle {
+    
+    public Vehicle(String id, String model) {
+        this.id = id;
+        this.model = model;
+    }
 
     /**
-     * Returns the username of the account.
+     * Simulates rental of the vehicle. The vehicle now is considered rented by the provided driver and the start of the rental is the provided date.
+     * @param driver the driver that wants to rent the vehicle.
+     * @param startRentTime the start time of the rent
+     * @throws VehicleAlreadyRentedException in case the vehicle is already rented by someone else or by the same driver.
      */
-    String getUsername();
+    public void rent(Driver driver, LocalDateTime startRentTime) {
+        throw new UnsupportedOperationException("Dear Student, Remove this Exception and Implement this method");
+    }
 
     /**
-     * Adds the given amount of money to the account's balance.
-     * 
-     * @param amount the amount of money which will be added to the account's balance.
-     * @throws IllegalArgumentException if amount has a negative value.
+     * Simulates end of rental for the vehicle - it is no longer rented by a driver.
+     * @param rentalEnd time of end of rental
+     * @throws IllegalArgumentException in case @rentalEnd is null
+     * @throws VehicleNotRentedException in case the vehicle is not rented at all
+     * @throws InvalidRentingPeriodException in case the rentalEnd is before the currently noted start date of rental or
+     * in case the Vehicle does not allow the passed period for rental, e.g. Caravans must be rented for at least a day
+     * and the driver tries to return them after an hour.
      */
-    void addToBalance(double amount);
+    public void returnBack(LocalDateTime rentalEnd) throws InvalidRentingPeriodException {
+        throw new UnsupportedOperationException("Dear Student, Remove this Exception and Implement this method");
+    }
 
     /**
-     * Returns the balance of the account.
-     */
-    double getBalance();
-
-    /**
-     * Buys the given course for the account.
-     * 
-     * @param course the course which will be bought.
-     * @throws IllegalArgumentException if the account buyer is of type BusinessAccount and course has category which is not among the permitted for this account
-     * @throws InsufficientBalanceException if the account does not have enough funds in its balance.
-     * @throws CourseAlreadyPurchasedException if the course is already purchased for this account.
-     * @throws MaxCourseCapacityReachedException if the account has reached the maximum allowed course capacity.
-     */
-    void buyCourse(Course course) throws InsufficientBalanceException, CourseAlreadyPurchasedException, MaxCourseCapacityReachedException;
-
-    /**
-     * Completes the given resources that belong to the given course provided that the course was previously purchased by this account.
+     * Used to calculate potential rental price without the vehicle to be rented.
+     * The calculation is based on the type of the Vehicle (Car/Caravan/Bicycle).
      *
-     * @param resourcesToComplete the resources which will be completed.
-     * @param course the course in which the resources will be completed.
-     * @throws IllegalArgumentException if course or resourcesToComplete are null.
-     * @throws CourseNotPurchasedException if course is not currently purchased for this account.
-     * @throws ResourceNotFoundException if a certain resource could not be found in the course.
+     * @param startOfRent the beginning of the rental
+     * @param endOfRent the end of the rental
+     * @return potential price for rent
+     * @throws InvalidRentingPeriodException in case the vehicle cannot be rented for that period of time or 
+     * the period is not valid (end date is before start date)
      */
-    void completeResourcesFromCourse(Course course, Resource[] resourcesToComplete) throws CourseNotPurchasedException, ResourceNotFoundException;
+    public abstract double calculateRentalPrice(LocalDateTime startOfRent, LocalDateTime endOfRent) throws InvalidRentingPeriodException;
 
-    /**
-     * Completes the whole course.
-     *
-     * @param course the course which will be completed.
-     * @param grade the grade with which the course will be completed.
-     * @throws IllegalArgumentException if grade is not in range [2.00, 6.00] or course is null.
-     * @throws CourseNotPurchasedException if course is not currently purchased for this account.
-     * @throws CourseNotCompletedException if there is a resource in the course which is not completed.
-     */
-    void completeCourse(Course course, double grade) throws CourseNotPurchasedException, CourseNotCompletedException;
+}
 
-    /**
-     * Gets the course with the least completion percentage. 
-     * Returns null if the account does not have any purchased courses.
-     */
-    Course getLeastCompletedCourse();
+```
+### Видове превозни средства и цена за наем
+Услугата ни предоставя възможност за наемане на три вида превозни средства - колела, коли и каравани.
+Наемът и цената на всеки един от тези типове зависят от няколко условия.
+
+:warning: **Важно:** Приемаме, че превозните средства не могат да бъде наети за по-малко от час. Всеки наем под час, струва колкото цял час.
+
+#### Колела
+- Колела могат да бъдат наемани за няколко часа или няколко дни, но не повече от седмица (6 дни, 23 часа, 59мин и 59сек; винамавайте да не паднете в overengineering pitfall, проверката е извикване на един метод).
+- Колелата имат зададени цени за наем за час и за ден. Липсва наем за седмица, т.к. не могат да бъдат наемани за такъв период.
+
+##### Конструктор:
+```java
+public Bicycle(String id, String model, double pricePerDay, double pricePerHour){}
+```
+
+#### Автомобили
+- Автомобилите имат двигатели (представени чрез изброения тип по-долу), които имат различна **такса на ден**, която се прибавя към финалната цена за наем.
+- Автомобилите имат зададени цени за наем за час, ден и седмица.
+- Автомобилите имат вместимост - брой седалки и стандартна цена за една седалка - 5.
+
+##### Конструктор:
+```java
+public Car(String id, String model, FuelType fuelType, int numberOfSeats, double pricePerWeek, double pricePerDay, double pricePerHour) {}
+```
+
+#### Каравани
+- Караваните имат двигатели (представени чрез изброения тип по-долу), които имат различна **такса на ден**, която се прибавя към финалната цена за наем.
+- Караваните имат вместимост - брой седалки и стандартна цена за една седалка - 5.
+- Караваните имат допълнителна вместимост - брой легла и стандартна цена за едно легло - 10.
+- Караваните могат да бъдат наети за минимум един ден (24ч).
+
+##### Конструктор:
+```java
+public Caravan(String id, String model, FuelType fuelType, int numberOfSeats, int numberOfBeds, double pricePerWeek, double pricePerDay, double pricePerHour) {}
+```
+
+#### enum FuelType
+Стойностите на типа FuelType и техните дневни такси:
+- DIESEL: 3
+- PETROL: 3
+- HYBRID: 1
+- ELECTRICITY: 0
+- HYDROGEN: 0
+
+## Пример
+
+```java
+import bg.sofia.uni.fmi.mjt.vehiclerent.vehicle.FuelType;
+
+public static void main(String[] args) {
+    RentalService rentalService = new RentalService();
+    LocalDateTime rentStart = LocalDateTime.of(2024, 10, 10, 0, 0, 0);
+    Driver experiencedDriver = new Driver(AgeGroup.EXPERIENCED);
+   
+    Vehicle electricCar = new Car("1", "Tesla Model 3", FuelType.ELECTRICITY, 4, 1000, 150, 10);
+    rentalService.rentVehicle(experiencedDriver, electricCar, rentStart);
+    double priceToPay = rentalService.returnVehicle(electricCar, rentStart.plusDays(5)); // 770.0
+    
+    Vehicle dieselCar = new Car("2", "Toyota Auris", FuelType.DIESEL, 4, 500, 80, 5);
+    rentalService.rentVehicle(experiencedDriver, dieselCar, rentStart);
+    priceToPay = rentalService.returnVehicle(dieselCar, rentStart.plusDays(5)); // 80*5 + 3*5 + 4*5 = 435.0
 }
 ```
 
-В пакета `bg.sofia.uni.fmi.mjt.udemy.account` създайте три класа - `StandardAccount`, `EducationalAccount` и `BusinessAccount`, които наслеядават абстрактния клас `AccountBase`.
-Приемаме, че даден акаунт може да закупи най-много **100** курса.
+## Структура на пакетите
 
-### BusinessAccount
+Спазвайте имената на пакетите на всички по-горе описани класове, интерфейси и конструктори, тъй като в противен случай, решението ви
+няма да може да бъде автоматично тествано.
 
-Kласът `BusinessAccount` има следния конструктор:
-
- ```java
-public BusinessAccount(String username, double balance, Category[] allowedCategories)
- ```
-
-### Course
-
-Курсовете се представят чрез класа `Course` в пакета `bg.sofia.uni.fmi.mjt.udemy.course`, който има конструктор
-
-```java
-public Course(String name, String description, double price, Resource[] content, Category category)
-```
-
-и имплементира интерфейсите `Completable` и `Purchasable`.
-
-Допълнително, `Course` съдържа и следните методи (при нужда или желание, може да добавяте допълнителни):
-
-```java
-    /**
-     * Returns the name of the course.
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Returns the description of the course.
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Returns the price of the course.
-     */
-    public double getPrice() {
-        return price;
-    }
-
-    /**
-     * Returns the category of the course.
-     */
-    public Category getCategory() {
-        return category;
-    }
-
-    /**
-     * Returns the content of the course.
-     */
-    public Resource[] getContent() {
-        return content;
-    }
-
-    /**
-     * Returns the total duration of the course.
-     */
-    public CourseDuration getTotalTime() {
-        return totalTime;
-    }
-
-    /**
-     * Completes a resource from the course.
-     * 
-     * @param resourceToComplete the resource which will be completed.
-     * @throws IllegalArgumentException if resourceToComplete is null.
-     * @throws ResourceNotFoundException if the resource could not be found in the course.
-     */
-    public void completeResource(Resource resourceToComplete) throws ResourceNotFoundException {
-        // TODO: add implementation here
-    }
-```
-
-## Category
-
-Видът на даден курс се представя от следния `enum`:
-
-```java
-package bg.sofia.uni.fmi.mjt.udemy.course;
-
-public enum Category {
-    DEVELOPMENT, 
-    BUSINESS, 
-    FINANCE, 
-    SOFTWARE_ENGINEERING, 
-    DESIGN, 
-    MARKETING, 
-    HEALTH_AND_FITNESS, 
-    MUSIC
-}
-```
-
-## Resource
-
-Ресурсите се представят чрез класа `Resource` в пакета `bg.sofia.uni.fmi.mjt.udemy.course`, който има конструктор `public Resource(String name, ResourceDuration duration)` и имплементира интерфейса `Completable`:
-
-Класът `Resource` допълнително съдържа и следните методи (при нужда или желание, може да добавяте допълнителни):
-
-```java
-    /**
-     * Returns the resource name.
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Returns the total duration of the resource.
-     */
-    public ResourceDuration getDuration() {
-        return duration;
-    }
-
-    /**
-     * Marks the resource as completed.
-     */
-    public void complete() {
-        // TODO: add implementation here    
-    }
-```
-
-## Completable
-
-```java
-public interface Completable {
-    /**
-     * Returns true if and only if the course is completed.
-     */
-    boolean isCompleted();
-
-    /**
-     * Returns the completion percentage of the resource.
-     * The percentage is an integer in the range [0, 100].
-     */
-    int getCompletionPercentage();
-}
-```
-
-## Purchasable
-
-```java
-public interface Purchasable {
-    /**
-     * Marks the object as purchased.
-     */
-    void purchase();
-
-    /**
-     * Returns true if and only if the object is purchased.
-     */
-    boolean isPurchased();
-}
-```
-
-### ResourceDuration
-
-Продължителността на даден ресурс се моделира от `record`-a `ResourceDuration(int minutes)`. `ResourceDuration` трябва да има компактен конструктор, който да валидира, че минутите са число в интервала [0, 60]. При неуспешна валидация, конструкторът трябва да хвърля `IllegalArgumentException`.
-
-### CourseDuration
-
-Продължителността на даден курс се моделира от `record`-a `CourseDuration(int hours, int minutes)`, инстанции от който се създават чрез публичен статичен метод със сигнатура `of(Resource[] content)`. Продължителността на даден курс се дефинира като сумата от продължителностите на ресурсите му. `CourseDuration` трябва да има компактен конструктор, който да валидира, че часовете са число в интервала [0, 24], а минутите са число в интервала [0, 60]. При неуспешна валидация, конструкторът трябва да хвърля `IllegalArgumentException`.
-
-### Пакети
-
-Спазвайте имената на пакетите на всички по-горе описани типове, тъй като в противен случай, решението ви няма да може да бъде автоматично тествано.
-
-```
+```bash
 src
-└── bg.sofia.uni.fmi.mjt.udemy
-    ├── exception
-    │      ├── AccountNotFoundException.java
-    │      ├── CourseAlreadyPurchasedException.java
-    │      ├── CourseNotCompletedException.java
-    │      ├── CourseNotFoundException.java
-    │      ├── CourseNotPurchasedException.java
-    │      ├── InsufficientBalanceException.java
-    │      ├── MaxCourseCapacityReachedException.java
-    │      └── ResourceNotFoundException.java
-    ├── account
-    │      ├── type
-    │      │   └── AccountType.java
-    │      ├── Account.java
-    │      ├── AccountBase.java
-    │      ├── BusinessAccount.java
-    │      ├── EducationalAccount.java
-    │      └── StandardAccount.java
-    ├── course
-    │      ├── duration
-    │      │   ├── CourseDuration.java
-    │      │   └── ResourceDuration.java
-    │      ├── Category.java
-    │      ├── Completable.java
-    │      ├── Course.java
-    │      ├── Purchasable.java
-    │      └── Resource.java
-    ├── LearningPlatform.java
-    └── Udemy.java
+└─ bg/sofia/uni/fmi/mjt/vehiclerent
+    ├─ driver/
+    │  ├─ AgeGroup.java
+    │  └─ Driver.java
+    ├─ exception/
+    │  ├─ InvalidRentingPeriodException.java
+    │  ├─ VehicleAlreadyRentedException.java
+    │  └─ VehicleNotRentedException.java
+    ├─ vehicle/
+    │  ├─ Bicycle.java
+    │  ├─ Car.java
+    │  ├─ Caravan.java
+    │  ├─ FuelType.java
+    │  └─ Vehicle.java   
+    └─ RentalService.java
 ```
 
-### :warning: Забележки
+Желателно е да добавите собствени класове и абстракции в съответните пакети.
 
-- Не променяйте по никакъв начин интерфейсите, дадени в условието.
-- Използването на структури от данни, различни от масив, **не е позволено**. Задачата трябва да се реши с помощта на знанията от курса до момента.
+## :warning: Забележки
+
+> Задачата трябва да се реши с помощта на знанията от курса до момента и допълнителните Java APIs, указани в условието.
