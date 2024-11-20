@@ -186,6 +186,27 @@ char[][] layout = {
 public Location(int x, int y) { ... }
 ```
 
+#### MapEntityType
+`MapEntityType` е enum, също част от пакета `bg.sofia.uni.fmi.mjt.glovo.controlcenter.map`:
+```java
+public enum MapEntityType {
+    ROAD('.'),
+    WALL('#'),
+    RESTAURANT('R'),
+    CLIENT('C'),
+    DELIVERY_GUY_CAR('A'),
+    DELIVERY_GUY_BIKE('B');
+    // ...
+}
+```
+
+#### MapEntity
+`MapEntity` е част от пакета `bg.sofia.uni.fmi.mjt.glovo.controlcenter.map` и е композицията на координатите на дадено entityи типа му. Има следния контруктор:
+
+```java
+public MapEntity(Location location, MapEntityType type) { ... }
+```
+
 #### Delivery
 
 В пакета `bg.sofia.uni.fmi.mjt.glovo.delivery` създайте нов Java тип `Delivery`, който има следния конструктор:
