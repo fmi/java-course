@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -28,8 +30,11 @@ public class TextFileDuplicator {
     }
 
     public static void copyTextFileNaive(String fromFileName, String toFileName) throws IOException {
-        try (var reader = new BufferedReader(new FileReader(fromFileName));
-             var writer = new BufferedWriter(new FileWriter(toFileName))) {
+        BufferedReader reader = new BufferedReader(new FileReader(fromFileName));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(toFileName));
+
+        try (reader; writer) { // Since Java 9, in a try-with-resources you can just "declare" the resources
+                               // to be autoclosed, not necessarily create them inside the construct.
 
             String line;
             while ((line = reader.readLine()) != null) {
