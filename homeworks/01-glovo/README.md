@@ -201,7 +201,7 @@ public enum MapEntityType {
 ```
 
 #### MapEntity
-`MapEntity` е част от пакета `bg.sofia.uni.fmi.mjt.glovo.controlcenter.map` и е композицията на координатите на дадено entityи типа му. Има следния контруктор:
+`MapEntity` е част от пакета `bg.sofia.uni.fmi.mjt.glovo.controlcenter.map` и е композицията на координатите на дадено entity и типа му. Има следния контруктор:
 
 ```java
 public MapEntity(Location location, MapEntityType type) { ... }
