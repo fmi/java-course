@@ -24,6 +24,7 @@ package bg.sofia.uni.fmi.mjt.glovo;
 
 import bg.sofia.uni.fmi.mjt.glovo.controlcenter.map.MapEntity;
 import bg.sofia.uni.fmi.mjt.glovo.delivery.Delivery;
+import bg.sofia.uni.fmi.mjt.glovo.exception.InvalidOrderException;
 import bg.sofia.uni.fmi.mjt.glovo.exception.NoAvailableDeliveryGuyException;
 
 public interface GlovoApi {
