@@ -175,7 +175,7 @@ public enum Channel {
 Всички правила се намират в пакета `bg.sofia.uni.fmi.frauddetector.rule` и имплементират интерфейса `Rule`:
 
 ```java
- package bg.sofia.uni.fmi.frauddetector.rule;
+package bg.sofia.uni.fmi.frauddetector.rule;
 
 import bg.sofia.uni.fmi.frauddetector.transaction.Transaction;
 
