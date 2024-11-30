@@ -14,13 +14,13 @@
 
 ## Transaction Analyzer
 
-В пакета `bg.sofia.uni.fmi.frauddetector.analyzer` създайте клас `TransactionAnalyzerImpl`, който има публичен конструктор `TransactionAnalyzerImpl(Reader reader, List<Rule> rules)` и имплементира интерфейса `TransactionAnalyzer`:
+В пакета `bg.sofia.uni.fmi.mjt.frauddetector.analyzer` създайте клас `TransactionAnalyzerImpl`, който има публичен конструктор `TransactionAnalyzerImpl(Reader reader, List<Rule> rules)` и имплементира интерфейса `TransactionAnalyzer`:
 
 ```java
-package bg.sofia.uni.fmi.frauddetector.analyzer;
+package bg.sofia.uni.fmi.mjt.frauddetector.analyzer;
 
-import bg.sofia.uni.fmi.frauddetector.transaction.Channel;
-import bg.sofia.uni.fmi.frauddetector.transaction.Transaction;
+import bg.sofia.uni.fmi.mjt.frauddetector.transaction.Channel;
+import bg.sofia.uni.fmi.mjt.frauddetector.transaction.Transaction;
 
 import java.util.List;
 import java.util.Map;
@@ -110,7 +110,7 @@ public interface TransactionAnalyzer {
 Транзакциите могат да се извършват по един от три вида канали: банкомат, онлайн и банков клон, описвани от следния enum:
 
 ```java
-package bg.sofia.uni.fmi.frauddetector.transaction;
+package bg.sofia.uni.fmi.mjt.frauddetector.transaction;
 
 public enum Channel {
     ATM, ONLINE, BRANCH
@@ -175,9 +175,9 @@ public enum Channel {
 Всички правила се намират в пакета `bg.sofia.uni.fmi.frauddetector.rule` и имплементират интерфейса `Rule`:
 
 ```java
-package bg.sofia.uni.fmi.frauddetector.rule;
+package bg.sofia.uni.fmi.mjt.frauddetector.rule;
 
-import bg.sofia.uni.fmi.frauddetector.transaction.Transaction;
+import bg.sofia.uni.fmi.mjt.frauddetector.transaction.Transaction;
 
 import java.util.List;
 
@@ -217,13 +217,13 @@ public interface Rule {
 Ето един прост пример, как може да се използва Fraud Detector-a:
 
 ```java
-import bg.sofia.uni.fmi.frauddetector.analyzer.TransactionAnalyzer;
-import bg.sofia.uni.fmi.frauddetector.analyzer.TransactionAnalyzerImpl;
-import bg.sofia.uni.fmi.frauddetector.rule.FrequencyRule;
-import bg.sofia.uni.fmi.frauddetector.rule.LocationsRule;
-import bg.sofia.uni.fmi.frauddetector.rule.Rule;
-import bg.sofia.uni.fmi.frauddetector.rule.SmallTransactionsRule;
-import bg.sofia.uni.fmi.frauddetector.rule.ZScoreRule;
+import bg.sofia.uni.fmi.mjt.frauddetector.analyzer.TransactionAnalyzer;
+import bg.sofia.uni.fmi.mjt.frauddetector.analyzer.TransactionAnalyzerImpl;
+import bg.sofia.uni.fmi.mjt.frauddetector.rule.FrequencyRule;
+import bg.sofia.uni.fmi.mjt.frauddetector.rule.LocationsRule;
+import bg.sofia.uni.fmi.mjt.frauddetector.rule.Rule;
+import bg.sofia.uni.fmi.mjt.frauddetector.rule.SmallTransactionsRule;
+import bg.sofia.uni.fmi.mjt.frauddetector.rule.ZScoreRule;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -264,7 +264,7 @@ public class Main {
 
 ```
 src
-└── bg.sofia.uni.fmi.frauddetector
+└── bg.sofia.uni.fmi.mjt.frauddetector
     ├── analyzer
     │     ├── TransactionAnalyzer.java
     │     ├── TransactionAnalyzerImpl.java  
@@ -283,7 +283,7 @@ src
     └── (...)
 
 test
-└── bg.sofia.uni.fmi.frauddetector
+└── bg.sofia.uni.fmi.mjt.frauddetector
      └── (...)
 ```
 
