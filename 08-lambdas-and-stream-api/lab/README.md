@@ -77,8 +77,8 @@ public interface TransactionAnalyzer {
 
     /**
      * Calculates the risk score for each account based on the loaded rules.
-     * The score for each account is a double-precision floating-point number in the interval [0, 1] and is formed
-     * by summing up the weights of all applicable rules to the account transactions.
+     * The score for each account is a double-precision floating-point number in the interval [0, 1] and is
+     * formed by summing up the weights of all applicable rules to the account transactions.
      * The result is sorted in descending order, with the highest-risk accounts listed first.
      *
      * @return a map where keys are account IDs (strings) and values are risk scores (doubles).
