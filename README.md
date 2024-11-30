@@ -15,7 +15,7 @@
 | 5 | Generics | [слайдове](https://fmi.github.io/java-course/05-generics/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/a0XvgZUd5dE) | 06.11 | [задача](https://github.com/fmi/java-course/tree/master/05-generics/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/0HrQUcQ0EwE) | 09.11 |
 | 6 | Unit Testing & Mocking | [слайдове](https://fmi.github.io/java-course/06-unit-testing-and-mocking/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/A6QWM5uWGUE) | 13.11 | [задача](https://github.com/fmi/java-course/tree/master/06-unit-testing-and-mocking/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/7Z-5MBybZgY) | 16.11 |
 | 7 | Входно-изходни потоци и файлове | [слайдове](https://fmi.github.io/java-course/07-io-streams-and-files/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/RrAyIA9JkbY) | 20.11 | [задача](https://github.com/fmi/java-course/tree/master/07-io-streams-and-files/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/XqWWgpTfkEQ) | 23.11 |
-| 8 | Ламбда изрази и Stream API | [слайдове](https://fmi.github.io/java-course/08-lambdas-and-stream-api/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/9opAn8sYTDg) | 27.11 |  |  | 30.11 |
+| 8 | Ламбда изрази и Stream API | [слайдове](https://fmi.github.io/java-course/08-lambdas-and-stream-api/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/9opAn8sYTDg) | 27.11 | [задача](https://github.com/fmi/java-course/tree/master/08-lambdas-and-stream-api/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/uUadJJT6mRM) | 30.11 |
 
 ### Материали от предходни издания
 
