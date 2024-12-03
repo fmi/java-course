@@ -31,6 +31,7 @@ public interface ImageAlgorithm {
      * Applies the image processing algorithm to the given image.
      *
      * @param image the image to be processed
+	 * @throws IllegalArgumentException if the image is null
      * @return BufferedImage the processed image of type (TYPE_INT_RGB)
      */
     BufferedImage process(BufferedImage image);
