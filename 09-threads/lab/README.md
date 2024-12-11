@@ -48,7 +48,7 @@ Consumer нишките ни ще имат фиксиран брой `N` и за
 ### Лексикон и стоп-думи
 Качили сме два файла, които може да ползвате за по-истински анализ. Намират се в директорията `resources`.
 
-### Interface `SemanticAnalyzerAPI`
+### Interface `SentimentAnalyzerAPI`
 
 ```java
 package bg.sofia.uni.fmi.mjt.sentimentnalyzer;
