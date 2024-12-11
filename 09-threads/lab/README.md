@@ -53,6 +53,9 @@ Consumer нишките ни ще имат фиксиран брой `N` и за
 ```java
 package bg.sofia.uni.fmi.mjt.sentimentnalyzer;
 
+import bg.sofia.uni.fmi.mjt.sentimentnalyzer.exceptions.SentimentAnalysisException;
+
+import java.io.Reader;
 import java.util.Map;
 
 public interface SentimentAnalyzerAPI {
@@ -159,7 +162,7 @@ public enum SentimentScore {
  * @param stopWords set containing stop words
  * @param sentimentLexicon map containing the sentiment lexicon, where the key is the word and the value is the sentiment score
  */
-public ParallelSentimentAnalyzer(int workersCount, Set<String> stopWords, Map<String,Integer> sentimentLexicon) { }
+public ParallelSentimentAnalyzer(int workersCount, Set<String> stopWords, Map<String, Integer> sentimentLexicon) { }
 ```
 
 ⭐ Бележки:
