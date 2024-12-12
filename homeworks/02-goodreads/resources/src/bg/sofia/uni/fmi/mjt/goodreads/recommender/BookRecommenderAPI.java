@@ -15,6 +15,6 @@ public interface BookRecommenderAPI {
      * @throws IllegalArgumentException if maxN is smaller or equal to 0.
      * @return a Map<Book, Double> representing the top maxN closest books with their similarity to originBook ordered by their similarity score
      */
-    Map<Book, Double> recommendBooks(Book originBook, int maxN);
+    SortedMap<Book, Double> recommendBooks(Book originBook, int maxN);
     
 }
