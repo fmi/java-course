@@ -187,7 +187,7 @@ public ParallelSentimentAnalyzer(int workersCount, Set<String> stopWords, Map<St
 
 ```
 src
-└─ bg.sofia.uni.fmi.mjt.sentimentnalyzer
+└─ bg.sofia.uni.fmi.mjt.sentimentanalyzer
     ├── exceptions
     |   └── SentimentAnalysisException.java
     ├── SentimentAnalyzerAPI.java
