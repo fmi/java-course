@@ -108,7 +108,7 @@ public class BookLoader {
    За изчисляване на подобността между две книги ще използваме интерфейса `SimilarityCalculator` в пакета `bg.sofia.uni.fmi.mjt.goodreads.recommender.similarityCalculator`:
 
 ```java
-package bg.sofia.uni.fmi.mjt.goodreads.recommender.similarityCalculator;
+package bg.sofia.uni.fmi.mjt.goodreads.recommender.similaritycalculator;
 
 import bg.sofia.uni.fmi.mjt.goodreads.book.Book;
 
@@ -231,6 +231,7 @@ src
     │    └── (...)
     ├── recommender
     │    ├── similaritycalculator
+    │    │    ├── SimilarityCalculator.java
     │    │    ├── composite
     │    │    │    ├── CompositeSimilarityCalculator.java
     │    │    │    └── (...)

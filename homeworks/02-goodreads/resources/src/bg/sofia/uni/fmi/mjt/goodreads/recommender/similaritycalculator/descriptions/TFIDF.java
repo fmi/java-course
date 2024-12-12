@@ -1,18 +1,19 @@
-package bg.sofia.uni.fmi.mjt.goodreads.recommender.similarityCalculator.descriptions;
+package bg.sofia.uni.fmi.mjt.goodreads.recommender.similaritycalculator.descriptions;
 
 import bg.sofia.uni.fmi.mjt.goodreads.book.Book;
-import bg.sofia.uni.fmi.mjt.goodreads.recommender.similarityCalculator.SimilarityCalculator;
-import bg.sofia.uni.fmi.mjt.goodreads.sanitizer.StringTokenHandler;
+import bg.sofia.uni.fmi.mjt.goodreads.recommender.similaritycalculator.SimilarityCalculator;
+import bg.sofia.uni.fmi.mjt.goodreads.tokenizer.TextTokenizer;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.Set;
+
 
 public class TFIDF implements SimilarityCalculator {
 
     public TFIDF(Set<Book> books, TextTokenizer tokenizer) {}
 
     @Override
-    public double descriptionSimilarity(Book first, Book second) {
+    public double calculateSimilarity(Book first, Book second) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 

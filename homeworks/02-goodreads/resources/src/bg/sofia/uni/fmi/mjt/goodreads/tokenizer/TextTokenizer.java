@@ -1,9 +1,8 @@
-package bg.sofia.uni.fmi.mjt.goodreads.sanitizer;
+package bg.sofia.uni.fmi.mjt.goodreads.tokenizer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
