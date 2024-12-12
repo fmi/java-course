@@ -12,7 +12,7 @@ public class BookRecommender implements BookRecommenderAPI {
 
 
     @Override
-    public Map<Book, Double> recommendBooks(Book origin, int maxN) {
+    public SortedMap<Book, Double> recommendBooks(Book origin, int maxN) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
     
