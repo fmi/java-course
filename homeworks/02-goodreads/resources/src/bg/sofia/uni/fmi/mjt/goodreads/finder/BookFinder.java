@@ -1,14 +1,14 @@
 package bg.sofia.uni.fmi.mjt.goodreads.finder;
 
 import bg.sofia.uni.fmi.mjt.goodreads.book.Book;
-import bg.sofia.uni.fmi.mjt.goodreads.sanitizer.StringTokenHandler;
+import bg.sofia.uni.fmi.mjt.goodreads.tokenizer.TextTokenizer;
 
 import java.util.List;
 import java.util.Set;
 
 public class BookFinder implements BookFinderAPI {
 
-    public BookFinder(Set<Book> books, StringTokenHandler tokenizer) {}
+    public BookFinder(Set<Book> books, TextTokenizer tokenizer) {}
 
     public Set<Book> allBooks() {
         throw new UnsupportedOperationException("Not yet implemented");

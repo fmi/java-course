@@ -1,6 +1,5 @@
 package bg.sofia.uni.fmi.mjt.goodreads.book;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public record Book(
