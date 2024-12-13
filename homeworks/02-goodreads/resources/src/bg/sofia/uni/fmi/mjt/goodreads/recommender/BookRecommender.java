@@ -3,8 +3,8 @@ package bg.sofia.uni.fmi.mjt.goodreads.recommender;
 import bg.sofia.uni.fmi.mjt.goodreads.book.Book;
 import bg.sofia.uni.fmi.mjt.goodreads.recommender.similaritycalculator.SimilarityCalculator;
 
-import java.util.Map;
 import java.util.Set;
+import java.util.SortedMap;
 
 public class BookRecommender implements BookRecommenderAPI {
 
