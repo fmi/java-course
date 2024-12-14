@@ -15,7 +15,7 @@
 `N,Book,Author,Description,Genres,Avg_Rating,Num_Ratings,URL`
 
 Отделете време да разгледате файла, преди да се впуснете в зареждането и обработката му.
-Понеже `Description` полето може да съдържа запетаи, които са разделител в CSV файла, стойностите са оградени с кавички ("). За да ви улесним в парсването на файла, ще ползваме библиотеката [OpenCSV](https://opencsv.sourceforge.net) и ще ви дадем наготово кодa за парсване. Най-лесният начин да сетъпнете локално OpenCSV е през IntelliJ IDE-то (аналогично на сетъпа на Mockito): десет бутон върху името на проекта → Open Module Settings → Project Settings → Libraries → натискате плюса - New Project Library - From Maven... → в търсачката пишете `com.opencsv`, избирате най-новата версия (в момента, com.opencsv:opencsv:5.9), селектирате Transitive dependencies → OK → OK → OK.
+Понеже `Description` полето може да съдържа запетаи, които са разделител в CSV файла, стойностите са оградени с кавички ("). За да ви улесним в парсването на файла, ще ползваме библиотеката [OpenCSV](https://opencsv.sourceforge.net) и ще ви дадем наготово кодa за парсване. Най-лесният начин да сетъпнете локално OpenCSV е през IntelliJ IDE-то (аналогично на сетъпа на Mockito): десен бутон върху името на проекта → Open Module Settings → Project Settings → Libraries → натискате плюса - New Project Library - From Maven... → в търсачката пишете `com.opencsv`, избирате най-новата версия (в момента, com.opencsv:opencsv:5.9), селектирате Transitive dependencies → OK → OK → OK.
 
 ### Малко теория
 
@@ -134,7 +134,18 @@ public interface SimilarityCalculator {
 
 Частичната имплементация на гореспоменатите класове за калкулиране ще намерите [тук](./resources).
 
-3. **Book Finder API**
+3. **Tokenizer**
+
+В пакета `bg.sofia.uni.fmi.mjt.goodreads.tokenizer` ще намерите частична имплементация на класа `Tokenizer`. Неговата идея е да извлича думи от подаден низ като прилага "изчистване" на низа и премахване на stopwords. `Tokenizer` класът има метод `List<String> tokenize(String input)`, чиято идея е да извлече всички думи от подадения `String`.
+
+За целта, трябва първо да премахнем всички препинателни знаци и последователности от повече от един `whitespace` и финално да превърнем резултата в `lowercase`. След това трябва да извлечем думитe и да премахнем тези от тях, които са stopwords.
+
+Полезни regex-и:
+
+ - препинателни знаци: `\\p{Punct}`
+ - whitespace: `\\s+`
+
+4. **Book Finder API**
 
 Интерфейс за търсене и филтриране на книги:
 
