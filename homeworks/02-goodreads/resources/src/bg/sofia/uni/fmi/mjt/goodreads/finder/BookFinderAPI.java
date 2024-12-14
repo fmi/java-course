@@ -49,7 +49,7 @@ public interface BookFinderAPI {
      * @param keywords a {@code Set} of keywords to search for.
      * @param option the {@code MatchOption} that defines the search criteria
      *               (either {@link MatchOption#MATCH_ALL} or {@link MatchOption#MATCH_ANY}).
-     * @return a List of books that match the given keywords according to the MatchOption
+     * @return a List of books in which the title or description match the given keywords according to the MatchOption
      *         Returns an empty list if no books are found.
      */
     List<Book> searchByKeywords(Set<String> keywords, MatchOption option);
