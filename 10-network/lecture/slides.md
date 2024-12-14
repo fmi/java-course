@@ -475,11 +475,11 @@ class: center, middle
 
 ```java
 // създава инстанция по hostname или по текстово представяне на IP адрес
-InetAddress address = InetAddress.getByName​("www.google.com");
-System.out.println(address.getHostAddress()); // 172.217.169.164
+InetAddress address = InetAddress.getByName("www.google.com");
+System.out.println(address.getHostAddress()); // 142.250.185.164
 
-InetAddress address = InetAddress.getByName("62.44.101.138");
-System.out.println(address.getHostName()); // www.fmi.uni-sofia.bg
+InetAddress address = InetAddress.getByName("62.44.101.151");
+System.out.println(address.getHostName()); // learn.fmi.uni-sofia.bg
 System.out.println(address.isReachable(5_000)); // true
 InetAddress localhost = InetAddress.getLocalHost();
 
