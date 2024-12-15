@@ -162,7 +162,7 @@ public enum SentimentScore {
  * @param stopWords set containing stop words
  * @param sentimentLexicon map containing the sentiment lexicon, where the key is the word and the value is the sentiment score
  */
-public ParallelSentimentAnalyzer(int workersCount, Set<String> stopWords, Map<String, Integer> sentimentLexicon) { }
+public ParallelSentimentAnalyzer(int workersCount, Set<String> stopWords, Map<String, SentimentScore> sentimentLexicon) { }
 ```
 
 ⭐ Бележки:
@@ -187,7 +187,7 @@ public ParallelSentimentAnalyzer(int workersCount, Set<String> stopWords, Map<St
 
 ```
 src
-└─ bg.sofia.uni.fmi.mjt.sentimentnalyzer
+└─ bg.sofia.uni.fmi.mjt.sentimentanalyzer
     ├── exceptions
     |   └── SentimentAnalysisException.java
     ├── SentimentAnalyzerAPI.java

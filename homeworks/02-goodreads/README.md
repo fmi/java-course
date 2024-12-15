@@ -15,7 +15,7 @@
 `N,Book,Author,Description,Genres,Avg_Rating,Num_Ratings,URL`
 
 Отделете време да разгледате файла, преди да се впуснете в зареждането и обработката му.
-Понеже `Description` полето може да съдържа запетаи, които са разделител в CSV файла, стойностите са оградени с кавички ("). За да ви улесним в парсването на файла, ще ползваме библиотеката [OpenCSV](https://opencsv.sourceforge.net) и ще ви дадем наготово кодa за парсване. Най-лесният начин да сетъпнете локално OpenCSV е през IntelliJ IDE-то (аналогично на сетъпа на Mockito): десет бутон върху името на проекта → Open Module Settings → Project Settings → Libraries → натискате плюса - New Project Library - From Maven... → в търсачката пишете `com.opencsv`, избирате най-новата версия (в момента, com.opencsv:opencsv:5.9), селектирате Transitive dependencies → OK → OK → OK.
+Понеже `Description` полето може да съдържа запетаи, които са разделител в CSV файла, стойностите са оградени с кавички ("). За да ви улесним в парсването на файла, ще ползваме библиотеката [OpenCSV](https://opencsv.sourceforge.net) и ще ви дадем наготово кодa за парсване. Най-лесният начин да сетъпнете локално OpenCSV е през IntelliJ IDE-то (аналогично на сетъпа на Mockito): десен бутон върху името на проекта → Open Module Settings → Project Settings → Libraries → натискате плюса - New Project Library - From Maven... → в търсачката пишете `com.opencsv`, избирате най-новата версия (в момента, com.opencsv:opencsv:5.9), селектирате Transitive dependencies → OK → OK → OK.
 
 ### Малко теория
 
@@ -41,22 +41,22 @@
 
 ```java
 package bg.sofia.uni.fmi.mjt.goodreads.recommender;
- 
+
 import bg.sofia.uni.fmi.mjt.goodreads.book.Book;
- 
-import java.util.Map;
- 
+
+import java.util.SortedMap;
+
 public interface BookRecommenderAPI {
 
     /**
      * Searches for books that are similar to the provided one.
      *
-     * @param  originBook the book we should calculate similarity with.
-     * @param  maxN - the maximum number of entries returned
-     * @throws IllegalArgumentException if the originBook is null.       
-     * @throws IllegalArgumentException if maxN is smaller than or equal to 0.                             
-     * @return a Map<Book, Double> representing the top maxN closest books with their similarity to originBook
-     * ordered by their similarity score in descending order
+     * @param originBook the book we should calculate similarity with.
+     * @param maxN       the maximum number of entries returned
+     * @return a SortedMap<Book, Double> representing the top maxN closest books
+     * with their similarity to originBook ordered by their similarity score
+     * @throws IllegalArgumentException if the originBook is null.
+     * @throws IllegalArgumentException if maxN is smaller or equal to 0.
      */
     SortedMap<Book, Double> recommendBooks(Book originBook, int maxN);
 
@@ -129,12 +129,23 @@ public interface SimilarityCalculator {
 За да върнем възможно най-точни и реалистични стойности, ще изчисляваме подобността на базата на жанрове и описание на книгите.
 За тази цел, ще използваме няколко пакета, в които ще трябва да създадем калкулатори:
 - в пакета `bg.sofia.uni.fmi.mjt.goodreads.recommender.similaritycalculator.genres` ще намерите частична имплементация на класа `GenresOverlapSimilarityCalculator`. Използвайте *Overlap coefficient* (виж точката с теорията), за да изчислите коефициента на съвместимост на жанровете на две книги.
-- в пакета `bg.sofia.uni.fmi.mjt.goodreads.recommender.similaritycalculator.descriptions` - ще намерите частична имплементация на класа `TFIDF`, който оценява приликата между описанията на две книги, използвайки TF-IDF алгоритъма. Имплементирайте и публичните методи, декларирани в него. Те приемат като аргумент `Book` и връщат `Map` с ключ - дума от описанието на книгата и стойност - изчислението на съответната метрика.
+- в пакета `bg.sofia.uni.fmi.mjt.goodreads.recommender.similaritycalculator.descriptions` - ще намерите частична имплементация на класа `TFIDFSimilarityCalculator`, който генерира оценки на думите от описанията на две книги (на база на `TF-IDF` алгоритъма). За повече информация, разгледайте [допълнителното описание на алгоритъма](./tfidf.md).
 - в пакета `bg.sofia.uni.fmi.mjt.goodreads.recommender.similaritycalculator.composite` завършете имплементацията на класа `CompositeSimilarityCalculator`. Идеята на този клас е да комбинира различни калкулатори със съответните им тежести. Сумарният резултат е сбор от резултатите на дефинираните композитни калкулатори, умножени по тяхната тежест.
 
 Частичната имплементация на гореспоменатите класове за калкулиране ще намерите [тук](./resources).
 
-3. **Book Finder API**
+3. **Tokenizer**
+
+В пакета `bg.sofia.uni.fmi.mjt.goodreads.tokenizer` ще намерите частична имплементация на класа `Tokenizer`. Неговата идея е да извлича думи от подаден низ като прилага "изчистване" на низа и премахване на stopwords. `Tokenizer` класът има метод `List<String> tokenize(String input)`, чиято идея е да извлече всички думи от подадения `String`.
+
+За целта, трябва първо да премахнем всички препинателни знаци и последователности от повече от един `whitespace` и финално да превърнем резултата в `lowercase`. След това трябва да извлечем думитe и да премахнем тези от тях, които са stopwords.
+
+Полезни regex-и:
+
+ - препинателни знаци: `\\p{Punct}`
+ - whitespace: `\\s+`
+
+4. **Book Finder API**
 
 Интерфейс за търсене и филтриране на книги:
 
@@ -210,6 +221,9 @@ public enum MatchOption {
     MATCH_ANY
 }
 ```
+Когато търсим по ключови думи, включваме заглавието и описанието на книга и очакваме следното поведение:
+- MATCH_ALL - ВСИЧКИ подадени ключови думи се срещат в заглавието ИЛИ описанието на книгата
+- MATCH_ANY - ПОНЕ ЕДНА от подадени ключови думи се срещат в заглавието ИЛИ описанието на книгата
 
 ### Тестване
 
@@ -236,7 +250,7 @@ src
     │    │    │    ├── CompositeSimilarityCalculator.java
     │    │    │    └── (...)
     │    │    ├── descriptions
-    │    │    │    ├── TFIDF.java
+    │    │    │    ├── TFIDFSimilarityCalculator.java
     │    │    │    └── (...)
     │    │    └── genres
     │    │         ├── GenresOverlapSimilarityCalculator.java
