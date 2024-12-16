@@ -51,9 +51,9 @@ Consumer нишките ни ще имат фиксиран брой `N` и за
 ### Interface `SentimentAnalyzerAPI`
 
 ```java
-package bg.sofia.uni.fmi.mjt.sentimentnalyzer;
+package bg.sofia.uni.fmi.mjt.sentimentanalyzer;
 
-import bg.sofia.uni.fmi.mjt.sentimentnalyzer.exceptions.SentimentAnalysisException;
+import bg.sofia.uni.fmi.mjt.sentimentanalyzer.exceptions.SentimentAnalysisException;
 
 import java.io.Reader;
 import java.util.Map;
@@ -100,7 +100,7 @@ public interface SentimentAnalyzerAPI {
 ### `AnalyzerInput`
 
 ```java
-package bg.sofia.uni.fmi.mjt.sentimentnalyzer;
+package bg.sofia.uni.fmi.mjt.sentimentanalyzer;
 
 import java.io.Reader;
 
@@ -111,7 +111,7 @@ public record AnalyzerInput(String inputID, Reader inputReader) {
 #### `SentimentScore`
 
 ```java
-package bg.sofia.uni.fmi.mjt.sentimentnalyzer;
+package bg.sofia.uni.fmi.mjt.sentimentanalyzer;
 
 public enum SentimentScore {
     VERY_NEGATIVE(-5, "Very Negative"),
