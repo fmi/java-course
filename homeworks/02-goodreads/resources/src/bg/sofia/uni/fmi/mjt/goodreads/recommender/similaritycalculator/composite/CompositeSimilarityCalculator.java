@@ -7,8 +7,9 @@ import java.util.Map;
 
 public class CompositeSimilarityCalculator implements SimilarityCalculator {
 
-    public CompositeSimilarityCalculator(Map<SimilarityCalculator, Double> similarityCalculatorMap) {}
-
+    public CompositeSimilarityCalculator(Map<SimilarityCalculator, Double> similarityCalculatorMap) {
+        
+    }
 
     @Override
     public double calculateSimilarity(Book first, Book second) {
