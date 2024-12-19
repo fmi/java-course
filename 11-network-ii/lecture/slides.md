@@ -84,6 +84,8 @@ OutputStream getOutputStream() // връща изходен поток за пи
 
 ### java.net | Клиент-сървър архитектура
 
+<br>
+
 .center[![Java.net Architecture](images/10.8-java-net-architecture.png)]
 
 ---
