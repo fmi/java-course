@@ -34,7 +34,7 @@ Book Z with description "crime murder mystery club"
 Отговор:
 
 ```
-IDF('superhero',All books) = log(3/2) = log(1.5) = 0.17
+IDF('superhero',All books) = log10(3/2) = log10(1.5) = 0.17
 ```
 
 ### TF-IDF
