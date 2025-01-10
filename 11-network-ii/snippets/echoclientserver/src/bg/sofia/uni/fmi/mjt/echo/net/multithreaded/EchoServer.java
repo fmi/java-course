@@ -12,19 +12,15 @@ public class EchoServer {
     private static final int MAX_EXECUTOR_THREADS = 10;
 
     public static void main(String[] args) {
-
-        ExecutorService executor = Executors.newFixedThreadPool(MAX_EXECUTOR_THREADS);
-
         Thread.currentThread().setName("Echo Server Thread");
 
-        try (ServerSocket serverSocket = new ServerSocket(SERVER_PORT)) {
+        try (ServerSocket serverSocket = new ServerSocket(SERVER_PORT);
+             ExecutorService executor = Executors.newFixedThreadPool(MAX_EXECUTOR_THREADS);) {
 
             System.out.println("Server started and listening for connect requests");
-
             Socket clientSocket;
 
             while (true) {
-
                 // Calling accept() blocks and waits for connection request by a client
                 // When a request comes, accept() returns a socket to communicate with this
                 // client
@@ -40,7 +36,6 @@ public class EchoServer {
                 // new Thread(clientHandler).start();
                 executor.execute(clientHandler); // use a thread pool to launch a thread
             }
-
         } catch (IOException e) {
             throw new RuntimeException("There is a problem with the server socket", e);
         }
