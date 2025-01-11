@@ -18,6 +18,7 @@ import java.util.Random;
 public class VirusScanner {
 
     // signup here to get your API key: https://developers.virustotal.com/v3.0/reference#getting-started
+    private static final String VIRUS_TOTAL_API_KEY_HEADER = "x-apikey";
     private static final String VIRUS_TOTAL_API_KEY = "YOUR_API_KEY_HERE";
 
     public static void main(String[] args) throws Exception {
@@ -25,33 +26,45 @@ public class VirusScanner {
         var client = HttpClient.newBuilder().build();
 
         Path localFile = Paths.get("7z.exe");
+        if (!Files.exists(localFile)) {
+            System.err.println("File does not exist: " + localFile.toAbsolutePath());
+            return;
+        }
 
         Map<Object, Object> data = new LinkedHashMap<>();
-        data.put("apikey", VIRUS_TOTAL_API_KEY);
         data.put("file", localFile);
         String boundary = new BigInteger(256, new Random()).toString();
 
         var request = HttpRequest.newBuilder()
                 .header("Content-Type", "multipart/form-data;boundary=" + boundary)
                 .POST(ofMimeMultipartData(data, boundary))
-                .uri(URI.create("https://www.virustotal.com/vtapi/v2/file/scan"))
+                .uri(URI.create("https://www.virustotal.com/api/v3/files"))
+                .header(VIRUS_TOTAL_API_KEY_HEADER, VIRUS_TOTAL_API_KEY)
                 .build();
 
-        HttpResponse<String> vtResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> uploadResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        System.out.println(vtResponse.body());
+        System.out.println(uploadResponse.body());
 
         Gson gson = new Gson();
-        Map<String, String> map = gson.fromJson(vtResponse.body(), Map.class);
-        String resource = map.get("resource");
-        String link = map.get("permalink");
+        Map<?, ?> uploadResponseMap = gson.fromJson(uploadResponse.body(), Map.class);
+        // The JSON for a successful file scan v3 response looks like:
+        // {
+        //   "data": {
+        //     "type": "analysis",
+        //     "id": "<analysis_id>"
+        //   }
+        // }
 
-        System.out.println(link);
+        Map<?, ?> dataMap = (Map<?, ?>) uploadResponseMap.get("data");
+        String analysisId = (String) dataMap.get("id");
 
-        URI uri = new URI("https", "www.virustotal.com", "/vtapi/v2/file/report",
-                "apikey=" + VIRUS_TOTAL_API_KEY + "&resource=" + resource, null);
+        URI uri = new URI("https", "www.virustotal.com", "/api/v3/analyses/" + analysisId,
+                null, null);
 
-        HttpResponse<String> status = client.send(HttpRequest.newBuilder(uri).build(),
+        HttpResponse<String> status = client.send(HttpRequest.newBuilder(uri)
+                        .header(VIRUS_TOTAL_API_KEY_HEADER, VIRUS_TOTAL_API_KEY)
+                        .build(),
                 HttpResponse.BodyHandlers.ofString());
 
         System.out.println(status.body());
@@ -68,7 +81,7 @@ public class VirusScanner {
             if (entry.getValue() instanceof Path) {
                 var path = (Path) entry.getValue();
                 String mimeType = Files.probeContentType(path);
-                byteArrays.add(("\"" + entry.getKey() + "\"; file=\"" + path.getFileName()
+                byteArrays.add(("\"" + entry.getKey() + "\"; filename=\"" + path.getFileName()
                         + "\"" + System.lineSeparator() + "Content-Type: " + mimeType + System.lineSeparator() +
                         System.lineSeparator()).getBytes(StandardCharsets.UTF_8));
                 byteArrays.add(Files.readAllBytes(path));
