@@ -414,7 +414,7 @@ int mask     = 0b1010_1010_1010;
 | char      | 16 бита | Unicode 0       | Unicode 2<sup>16</sup> - 1 | Character |
 | byte      | 8 бита  | -128            | +127                       | Byte      |
 | short     | 16 бита | -2<sup>15</sup> | +2<sup>15</sup> - 1        | Short     |
-| int       | 32 бита | -2<sup>31</sup> | +2<sup>15</sup> - 1        | Integer   |
+| int       | 32 бита | -2<sup>31</sup> | +2<sup>31</sup> - 1        | Integer   |
 | long      | 64 бита | -2<sup>63</sup> | +2<sup>63</sup> - 1        | Long      |
 | float     | 32 бита | IEEE754         | IEEE754                    | Float     |
 | double    | 64 бита | IEEE754         | IEEE754                    | Double    |
