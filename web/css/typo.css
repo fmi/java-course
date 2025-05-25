@@ -35,7 +35,7 @@ audio, canvas, video {
 
 /* 要注意表单元素并不继承父级 font 的问题 */
 body, button, input, select, textarea {
-  font: 400 1em/2.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
+  font: 400 1em/2.8 'Roboto', 'Noto Sans', 'Segoe UI', 'Helvetica Neue', 'Arial', sans-serif;
 }
 
 button::-moz-focus-inner,
@@ -161,8 +161,7 @@ sub {
 /* 让链接在 hover 状态下显示下划线 */
 a {
   color: #1abc9c;
-  font-family: PingFang SC, Verdana, Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
-
+  font: 400 1em/2.8 'Roboto', 'Noto Sans', 'Segoe UI', 'Helvetica Neue', 'Arial', sans-serif;
 }
 
 a:hover {
@@ -276,7 +275,7 @@ strong, b {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: PingFang SC, Verdana, Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+  font: 'Roboto', 'Noto Sans', 'Segoe UI', 'Helvetica Neue', 'Arial', sans-serif;
   font-weight: 100;
   color: #000;
   line-height: 1.35;
