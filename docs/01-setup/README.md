@@ -1,38 +1,55 @@
 # Подготовка на инструментите и някои tips & tricks
 
-- [Java Development Kit](#java-development-kit)
-- [Integrated Development Environment](#integrated-development-environment)
-    - [IntelliJ IDEA](#intellij-idea)
-    - [Eclipse](#eclipse)
-- [Online Auto Grader](#autograder)
+- [Java Development Kit](#java-development-kit)  
+- [Integrated Development Environments](#integrated-development-environments)  
+  - [IntelliJ IDEA](#intellij-idea)  
+  - [Visual Studio Code](#visual-studio-code)  
+  - [Eclipse](#eclipse)  
+- [Чести проблеми и решения](#чести-проблеми-и-решения)  
+- [Online Auto Grader](#online-auto-grader)
+
+---
 
 ## Java Development Kit
 
-- [Инсталация за Windows](https://docs.oracle.com/en/java/javase/23/install/installation-jdk-microsoft-windows-platforms.html)
+За курса ще използваме **Java 25 (LTS)** — това е последната LTS версия, излязла на **16 септември 2025**.
+Можете да използвате отворените (OpenJDK) builds от официалния сайт или други доставчици.
 
-- [Инсталация на Linux](https://docs.oracle.com/en/java/javase/23/install/installation-jdk-linux-platforms.html)
+### Инсталация на JDK 25
 
-- [Инсталация на Mac OS](https://docs.oracle.com/en/java/javase/23/install/installation-jdk-macos.html)
+- **Windows**  
+  Използвайте официалния Oracle JDK инсталатор (.msi или .exe) и следвайте стъпките. ([docs.oracle.com](https://docs.oracle.com/en/java/javase/25/install/installation-jdk-microsoft-windows-platforms.html))  
+  Примерна команда за silent инсталация:  
+  ```bat
+  msiexec.exe /i jdk-25_windows-x64_bin.msi /qn /L C:\path\install.log
+  ```
 
-**Забележка:** Изтеглете JDK 23 от **Builds** за вашата операционна система от [тук](
-https://jdk.java.net/21).
+- **Linux**  
+  Изтеглете съответното `.tar.gz` от [jdk.java.net/25](https://jdk.java.net/25) или използвайте пакетен мениджър (ако е наличен).  
+  Разархивирайте, поставете в желана директория (например `/usr/lib/jvm/jdk-25`) и конфигурирайте символични линкове или environment променливи (`JAVA_HOME`, `PATH`).
 
-**Забележка:** Уверете се, че инсталацията е успешна:
+- **macOS**  
+  Свалете `.tar.gz` или `.pkg` версия от [jdk.java.net/25](https://jdk.java.net/25) и инсталирайте.  
+  Ако използвате Homebrew или друг пакетен мениджър, може да се наложи да се конфигурира пряко.
 
-```console
-$ java -version
-openjdk version "23" 2024-09-17
-OpenJDK Runtime Environment (build 23+37-2369)
-OpenJDK 64-Bit Server VM (build 23+37-2369, mixed mode, sharing)
-```
+> **Бележка:** Уверете се, че няма по-стари версии на Java, които да пречат (напр. по-висок приоритет в PATH).
 
-## Integrated Development Environment
+След инсталация уверете се, че `java --version` показва нещо като:
 
-Може да използате което и да е _IDE_ или любимия ви текстов редактор. Все пак, ние бихме препоръчали _IntelliJ IDEA_ или _Eclipse_:
+  ```text
+  openjdk 25 2025‑09‑16
+  OpenJDK Runtime Environment (build 25+36‑3489)
+  OpenJDK 64‑Bit Server VM (build 25+36‑3489, mixed mode, sharing)
+  ```
+---
+
+## Integrated Development Environments
+
+Може да използате което и да е _IDE_ или любимия ви текстов редактор. Ето инструкции за трите най-популярни IDE-та и как да ги настроите за JDK 25.
 
 ### IntelliJ IDEA
 
-За целите на курса безплатната (Community) версия на [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) ще ни бъде напълно достатъчна.
+#### Изтегляне и инсталация
 
 #### Инсталация на IntelliJ IDEA и Hello World
 
@@ -67,15 +84,58 @@ OpenJDK 64-Bit Server VM (build 23+37-2369, mixed mode, sharing)
 
 Beginner's Tutorial за дебъгване в _IntelliJ IDEA_ може да намерите [тук](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html).
 
+---
+
+### Visual Studio Code
+
+#### Изтегляне и инсталация
+
+- Свалете от тук https://code.visualstudio.com/
+- Инсталирайте **Extension Pack for Java** от Marketplace.  
+- Документация: [Java in VS Code](https://code.visualstudio.com/docs/languages/java)
+
+#### Настройка да използва JDK 25
+
+1. `Ctrl+Shift+P` → `Java: Configure Java Runtime`  
+2. Добавете път към JDK 25 под „JDKs“  
+3. Настройте `"java.home"` в `settings.json`, ако е нужно.
+
+#### Полезни shortcut-и
+
+- `F5` → Debug  
+- `Ctrl+F5` → Run  
+- `Ctrl+.` → Quick fix  
+- `Alt+Up/Down` → Преместване на ред  
+- `Ctrl+Shift+O` → Символи в текущия файл
+
+#### Дебъгване
+
+- Натиснете `F5`, поставете breakpoints  
+- Използвайте *Variables*, *Call Stack*, *Debug Console*  
+- Уверете се, че launch.json използва правилния JDK.
+
+---
+
 ### Eclipse
 
 #### Инсталация на Eclipse и Hello World
 
+#### Изтегляне и инсталация
+
+- Изтеглете **Eclipse IDE for Java Developers**: https://www.eclipse.org/downloads/  
+- Препоръчана версия: **Eclipse 2025‑09 (4.37)**  
+- За Java 25 поддръжка може да е нужен плъгин: [Java 25 Support for Eclipse 2025‑09](https://marketplace.eclipse.org/content/java-25-support-eclipse-2025-09-437)
+
+#### Настройка да използва JDK 25
+
+1. Preferences → Java → Installed JREs → Add → Standard VM → JDK 25  
+2. Маркирайте го като default  
+3. Project → Properties → Java Build Path → Libraries → JRE System Library → JDK 25  
+4. Project → Properties → Java Compiler → Compiler compliance level → 25
+
 Един [подробен tutorial](https://www.vogella.com/tutorials/Eclipse/article.html) за подготовка на [Eclipse](https://www.eclipse.org/downloads/eclipse-packages/), включващ описание как да си го инсталирате и как да направите първия си проект.
 
-**Забележка**: За да използвате Java 21, ще ви трябва [Eclipse 2024-09](https://www.eclipse.org/downloads/) или по-нов. За момента (към 11-10-2024) се налага и инсталация на допълнителен feature, който се намира [тук](https://marketplace.eclipse.org/content/java-23-support-eclipse-2024-09-433) (за да го инсталирате, просто drag-вате `Install` върху отворения workspace).
-
-#### Полезни Eclipse Shortcuts
+#### Полезни shortcut-и
 
 Ще ви спестят огромно време и усилие, инвестицията определено си струва.
 Някои от най-полезните:
@@ -108,9 +168,23 @@ Beginner's Tutorial за дебъгване в _IntelliJ IDEA_ може да н�
 
 Чудесно [ръководство по debugging](https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php) за начинаещи.
 
-## Autograder
+---
+
+## Чести проблеми и решения
+
+| Проблем | Причина / симптом | Решение |
+|---|---|---|
+| `java --version` не показва 25 | PATH сочи към друга версия | Задайте `JAVA_HOME` и PATH да сочат към JDK 25 |
+| IDE не намира JDK 25 | Не е добавен в настройките | Добавете JDK 25 в IDE настройките |
+| “Unsupported source release: 25” | Стар компилатор | Обновете IDE / инсталирайте Java 25 support |
+| Eclipse стартира с грешен JDK | IDE се стартира с друга JVM | Добавете `-vm` път към JDK 25 в `eclipse.ini` |
+| VS Code не намира JDK | `java.home` не е настроено | Добавете `"java.home"` в settings.json |
+| IntelliJ не открива JDK | Не е конфигуриран Project SDK | File → Project Structure → добавете JDK 25 |
+
+---
+
+## Online Auto Grader
 
 Онлайн системата за автоматично тестване e [codepost.it](https://codepost.io/).
 
-1. Ще я ползваме както за упражненията, така и за домашните и курсовия проект.
-2. Ще получите от екипа на курса указания за регистрация и насоки как се използва.
+Ще получите от екипа на курса указания за регистрация и насоки как се използва.
