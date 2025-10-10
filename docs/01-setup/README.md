@@ -32,6 +32,13 @@
   Свалете `.tar.gz` или `.pkg` версия от [jdk.java.net/25](https://jdk.java.net/25) и инсталирайте.  
   Ако използвате Homebrew или друг пакетен мениджър, може да се наложи да се конфигурира пряко.
 
+  Инсталация през Homebrew:
+  
+  ```bash
+     brew install openjdk@25
+     sudo ln -sfn $(brew --prefix openjdk@25)/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-25.jdk
+  ```
+
 > **Бележка:** Уверете се, че няма по-стари версии на Java, които да пречат (напр. по-висок приоритет в PATH).
 
 След инсталация уверете се, че `java --version` показва нещо като:
