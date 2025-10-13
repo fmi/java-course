@@ -1,13 +1,13 @@
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SampleDNAAnalyzerTest {
 
     private static DNAAnalyzer dnaAnalyzer;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUp() {
         dnaAnalyzer = new DNAAnalyzer();
     }
@@ -21,5 +21,4 @@ public class SampleDNAAnalyzerTest {
     public void testDNAAnalyzer_DNASequence() {
         assertEquals("TACTC", dnaAnalyzer.longestRepeatingSequence("ATACTCGGTACTCT"));
     }
-
 }
