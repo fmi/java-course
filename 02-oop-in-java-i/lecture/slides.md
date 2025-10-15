@@ -422,7 +422,7 @@ public class BankAccount {
     }
 
     public void deposit(double amount) {
-        if (amount > 0) balance += amount;
+        if (amount > 0) { balance += amount; }
     }
 
     public boolean withdraw(double amount) {
