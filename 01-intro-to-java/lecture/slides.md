@@ -2,9 +2,7 @@ class: center, middle
 
 # Въведение в Java
 
-08.10.2025
-
-.center[![Collections](../../web/images/java-25.png)]
+09.10.2024
 
 ---
 
@@ -48,11 +46,11 @@ class: center, middle
 1. IntelliJ IDEA
 ![IntelliJ IDEA logo](images/01.1-intellij-logo.jpg)
 
-2. Visual Studio Code
-![Visual Studio Code logo](images/01.2-vscode-logo.jpg)
+2. Eclipse
+![Eclipse logo](images/01.2-eclipse-logo.jpeg)
 
-3. Eclipse
-![Eclipse logo](images/01.3-eclipse-logo.jpeg)
+3. Visual Studio Code
+![Visual Studio Code logo](images/01.3-vscode-logo.jpg)
 
 4. NetBeans
 ![NetBeans logo](images/01.4-netbeans-logo.jpg)
@@ -62,9 +60,9 @@ class: center, middle
 ### Езикът Java
 
 - Създаден през 1995 от James Gosling (Sun Microsystems)
-- Актуална версия: Java 25 (released 16.09.2025)
+- Актуална версия: Java 23 (released 17.09.2024)
 
-.center[![Java logo and mascot](images/01.5-java-logo-mascot.png)]
+![Java logo and mascot](images/01.5-java-logo-mascot.png)
 
 ---
 
@@ -108,12 +106,12 @@ Hello world!
 
 ---
 
-### Hello world, Java 25 style!
+### Hello world, Java 23 style!
 
-![Hello World 25 style](images/01.7-hello-world-25.jpeg)
+![Hello World 23 style](images/01.7-hello-world-23.jpeg)
 
 ```java
-// Since Java 25: Compact Source Files and Instance Main Methods
+// Java 23 preview: Unnamed Classes and Instance Main Methods & Automatic Static Imports
 void main() {
     println("Hello world!");
 }
@@ -122,8 +120,8 @@ void main() {
 <br>
 
 ```bash
-$ javac HelloWorld.java
-$ java HelloWorld
+$ javac --enable-preview --source 23 HelloWorld.java
+$ java --enable-preview HelloWorld
 Hello world!
 ```
 
@@ -436,7 +434,7 @@ Integer.parseInt(String) // конвертира низ с текстово пр
 Character.isDigit('7') // true
 Character.isLetter('f') // true
 Character.isLetterOrDigit('!') // false
-Character.isEmoji('⏳') // true. Since Java 21. Support of Unicode 16.0 since Java 24
+Character.isEmoji('⏳') // true. Since Java 21
 ```
 
 ---
@@ -517,7 +515,7 @@ System.out.println(literalOne == intern); // true
 String language = "Java";
 String tbd = null;
 String message = "I <3 " + language;
-String year = "The current year is " + 2025;
+String year = "The current year is " + 2024;
 ```
 
 ---
@@ -563,14 +561,14 @@ String sorted = String.valueOf(ca); // "Fbdeiirr"
 ### String.split()
 
 ```java
-String str1 = "Current year is 2025";
+String str1 = "Current year is 2024";
 
 String[] tokens = str1.split(" "); // разделител – интервал
 
-// tokens = ["Current", "year", "is", "2025"]
+// tokens = ["Current", "year", "is", "2024"]
 
 int year = Integer.parseInt(tokens[3]); 
-// year == 2025
+// year == 2024
 ```
 
 ---
@@ -578,7 +576,7 @@ int year = Integer.parseInt(tokens[3]);
 ### Други операции с низове
 
 Класът `String` има още много методи, реализиращи операции, които ще ни потрябват.
-Разгледайте ги в [документацията](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html) на класа.
+Разгледайте ги в [документацията](https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/String.html) на класа.
 
 ---
 
@@ -765,7 +763,7 @@ switch (selector) {
 
 ---
 
-### Подобрен `switch`
+### Подобрен `switch` (от Java 15)
 
 ```java
 char ch = 'a';
@@ -788,7 +786,7 @@ switch (ch) {
 
 ---
 
-### Подобрен `switch` като израз
+### Подобрен `switch` като израз (от Java 15)
 
 ```java
 int z = switch (ch) {
@@ -818,7 +816,7 @@ String s = switch(obj) {
 };
 ```
 
-Като preview feature в Java 23-25, `switch` може да се прави и по всеки примитивен тип.
+Като preview feature в Java 23, switch може да се прави и по всеки примитивен тип.
 
 ```java
 double value = ...
@@ -837,7 +835,7 @@ switch (value) {
 
 ### Масиви
 
-.center[![Array](images/01.11-array.png)]
+.center[![Array](images/01.11-array.jpg)]
 
 ---
 
@@ -945,7 +943,7 @@ value = Math.clamp(value, min, max); // връща value, ако е в инте�
 
 ### Функции
 
-.center[![Functions](images/01.13-funcs.png)]
+.center[![Functions](images/01.13-funcs.jpg)]
 
 ---
 
