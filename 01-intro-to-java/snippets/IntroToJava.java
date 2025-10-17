@@ -8,8 +8,7 @@ public class IntroToJava {
         // 1. string literals and the string pool
         System.out.println("==============1==============");
         String literalOne = "FMI"; // goes to the string pool
-        String literalTwo = "FMI"; // "FMI" is present in the String pool -> literalTwo will refer to the same
-        // object
+        String literalTwo = "FMI"; // "FMI" is present in the String pool -> literalTwo will refer to the same object
 
         System.out.println(literalOne == literalTwo); // true
 
@@ -26,15 +25,14 @@ public class IntroToJava {
 
         // 2. string concatenation and splitting
         System.out.println("==============2==============");
-        int year = 2024;
+        int year = 2025;
         String message = "Current year is ";
-        message += year + "."; // Strings are immutable so this will create a new String object and some
-        // garbage
+        message += year + "."; // Strings are immutable so this will create a new String object and some garbage
 
-        String[] words = message.split(" "); // {"Current", "year", "is", "2024."}
+        String[] words = message.split(" "); // {"Current", "year", "is", "2025."}
         System.out.println(words); // Will not print a human-readable representation. Instead it will print
         // something like [Ljava.lang.String;@1dbd16a6
-        System.out.println(Arrays.toString(words)); // "[Current, year, is, 2024.]"
+        System.out.println(Arrays.toString(words)); // "[Current, year, is, 2025.]"
 
         // 3. string iteration and conversion String -> char array
         System.out.println("==============3==============");
@@ -95,9 +93,13 @@ public class IntroToJava {
 
         // 7. Emojis
         System.out.println("I am from \uD83C\uDDE7\uD83C\uDDEC");
+        System.out.println(Character.isEmoji(0x1F60D)); // true for 😍
 
-        System.out.println((Character.toChars(9203)));
-        System.out.println(Character.isEmoji(9203));
+
+        // 8. Replacing placeholders in text using String.formatted()
+        String name = "GenZ";
+        String msg = "Hello, %s! Welcome to Java!".formatted(name);
+        System.out.println(msg);
     }
 
     public static void exploreStringBuilder() {
@@ -114,11 +116,13 @@ public class IntroToJava {
 
         // or in something like this:
         StringBuilder word = new StringBuilder("racecar");
-        boolean isPalindrome = word.equals(word.reverse()); // true
+        boolean isPalindrome = word.equals(word.reverse());
+        System.out.println("Is palindrome: " + isPalindrome); // true
 
         // As the following concatenation is in the same statement,
         // the compiler will optimize this and use StringBuilder instead
         String feelings = "I " + "<3 " + "Java";
+        System.out.println(feelings + " 🚀");
     }
 
     public static void exploreArrays() {

@@ -4,7 +4,7 @@ class: center, middle
 
 ![Java OOP](images/02.1-oop.jpg)
 
-16.10.2024
+15.10.2025
 
 ---
 
@@ -392,23 +392,20 @@ double r = cos(PI * 10.0);
 ### Енкапсулация – пример за нарушаване
 
 ```java
-public class Human {
+public class BankAccount {
+    public double balance; // нарушена енкапсулация!
 
-    public String name; // no encapsulation!
-
-    public Human(String name) {
-        this.name = name;
+    public BankAccount(double balance) {
+        this.balance = balance;
     }
-
 }
 
 public class Main {
-
     public static void main(String[] args) {
-        Human ivan = new Human("Ivan");
-        ivan.name = "Faked Ivan"; // Hm...
+        BankAccount acc = new BankAccount(1000);
+        acc.balance -= 500; // всеки може да променя баланса директно!
+        System.out.println("Баланс: " + acc.balance);
     }
-
 }
 ```
 
@@ -417,24 +414,38 @@ public class Main {
 ### Енкапсулация – пример за спазване
 
 ```java
-public class Human {
+public class BankAccount {
+    private double balance; // скрито състояние
 
-    private String name; // stays hidden
-
-    public Human(String name) {
-        this.name = name;
+    public BankAccount(double balance) {
+        this.balance = balance;
     }
 
+    public void deposit(double amount) {
+        if (amount > 0) { balance += amount; }
+    }
+
+    public boolean withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
 }
 
 public class Main {
-
     public static void main(String[] args) {
-        Human ivan = new Human("Ivan");
-        ivan.name = "Faked Ivan"; // won't compile
+        BankAccount acc = new BankAccount(1000);
+        acc.withdraw(500); // само чрез метод!
+        System.out.println("Баланс: " + acc.getBalance());
     }
-
 }
+``
 ```
 
 ---
@@ -497,7 +508,7 @@ public class Student extends Human {
 
 ---
 
-### Flexible Constructor Bodies - Java 22 & 23 preview
+### Flexible Constructor Bodies (since Java 25, preview in Java 22 & 23)
 
 - Преди Java 22, ако в конструктор има извикване на друг конструктор с `this(...)` или `super(...)`, това извикване трябва да е първият statement в тялото на конструктора
 - От Java 22 това ограничение отпада
@@ -608,6 +619,64 @@ if (value instanceof byte b && b > 0) {
 - в декларация на променлива → прави я константа
 - в декларация на метод → методът не може да се override-ва
 - в декларация на клас → класът не може да се наследява
+
+---
+
+### Наследяване vs. Композиция
+
+- **Наследяване** (Inheritance) и **композиция** (Composition) са два основни подхода за изграждане на сложни обекти и преизползване на код в ООП
+- И двата имат своите предимства и недостатъци.
+
+---
+
+### Наследяване (Inheritance)
+
+- Позволява на един клас (наследник) да наследи състояние и поведение от друг клас (родител)
+- Използва се, когато има естествена йерархия: връзка тип „е вид“ (*is-a*)
+- Пример: `public class Student extends Human`
+- **Предимства:**
+  - Лесно повторно използване на код
+  - Позволява полиморфизъм
+- **Недостатъци:**
+  - Води до силно свързване между класовете
+  - Промени в родителския клас могат да повлияят на всички наследници
+  - Не е подходящо, ако връзката не е от тип „е вид“.
+
+---
+
+### Композиция (Composition)
+
+- Класът съдържа други обекти като свои членове (*has-a* връзка)
+- Използва се, когато искаме да изградим сложни обекти чрез комбиниране на по-прости
+- Пример:
+  ```java
+  public class Car {
+      private Engine engine;
+      private Wheel[] wheels;
+  }
+  ```
+
+---
+
+### Композиция (Composition)
+
+- **Предимства:**
+  - По-слабо свързване между класовете
+  - По-голяма гъвкавост – може да сменяме компоненти
+  - Улеснява преизползването на код
+- **Недостатъци:**
+  - Може да изисква повече код за делегиране на методи.
+
+---
+
+### Наследяване vs. Композиция: кога кое да избереш?
+
+- **Използвай наследяване**, когато има ясно изразена „е вид“ (*is-a*) връзка и класът-наследник наистина е специализация на родителя
+- **Използвай композиция**, когато искаш да комбинираш функционалности, да избегнеш твърдо фиксирана йерархия или да имаш по-гъвкав и лесен за поддръжка код
+- Принципът **„предпочитай композиция пред наследяване“** (*"Favor composition over inheritance"*) е широко препоръчван в съвременното ООП
+- Наследяването е мощен инструмент, но може да доведе до твърде сложни йерархии и проблеми при промени
+- Композицията дава повече гъвкавост и улеснява поддръжката на кода
+- Винаги се питай: *„Това наистина ли е специален случай на ... или просто използва ...?“*.
 
 ---
 
@@ -913,7 +982,7 @@ public class Cat implements Animal {
 
 - Клас може да имплементира произволен брой интерфейси
 - Ако два или повече от тях съдържат `default` метод с еднаква сигнатура, класът трябва задължително да предефинира този метод
-- В предефинирания метод може експлицитно да се укаже, default-ната имплементация от кой родителски интерфейс да се ползва. В този случай, синтаксисът е, `<имеНаИнтерфейс>.super.<имеНаDefaultМетод>()`
+- В предефинирания метод може експлицитно да се укаже, default-ната имплементация от кой родителски интерфейс да се ползва. В този случай, синтаксисът е, `<interfaceName>.super.<defaultMethodName>()`
 
 ---
 
@@ -935,7 +1004,7 @@ public class Door implements OptimisticLockable, PessimisticLockable {
 
     // We will get a compile-time error, if we don't override the isLocked() method here:
     // - "Door inherits unrelated defaults for isLocked() from types
-    //        OptimisticLockable and PessimisticOldLockable"
+    //        OptimisticLockable and PessimisticLockable"
     @Override
     public boolean isLocked() {
         return OptimisticLockable.super.isLocked();
@@ -996,4 +1065,4 @@ public class Door implements OptimisticLockable, PessimisticLockable {
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
 
-.font-xl[.ri-youtube-fill.icon-inline[[MJT2025](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]
+.font-xl[.ri-youtube-fill.icon-inline[[MJT2026](https://www.youtube.com/playlist?list=PLew34f6r0Pxx6LmzYcc9-8-_-T3ZPZTXg)]]

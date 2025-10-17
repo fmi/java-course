@@ -414,7 +414,7 @@ int mask     = 0b1010_1010_1010;
 | char      | 16 бита | Unicode 0       | Unicode 2<sup>16</sup> - 1 | Character |
 | byte      | 8 бита  | -128            | +127                       | Byte      |
 | short     | 16 бита | -2<sup>15</sup> | +2<sup>15</sup> - 1        | Short     |
-| int       | 32 бита | -2<sup>31</sup> | +2<sup>15</sup> - 1        | Integer   |
+| int       | 32 бита | -2<sup>31</sup> | +2<sup>31</sup> - 1        | Integer   |
 | long      | 64 бита | -2<sup>63</sup> | +2<sup>63</sup> - 1        | Long      |
 | float     | 32 бита | IEEE754         | IEEE754                    | Float     |
 | double    | 64 бита | IEEE754         | IEEE754                    | Double    |
@@ -981,4 +981,4 @@ String lineRead = sc.nextLine();
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
 
-.font-xl[.ri-youtube-fill.icon-inline[[MJT2025](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]
+.font-xl[.ri-youtube-fill.icon-inline[[MJT2026](https://www.youtube.com/playlist?list=PLew34f6r0Pxx6LmzYcc9-8-_-T3ZPZTXg)]]
