@@ -96,12 +96,10 @@ public class IntroToJava {
         System.out.println(Character.isEmoji(0x1F60D)); // true for 😍
 
 
-        // 8. Java 25: String templates (preview)
-        // Uncomment if using --enable-preview
-        // String name = "GenZ";
-        // String msg = STR."Hello, \{name}! Welcome to Java 25!";
-        // System.out.println(msg);
-
+        // 8. Replacing placeholders in text using String.formatted()
+        String name = "GenZ";
+        String msg = "Hello, %s! Welcome to Java!".formatted(name);
+        System.out.println(msg);
     }
 
     public static void exploreStringBuilder() {
