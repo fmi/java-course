@@ -65,7 +65,46 @@ public interface ShowAPI {
 public ShowAPIImpl(Ergenka[] ergenkas, EliminationRule[] defaultEliminationRules)
 ```
 
-В тази имплементация един рунд се провежда, като Ергенът се среща с всяка от участничките в играта при едни и същи условия - т.е. използвайки един и същи `DateEvent`. След това участничките преминават през *елиминация*, като за целта се прилагат едно или повече `EliminationRule`, подадени на метода 
+В тази имплементация един рунд се провежда, като Ергенът се среща с всяка от участничките в играта при едни и същи условия - т.е. използвайки един и същи `DateEvent`.
+
+Класът `DateEvent` го имате наготово и не е необходимо да го променяте. Той изглежда така:
+
+```java
+package bg.sofia.uni.fmi.mjt.show.date;
+
+public class DateEvent {
+    private static final int TENSION_LEVEL_MIN = 0;
+    private static final int TENSION_LEVEL_MAX = 10;
+
+    private final String location;
+    private final int tensionLevel;
+    private final int duration;
+
+    public DateEvent(String location, int tensionLevel, int duration) {
+        this.location = location;
+        this.duration = duration;
+        if (tensionLevel < TENSION_LEVEL_MIN) {
+            this.tensionLevel = TENSION_LEVEL_MIN;
+        } else {
+            this.tensionLevel = Math.min(tensionLevel, TENSION_LEVEL_MAX);
+        }
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public int getTensionLevel() {
+        return tensionLevel;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+}
+```
+
+След това участничките преминават през *елиминация*, като за целта се прилагат едно или повече `EliminationRule`, подадени на метода 
 
 ```
 void eliminateErgenkas(EliminationRule[] eliminationRules)
