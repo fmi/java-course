@@ -889,6 +889,7 @@ try {
 ### Checked exceptions - примери
 
 - `FileNotFoundException` при опит да отворим файл по име, какъвто не съществува
+- `FileAlreadyExistsException` при опит да създадем файл, който вече съществува  
 - `IOException` при проблем с четене или писане във файл
 
 ---
