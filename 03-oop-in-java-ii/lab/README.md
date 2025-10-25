@@ -150,7 +150,7 @@ public record SubjectRequirement(Category category, int minAmountEnrolled)
  *
  * @param subjects the array of all subjects that a student can enroll in a given semester
  * @param subjectRequirements the array of requirements for the subjects enrolled for the category
- * @param minimalAmountOfCredits minimum amount of subject enrolled for the category
+ * @param minimalAmountOfCredits minimum amount of credits enrolled for the category
  *
  * @throws IllegalArgumentException if the subjects array is null
  * @throws IllegalArgumentException if the subjectRequirements array is null
