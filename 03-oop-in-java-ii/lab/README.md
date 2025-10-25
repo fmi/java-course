@@ -134,7 +134,7 @@ public record UniversitySubject(String name, int credits, int rating, Category c
  * @param minAmountEnrolled minimum amount of subject enrolled for the category
  *                          
  * @throws IllegalArgumentException if the category is null
- * @throws IllegalArgumentException if the credits are negative
+ * @throws IllegalArgumentException if the minAmountEnrolled is negative
  */
 public record SubjectRequirement(Category category, int minAmountEnrolled) 
 
