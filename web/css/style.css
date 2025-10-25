@@ -31,6 +31,13 @@
   background-size: 100% 100%;
 }
 
+/* Fix by 100yo */
+@-moz-document url-prefix() {
+  .remark-slide-content iframe {
+    height: 100vh !important; /* Force full viewport height in Firefox */
+  }
+}
+
 /* 代码字体 */
 .remark-code,
 .remark-inline-code {
