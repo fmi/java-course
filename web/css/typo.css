@@ -7,8 +7,6 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-rendering: optimizelegibility;
-  height: 100%;
-  margin: 0;
 }
 
 /* 如果你的项目仅支持 IE9+ | Chrome | Firefox 等，推荐在 <html> 中添加 .borderbox 这个 class */
@@ -23,7 +21,6 @@ body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset,
   margin: 0;
   padding: 0;
   font-size: 1em;
-  height: 100%;
 }
 
 /* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
