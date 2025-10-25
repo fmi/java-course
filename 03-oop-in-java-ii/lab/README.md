@@ -180,10 +180,10 @@ public class Main {
 		SoftwareEngineeringSemesterPlanner planner = new SoftwareEngineeringSemesterPlanner();
 
 		UniversitySubject[] subjects = {
-				new UniversitySubject("Calculus", 6, 5, 40, Category.MATH),
-				new UniversitySubject("Java Programming", 4, 4, 30, Category.PROGRAMMING),
-				new UniversitySubject("Linear Algebra", 5, 3, 35, Category.MATH),
-				new UniversitySubject("Data Structures", 3, 5, 25, Category.PROGRAMMING)
+				new UniversitySubject("Calculus", 6, 5, Category.MATH, 40),
+                new UniversitySubject("Java Programming", 4, 4, Category.PROGRAMMING, 30),
+                new UniversitySubject("Linear Algebra", 5, 3, Category.MATH, 35),
+                new UniversitySubject("Data Structures", 3, 5, Category.PROGRAMMING, 25)
 		};
 
 		SubjectRequirement[] requirements = {
