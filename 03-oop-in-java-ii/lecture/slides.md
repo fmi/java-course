@@ -128,7 +128,7 @@ public class PersonBuilder {
 
 ---
 
- <iframe src="https://w1nston19.github.io/java-memory-visualizer/" style="border:none" width="100%" height="100%">
+<iframe src="https://w1nston19.github.io/java-memory-visualizer/" style="border:none; width:100%; height:100%; display:block;">
 
 ---
 
