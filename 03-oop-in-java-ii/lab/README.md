@@ -91,6 +91,8 @@ public sealed interface SemesterPlannerAPI permits AbstractSemesterPlanner {
 Категорията ще я представим като `Enum`, с няколко константни стойности.
 
 ```java
+package bg.sofia.uni.fmi.mjt.burnout.subject;
+
 public enum Category {
  
     MATH,
@@ -107,6 +109,8 @@ public enum Category {
 Представлява университетски предмет с неговите характеристики.
 
 ```java
+package bg.sofia.uni.fmi.mjt.burnout.subject;
+
 /**
  * @param name the name of the subject
  * @param credits number of credit hours for this subject
@@ -128,6 +132,8 @@ public record UniversitySubject(String name, int credits, int rating, Category c
 
 Представлява изискването за записване на определен брой предмети по дадена категория.
 ```java
+package bg.sofia.uni.fmi.mjt.burnout.subject;
+
 /**
  *
  * @param category the academic category this subject belongs to
@@ -136,7 +142,7 @@ public record UniversitySubject(String name, int credits, int rating, Category c
  * @throws IllegalArgumentException if the category is null
  * @throws IllegalArgumentException if the credits are negative
  */
-public record SubjectRequirement(Category category, int minAmountEnrolled) 
+public record SubjectRequirement(Category category, int minAmountEnrolled) {}
 
 ```
 ---
@@ -145,6 +151,8 @@ public record SubjectRequirement(Category category, int minAmountEnrolled)
 Чрез този `record` ще си моделираме нужните характеристики и данни за семестриалния план.
 
 ```java
+package bg.sofia.uni.fmi.mjt.burnout.plan;
+
 /**
  * Represents a requirement for the amount of subjects needed to be enrolled during the semester.
  *
@@ -156,7 +164,7 @@ public record SubjectRequirement(Category category, int minAmountEnrolled)
  * @throws IllegalArgumentException if the subjectRequirements array is null
  * @throws IllegalArgumentException if the minimalAmountOfCredits is negative
  */
-public record SemesterPlan(UniversitySubject[] subjects, SubjectRequirement[] subjectRequirements, int minimalAmountOfCredits)
+public record SemesterPlan(UniversitySubject[] subjects, SubjectRequirement[] subjectRequirements, int minimalAmountOfCredits) {}
 ```
 ---
 ## Примери
