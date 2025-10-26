@@ -23,7 +23,7 @@ import bg.sofia.uni.fmi.mjt.burnout.exception.InvalidSubjectRequirementsExceptio
 import bg.sofia.uni.fmi.mjt.burnout.plan.SemesterPlan;
 import bg.sofia.uni.fmi.mjt.burnout.subject.UniversitySubject;
 
-public sealed interface SemesterPlannerAPI {
+public sealed interface SemesterPlannerAPI permits AbstractSemesterPlanner {
 
 	/**
 	 * Calculates the subject combination for this semester type based on the subjectRequirements.
@@ -224,7 +224,7 @@ public class Main {
 	private static void printSubjects(UniversitySubject[] subjects) {
 		System.out.println(Arrays.toString(subjects));
 	}
-
+	
 }
 
 ```
