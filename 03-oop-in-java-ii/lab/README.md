@@ -34,7 +34,7 @@ public sealed interface SemesterPlannerAPI permits AbstractSemesterPlanner {
 	 * @throws InvalidSubjectRequirementsException if the subjectRequirements contain duplicate categories
 	 * @return the subject list that balances credits, study time, and requirements
 	 */
-	UniversitySubject[] calculateSubjectList(SemesterPlan semesterPlan) throws InvalidSubjectRequirementsException;
+	UniversitySubject[] calculateSubjectList(SemesterPlan semesterPlan) throws InvalidSubjectRequirementsException, CryToStudentsDepartmentException;
 
 	/**
 	 * Calculates the amount of jars grandma will send you
@@ -47,7 +47,7 @@ public sealed interface SemesterPlannerAPI permits AbstractSemesterPlanner {
 	 *
 	 * @return the number of jars grandma sends that are needed for survival
 	 */
-	int calculateJarCount(UniversitySubject[] subjects, int maximumSlackTime, int semesterDuration);
+	int calculateJarCount(UniversitySubject[] subjects, int maximumSlackTime, int semesterDuration) throws DisappointmentException;
 }
 ```
 
