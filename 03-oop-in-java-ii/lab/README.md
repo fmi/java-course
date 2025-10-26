@@ -140,7 +140,7 @@ package bg.sofia.uni.fmi.mjt.burnout.subject;
  * @param minAmountEnrolled minimum amount of subject enrolled for the category
  *                          
  * @throws IllegalArgumentException if the category is null
- * @throws IllegalArgumentException if the credits are negative
+ * @throws IllegalArgumentException if the minAmountEnrolled is negative
  */
 public record SubjectRequirement(Category category, int minAmountEnrolled) {}
 
@@ -158,7 +158,7 @@ package bg.sofia.uni.fmi.mjt.burnout.plan;
  *
  * @param subjects the array of all subjects that a student can enroll in a given semester
  * @param subjectRequirements the array of requirements for the subjects enrolled for the category
- * @param minimalAmountOfCredits minimum amount of subject enrolled for the category
+ * @param minimalAmountOfCredits minimum amount of credits enrolled for the category
  *
  * @throws IllegalArgumentException if the subjects array is null
  * @throws IllegalArgumentException if the subjectRequirements array is null
@@ -188,10 +188,10 @@ public class Main {
 		SoftwareEngineeringSemesterPlanner planner = new SoftwareEngineeringSemesterPlanner();
 
 		UniversitySubject[] subjects = {
-				new UniversitySubject("Calculus", 6, 5, 40, Category.MATH),
-				new UniversitySubject("Java Programming", 4, 4, 30, Category.PROGRAMMING),
-				new UniversitySubject("Linear Algebra", 5, 3, 35, Category.MATH),
-				new UniversitySubject("Data Structures", 3, 5, 25, Category.PROGRAMMING)
+				new UniversitySubject("Calculus", 6, 5, Category.MATH, 40),
+                new UniversitySubject("Java Programming", 4, 4, Category.PROGRAMMING, 30),
+                new UniversitySubject("Linear Algebra", 5, 3, Category.MATH, 35),
+                new UniversitySubject("Data Structures", 3, 5, Category.PROGRAMMING, 25)
 		};
 
 		SubjectRequirement[] requirements = {
