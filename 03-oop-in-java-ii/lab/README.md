@@ -236,8 +236,9 @@ src
     ├─ plan/
     │  └─ SemesterPlan.java
     ├─ semester/
-    │  ├─ ComputerScienceSemester.java
+    │  ├─ AbstractSemesterPlanner.java
     │  ├─ SemesterPlannerAPI.java
+    │  ├─ ComputerScienceSemester.java
     │  └─ SoftwareEngineeringSemester.java
     └─ subject/
         ├─ Category.java
