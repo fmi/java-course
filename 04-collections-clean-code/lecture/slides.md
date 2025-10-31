@@ -756,7 +756,7 @@ class: center, middle
     - само малки букви, със смислена йерархия
     - `bg.sofia.uni.fmi.mjt`
 - класове, абстрактни класове, интерфейси, enums, records
-    - съществителни, започващи с главна буква (upper camel case)
+    - съществителни, започващи с главна буква (upper camel case / pascal case)
         - `Student`, `GameBoard`
         - имената на интерфейси често са отглаголни съществителни
             - `Cloneable`, `Comparable`, `Runnable`, `Serializable`
