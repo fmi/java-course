@@ -176,7 +176,7 @@ public NameWorkoutFilter(String keyword, boolean caseSensitive)
 ```
 
 2. `DurationWorkoutFilter`
-    - Аргументи: `min`, `max`.
+    - Аргументи: `min`, `max` - продължителност в минути.
     - Проверява дали `min` <= `duration` <= `max`.
     - Ако `min` > `max`, хвърли `IllegalArgumentException`.
 
