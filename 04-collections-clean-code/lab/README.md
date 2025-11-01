@@ -242,7 +242,9 @@ for (Workout w : plan) {
 // StrengthWorkout[name=Leg Day, duration=30, caloriesBurned=250, difficulty=2]
 ```
 
- > Забележка: Планът е сортиран по изгорени калории, след това по трудност — и двете в низходящ ред.
+
+> [!WARNING]
+> Планът е сортиран по изгорени калории, след това по трудност — и двете в низходящ ред.
 
 ### Пакети
 
@@ -271,7 +273,6 @@ src
     └── (...)
 ```
 
-### :warning: Забележки
-
-- Не променяйте по никакъв начин интерфейсите, дадени в условието.
-- Използването на [Java Stream API](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/stream/package-summary.html) и/или [lambdas](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html) **не е разрешено**. Задачата трябва да се реши с помощта на знанията от курса до момента.
+> [!WARNING]
+> - Не променяйте по никакъв начин интерфейсите, дадени в условието.
+> - Използването на [Java Stream API](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/stream/package-summary.html) и/или [lambdas](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html) **не е разрешено**. Задачата трябва да се реши с помощта на знанията от курса до момента.
