@@ -176,9 +176,9 @@ public NameWorkoutFilter(String keyword, boolean caseSensitive)
 ```
 
 2. `DurationWorkoutFilter`
-    - Аргументи: `min`, `max`.
+    - Аргументи: `min`, `max` - продължителност в минути.
     - Проверява дали `min` <= `duration` <= `max`.
-    - Ако `min` > `max`, хвърли `IllegalArgumentException`.
+    - Ако `min` > `max`, `min` < 0 или `max` < 0, хвърли `IllegalArgumentException`.
 
 ```java
 public DurationWorkoutFilter(int min, int max)
@@ -209,14 +209,14 @@ public TypeWorkoutFilter(WorkoutType type)
 
 ## Гранични случаи
 
-| Случай                       | Очакван резултат                                       |
-| ---------------------------- | ------------------------------------------------------ |
-| `availableWorkouts` е `null` | `IllegalArgumentException`                             |
-| `availableWorkouts` е празен | всички методи връщат празни колекции                   |
-| `totalMinutes < 0`           | `IllegalArgumentException`                             |
-| `totalMinutes == 0`          | празен списък                                          |
-| няма комбинация под лимита   | `OptimalPlanImpossibleException`                       |
-| има няколко оптимални плана  | върни произволен от тях (всички се считат за коректни) |
+| Метод / Конструктор                                 | Случай                       | Очакван резултат                                       |
+| --------------------------------------------------- | ---------------------------- | ------------------------------------------------------ |
+| `FitPlanner(Collection<Workout> availableWorkouts)` | `availableWorkouts` е `null` | `IllegalArgumentException`                             |
+| `FitPlanner(Collection<Workout> availableWorkouts)` | `availableWorkouts` е празен | всички останали методи връщат празни колекции                   |
+| `generateOptimalWeeklyPlan(int totalMinutes)`       | `totalMinutes < 0`           | `IllegalArgumentException`                             |
+| `generateOptimalWeeklyPlan(int totalMinutes)`       | `totalMinutes == 0`          | празен списък                                          |
+| `generateOptimalWeeklyPlan(int totalMinutes)`       | няма комбинация под лимита   | `OptimalPlanImpossibleException`                       |
+| `generateOptimalWeeklyPlan(int totalMinutes)`       | има няколко оптимални плана  | върни произволен от тях (всички се считат за коректни) |
 
 ## Пример
 
@@ -242,7 +242,9 @@ for (Workout w : plan) {
 // StrengthWorkout[name=Leg Day, duration=30, caloriesBurned=250, difficulty=2]
 ```
 
- > Забележка: Планът е сортиран по изгорени калории, след това по трудност — и двете в низходящ ред.
+
+> [!WARNING]
+> Планът е сортиран по изгорени калории, след това по трудност — и двете в низходящ ред.
 
 ### Пакети
 
@@ -271,7 +273,6 @@ src
     └── (...)
 ```
 
-### :warning: Забележки
-
-- Не променяйте по никакъв начин интерфейсите, дадени в условието.
-- Използването на [Java Stream API](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/stream/package-summary.html) и/или [lambdas](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html) **не е разрешено**. Задачата трябва да се реши с помощта на знанията от курса до момента.
+> [!WARNING]
+> - Не променяйте по никакъв начин интерфейсите, дадени в условието.
+> - Използването на [Java Stream API](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/stream/package-summary.html) и/или [lambdas](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html) **не е разрешено**. Задачата трябва да се реши с помощта на знанията от курса до момента.
