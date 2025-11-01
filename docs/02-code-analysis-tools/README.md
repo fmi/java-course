@@ -11,10 +11,10 @@
 $ export CHECKS=https://raw.githubusercontent.com/fmi/java-course/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml
 
 # run for single .java file
-$ java -jar checkstyle-10.20.0-all.jar -c $CHECKS Main.java
+$ java -jar checkstyle-12.1.1-all.jar -c $CHECKS Main.java
 
 # run for the whole project
-$ java -jar checkstyle-10.20.0-all.jar -c $CHECKS my-fancy-project/
+$ java -jar checkstyle-12.1.1-all.jar -c $CHECKS my-fancy-project/
 ```
 
 - From IntelliJ
