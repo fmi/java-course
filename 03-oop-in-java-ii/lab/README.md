@@ -244,6 +244,7 @@ src
     ├─ plan/
     │  └─ SemesterPlan.java
     ├─ semester/
+	│  ├─ AbstractSemesterPlanner.java
     │  ├─ ComputerScienceSemesterPlanner.java
     │  ├─ SemesterPlannerAPI.java
     │  └─ SoftwareEngineeringSemesterPlanner.java
