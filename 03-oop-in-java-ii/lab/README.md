@@ -244,10 +244,10 @@ src
     ├─ plan/
     │  └─ SemesterPlan.java
     ├─ semester/
-	│  ├─ AbstractSemesterPlanner.java
-    │  ├─ ComputerScienceSemester.java
+	  │  ├─ AbstractSemesterPlanner.java
+    │  ├─ ComputerScienceSemesterPlanner.java
     │  ├─ SemesterPlannerAPI.java
-    │  └─ SoftwareEngineeringSemester.java
+    │  └─ SoftwareEngineeringSemesterPlanner.java
     └─ subject/
         ├─ Category.java
         ├─ SubjectRequirement.java
