@@ -2,7 +2,7 @@ class: center, middle
 
 # Generics
 
-06.11.2024
+05.11.2025
 
 .center[![Java Generics](images/05.0-java-generics.jpg)]
 
@@ -771,4 +771,4 @@ public class Example {
 
 .font-xl[.ri-github-fill.icon-inline[[fmi/java-course](https://github.com/fmi/java-course)]]
 
-.font-xl[.ri-youtube-fill.icon-inline[[MJT2025](https://www.youtube.com/playlist?list=PLew34f6r0Pxyldqe31Txob2V3M3m1MKCn)]]
+.font-xl[.ri-youtube-fill.icon-inline[[MJT2026](https://www.youtube.com/playlist?list=PLew34f6r0Pxx6LmzYcc9-8-_-T3ZPZTXg)]]
