@@ -62,20 +62,54 @@ public class FruitBasket {
         putSomeTropicalFruit(genericFruits);
     }
 
+    // The list can be one of:
+    // List<TropicalFruit>
+    // List<Banana>
+    // List<PassionFruit>
     public static void getSomeTropicalFruit(List<? extends TropicalFruit> mysteryFruitBasket) {
+        // it's safe to get items because they always have TropicalFruit's methods
         mysteryFruitBasket.getFirst().fruit();
         mysteryFruitBasket.getFirst().someTropicalFruitMethod();
+
+        // this won't work if we are in the case of List<PassionFruit>
+        // mysteryFruitBasket.add(new Banana()); // compilation error
     }
 
+    // The Java compiler inserts type casts if necessary to preserve type safety:
+    // public static void getSomeTropicalFruit(List mysteryFruitBasket) {
+    //    ((TropicalFruit) mysteryFruitBasket.getFirst()).fruit();
+    //    ((TropicalFruit) mysteryFruitBasket.getFirst()).someTropicalFruitMethod();
+    // }
+
+
+
+    // The list is one of:
+    // List<TropicalFruit> mysteryFruitBasket
+    // List<Fruit> mysteryFruitBasket
     public static void putSomeTropicalFruit(List<? super TropicalFruit> mysteryFruitBasket) {
-        // returns object, hence no methods from TropicalFruit or Fruit are available
-        // mysteryFruitBasket.getFirst().fruit(); // compilation error
+        // safe to add all of these, since they all are Tropical fruits
+        // and can be added to a list of fruits or a list of tropical fruits:
         mysteryFruitBasket.add(new Banana());
+        mysteryFruitBasket.add(new PassionFruit());
         mysteryFruitBasket.add(new TropicalFruit());
 
-        // you cannot put fruits, that's a TropicalFruit basket at the end
-        //  mysteryFruitBasket.add(new Fruit()); // compilation error
+        // returns object, hence no methods from TropicalFruit or Fruit are available
+        // mysteryFruitBasket.getFirst().fruit(); // compilation error
+
+        // you cannot put fruits that are not TropicalFruits because
+        // you don't know if the list can hold them, i.e. if we have
+        // List<TropicalFruit> we cannot put neither of those:
+        // mysteryFruitBasket.add(new Fruit()); // compilation error
+        // mysteryFruitBasket.add(new Apple()); // compilation error
     }
+
+    // Replace all type parameters in generic types with their bounds or Object if the type parameters are unbounded.
+    // The produced bytecode, therefore, contains only ordinary classes, interfaces, and methods.
+    // Compiler PoV; Basically a list of Objects, so you can put anything
+    // public static void putSomeTropicalFruit(List basket) {
+    //     basket.add(new TropicalFruit());
+    //     basket.add(new Banana());
+    // }
 
 }
 
