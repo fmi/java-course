@@ -6,7 +6,7 @@ import java.util.List;
 // Comparator<? super E> which is not related to the get/put principle
 // the `sort` method of List has the signature `sort(Comparator<? super E> c)`
 // The main thing is that you can put a comparator of E or any of E's parents
-// because E has inherited all properties of it's parents, hence
+// because E has inherited all properties of its parents, hence
 // it can be compared by their standards.
 // Here we have the hierarchy ElectricCar -> Car -> Machines
 // and since an ElectricCar is both a Car and a Machine it can be compared as such.

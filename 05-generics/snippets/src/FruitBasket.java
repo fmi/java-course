@@ -81,8 +81,6 @@ public class FruitBasket {
     //    ((TropicalFruit) mysteryFruitBasket.getFirst()).someTropicalFruitMethod();
     // }
 
-
-
     // The list is one of:
     // List<TropicalFruit> mysteryFruitBasket
     // List<Fruit> mysteryFruitBasket
