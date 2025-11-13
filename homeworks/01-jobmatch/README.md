@@ -224,6 +224,8 @@ public interface JobMatchAPI {
 - `similarityScore`: в интервала [0, 1]
 - `improvementScore`: неотрицателен (>= 0)
 
+При неуспешна валидация, съответният конструктор трябва да хвърля `IllegalArgumentException`.
+
 #### `Education`
 
 Образователното ниво се моделира от enum `Education`:
