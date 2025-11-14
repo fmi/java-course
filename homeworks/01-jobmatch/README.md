@@ -142,7 +142,8 @@ public interface JobMatchAPI {
      * <p>
      * 1. For each job posting, calculate current similarity score with the candidate
      * 2. For each skill the candidate is MISSING (present in job but not in candidate profile):
-     * - Temporarily add that skill to candidate's profile with level equal to required level
+     * - Temporarily add that skill to candidate's profile with level equal to the max. required
+     *   level across all job postings
      * - Recalculate similarity score
      * - Calculate improvement: new_score - old_score
      * 3. Aggregate (sum up) improvements across all job postings for each missing skill
@@ -154,18 +155,19 @@ public interface JobMatchAPI {
      * <p>
      * Example:
      * - Candidate has: {Java:4, Python:3}
-     * - Job1 requires: {Java:5, Python:4, AWS:3} - similarity: 0.85
-     * - Job2 requires: {Java:4, AWS:4, Docker:3} - similarity: 0.70
+     * - Job1 requires: {Java:5, Python:4, AWS:3} - similarity: 0.905
+     * - Job2 requires: {Java:4, AWS:4, Docker:3} - similarity: 0.500
      * <p>
      * Missing skills analysis:
-     * - Adding AWS:3 to candidate → Job1 similarity becomes 0.92 (improvement: 0.07)
-     * - Adding AWS:4 to candidate → Job2 similarity becomes 0.88 (improvement: 0.18)
-     * - Total AWS improvement: 0.25
+     * - Adding AWS:4 to candidate → Job1 similarity becomes 0.972 (improvement: 0.067)
+     * - Adding AWS:4 to candidate → Job2 similarity becomes 0.780 (improvement: 0.280)
+     * - Total AWS improvement: 0.347
      * <p>
-     * - Adding Docker:3 to candidate → Job2 similarity becomes 0.85 (improvement: 0.15)
-     * - Total Docker improvement: 0.15
+     * - Adding Docker:3 to candidate → Job1 similarity becomes 0.776 (improvement: -0.129)
+     * - Adding Docker:3 to candidate → Job2 similarity becomes 0.670 (improvement: 0.170)
+     * - Total Docker improvement: 0.041
      * <p>
-     * Result: [SkillRecommendation(AWS, 0.25), SkillRecommendation(Docker, 0.15)]
+     * Result: [SkillRecommendation(AWS, 0.347), SkillRecommendation(Docker, 0.041)]
      * <p>
      * IMPLEMENTATION NOTE:
      * The platform's default similarity strategy is Cosine Similarity (considers skill levels).
@@ -376,23 +378,23 @@ Cosine Similarity е по-сложна метрика, която взема п�
 ```
 Candidate: {Java:4, Python:3}
 
-Job1: {Java:5, Python:4, AWS:3} → current: 0.85
-Job2: {Java:4, AWS:4, Docker:3} → current: 0.70
-Job3: {Python:5, Docker:2} → current: 0.90
+Job1: {Java:5, Python:4, AWS:3} → current: ≈0.905
+Job2: {Java:4, AWS:4, Docker:3} → current: ≈0.500
+Job3: {Python:5, Docker:2} → current: ≈ 0.557
 
 AWS: max level = 4
-  + Job1: 0.92 - 0.85 = 0.07
-  + Job2: 0.88 - 0.70 = 0.18
-  + Job3: 0.90 - 0.90 = 0.00
-  Total: 0.25
+  + Job1: 0.971 - 0.905 = 0.066
+  + Job2: 0.780 - 0.500 = 0.280
+  + Job3: 0.435 - 0.557 = -0.122
+  Total: 0.224
 
 Docker: max level = 3
-  + Job1: 0.85 - 0.85 = 0.00
-  + Job2: 0.85 - 0.70 = 0.15
-  + Job3: 0.95 - 0.90 = 0.05
-  Total: 0.20
+  + Job1: 0.776 - 0.905 = -0.129
+  + Job2: 0.670 - 0.500 = 0.170
+  + Job3: 0.669 - 0.557 = 0.112
+  Total: 0.153
 
-Result: [AWS (0.25), Docker (0.20)]
+Result: [AWS (0.224), Docker (0.153)]
 ```
 
 ### Пакети
