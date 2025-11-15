@@ -106,7 +106,7 @@ public class DateEvent {
 void eliminateErgenkas(EliminationRule[] eliminationRules)
 ```
 
-Ако масивът с правила е празен, да се приложат правилата по подразбиране.
+Ако масивът с правила е празен, да се приложи `LowestRatingEliminationRule`.
 
 ## Ergenka
 
