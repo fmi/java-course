@@ -156,7 +156,7 @@ public interface Ergenka {
     int getHumorLevel();
 
     /**
-     * Returns the ergenka's current rating.
+     * Returns the ergenka's current rating. It can be below zero(🥀).
      *
      * @return the rating as an integer
      */
