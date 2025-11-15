@@ -24,7 +24,7 @@
 В пакета `bg.sofia.uni.fmi.mjt.jobmatch` създайте клас `JobMatch` с публичен конструктор по подразбиране, който имплементира интерфейса `JobMatchAPI`:
 
 ```java
-package bg.sofia.uni.fmi.mjt.jobmatch;
+package bg.sofia.uni.fmi.mjt.jobmatch.api;
 
 import bg.sofia.uni.fmi.mjt.jobmatch.matching.SimilarityStrategy;
 import bg.sofia.uni.fmi.mjt.jobmatch.model.entity.Candidate;
