@@ -233,7 +233,7 @@ public interface JobMatchAPI {
 Образователното ниво се моделира от enum `Education`:
 
 ```java
-package bg.sofia.uni.fmi.mjt.jobmatch.model;
+package bg.sofia.uni.fmi.mjt.jobmatch.model.entity;
 
 public enum Education {
     HIGH_SCHOOL(1),
