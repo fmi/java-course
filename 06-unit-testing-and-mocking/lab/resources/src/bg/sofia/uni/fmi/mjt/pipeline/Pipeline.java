@@ -40,8 +40,15 @@ public final class Pipeline<I, O> {
      * @param stages the initial list of stages
      */
     private Pipeline(List<Stage<?, ?>> stages) {
+        this(new ArrayList<>(stages), new Cache());
+    }
+
+    /**
+     * Package-private constructor used for testing purposes.
+     */
+    Pipeline(List<Stage<?, ?>> stages, Cache cache) {
         this.stages = stages;
-        this.cache = new Cache();
+        this.cache = cache;
     }
 
     /**

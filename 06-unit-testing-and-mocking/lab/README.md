@@ -53,6 +53,11 @@ public final class Pipeline<I, O> {
      * @param stages the initial list of stages
      */
     private Pipeline(List<Stage<?, ?>> stages);
+
+	/**
+	 * Package-private constructor used for testing purposes.
+	 */
+	Pipeline(List<Stage<?, ?>> stages, Cache cache);
 	
     /**
      * Adds a new stage at the end of the pipeline.

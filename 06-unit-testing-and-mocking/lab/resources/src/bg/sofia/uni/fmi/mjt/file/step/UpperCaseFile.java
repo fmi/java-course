@@ -15,7 +15,7 @@ public class UpperCaseFile implements Step<File, File> {
      * Converts the content of the given {@link File} to uppercase.
      *
      * @param input the file whose content will be transformed
-     * @return the same {@link File} object with updated content
+     * @return a new {@link File} object with updated content
      *
      * @throws IllegalArgumentException if the input file or its content is null
      */
