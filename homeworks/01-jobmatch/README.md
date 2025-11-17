@@ -220,7 +220,7 @@ public interface JobMatchAPI {
 
 **✅ Валидация в конструктора:**
 
-- `String` параметри: не null, не blank
+- `String` параметри: не null (изключение: `mostCommonSkillName` и `highestPaidJobTitl` на `PlatformStatistics`), не blank
 - `Set` параметри: не null, не empty
 - Числа (години, заплата): неотрицателни
 - Умение: в интервала [0, 5]
