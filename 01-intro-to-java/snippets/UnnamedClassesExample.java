@@ -1,8 +1,9 @@
-// Java 25: Compact source files, unnamed classes, and instance main methods
-// No class declaration required!
-// public/static/args are optional
+// NOTE: This is possible thanks to preview language features in Java 21 and 23.
 
+// No class declaration is required
+// Java keywords public and static are no longer required for main
+// Main method argument args is optional
+// The static methods of java.io.IO such as println() are automatically imported
 void main() {
-    IO.println("Hello, World! 🚀");
-    IO.println("Java 25 makes it easy for Gen-Z coders!");
+    println("Hello, World!");
 }
