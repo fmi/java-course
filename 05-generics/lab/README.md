@@ -125,7 +125,7 @@ public class DeferredEventSubscriber<T extends Event<?>> implements Subscriber<T
     /**
      * Check if there are unprocessed events.
      *
-     * @return true if there are unprocessed events, false otherwise
+     * @return true if there are no unprocessed events, false otherwise
      */
     public boolean isEmpty() {
         throw new UnsupportedOperationException("Still not implemented");
