@@ -16,7 +16,7 @@ public class ObjectStreamExample {
         Student firstStudent = new Student("Gosho", 20);
         Student secondStudent = new Student("Stamat", 80);
 
-        writeStudentsToFile(filePath, firstStudent, secondStudent);
+        //writeStudentsToFile(filePath, firstStudent, secondStudent);
         readStudentsFromFile(filePath);
     }
 
@@ -39,7 +39,7 @@ public class ObjectStreamExample {
                 System.out.println(studentObject);
 
                 Student s = (Student) studentObject;
-                System.out.println("Name " + s.name());
+                System.out.println("Name " + s.getName());
             }
 
         } catch (EOFException e) {
