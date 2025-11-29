@@ -12,6 +12,7 @@ public class IntsSum {
 
         int sumOf5 = numbers
             .stream()
+                .sorted()
             .limit(5)
             .mapToInt(Integer::intValue)
             .sum();
