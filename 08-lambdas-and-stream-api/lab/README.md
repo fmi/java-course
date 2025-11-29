@@ -195,6 +195,40 @@ public interface OrderAnalyzer {
 }
 ```
 
+Вашата задача е да имплементирате методите на интерфейса, използвайки Java Stream API-то.
+
+👉 Обърнете внимание, че dataset-ът съдържа заглавен ред, който трябва да пропуснете при изчитането му.
+
+👉 Напомняне: когато сравнявате числа с плаваща запетая, не разчитайте на точно равенство, а работете с равенство с определена точност (делта).
+
+### Примерна употреба
+
+Ето един прост пример, как може да се използва Order Analyzer-a:
+
+```java
+import bg.sofia.uni.fmt.mjt.orders.analyzer.OrderAnalyzerImpl;
+import bg.sofia.uni.fmt.mjt.orders.loader.OrderLoader;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
+
+public class Main {
+    public static void main(String[] args) throws FileNotFoundException {
+        String filePath = "amazon_sales_2025.csv";
+
+        Reader reader = new FileReader(filePath);
+
+        var orders = OrderLoader.load(reader);
+        System.out.println(orders.size());
+
+        var analyzer = new OrderAnalyzerImpl(orders);
+
+        System.out.println(analyzer.suspiciousCustomers());
+    }
+}
+```
+
 ### Тестване
 
 Най-добре първо тествайте реализацията си локално с пример като горния. После създайте и unit тестове.
