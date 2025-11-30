@@ -206,8 +206,8 @@ public interface OrderAnalyzer {
 Ето един прост пример, как може да се използва Order Analyzer-a:
 
 ```java
-import bg.sofia.uni.fmt.mjt.orders.analyzer.OrderAnalyzerImpl;
-import bg.sofia.uni.fmt.mjt.orders.loader.OrderLoader;
+import bg.sofia.uni.fmi.mjt.orders.analyzer.OrderAnalyzerImpl;
+import bg.sofia.uni.fmi.mjt.orders.loader.OrderLoader;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
