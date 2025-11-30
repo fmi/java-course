@@ -206,8 +206,8 @@ public interface OrderAnalyzer {
 Ето един прост пример, как може да се използва Order Analyzer-a:
 
 ```java
-import bg.sofia.uni.fmt.mjt.orders.analyzer.OrderAnalyzerImpl;
-import bg.sofia.uni.fmt.mjt.orders.loader.OrderLoader;
+import bg.sofia.uni.fmi.mjt.order.analyzer.OrderAnalyzerImpl;
+import bg.sofia.uni.fmi.mjt.order.loader.OrderLoader;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -258,8 +258,6 @@ test
 └─ bg.sofia.uni.fmi.mjt.order
     └── (...)
 ```
-
-В грейдъра качете общ zip архив на папки src и test.
 
 ### :warning: Забележки 
 - В грейдъра качете директориите src и test като ги селектирате и двете. Друг вариант е да ги сложите в общ .zip архив и да качите него
