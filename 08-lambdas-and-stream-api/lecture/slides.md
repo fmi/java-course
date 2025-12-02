@@ -794,7 +794,7 @@ employees.skip(10);
 
 // пропуска първите елементи на потока, докато предикатът връща true
 
-employees.dropWhile(e -> e.getAge < 18);
+employees.dropWhile(e -> e.getAge() < 18);
 
 // допуска само първите елементи на потока, докато предикатът връща true
 

@@ -549,7 +549,7 @@ String s = "Firebird";
 char ic = s.charAt(i);
 char[] ca = s.toCharArray();
 
-for (int i = 0; i < ca.size(); i++) {...}
+for (int i = 0; i < ca.length; i++) {...}
 for (char c : ca) {...} // enhanced for-loop, a.k.a. for-each
 
 Arrays.sort(ca);

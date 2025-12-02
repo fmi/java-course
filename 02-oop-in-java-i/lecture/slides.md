@@ -828,19 +828,6 @@ for (Object obj : objs) {
 *   }
 
 }
-```
-
----
-
-### Polymorphic code
-
-```java
-Human[] humans = {ivan, petar};
-
-for (Human human : humans) {
-    human.whoAmI();
-}
-```
 
 ---
 
