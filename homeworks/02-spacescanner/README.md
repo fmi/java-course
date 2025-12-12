@@ -211,7 +211,7 @@ public enum MissionStatus {
 public record Rocket(String id, String name, Optional<String> wiki, Optional<Double> height)
 ```
 
-След дадена масия, изполваната ракета може да бъде все още активна (**StatusActive**), или вече да не е в експлоатация (**StatusRetired**). Моделираме го със следния `enum`:
+След дадена мисия, изполваната ракета може да бъде все още активна (**StatusActive**), или вече да не е в експлоатация (**StatusRetired**). Моделираме го със следния `enum`:
 
 #### Enum `RocketStatus`
 
