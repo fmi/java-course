@@ -183,7 +183,6 @@ Executor обект винаги трябва да бъде спрян с мет
 
 - `fork()` – стартира задача
 - `join()` – изчаква всички
-- `throwIfFailed()` – спира останалите задачи при грешка  
 - гарантирано няма „висящи“ нишки след края на блока
 
 ---
@@ -191,18 +190,20 @@ Executor обект винаги трябва да бъде спрян с мет
 ### Прост пример
 
 ```java
-import java.util.concurrent.StructuredTaskScope;
+public String loadUserPage() {
+    try (var scope = StructuredTaskScope.<String>open()) {
 
-String loadUserPage() {
-    try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
+        // Fork concurrent tasks
         var userTask  = scope.fork(() -> loadUser());
         var postsTask = scope.fork(() -> loadPosts());
-        
-        scope.join(); // Throws if any task failed
-        
-        return userTask.result() + ": " + postsTask.result();
-        
-    } catch (Exception e) {
+
+        // Wait for all tasks to complete; throws FailedException if any task fails
+        scope.join();
+
+        // Retrieve results
+        return userTask.get() + ": " + postsTask.get();
+
+    } catch (StructuredTaskScope.FailedException | InterruptedException e) {
         throw new UserPageLoadException("Failed to load user page", e);
     }
 }
