@@ -930,14 +930,16 @@ double result = employees.reduce(
 <br>
 
 ```java
+// Java 8+ (returns modifiable List)
 List<Integer> list = Stream.of(1, 2, 3, 4, 5)
                            .collect(Collectors.toList()); // [1, 2, 3, 4, 5]
 
-// since Java 16
+// Java 16+ (returns unmodifiable List)
 List<Integer> list = Stream.of(1, 2, 3, 4, 5)
                            .toList();
-
 ```
+
+- По контракт `Stream.toList()` е еквивалентен на `Collectors.toUnmodifiableList()`.
 
 ---
 
