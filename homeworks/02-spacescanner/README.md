@@ -149,7 +149,12 @@ public interface SpaceScannerAPI {
     /**
      * Saves the name of the most reliable rocket in a given time period in an encrypted format.
      *
-     * @param outputStream the output stream where the encrypted result is written into
+     * <p><b>Important:</b> The implementation is expected to wrap {@code outputStream} in a
+     * {@link javax.crypto.CipherOutputStream}. Since block ciphers (e.g. AES) write the final block
+     * only on {@code close()}, this method <b>must close</b> the stream after writing.
+     *
+     * @param outputStream the output stream where the encrypted result is written into;
+     *                     it will be closed by this method
      * @param from         the inclusive beginning of the time frame
      * @param to           the inclusive end of the time frame
      * @throws IllegalArgumentException   if outputStream, from or to is null
@@ -250,7 +255,14 @@ Reliability-то на дадена ракета ще пресмятаме по �
 > Пример: Ракета с 3 успешни мисии и 1 неуспешна:
 > Reliability = (2*3 + 1) / (2*4) = 7/8 = 0.875
 
-Алгоритъмът за криптиране (**AES**) има имплементация в JDK-то (в `javax.crypto` пакета) и за него сме ви дали [code snippet](https://github.com/fmi/java-course/blob/master/07-io-streams-and-files/snippets/src/bg/sofia/uni/fmi/mjt/io/CipherExample.java). Създайте клас **Rijndael**, който има следния конструктор:
+Алгоритъмът за криптиране (**AES**) има имплементация в JDK-то (в `javax.crypto` пакета) и за него сме ви дали [code snippet](https://github.com/fmi/java-course/blob/master/07-io-streams-and-files/snippets/src/bg/sofia/uni/fmi/mjt/io/CipherExample.java).
+
+:warning: Забележка:
+В метода `saveMostReliableRocket(...)` се очаква използване на `CipherOutputStream`. Поради това
+имплементацията трябва да затвори подадения `OutputStream`, тъй като при AES последният блок
+се записва едва при `close()`.
+
+Създайте клас **Rijndael**, който има следния конструктор:
 
 ```java
 /**
