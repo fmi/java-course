@@ -138,7 +138,7 @@ public interface SpaceScannerAPI {
      * Returns the wiki pages for the rockets used in the N most expensive missions.
      * If there are no missions, return an empty list.
      *
-     * @param n             the number of missions to be returned
+     * @param n             the number of wiki pages to be returned
      * @param missionStatus the status of the missions
      * @param rocketStatus  the status of the rockets
      * @throws IllegalArgumentException if n is less than or equal to 0, or missionStatus or rocketStatus is null
