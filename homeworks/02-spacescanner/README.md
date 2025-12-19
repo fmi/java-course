@@ -27,6 +27,8 @@ public MJTSpaceScanner(Reader missionsReader, Reader rocketsReader, SecretKey se
 ```java
 package bg.sofia.uni.fmi.mjt.space;
 
+import bg.sofia.uni.fmi.mjt.space.exception.CipherException;
+import bg.sofia.uni.fmi.mjt.space.exception.TimeFrameMismatchException;
 import bg.sofia.uni.fmi.mjt.space.mission.Mission;
 import bg.sofia.uni.fmi.mjt.space.mission.MissionStatus;
 import bg.sofia.uni.fmi.mjt.space.rocket.Rocket;
@@ -107,7 +109,8 @@ public interface SpaceScannerAPI {
      *
      * @param from the inclusive beginning of the time frame (inclusive)
      * @param to   the inclusive end of the time frame (inclusive)
-     * @return a map where keys are company names and values are their locations with most successful missions in the period
+     * @return a map where keys are company names and values are their locations with most successful missions
+     * in the period
      * @throws IllegalArgumentException   if from or to is null
      * @throws TimeFrameMismatchException if to is before from
      */
@@ -138,7 +141,7 @@ public interface SpaceScannerAPI {
      * Returns the wiki pages for the rockets used in the N most expensive missions.
      * If there are no missions, return an empty list.
      *
-     * @param n             the number of wiki pages to be returned
+     * @param n             the number of missions to be returned
      * @param missionStatus the status of the missions
      * @param rocketStatus  the status of the rockets
      * @throws IllegalArgumentException if n is less than or equal to 0, or missionStatus or rocketStatus is null
