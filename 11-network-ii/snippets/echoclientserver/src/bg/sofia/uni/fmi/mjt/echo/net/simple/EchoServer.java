@@ -21,13 +21,14 @@ public class EchoServer {
                 " and listening for connection requests on port " + SERVER_PORT);
 
             try (Socket clientSocket = serverSocket.accept();
-                 BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                  PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) { // autoflush on
 
                 String inputLine;
-                while ((inputLine = br.readLine()) != null) {
+                while ((inputLine = in.readLine()) != null) {
                     System.out.println("Message received from client: " + inputLine);
                     out.println("Echo " + inputLine);
+                    //out.flush();
                 }
             }
 

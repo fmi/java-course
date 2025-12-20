@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 // NIO, blocking
@@ -13,9 +14,9 @@ public class EchoClientNio {
     private static final String SERVER_HOST = "localhost";
     private static final int BUFFER_SIZE = 512;
 
-    private static ByteBuffer buffer = ByteBuffer.allocateDirect(BUFFER_SIZE);
-
     public static void main() {
+
+        ByteBuffer buffer = ByteBuffer.allocateDirect(BUFFER_SIZE);
 
         try (SocketChannel socketChannel = SocketChannel.open();
              Scanner scanner = new Scanner(System.in)) {
@@ -35,7 +36,7 @@ public class EchoClientNio {
                 System.out.println("Sending message <" + message + "> to the server...");
 
                 buffer.clear(); // switch to writing mode
-                buffer.put(message.getBytes()); // buffer fill
+                buffer.put(message.getBytes(StandardCharsets.UTF_8)); // buffer fill
                 buffer.flip(); // switch to reading mode
                 socketChannel.write(buffer); // buffer drain
 

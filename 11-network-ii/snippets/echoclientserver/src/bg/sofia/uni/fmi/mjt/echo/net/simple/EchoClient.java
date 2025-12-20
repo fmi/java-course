@@ -13,12 +13,10 @@ public class EchoClient {
 
     static void main() {
 
-        try (Socket socket = new Socket("192.168.0.3", SERVER_PORT);
+        try (Socket socket = new Socket("localhost", SERVER_PORT);
              PrintWriter writer = new PrintWriter(socket.getOutputStream(), true); // autoflush on
              BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              Scanner scanner = new Scanner(System.in)) {
-
-            System.out.println("Connected to the server.");
 
             while (true) {
                 System.out.print("Enter message: ");
@@ -39,6 +37,6 @@ public class EchoClient {
         } catch (IOException e) {
             throw new RuntimeException("There is a problem with the network communication", e);
         }
-        
+
     }
 }

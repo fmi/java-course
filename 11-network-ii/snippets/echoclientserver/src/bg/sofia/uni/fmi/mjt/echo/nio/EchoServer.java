@@ -13,7 +13,12 @@ import java.util.Set;
 
 public class EchoServer {
     public static final int SERVER_PORT = 7777;
-    private static final String SERVER_HOST = "localhost";
+    private static final String SERVER_HOST = "0.0.0.0";
+
+    // 0.0.0.0 is a special address meaning "listen on all network interfaces"
+    // This allows clients to connect via localhost, your local IP address,
+    // or any other IP address your machine has
+
     private static final int BUFFER_SIZE = 1024;
 
     public static void main() {
@@ -52,6 +57,7 @@ public class EchoServer {
                         if (r < 0) {
                             System.out.println("Client has closed the connection");
                             sc.close();
+                            keyIterator.remove();
                             continue;
                         }
                         buffer.flip();
@@ -59,9 +65,9 @@ public class EchoServer {
 
                     } else if (key.isAcceptable()) {
                         ServerSocketChannel sockChannel = (ServerSocketChannel) key.channel();
-                        SocketChannel accept = sockChannel.accept();
-                        accept.configureBlocking(false);
-                        accept.register(selector, SelectionKey.OP_READ);
+                        SocketChannel remoteClientChannel = sockChannel.accept();
+                        remoteClientChannel.configureBlocking(false);
+                        remoteClientChannel.register(selector, SelectionKey.OP_READ);
                     }
 
                     keyIterator.remove();

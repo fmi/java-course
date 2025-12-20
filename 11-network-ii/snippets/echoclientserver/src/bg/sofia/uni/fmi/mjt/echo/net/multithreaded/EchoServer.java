@@ -11,12 +11,16 @@ public class EchoServer {
 
     private static final int SERVER_PORT = 4444;
     private static final int MAX_EXECUTOR_THREADS = 10;
+    // In production, consider:
+    // - Runtime.getRuntime().availableProcessors() for CPU-bound tasks
+    // - Larger pool (e.g., availableProcessors() * 2-4) for I/O-bound tasks,
+    //   since threads block waiting for I/O and don't consume CPU
 
     static void main() {
         Thread.currentThread().setName("Echo Server Thread");
 
         try (ServerSocket serverSocket = new ServerSocket(SERVER_PORT);
-             ExecutorService executor = Executors.newFixedThreadPool(MAX_EXECUTOR_THREADS);) {
+             ExecutorService executor = Executors.newFixedThreadPool(MAX_EXECUTOR_THREADS)) {
 
             // Get the local IP address of the server
             InetAddress serverAddress = InetAddress.getLocalHost();

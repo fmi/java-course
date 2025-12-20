@@ -8,7 +8,7 @@ import java.net.Socket;
 
 public class ClientRequestHandler implements Runnable {
 
-    private Socket socket;
+    private final Socket socket;
 
     public ClientRequestHandler(Socket socket) {
         this.socket = socket;
@@ -20,7 +20,8 @@ public class ClientRequestHandler implements Runnable {
         Thread.currentThread().setName("Client Request Handler for " + socket.getRemoteSocketAddress());
 
         try (PrintWriter out = new PrintWriter(socket.getOutputStream(), true); // autoflush on
-             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+             socket) { // resources created elsewhere can also be declared here and will be auto-closed
 
             String inputLine;
             while ((inputLine = in.readLine()) != null) { // read the message from the client
@@ -30,12 +31,6 @@ public class ClientRequestHandler implements Runnable {
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                socket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
     }
