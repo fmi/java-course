@@ -49,9 +49,19 @@ create-playlist <playlist_name>
 
 Създава нова плейлиста.
 
-Ограничения:
+Изисквания:
 - името е една дума (без интервали);
 - не може да съществуват две плейлисти с едно и също име.
+
+Пример:
+
+```
+create-playlist MyFavorites
+{"status":"OK","message":"Playlist MyFavorites created successfully."}
+
+create-playlist MyFavorites
+{"status":"ERROR","message":"Playlist MyFavorites already exists."}
+```
 
 ### add-song
 
@@ -61,10 +71,26 @@ add-song <playlist_name> <song_title> <artist_name> <duration>
 
 Добавя песен към плейлиста.
 
-Ограничения:
+Изисквания:
 - `song_title` и `artist_name` са една дума;
 - `duration` е цяло число (секунди);
-- една и съща песен (заглавие + артист) не може да бъде добавяна два пъти.
+- една и съща песен (заглавие + артист) не може да бъде добавяна два пъти в същата плейлиста.
+
+Пример:
+
+```
+add-song MyFavorites Imagine John-Lennon 183
+{"status":"OK","message":"Song Imagine by John-Lennon added successfully."}
+
+add-song MyFavorites Song Artist 0
+{"status":"ERROR","message":"Duration must be a positive integer"}
+
+add-song NonExistent Song Artist 200
+{"status":"ERROR","message":"Playlist NonExistent does not exist."}
+
+add-song MyFavorites Imagine John-Lennon 183
+{"status":"ERROR","message":"Song Imagine by John-Lennon already exists in playlist MyFavorites."}
+```
 
 ### like-song
 
@@ -74,13 +100,36 @@ like-song <playlist_name> <song_title> <artist_name>
 
 Увеличава броя харесвания с 1.
 
+Пример:
+
+```
+like-song MyFavorites Imagine John-Lennon
+{"status":"OK","message":"Song Imagine by John-Lennon liked. Likes: 1"}
+
+like-song NonExistent Song Artist
+{"status":"ERROR","message":"Playlist NonExistent does not exist."}
+
+like-song MyFavorites NonExistent Artist
+{"status":"ERROR","message":"Song NonExistent by Artist does not exist in playlist MyFavorites."}
+```
+
 ### unlike-song
 
 ```
 unlike-song <playlist_name> <song_title> <artist_name>
 ```
 
-Намалява броя харесвания с 1 (минимум 0).
+Намалява броя харесвания на песента в плейлистата с 1. Броят на харесванията не може да падне под 0.
+
+Пример:
+
+```
+add-song MyFavorites NewSong Artist 200
+{"status":"OK","message":"Song NewSong by Artist added successfully."}
+
+unlike-song MyFavorites NewSong Artist
+{"status":"OK","message":"Song NewSong by Artist unliked. Likes: 0"}
+```
 
 ### list-playlists
 
@@ -90,13 +139,36 @@ list-playlists
 
 Връща списък с всички плейлисти.
 
+Пример:
+
+```
+list-playlists
+{"status":"OK","playlists":[]}
+
+create-playlist Favorites
+{"status":"OK","message":"Playlist Favorites created successfully."}
+
+create-playlist Workout
+{"status":"OK","message":"Playlist Workout created successfully."}
+
+list-playlists
+{"status":"OK","playlists":["Favorites","Workout"]}
+```
+
 ### get-playlist
 
 ```
 get-playlist <playlist_name>
 ```
 
-Връща детайлна информация за плейлиста.
+Връща детайлна информация за плейлиста, включително всички песни и техните харесвания в контекста на тази плейлиста.
+
+Пример:
+
+```
+get-playlist MyFavorites
+{"status":"OK","playlist":{"name":"MyFavorites","songs":[{"title":"Imagine","artist":"John-Lennon","duration":183,"likes":2},{"title":"Bohemian-Rhapsody","artist":"Queen","duration":354,"likes":0},{"title":"Yesterday","artist":"The-Beatles","duration":145,"likes":5}]}}
+```
 
 ### disconnect
 
@@ -105,22 +177,6 @@ disconnect
 ```
 
 Прекратява връзката със сървъра.
-
-## Примерна сесия
-
-```bash
-create-playlist MyFavorites
-{"status":"OK","message":"Playlist MyFavorites created successfully."}
-
-add-song MyFavorites Imagine John-Lennon 183
-{"status":"OK","message":"Song Imagine by John-Lennon added successfully."}
-
-like-song MyFavorites Imagine John-Lennon
-{"status":"OK","message":"Song Imagine by John-Lennon liked. Likes: 1"}
-
-get-playlist MyFavorites
-{"status":"OK","playlist":{"name":"MyFavorites","songs":[{"title":"Imagine","artist":"John-Lennon","duration":183,"likes":1}]}}
-```
 
 ## Интерфейси
 
@@ -152,12 +208,13 @@ public interface PlaylistRepository {
      * @param songTitle    the title of the song.
      * @param artistName   the name of the artist.
      * @param duration     the duration of the song in seconds.
+     * @return the Song added.
      * @throws PlaylistNotFoundException  if the playlist with the given name
      *                                    does not exist.
      * @throws SongAlreadyExistsException if a song with the same title and artist
      *                                    already exists in the playlist.
      */
-    void addSong(String playlistName, String songTitle, String artistName, int duration)
+    Song addSong(String playlistName, String songTitle, String artistName, int duration)
         throws PlaylistNotFoundException, SongAlreadyExistsException;
 
     /**
@@ -175,7 +232,8 @@ public interface PlaylistRepository {
 
     /**
      * Decreases the number of likes of a given song in the playlist by 1.
-     * The number of likes cannot be less than 0.
+     * The number of likes cannot be less than 0. When unliking a song with 0 likes,
+     * the operation succeeds silently with likes remaining 0.
      *
      * @param playlistName the name of the playlist.
      * @param songTitle    the title of the song.
@@ -210,14 +268,19 @@ public interface PlaylistRepository {
 
 ## Модели
 
-```java
-public record Playlist(String name, Set<Song> songs) {}
-public record Song(String title, String artist, int duration, int likes) {}
-```
+Плейлиста ще моделираме чрез класа `Playlist`, който има публичен конструктор `Playlist(String name, Map<Song, Integer> songs)`, описващ песните и броя харесвания на всяка от тях в дадената плейлиста.
 
-- Две песни са еднакви, ако заглавието и артистът съвпадат.
+Песен ще описваме с record-a `Song(String title, String artist, int duration)`, който трябва да има публичен каноничен конструктор. Две песни са еднакви, ако заглавието и артистът съвпадат.
+
+Броят харесвания на песен се поддържа отделно за всяка плейлиста. Ако добавите една и съща песен (по име и артист) в две плейлисти, тя може да има различен брой харесвания в контекста на всяка плейлиста. С други думи, харесването на песен в дадена плейлиста не влияе на броя харесвания на същата песен в друга плейлиста.
 
 ## Валидации
+
+- Продължителността трябва да е положително цяло число (> 0). Ако продължителността е невалидна, върнете:
+
+```json
+{"status":"ERROR","message":"Duration must be a positive integer"}
+```
 
 Уверете се, че всички команди са валидирани и връщат съобщение за грешка, ако форматът на командата не е валиден.
 
@@ -225,12 +288,10 @@ public record Song(String title, String artist, int duration, int likes) {}
 
 ```
 add-song MyFavorites
-```
-
-Отговор:
-
-```json
 {"status":"ERROR","message":"Usage: add-song <playlist_name> <song_title> <artist_name> <duration>"}
+
+some random command
+{"status":"ERROR","message":"Unknown command"}
 ```
 
 ## Тестване
@@ -246,8 +307,6 @@ add-song MyFavorites
 ## Примерна структура на проекта
 
 Добра практика при създаването на приложения тип клиент-сървър е да отделяте клиента и сървъра в отделни проекти. Това предотвратява грешки от типа, класове/интерфейси от клиента да се ползват от сървъра, или обратно. Също така, в реална ситуация, бихме искали да пакетираме и разпространяваме поотделно клиентската и сървърната част на нашето приложение. Като минимум, отделете имплементацията на клиента и сървъра в отделни пакети.
-
-В грейдъра качете папки `src` и `test`, ако имате тестове (или техен общ `zip` архив).
 
 ```
 src
