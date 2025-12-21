@@ -184,7 +184,7 @@ Mission(String id, String company, String location, LocalDate date, Detail detai
 public record Detail(String rocketName, String payload)
 ```
 
-който се състои от двa компонента, разделени в data set-a един от друг с "|". Форматът е: `<rocketName>|<payload>`.
+който се състои от двa компонента, разделени в data set-a един от друг с "|". Форматът е: `<rocketName> | <payload>`.
 
 Възможните резултати за всяка мисия са един от `Success, Failure, Partial Failure, Prelaunch Failure` и се моделират от следния `enum`:
 
