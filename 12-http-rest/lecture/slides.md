@@ -300,8 +300,8 @@ Last-Modified: Sat, 15 Nov 2025 12:45:26 GMT
 <br>
 
 ```http
-Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us)
-        AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405
+User-Agent: Mozilla/5.0 (iPad; CPU OS 18_7_3 like Mac OS X)
+              AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Mobile/15E148 Safari/604.1
 ```
 
 ---
