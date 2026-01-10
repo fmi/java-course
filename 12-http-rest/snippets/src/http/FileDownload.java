@@ -9,7 +9,7 @@ import java.nio.file.Path;
 public class FileDownload {
 
     static void main() throws Exception {
-        var url = "https://www.7-zip.org/a/7z1806-x64.exe";
+        var url = "https://www.7-zip.org/a/7z2501-x64.exe";
 
         var client = HttpClient.newBuilder().build();
         var request = HttpRequest.newBuilder().uri(URI.create(url)).build();

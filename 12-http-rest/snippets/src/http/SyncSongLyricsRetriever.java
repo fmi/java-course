@@ -13,14 +13,14 @@ record LyricsResponse(String lyrics) {
 public class SyncSongLyricsRetriever {
 
     private static final Gson GSON = new Gson();
+    private static final HttpClient HTTP_CLIENT = HttpClient.newHttpClient();
 
     public String getLyricsSync(String artist, String song) throws Exception {
-        HttpClient client = HttpClient.newHttpClient();
-
         URI uri = new URI("https", "api.lyrics.ovh", "/v1/" + artist + "/" + song, null);
+        System.out.println(uri);
         HttpRequest request = HttpRequest.newBuilder(uri).build();
 
-        String json = client.send(request, BodyHandlers.ofString()).body();
+        String json = HTTP_CLIENT.send(request, BodyHandlers.ofString()).body();
 
         LyricsResponse response = GSON.fromJson(json, LyricsResponse.class);
         return response.lyrics();
@@ -28,7 +28,7 @@ public class SyncSongLyricsRetriever {
 
     static void main() throws Exception {
         System.out.println(
-            new SyncSongLyricsRetriever().getLyricsSync("Adele", "Hello")
+            new SyncSongLyricsRetriever().getLyricsSync("Mac%20Miller", "2009")
         );
     }
 }
