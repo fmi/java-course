@@ -44,7 +44,7 @@
 
 Заявките към REST API-то изискват автентикация с API key, какъвто може да получите като се регистрирате [тук](https://www.coinapi.io/pricing?apikey).
 
-*Note*: Функционалността, която предлага  API-то, е доста обширна, но ние ще се фокусираме на описаната [тук](https://docs.coinapi.io/#list-all-assets). Тя би била достатъчна за функционалността на проекта. 
+*Note*: Функционалността, която предлага  API-то, е доста обширна, но ние ще се фокусираме на описаната [тук](https://docs.coinapi.io/exchange-rates-api/rest-api-realtime/list-all-assets ). Тя би била достатъчна за функционалността на проекта. 
 
 Следните endpoints от API-то биха ви били полезни:
 - **GET /v1/assets** - връща инфомрация за всички достъпи asset-и в JSON формат
@@ -61,20 +61,20 @@
     "asset_id": "BTC",
     "name": "Bitcoin",
     "type_is_crypto": 1,
-    "data_start": "2010-07-17",
-    "data_end": "2021-01-24",
-    "data_quote_start": "2014-02-24T17:43:05.0000000Z",
-    "data_quote_end": "2021-01-24T19:07:51.7954142Z",
-    "data_orderbook_start": "2014-02-24T17:43:05.0000000Z",
-    "data_orderbook_end": "2020-08-05T14:38:38.3413202Z",
-    "data_trade_start": "2010-07-17T23:09:17.0000000Z",
-    "data_trade_end": "2021-01-24T19:08:47.4460000Z",
-    "data_symbols_count": 46840,
-    "volume_1hrs_usd": 9160288508835.92,
-    "volume_1day_usd": 197928243055426.88,
-    "volume_1mth_usd": 11571260516151083.22,
-    "price_usd": 31304.448721266051267349441838,
-    "id_icon": "4caf2b16-a017-4e26-a348-2cea69c34cba"
+    "price_usd": 82721.0276408115,
+    "id_icon": "4caf2b16-a017-4e26-a348-2cea69c34cba",
+    "chain_addresses": [
+      {
+        "chain_id": "ARBITRUM",
+        "network_id": "MAINNET",
+        "address": "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f"
+      },
+      {
+        "chain_id": "ETHEREUM",
+        "network_id": "MAINNET",
+        "address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"
+      }
+    ]
   }
 ]
 ```
