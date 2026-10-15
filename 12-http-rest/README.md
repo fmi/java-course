@@ -1,1 +1,0 @@
-HTTP, REST и JSON
