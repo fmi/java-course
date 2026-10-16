@@ -12,31 +12,31 @@
 
 ## Java Development Kit
 
-За курса ще използваме **Java 25 (LTS)** — това е последната LTS версия, излязла на **16 септември 2025**.
+За курса ще използваме **Java 27** — последната feature версия, излязла на **15 септември 2026**.
 Можете да използвате отворените (OpenJDK) builds от официалния сайт или други доставчици.
 
-### Инсталация на JDK 25
+### Инсталация на JDK 27
 
 - **Windows**  
-  Използвайте официалния Oracle JDK инсталатор (.msi или .exe) и следвайте стъпките. ([docs.oracle.com](https://docs.oracle.com/en/java/javase/25/install/installation-jdk-microsoft-windows-platforms.html))  
+  Използвайте официалния Oracle JDK инсталатор (.msi или .exe) и следвайте стъпките. ([docs.oracle.com](https://docs.oracle.com/en/java/javase/27/install/installation-jdk-microsoft-windows-platforms.html))  
   Примерна команда за silent инсталация:  
   ```bat
-  msiexec.exe /i jdk-25_windows-x64_bin.msi /qn /L C:\path\install.log
+  msiexec.exe /i jdk-27_windows-x64_bin.msi /qn /L C:\path\install.log
   ```
 
 - **Linux**  
-  Изтеглете съответното `.tar.gz` от [jdk.java.net/25](https://jdk.java.net/25) или използвайте пакетен мениджър (ако е наличен).  
-  Разархивирайте, поставете в желана директория (например `/usr/lib/jvm/jdk-25`) и конфигурирайте символични линкове или environment променливи (`JAVA_HOME`, `PATH`).
+  Изтеглете съответното `.tar.gz` от [jdk.java.net/27](https://jdk.java.net/27) или използвайте пакетен мениджър (ако е наличен).  
+  Разархивирайте, поставете в желана директория (например `/usr/lib/jvm/jdk-27`) и конфигурирайте символични линкове или environment променливи (`JAVA_HOME`, `PATH`).
 
 - **macOS**  
-  Свалете `.tar.gz` или `.pkg` версия от [jdk.java.net/25](https://jdk.java.net/25) и инсталирайте.  
+  Свалете `.tar.gz` или `.pkg` версия от [jdk.java.net/27](https://jdk.java.net/27) и инсталирайте.  
   Ако използвате Homebrew или друг пакетен мениджър, може да се наложи да се конфигурира пряко.
 
   Инсталация през Homebrew:
   
   ```bash
-     brew install openjdk@25
-     sudo ln -sfn $(brew --prefix openjdk@25)/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-25.jdk
+     brew install openjdk@27
+     sudo ln -sfn $(brew --prefix openjdk@27)/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-27.jdk
   ```
 
 > **Бележка:** Уверете се, че няма по-стари версии на Java, които да пречат (напр. по-висок приоритет в PATH).
@@ -44,15 +44,15 @@
 След инсталация уверете се, че `java --version` показва нещо като:
 
   ```text
-  openjdk 25 2025‑09‑16
-  OpenJDK Runtime Environment (build 25+36‑3489)
-  OpenJDK 64‑Bit Server VM (build 25+36‑3489, mixed mode, sharing)
+  openjdk 27 2026‑09‑15
+  OpenJDK Runtime Environment (build 27+36‑3489)
+  OpenJDK 64‑Bit Server VM (build 27+36‑3489, mixed mode, sharing)
   ```
 ---
 
 ## Integrated Development Environments
 
-Може да използате което и да е _IDE_ или любимия ви текстов редактор. Ето инструкции за трите най-популярни IDE-та и как да ги настроите за JDK 25.
+Може да използате което и да е _IDE_ или любимия ви текстов редактор. Ето инструкции за трите най-популярни IDE-та и как да ги настроите за JDK 27.
 
 ### IntelliJ IDEA
 
@@ -61,10 +61,7 @@
 #### Инсталация на IntelliJ IDEA и Hello World
 
 - Официалната документация на _IntelliJ IDEA_ има подробни [стъпки за инсталация](https://www.jetbrains.com/help/idea/installation-guide.html)
-
-- [Кратко и полезно видео](https://www.youtube.com/watch?time_continue=245&v=c0efB_CKOYo) за създаване, пускане и конфигуриране на Hello World проект
-
-- Подобно на горното видео, но в текстов вариант: [създаване и стартиране на Hello World приложение](https://www.jetbrains.com/help/idea/creating-and-running-your-first-java-application.html)
+- Инструкции за създаване, пускане и конфигуриране на Hello World проект: [създаване и стартиране на Hello World приложение](https://www.jetbrains.com/help/idea/creating-and-running-your-first-java-application.html)
 
 #### Полезни IntelliJ IDEA Shortcuts
 
@@ -101,10 +98,10 @@ Beginner's Tutorial за дебъгване в _IntelliJ IDEA_ може да н�
 - Инсталирайте **Extension Pack for Java** от Marketplace.  
 - Документация: [Java in VS Code](https://code.visualstudio.com/docs/languages/java)
 
-#### Настройка да използва JDK 25
+#### Настройка да използва JDK 27
 
 1. `Ctrl+Shift+P` → `Java: Configure Java Runtime`  
-2. Добавете път към JDK 25 под „JDKs“  
+2. Добавете път към JDK 27 под „JDKs“  
 3. Настройте `"java.home"` в `settings.json`, ако е нужно.
 
 #### Полезни shortcut-и
@@ -130,15 +127,15 @@ Beginner's Tutorial за дебъгване в _IntelliJ IDEA_ може да н�
 #### Изтегляне и инсталация
 
 - Изтеглете **Eclipse IDE for Java Developers**: https://www.eclipse.org/downloads/  
-- Препоръчана версия: **Eclipse 2025‑09 (4.37)**  
-- За Java 25 поддръжка може да е нужен плъгин: [Java 25 Support for Eclipse 2025‑09](https://marketplace.eclipse.org/content/java-25-support-eclipse-2025-09-437)
+- Препоръчана версия: **Eclipse 2026‑09**  
+- За Java 27 поддръжка може да е нужен плъгин: [Java 27 Support for Eclipse](https://marketplace.eclipse.org/content/java-27-support-eclipse-2026-09-441)
 
-#### Настройка да използва JDK 25
+#### Настройка да използва JDK 27
 
-1. Preferences → Java → Installed JREs → Add → Standard VM → JDK 25  
+1. Preferences → Java → Installed JREs → Add → Standard VM → JDK 27  
 2. Маркирайте го като default  
-3. Project → Properties → Java Build Path → Libraries → JRE System Library → JDK 25  
-4. Project → Properties → Java Compiler → Compiler compliance level → 25
+3. Project → Properties → Java Build Path → Libraries → JRE System Library → JDK 27  
+4. Project → Properties → Java Compiler → Compiler compliance level → 27
 
 Един [подробен tutorial](https://www.vogella.com/tutorials/Eclipse/article.html) за подготовка на [Eclipse](https://www.eclipse.org/downloads/eclipse-packages/), включващ описание как да си го инсталирате и как да направите първия си проект.
 
@@ -181,17 +178,17 @@ Beginner's Tutorial за дебъгване в _IntelliJ IDEA_ може да н�
 
 | Проблем | Причина / симптом | Решение |
 |---|---|---|
-| `java --version` не показва 25 | PATH сочи към друга версия | Задайте `JAVA_HOME` и PATH да сочат към JDK 25 |
-| IDE не намира JDK 25 | Не е добавен в настройките | Добавете JDK 25 в IDE настройките |
-| “Unsupported source release: 25” | Стар компилатор | Обновете IDE / инсталирайте Java 25 support |
-| Eclipse стартира с грешен JDK | IDE се стартира с друга JVM | Добавете `-vm` път към JDK 25 в `eclipse.ini` |
+| `java --version` не показва 27 | PATH сочи към друга версия | Задайте `JAVA_HOME` и PATH да сочат към JDK 27 |
+| IDE не намира JDK 27 | Не е добавен в настройките | Добавете JDK 27 в IDE настройките |
+| “Unsupported source release: 27” | Стар компилатор | Обновете IDE / инсталирайте Java 27 support |
+| Eclipse стартира с грешен JDK | IDE се стартира с друга JVM | Добавете `-vm` път към JDK 27 в `eclipse.ini` |
 | VS Code не намира JDK | `java.home` не е настроено | Добавете `"java.home"` в settings.json |
-| IntelliJ не открива JDK | Не е конфигуриран Project SDK | File → Project Structure → добавете JDK 25 |
+| IntelliJ не открива JDK | Не е конфигуриран Project SDK | File → Project Structure → добавете JDK 27 |
 
 ---
 
 ## Online Auto Grader
 
-Онлайн системата за автоматично тестване e [codepost.it](https://codepost.io/).
+Онлайн системата за автоматично тестване e [mjt.codes](https://mjt.codes/).
 
 Ще получите от екипа на курса указания за регистрация и насоки как се използва.
