@@ -52,7 +52,7 @@ public class StringPoolMentalModel {
 
         System.out.println(typedByUser.equals(expected));
         // PREDICT: ____   WHY: ____
-    }
+    } 
 
     // 4) 100yo claimed on the lecture:
     //
@@ -82,6 +82,30 @@ public class StringPoolMentalModel {
         // PREDICT: ____   WHY: ____
 
         System.out.println(resultA.intern() == literalUpper);
+        // PREDICT: ____   WHY: ____
+    }
+
+    // 5) Compile-time vs run-time string concatenation resolution
+    static void compileVsRunTimeConcatResolution() {
+        System.out.println("=== 5. compile-time vs run-time ===");
+
+        String literalOne = "Hello" + " " + "World"; // pooled, two literals
+        String literalTwo = "Hello World"; // pooled
+
+        String literalThree = "Hello " + 1; // pooled, two literals
+        String literalFour = "Hello 1"; // pooled
+
+        String literalFive = "Hello" + " ";
+        literalFive += "World"; // heap, expression includes a variable
+        String literalSix = "Hello World"; // pooled
+        
+        System.out.println(literalOne == literalTwo);
+        // PREDICT: ____   WHY: ____
+        
+        System.out.println(literalThree == literalFour);
+        // PREDICT: ____   WHY: ____
+
+        System.out.println(literalFive == literalSix);
         // PREDICT: ____   WHY: ____
     }
 
