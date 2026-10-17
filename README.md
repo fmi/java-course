@@ -8,7 +8,8 @@
 
 | # | Тема | Лекция | Видео | Дата | Упражение | Видео | Дата |
 | - | :--- | :----- | :---- | :--- | :-------- | :---- | :--- |
-| 1 | Въведение в Java | [слайдове](https://fmi.github.io/java-course/01-intro-to-java/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/orFgA62npbM) | 14.10 |  |  |  |
+| 1 | Въведение в Java | [слайдове](https://fmi.github.io/java-course/01-intro-to-java/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/orFgA62npbM) | 14.10 | [задача](https://github.com/fmi/java-course/tree/master/01-intro-to-java/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/9y2lDh_VX-A) | 17.10 |
+
 
 ### Материали от предходни издания
 
