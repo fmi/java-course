@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java Exception Flow Visualization</title>
+<style>
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+    margin: 0;
+    height: 100vh;
+  }
+  /* safety net: on short embeds, shrink code a touch so it never needs to scroll.
+     Normal projector (16:9 ≈ 660-680px usable) keeps the full 13px. */
+  @media (max-height: 620px) {
+    .code-panel { font-size: 12px; line-height: 1.3; padding: 10px 16px; }
+    .layer { margin: 11px 0 4px; }
+  }
+  @media (max-height: 540px) {
+    .code-panel { font-size: 11px; line-height: 1.25; }
+  }
+  header {
+    background: #1e1e1e;
+    color: white;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header .btns { display:flex; gap:8px; align-items:center; }
+  #nextBtn, #resetBtn {
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  #nextBtn:hover, #resetBtn:hover { background: #005fa3; }
+  #resetBtn { background:#444; }
+  #resetBtn:hover { background:#333; }
+  header label { font-size:13px; display:flex; align-items:center; gap:6px; cursor:pointer; }
+  main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+  .code-panel {
+    width: 48%;
+    background: #1e1e1e;
+    color: #eee;
+    padding: 14px 18px;
+    font-size: 13px;
+    line-height: 1.35;
+    overflow: hidden;
+  }
+  .code-panel pre { margin:0; }
+  .code-line {
+    cursor: pointer;
+    padding: 1px 8px;
+    border-radius: 4px;
+    position: relative;
+    white-space: pre;
+    display:block;
+  }
+  /* blank spacer lines (method separators) take half height */
+  .code-line.blank { height:0.7em; padding:0; }
+  .code-line:hover { background: rgba(255,255,255,0.12); }
+  .code-line::before {
+    content:"";
+    position:absolute;
+    left:-10px; top:6px;
+    width:7px; height:7px;
+    border-radius:50%;
+    background:transparent;
+    transition:background 0.2s;
+  }
+  .active-line { background:#005cc5; color:white; }
+  .active-line::before { background:#ff3b3b; }
+  .throw-line { background:#7a1f1f; color:white; }
+  .throw-line::before { background:#ff3b3b; }
+  .catch-line { background:#1f6b45; color:white; }
+  .catch-line::before { background:#ff3b3b; }
+  /* dimmed = unreachable code (IDE-style grey); mute token colors too */
+  .dim-line { opacity:0.4; }
+  .dim-line .kw, .dim-line .ty, .dim-line .str, .dim-line .cm { color:#777 !important; }
+
+  /* layer separator — dotted line + label, NOT a source comment */
+  .layer {
+    display:flex; align-items:center; gap:8px;
+    color:#9aa0a6; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+    margin:14px 0 5px;
+  }
+  .layer::after { content:""; flex:1; border-top:1px dotted #555; }
+  .layer.first { margin-top:2px; }
+
+  .kw{color:#c586c0;} .ty{color:#4ec9b0;} .str{color:#ce9178;} .cm{color:#6a9955;}
+
+  .diagram {
+    width:52%;
+    display:flex;
+    justify-content:space-between;
+    padding:20px 18px;
+    box-sizing:border-box;
+  }
+  .column{flex:0 0 49%;min-width:0;box-sizing:border-box;border-left:2px solid #ccc;padding:0 10px;display:flex;flex-direction:column-reverse;}
+  .column h2{text-align:center;font-size:16px;border-bottom:1px solid #ddd;margin-bottom:10px;}
+  .frame{
+    border:1px solid #888;
+    border-radius:6px;
+    margin:8px 0;
+    padding:6px 10px;
+    background:#fff;
+    overflow-wrap:anywhere;
+  }
+  .frame .tag{ display:block; font-size:11px; color:#888; margin-top:2px; }
+  .frame.catch{ border-color:#007a00; background:#e5ffe5; }
+  .frame.jvm{ border-style:dashed; border-color:#888; background:#f0f0f0; }
+  .hidden{display:none;}
+
+  /* exception zone = heap-like area; boxes persist, wrapper references original */
+  .exzone{ flex:0 0 49%; min-width:0; box-sizing:border-box; padding:0 10px; border-left:2px solid #ccc; display:flex; flex-direction:column; }
+  .exzone h2{ text-align:center;font-size:16px;border-bottom:1px solid #ddd;margin-bottom:10px; }
+  .exbox{
+    border:1px solid #888; border-radius:6px; margin:8px 0; padding:6px 10px; background:#fff;
+    transition:all .2s; overflow-wrap:anywhere; font-size:13px; line-height:1.3;
+  }
+  .exbox .exttl{ font-weight:bold; font-size:13px; white-space:nowrap; }
+  .exbox.live    { background:#ffecec; border-color:#ff3b3b; }
+  .exbox.live .exttl    { color:#c0392b; }
+  .exbox.wrapped { background:#fff4e0; border-color:#d08700; }
+  .exbox.wrapped .exttl { color:#b36b00; }
+  .exbox.handled { background:#e5ffe5; border-color:#007a00; }
+  .exbox.handled .exttl { color:#007a00; }
+  /* the 'cause →' reference line pointing from wrapper to the original box */
+  .causeref{ font-size:12px; color:#555; margin:2px 0 8px; padding-left:6px; }
+  .causeref .arrow{ color:#d08700; font-weight:bold; }
+  .trace{ font-size:10px; line-height:1.35; color:#c0392b;
+          white-space:pre-wrap; overflow-wrap:anywhere; word-break:break-word;
+          background:#ffecec; border:1px solid #ff3b3b; border-radius:6px;
+          padding:7px 9px; margin-top:8px; }
+</style>
+</head>
+<body>
+<header>
+  <span>Java Exception Tracer</span>
+  <div class="btns">
+    <label><input type="checkbox" id="uncaught"> uncaught path</label>
+    <button id="resetBtn">⟲ Reset</button>
+    <button id="nextBtn">▶ Next Step</button>
+  </div>
+</header>
+
+<main>
+<div class="code-panel" id="codePanel"></div>
+
+<div class="diagram">
+  <div class="column" id="callStack">
+    <h2>Call Stack</h2>
+  </div>
+  <div class="exzone" id="exzone">
+    <h2>Exceptions (heap)</h2>
+    <div id="exhost"></div>
+    <div id="trace"></div>
+  </div>
+</div>
+</main>
+
+<script>
+/* ---------- source, grouped by architectural layer ----------
+   Layer labels are rendered as dotted separators (structural), not code comments.
+   Layer → method mapping:
+     Presentation layer  = main
+     Business logic layer = loadOrder
+     Persistence layer    = readFile + parseAmount  */
+const PANEL = [
+  {layer:'Presentation layer'},
+  {id:'main0', t:'<span class="kw">void</span> main(String[] args) {'},
+  {id:'main1', t:'    service.loadOrder(line);'},
+  {id:'main2', t:'}'},
+  {layer:'Business logic layer'},
+  {id:'svc0', t:'<span class="kw">void</span> loadOrder(String line) {'},
+  {id:'svc1', t:'    <span class="kw">try</span> {'},
+  {id:'svc2', t:'        repo.readFile(line);'},
+  {id:'svc3', t:'    } <span class="kw">catch</span> (<span class="ty">OrderLoadException</span> e) {'},
+  {id:'svc4', t:'        log.error(<span class="str">"skip order"</span>, e); <span class="cm">// assume it exists</span>'},
+  {id:'svc5', t:'    }'},
+  {id:'svc6', t:'}'},
+  {layer:'Persistence layer'},
+  {id:'repo0', t:'<span class="kw">void</span> readFile(String line) {'},
+  {id:'repo1', t:'    <span class="kw">try</span> {'},
+  {id:'repo2', t:'        parseAmount(line);'},
+  {id:'repo3', t:'    } <span class="kw">catch</span> (<span class="ty">NumberFormatException</span> nfe) {'},
+  {id:'repo4', t:'        <span class="kw">throw new</span> <span class="ty">OrderLoadException</span>(<span class="str">"bad line"</span>, nfe);'},
+  {id:'repo5', t:'    } <span class="kw">finally</span> {'},
+  {id:'repo6', t:'        <span class="cm">// some cleanup logic, e.g. file.close()</span>'},
+  {id:'repo7', t:'    }'},
+  {id:'repo8', t:'}'},
+  {id:'gap1', t:''},
+  {id:'prs0', t:'<span class="kw">int</span> parseAmount(String line) {'},
+  {id:'prs1', t:'    <span class="kw">return</span> <span class="ty">Integer</span>.parseInt(line); <span class="cm">// line == "12.50x"</span>'},
+  {id:'prs2', t:'}'},
+];
+
+const F = {
+  main:{sig:'main(args)', tag:'presentation'},
+  svc: {sig:'loadOrder(line)', tag:'business logic'},
+  repo:{sig:'readFile(line)', tag:'persistence'},
+  prs: {sig:'parseAmount(line)', tag:'persistence'},
+  jvm: {sig:'Java Virtual Machine', tag:'uncaught exception', jvm:true},
+};
+
+/* Exception objects. `ex` = array of boxes currently on the heap (order = bottom→top in render).
+   A box with cause draws a 'cause →' reference to the box named in `cause`. */
+const NFE  ={id:'nfe', kind:'live',    title:'NumberFormatException', msg:'For input string: "12.50x"'};
+const NFE_D={id:'nfe', kind:'live',    title:'NumberFormatException', msg:'For input string: "12.50x"', dim:true};
+const OLE  ={id:'ole', kind:'wrapped', title:'OrderLoadException',    msg:'"bad line"', cause:'nfe'};
+const OLE_H={id:'ole', kind:'handled', title:'OrderLoadException',    msg:'handled — logged', cause:'nfe'};
+const NPE  ={id:'npe', kind:'live',    title:'NullPointerException',  msg:'Cannot invoke "String.length()" because "line" is null'};
+
+/* ---------- CAUGHT storyline (follows the professor's click script 2.1–2.10 + finally) ---------- */
+const CAUGHT = [
+  // 2.1 initial: main body, call line highlighted; main frame already on stack
+  {line:'main1', stack:['main']},
+  // 2.2 click1: into loadOrder, on repo.readFile; push loadOrder
+  {line:'svc2', stack:['main','svc']},
+  // 2.3 click2: into readFile, on parseAmount; push readFile
+  {line:'repo2', stack:['main','svc','repo']},
+  // 2.4 click3: into parseAmount, on Integer.parseInt; push parseAmount
+  {line:'prs1', stack:['main','svc','repo','prs']},
+  // 2.5 click4: NumberFormatException thrown — appears on heap
+  {line:'prs1', throw:'prs1', stack:['main','svc','repo','prs'], ex:[NFE]},
+  // 2.6 click5: unwind — highlight back in readFile at the parseAmount call line; parseAmount frame gone
+  {line:'repo2', stack:['main','svc','repo'], ex:[NFE]},
+  // (catch matches in readFile)
+  {line:'repo3', catch:'repo3', stack:['main','svc','repo'], catchFrame:'repo', ex:[NFE]},
+  // 2.7 click6: highlight the throw-new-OrderLoadException line — OLE NOT yet on heap (NFE only)
+  {line:'repo4', throw:'repo4', stack:['main','svc','repo'], ex:[NFE]},
+  // click: NOW the throw executes → OrderLoadException is created on the heap, referencing NFE
+  {line:'repo4', throw:'repo4', stack:['main','svc','repo'], ex:[NFE_D, OLE]},
+  // finally (correct Java: runs during unwinding, after catch body throws, before frame pops)
+  {line:'repo6', stack:['main','svc','repo'], ex:[NFE_D, OLE]},
+  // 2.8 click7: back in loadOrder at the readFile call line; OLE now travelling, references NFE
+  {line:'svc2', stack:['main','svc'], ex:[NFE_D, OLE]},
+  {line:'svc3', catch:'svc3', stack:['main','svc'], catchFrame:'svc', ex:[NFE_D, OLE]},
+  // 2.9 click8: log.error handler line
+  {line:'svc4', catch:'svc4', stack:['main','svc'], ex:[NFE_D, OLE_H]},
+  // 2.10 click9: back to main; loadOrder frame removed
+  {line:'main1', stack:['main'], ex:[NFE_D, OLE_H]},
+];
+
+/* ---------- UNCAUGHT storyline (toggle) ----------
+   parseAmount throws NullPointerException (different, UNCAUGHT exception).
+   The code is shown with:
+     - parseAmount line swapped to the NPE-throwing statement (codeSwap on prs1)
+     - both catch lines dimmed grey like unreachable code (dim: [...]), since neither
+       catch (NumberFormatException) nor catch (OrderLoadException) matches an NPE →
+       the exception passes straight through every layer up to main, then the JVM. */
+const U_SWAP = {prs1:'    <span class="kw">return</span> line.length();   <span style="color:#6a6a6a">// line == null</span>'};
+const U_DIM  = ['repo3','repo4','svc3','svc4'];   // catch bodies that never run for an NPE
+const u = o => Object.assign({codeSwap:U_SWAP, dim:U_DIM}, o);
+const UNCAUGHT = [
+  u({line:'main1', stack:['main']}),
+  u({line:'svc2', stack:['main','svc']}),
+  u({line:'repo2', stack:['main','svc','repo']}),
+  u({line:'prs1', stack:['main','svc','repo','prs']}),
+  u({line:'prs1', throw:'prs1', stack:['main','svc','repo','prs'], ex:[NPE]}),
+  // no matching catch in readFile → passes through, back at its call site then keeps unwinding
+  u({line:'repo2', stack:['main','svc','repo'], ex:[NPE]}),
+  // finally STILL runs during unwinding, even though the NPE is not caught here
+  u({line:'repo6', stack:['main','svc','repo'], ex:[NPE]}),
+  u({line:'repo2', stack:['main','svc'], ex:[NPE]}),            // readFile frame popped (after finally)
+  u({line:'svc2', stack:['main','svc'], ex:[NPE]}),            // back in loadOrder — catch doesn't match
+  u({line:'svc2', stack:['main'], ex:[NPE]}),                  // loadOrder frame popped
+  u({line:'main1', stack:['main'], ex:[NPE]}),                 // back in main — no catch here either
+  u({line:null, stack:['jvm'], ex:[NPE]}),                     // main popped → only JVM left
+  u({line:null, stack:['jvm'], crash:true, ex:[NPE]}),         // JVM prints trace, kills thread
+];
+
+const STACKTRACE =
+`Exception in thread "main" java.lang.NullPointerException:
+        Cannot invoke "String.length()" because "line" is null
+    at OrderRepository.parseAmount(OrderRepository.java:21)
+    at OrderRepository.readFile(OrderRepository.java:12)
+    at OrderService.loadOrder(OrderService.java:9)
+    at OrderApp.main(OrderApp.java:7)`;
+
+/* ---------- render ---------- */
+const codePanel=document.getElementById('codePanel');
+const stackEl=document.getElementById('callStack');
+const exhost=document.getElementById('exhost');
+const traceEl=document.getElementById('trace');
+let steps=CAUGHT, i=0;
+
+// build code panel with layer separators + code lines
+codePanel.innerHTML = PANEL.map((row,idx)=>{
+  if(row.layer){
+    return `<div class="layer${idx===0?' first':''}">${row.layer}</div>`;
+  }
+  const blank = !row.t ? ' blank' : '';
+  return `<span class="code-line${blank}" data-step="${row.id}">${row.t||' '}</span>`;
+}).join('');
+const lineEls=[...codePanel.querySelectorAll('.code-line')];
+const ORIG={}; lineEls.forEach(el=>ORIG[el.dataset.step]=el.innerHTML);  // remember original line HTML
+const BLANK=new Set(PANEL.filter(r=>r.id && !r.t).map(r=>r.id));         // spacer line ids
+
+function renderLines(step){
+  // reset: original text, no highlight, no dim (preserve the .blank spacer class)
+  lineEls.forEach(el=>{
+    el.className = BLANK.has(el.dataset.step) ? 'code-line blank' : 'code-line';
+    el.innerHTML=ORIG[el.dataset.step];
+  });
+  if(!step) return;
+  // per-step code swap (e.g. uncaught path shows a different parseAmount line)
+  if(step.codeSwap){
+    for(const id in step.codeSwap){
+      const el=lineEls.find(e=>e.dataset.step===id);
+      if(el) el.innerHTML=step.codeSwap[id];
+    }
+  }
+  // dim lines (catch bodies that never run for this exception) — grey, like unreachable code
+  if(step.dim){
+    step.dim.forEach(id=>{ const el=lineEls.find(e=>e.dataset.step===id); if(el) el.classList.add('dim-line'); });
+  }
+  const set=(id,cls)=>{const el=lineEls.find(e=>e.dataset.step===id); if(el) el.classList.add(cls);};
+  if(step.throw) set(step.throw,'throw-line');
+  else if(step.catch) set(step.catch,'catch-line');
+  else if(step.line) set(step.line,'active-line');
+}
+function renderStack(step){
+  stackEl.innerHTML='<h2>Call Stack</h2>';
+  if(!step) return;
+  step.stack.forEach(k=>{
+    const f=F[k];
+    const d=document.createElement('div');
+    d.className='frame'+(f.jvm?' jvm':'')+(step.catchFrame===k?' catch':'');
+    d.innerHTML=`${f.sig}<span class="tag">${f.tag}</span>`;
+    stackEl.appendChild(d);
+  });
+}
+function exBoxHtml(e){
+  // a wrapper with cause draws a reference line to the original box id
+  const causeLine = e.cause
+    ? `<div class="causeref"><span class="arrow">cause →</span> ${e.cause==='nfe'?'NumberFormatException':e.cause}</div>`
+    : '';
+  const dim = e.dim ? ' style="opacity:.6"' : '';
+  return `<div class="exbox ${e.kind}" id="ex-${e.id}"${dim}>
+    <span class="exttl">${e.title}</span><br>${e.msg||''}
+    ${causeLine}
+  </div>`;
+}
+function renderEx(step){
+  traceEl.innerHTML='';
+  if(!step || !step.ex || !step.ex.length){ exhost.innerHTML=''; return; }
+  // render in array order (original first/bottom, wrapper second/top)
+  exhost.innerHTML = step.ex.map(exBoxHtml).join('');
+  if(step.crash){ traceEl.innerHTML=`<div class="trace">${STACKTRACE}</div>`; }
+}
+function render(){
+  const step=steps[i];
+  renderLines(step); renderStack(step); renderEx(step);
+  document.getElementById('nextBtn').disabled=(i>=steps.length-1);
+}
+function reset(){ i=0; render(); }
+
+document.getElementById('nextBtn').addEventListener('click',()=>{ if(i<steps.length-1){i++;render();} });
+document.getElementById('resetBtn').addEventListener('click',reset);
+document.getElementById('uncaught').addEventListener('change',e=>{ steps=e.target.checked?UNCAUGHT:CAUGHT; reset(); });
+codePanel.addEventListener('click',e=>{
+  const el=e.target.closest('.code-line'); if(!el) return;
+  const id=el.dataset.step;
+  const idx=steps.findIndex(s=>s.line===id||s.throw===id||s.catch===id);
+  if(idx>=0){ i=idx; render(); }
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'){ if(i<steps.length-1){i++;render();} }
+  if(e.key==='ArrowLeft'){ if(i>0){i--;render();} }
+});
+render();
+</script>
+</body>
+</html>

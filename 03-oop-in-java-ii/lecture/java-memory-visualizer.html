@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java Memory Visualizer</title>
+<style>
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+    margin: 0;
+    height: 100vh;
+  }
+  header {
+    background: #1e1e1e;
+    color: white;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #nextBtn {
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  #nextBtn:hover { background: #005fa3; }
+  main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+  .code-panel {
+    width: 50%;
+    background: #1e1e1e;
+    color: #eee;
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.3;
+    overflow: hidden;
+  }
+  .code-panel pre { margin:0; }
+  .code-line {
+    cursor: pointer;
+    padding: 1px 8px;
+    border-radius: 4px;
+    position: relative;
+    white-space: pre;
+    display: block;
+  }
+  .code-line.blank { height:0.7em; padding:0; }
+  .code-line:hover { background: rgba(255,255,255,0.12); }
+  .code-line::before {
+    content:"";
+    position:absolute;
+    left:-10px; top:6px;
+    width:7px; height:7px;
+    border-radius:50%;
+    background:transparent;
+    transition:background 0.2s;
+  }
+  .active-line { background:#005cc5; color:white; }
+  .active-line::before { background:#ff3b3b; }
+
+  /* syntax highlighting — identical palette to exception-visualizer */
+  .kw{color:#c586c0;} .ty{color:#4ec9b0;} .str{color:#ce9178;}
+
+  .diagram {
+    width:50%;
+    display:flex;
+    justify-content:space-between;
+    padding:20px 12px;
+    box-sizing:border-box;
+  }
+  .column{flex:1 1 0;min-width:0;box-sizing:border-box;border-left:2px solid #ccc;padding:0 7px;display:flex;flex-direction:column-reverse;}
+  .column h2{text-align:center;font-size:14px;border-bottom:1px solid #ddd;margin-bottom:10px;}
+  .frame,.heap-object,.stack-block{
+    border:1px solid #888;
+    border-radius:6px;
+    margin:7px 0;
+    padding:5px 8px;
+    background:#fff;
+    overflow-wrap:anywhere;
+    font-size:12px;
+    line-height:1.35;
+  }
+  .hidden{display:none;}
+
+  /* reference colors */
+  .string-ref { color:#007a00; font-weight:bold; }
+  .string-box { background:#e5ffe5; }
+  .person-ref { color:#003cff; font-weight:bold; }
+  .person-box { background:#e5ebff; }
+
+  /* safety net: shrink code a touch on short/narrow embeds so it never scrolls */
+  @media (max-height: 620px) {
+    .code-panel { font-size: 12px; line-height: 1.4; padding:10px 16px; }
+  }
+  @media (max-height: 540px) {
+    .code-panel { font-size: 11px; line-height: 1.3; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <span>Java Memory Tracer</span>
+  <button id="nextBtn">▶ Next Step</button>
+</header>
+
+<main>
+<div class="code-panel"><pre><span class="code-line" data-step="p1"><span class="kw">public class</span> <span class="ty">Person</span> {</span><span class="code-line" data-step="p2">    <span class="kw">int</span> id;</span><span class="code-line" data-step="p3">    <span class="ty">String</span> name;</span><span class="code-line" data-step="p4">    <span class="kw">public</span> Person(<span class="kw">int</span> id, <span class="ty">String</span> name) {</span><span class="code-line" data-step="p5">        <span class="kw">this</span>.id = id;</span><span class="code-line" data-step="p6">        <span class="kw">this</span>.name = name;</span><span class="code-line" data-step="p7">    }</span><span class="code-line" data-step="p8">}</span><span class="code-line blank" data-step="gap"> </span><span class="code-line" data-step="b1"><span class="kw">public class</span> <span class="ty">PersonBuilder</span> {</span><span class="code-line" data-step="b2">    <span class="kw">static</span> <span class="ty">Person</span> buildPerson(<span class="kw">int</span> id, <span class="ty">String</span> name) {</span><span class="code-line" data-step="b3">        <span class="kw">return new</span> <span class="ty">Person</span>(id, name);</span><span class="code-line" data-step="b4">    }</span><span class="code-line" data-step="m1">    <span class="kw">public static void</span> main(<span class="ty">String</span>[] args) {</span><span class="code-line" data-step="m2">        <span class="kw">int</span> id = <span class="str">23</span>;</span><span class="code-line" data-step="m3">        <span class="ty">String</span> name = <span class="str">"John"</span>;</span><span class="code-line" data-step="m4">        <span class="ty">Person</span> person = <span class="kw">null</span>;</span><span class="code-line" data-step="m5">        person = buildPerson(id, name);</span><span class="code-line" data-step="m6">    }</span><span class="code-line" data-step="b5">}</span></pre></div>
+
+<div class="diagram">
+  <div class="column" id="callStack">
+    <h2>Call Stack</h2>
+    <div id="cs-main" class="frame hidden">main(String[])</div>
+    <div id="cs-build" class="frame hidden">buildPerson(...)</div>
+    <div id="cs-person" class="frame hidden">Person(...)</div>
+  </div>
+
+  <div class="column" id="stackMemory">
+    <h2>Stack Memory</h2>
+    <div id="st-main-id" class="stack-block hidden"><b>main</b><br>id = 23</div>
+    <div id="st-main-name" class="stack-block hidden"><b>main</b><br>id = 23<br>name → <span class="string-ref">"John"</span></div>
+    <div id="st-main-person-null" class="stack-block hidden"><b>main</b><br>id = 23<br>name → <span class="string-ref">"John"</span><br>person = null</div>
+    <div id="st-main-person-ref" class="stack-block hidden"><b>main</b><br>id = 23<br>name → <span class="string-ref">"John"</span><br>person → <span class="person-ref">Person</span></div>
+    <div id="st-build" class="stack-block hidden"><b>buildPerson</b><br>id = 23<br>name → <span class="string-ref">"John"</span></div>
+    <div id="st-person-id" class="stack-block hidden"><b>Person constructor</b><br>this → <span class="person-ref">Person</span><br>id = 23</div>
+    <div id="st-person-name" class="stack-block hidden"><b>Person constructor</b><br>this → <span class="person-ref">Person</span><br>id = 23<br>name → <span class="string-ref">"John"</span></div>
+  </div>
+
+  <div class="column" id="heapSpace">
+    <h2>Heap Space</h2>
+    <div id="hp-string" class="heap-object hidden string-box"><b>String pool</b><br><span class="string-ref">"John"</span></div>
+    <div id="hp-person-empty" class="heap-object hidden person-box"><b>Person object</b><br>id = 23<br>name = null</div>
+    <div id="hp-person-full" class="heap-object hidden person-box"><b>Person object</b><br>id = 23<br>name → <span class="string-ref">"John"</span></div>
+  </div>
+</div>
+</main>
+
+<script>
+const lines=document.querySelectorAll('.code-line');
+let stepIndex=0;
+
+const steps = [
+  { line:'m2', stack:['cs-main','st-main-id'], heap:[] },
+  { line:'m3', stack:['cs-main','st-main-name'], heap:['hp-string'] },
+  { line:'m4', stack:['cs-main','st-main-person-null'], heap:['hp-string'] },
+  { line:'m5', stack:['cs-main','st-main-person-null'], heap:['hp-string'] },
+  { line:'b2', stack:['cs-main','cs-build','st-main-person-null','st-build'], heap:['hp-string'] },
+  { line:'b3', stack:['cs-main','cs-build','st-main-person-null','st-build'], heap:['hp-string'] },
+  { line:'p4', stack:['cs-main','cs-build','cs-person','st-main-person-null','st-build','st-person-id'], heap:['hp-string','hp-person-empty'] },
+  { line:'p5', stack:['cs-main','cs-build','cs-person','st-main-person-null','st-build','st-person-id'], heap:['hp-string','hp-person-empty'] },
+  { line:'p6', stack:['cs-main','cs-build','cs-person','st-main-person-null','st-build','st-person-name'], heap:['hp-string','hp-person-full'] },
+  { line:'b3', stack:['cs-main','cs-build','st-main-person-null','st-build'], heap:['hp-string','hp-person-full'] },
+  { line:'m5', stack:['cs-main','st-main-person-ref'], heap:['hp-string','hp-person-full'] },
+  { line:'m6', stack:['cs-main','st-main-person-ref'], heap:['hp-string','hp-person-full'] }
+];
+
+function hideAll(){
+  document.querySelectorAll('.frame,.stack-block,.heap-object').forEach(e=>e.classList.add('hidden'));
+}
+function renderStep(step){
+  hideAll();
+  [...(step.stack||[]),(step.heap||[])].flat().forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.classList.remove('hidden');
+  });
+  lines.forEach(l=>l.classList.remove('active-line'));
+  const target = Array.from(lines).find(l=>l.dataset.step===step.line);
+  if(target) target.classList.add('active-line');
+}
+
+document.getElementById('nextBtn').addEventListener('click',()=>{
+  if(stepIndex>=steps.length) return;
+  renderStep(steps[stepIndex]);
+  stepIndex++;
+});
+
+lines.forEach(l=>{
+  l.addEventListener('click',e=>{
+    const el=e.target.closest('.code-line');
+    const id=el && el.dataset.step;
+    const idx=steps.findIndex(s=>s.line===id);
+    if(idx>=0){renderStep(steps[idx]);stepIndex=idx+1;}
+  });
+});
+</script>
+</body>
+</html>
