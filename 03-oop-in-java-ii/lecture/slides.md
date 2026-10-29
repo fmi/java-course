@@ -417,7 +417,7 @@ public final class FXOrderClassic {
     public FXOrderClassic(int units, CurrencyPair pair, Side side,
                                double price, LocalDateTime sentAt) {
         this.units = units;
-        this.pair = pair; // CurrencyPair is an enum, e.g. CurrencyPair.BGN_TO_EUR
+        this.pair = pair; // CurrencyPair is an enum, e.g. CurrencyPair.USD_TO_EUR
         this.side = side; // Side is an enum, e.g. Side.BID or Side.ASK
         this.price = price;
         this.sentAt = sentAt;
