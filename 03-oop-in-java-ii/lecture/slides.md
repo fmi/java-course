@@ -994,7 +994,7 @@ try {
 
 <div style="background:#eef3f7; border-left:5px solid #3b6ea5; padding:6px 14px; margin-top:32px; border-radius:6px;">
 🧠 <b>Unlearn (C++):</b> няма checked/unchecked разделение; сигнатурата не изброява хвърляните типове (<code>noexcept</code> е обратното — обещава, че НЕ хвърля).<br/>
-<b>Relearn (Java):</b> checked exceptions са <b>наложени от компилатора</b> — или ги лови, или ги декларира в <code>throws</code>.
+<b>Relearn (Java):</b> checked exceptions са <b>наложени от компилатора</b> — или ги лови, или ги декларирай в <code>throws</code>.
 </div>
 
 ---
