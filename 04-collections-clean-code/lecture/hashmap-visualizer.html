@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java HashMap Visualizer</title>
+<style>
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+    margin: 0;
+    height: 100vh;
+  }
+  header {
+    background: #1e1e1e;
+    color: white;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header .btns { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  header input[type=text] {
+    font-family: inherit;
+    font-size: 13px;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 5px;
+    width: 120px;
+  }
+  #addBtn, #resetBtn, #attackBtn {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  #addBtn { background: #007acc; }
+  #addBtn:hover { background: #005fa3; }
+  #resetBtn { background: #444; }
+  #resetBtn:hover { background: #333; }
+  #attackBtn { background: #d08700; }
+  #attackBtn:hover { background: #b36b00; }
+
+  main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* left: metrics + the one explanatory line, dark like the W3 code panels */
+  .side {
+    width: 30%;
+    background: #1e1e1e;
+    color: #eee;
+    padding: 16px 18px;
+    font-size: 13px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .side h2 { font-size: 14px; margin: 0 0 12px; font-weight: 500; color:#fff; }
+  .metric { margin: 7px 0; }
+  .metric .label { color:#9aa0a6; }
+  .metric .val { color:#4ec9b0; font-weight:bold; }
+  .metric .val.hot { color:#ff6b6b; }      /* steps spike red under attack */
+  .kw { color:#c586c0; } .ty { color:#4ec9b0; } .str { color:#ce9178; }
+  .note {
+    margin-top: 18px; padding: 10px 12px; font-size: 12px; line-height:1.45;
+    background: rgba(255,255,255,0.06); border-left: 3px solid #007acc; border-radius: 4px;
+    color:#cfd3d6;
+  }
+  .note.warn { border-left-color:#d08700; }
+  .lastop { margin-top:14px; font-size:12px; color:#ce9178; white-space:pre-wrap; min-height:3.2em; }
+
+  /* right: the bucket array */
+  .diagram {
+    width: 70%;
+    padding: 16px 18px;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .diagram h2 { font-size: 15px; text-align:center; border-bottom:1px solid #ddd;
+                margin: 0 0 10px; padding-bottom: 6px; flex: 0 0 auto; }
+  .buckets { display: flex; flex-direction: column; gap: 3px; flex: 1 1 0; min-height: 0;
+             justify-content: space-between; overflow-y: auto; }
+  .bucket {
+    display: flex; align-items: center; gap: 8px;
+    border: 1px solid #888; border-radius: 6px; background: #fff;
+    padding: 3px 8px; flex: 0 0 auto; min-height: 26px; box-sizing: border-box;
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .bucket .idx {
+    flex: 0 0 auto; width: 34px; text-align: right;
+    color: #888; font-size: 12px; user-select: none;
+  }
+  .bucket .chain { display: flex; flex-wrap: wrap; gap: 4px; flex: 1; align-content: center; }
+  .node {
+    border: 1px solid #3b6ea5; background: #e5ebff; color: #003cff;
+    border-radius: 5px; padding: 2px 7px; font-size: 12px; font-weight: bold;
+    animation: drop 0.25s ease;
+  }
+  @keyframes drop { from { transform: translateY(-8px); opacity: 0; } to { transform: none; opacity: 1; } }
+  .arrow { color:#bbb; font-size:11px; align-self:center; }
+  .bucket.hot { background:#fff4e0; border-color:#d08700; }
+  .bucket.hot .node { border-color:#d08700; background:#ffe9c7; color:#b36b00; }
+  .bucket.resizing { background:#eef3f7; border-color:#3b6ea5; }
+
+  /* safety net for short projector embeds — match W3 */
+  @media (max-height: 620px) {
+    .side { font-size: 12px; padding: 12px 16px; }
+    .diagram { padding: 10px 16px; }
+  }
+  @media (max-height: 540px) {
+    .side { font-size: 11px; }
+    .node { font-size: 11px; padding: 1px 6px; }
+    .bucket .idx { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <span>Java HashMap Tracer</span>
+  <div class="btns">
+    <input type="text" id="keyInput" placeholder="key" maxlength="14">
+    <button id="addBtn">▶ Add</button>
+    <button id="attackBtn">💥 Attack (HashDoS)</button>
+    <button id="resetBtn">⟲ Reset</button>
+  </div>
+</header>
+
+<main>
+  <div class="side">
+    <h2>HashMap state</h2>
+    <div class="metric"><span class="label">capacity</span> = <span class="val" id="mCap">16</span></div>
+    <div class="metric"><span class="label">size</span> = <span class="val" id="mSize">0</span></div>
+    <div class="metric"><span class="label">load factor</span> = <span class="val">0.75</span></div>
+    <div class="metric"><span class="label">worst get()</span> = <span class="val" id="mSteps">0</span>
+      <span class="label" id="mStepsNote"></span></div>
+    <div class="lastop" id="lastOp"></div>
+    <div class="note" id="note">
+      <code class="ty">bucket</code> = <code class="kw">hash</code>(key) % capacity.
+      Добро разпределение → ~1 ключ на bucket → <b>O(1)</b>.
+    </div>
+  </div>
+
+  <div class="diagram">
+    <h2>buckets</h2>
+    <div class="buckets" id="buckets"></div>
+  </div>
+</main>
+
+<script>
+/* ---- illustrative HashMap model (NOT the exact JDK algorithm) ----
+   A didactic hash: sum of char codes. Good enough to show even spread for
+   normal keys, and lets the Attack button force collisions deterministically. */
+const LOAD_FACTOR = 0.75;
+let capacity = 16;
+let size = 0;
+let buckets = Array.from({length: capacity}, () => []);
+let attackIdx = -1;   // bucket the HashDoS attack filled (-1 = no attack yet)
+
+function hash(key) {
+  let h = 0;
+  for (let i = 0; i < key.length; i++) h += key.charCodeAt(i);
+  return h;
+}
+function indexFor(key) { return hash(key) % capacity; }
+
+const el = id => document.getElementById(id);
+
+function put(key, opts = {}) {
+  if (!key) return;
+  // attack keys are crafted to share one bucket regardless of capacity
+  const idx = opts.forceIndex != null ? opts.forceIndex : indexFor(key);
+  // avoid duplicate display of the exact same key in the same bucket
+  if (!buckets[idx].includes(key)) {
+    buckets[idx].push(key);
+    size++;
+  }
+  if (size / capacity > LOAD_FACTOR && !opts.noResize) {
+    resize();
+  }
+  render(opts);
+}
+
+function resize() {
+  const old = buckets;
+  capacity *= 2;
+  buckets = Array.from({length: capacity}, () => []);
+  // rehash: every key gets a NEW index under the new capacity
+  for (const chain of old) for (const k of chain) buckets[indexFor(k)].push(k);
+  flashResize();
+}
+
+/* ---- rendering ---- */
+function render(opts = {}) {
+  const host = el('buckets');
+  host.innerHTML = '';
+  buckets.forEach((chain, i) => {
+    const row = document.createElement('div');
+    row.className = 'bucket' + (i === attackIdx ? ' hot' : '');
+    const idx = document.createElement('span');
+    idx.className = 'idx';
+    idx.textContent = '[' + i + ']';
+    row.appendChild(idx);
+    const chainEl = document.createElement('div');
+    chainEl.className = 'chain';
+    chain.forEach((k, j) => {
+      if (j > 0) {
+        const a = document.createElement('span');
+        a.className = 'arrow';
+        a.textContent = '→';
+        chainEl.appendChild(a);
+      }
+      const n = document.createElement('span');
+      n.className = 'node';
+      n.textContent = k;
+      chainEl.appendChild(n);
+    });
+    row.appendChild(chainEl);
+    host.appendChild(row);
+  });
+
+  el('mCap').textContent = capacity;
+  el('mSize').textContent = size;
+
+  // worst-case lookup = longest chain. This is the number that illustrates O(1) vs O(N):
+  // as long as every bucket holds ~1 key it stays 1; a collision makes it grow.
+  let worst = 0, worstIdx = -1;
+  buckets.forEach((chain, i) => { if (chain.length > worst) { worst = chain.length; worstIdx = i; } });
+  const stepsEl = el('mSteps');
+  stepsEl.textContent = worst;
+  stepsEl.className = 'val' + (worst > 1 ? ' hot' : '');
+  el('mStepsNote').textContent = worstIdx >= 0 ? ('(най-дълга верига: bucket [' + worstIdx + '])') : '';
+
+  const note = el('note');
+  if (attackIdx >= 0) {
+    note.className = 'note warn';
+    note.innerHTML = '💥 <b>HashDoS:</b> всички ключове → един bucket → веригата е дълга → ' +
+                     '<code class="ty">get()</code> минава през всички → <b>O(n)</b>.';
+  } else {
+    note.className = 'note';
+    note.innerHTML = '<code class="ty">bucket</code> = <code class="kw">hash</code>(key) % capacity. ' +
+                     'Добро разпределение → ~1 ключ на bucket → <b>O(1)</b>.';
+  }
+}
+
+function flashResize() {
+  el('lastOp').textContent = 'RESIZE ×2 → rehash: всеки ключ получава нов индекс (capacity = ' + capacity + ')';
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.bucket').forEach(b => {
+      b.classList.add('resizing');
+      setTimeout(() => b.classList.remove('resizing'), 450);
+    });
+  });
+}
+
+function addFromInput() {
+  const key = el('keyInput').value.trim();
+  if (!key) return;
+  el('lastOp').textContent = 'put("' + key + '")  →  hash=' + hash(key) + '  →  bucket [' + indexFor(key) + ']';
+  put(key);
+  el('keyInput').value = '';
+  el('keyInput').focus();
+}
+
+/* craft ~12 keys that all land in ONE bucket (same char-code sum = same hash) */
+function attack() {
+  // pairs of chars whose code-sums are equal → identical illustrative hash → one bucket
+  const colliders = ['BZ','ZB','CY','YC','DX','XD','EW','WE','FV','VF','GU','UG'];
+  const target = indexFor(colliders[0]);
+  attackIdx = target;
+  el('lastOp').textContent = '💥 Attack: 12 ключа, изработени за един и същ hash → bucket [' + target + ']';
+  colliders.forEach(k => put(k, {forceIndex: target, noResize: true}));
+  render();
+}
+
+function reset() {
+  capacity = 16; size = 0; attackIdx = -1;
+  buckets = Array.from({length: capacity}, () => []);
+  el('lastOp').textContent = '';
+  el('keyInput').value = '';
+  render();
+}
+
+el('addBtn').addEventListener('click', addFromInput);
+el('attackBtn').addEventListener('click', attack);
+el('resetBtn').addEventListener('click', reset);
+el('keyInput').addEventListener('keydown', e => { if (e.key === 'Enter') addFromInput(); });
+
+render();
+</script>
+</body>
+</html>
