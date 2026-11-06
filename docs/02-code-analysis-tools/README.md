@@ -11,10 +11,10 @@
 $ export CHECKS=https://raw.githubusercontent.com/fmi/java-course/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml
 
 # run for single .java file
-$ java -jar checkstyle-12.1.1-all.jar -c $CHECKS Main.java
+$ java -jar checkstyle-14.4.0-all.jar -c $CHECKS Main.java
 
 # run for the whole project
-$ java -jar checkstyle-12.1.1-all.jar -c $CHECKS my-fancy-project/
+$ java -jar checkstyle-14.4.0-all.jar -c $CHECKS my-fancy-project/
 ```
 
 - From IntelliJ
@@ -23,18 +23,23 @@ $ java -jar checkstyle-12.1.1-all.jar -c $CHECKS my-fancy-project/
 2. Търсите "CheckStyle-IDEA" → _Install_
 3. Рестартирате IDE-то
 
-За да конфигурирате правилата:
+> ℹ️ От версия 26.19.0 на плъгина настройките са разделени на две страници под _Tools_ → _Checkstyle_:
+> - **Checkstyle Project** — правилата (конфигурационните файлове) за *текущия* проект;
+> - **Checkstyle Global** — настройки за цялото IDE, които важат за *всички* проекти.
 
-1. _IntelliJ IDEA_ → _Settings..._ → _Plugins_ → _Tools_ → _Checkstyle_
+За да конфигурирате правилата за текущия проект:
+
+1. _IntelliJ IDEA_ → _Settings..._ → _Tools_ → _Checkstyle_ → _Checkstyle Project_
 2. В секцията _Configuration File_ имате две предварително инсталирани конфигурации, _Sun Checks_ и _Google Checks_
-3. За да добавите custom конфигурация, натискате _+_, слагате в _Description_ описание тип "MJT" и избирате локален или remote Checkstyle конфигурационен файл ще ползвате:
+3. За да добавите custom конфигурация, натискате _+_ (Add), слагате в _Description_ описание тип "MJT" и избирате локален или remote Checkstyle конфигурационен файл ще ползвате:
    - _Use a local Checkstyle file_ → _Browse_, като може да си свалите [този](https://github.com/fmi/java-course/blob/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml) от нашия грейдър
    - _Use a Checkstyle file accessible via HTTP_ и в полето _URL_ задавате локация на remote файл, например [този](https://raw.githubusercontent.com/fmi/java-course/master/docs/02-code-analysis-tools/checkstyle/checkstyle.xml) от нашия грейдър
+4. Отмятате чекбокса пред новата "MJT" конфигурация, за да я направите активна
 
-За да настроите автоматичното конфигуриране на правилата, при създаването на всеки нов проект:
+За да важат правилата за **всички** проекти (без да ги добавяте наново всеки път):
 
-1. _File_ → _New Project Setup_ → _Settings For New Projects..._ → _Tools_ → _Checkstyle_
-2. Прилагате стъпки 2 и 3 от стандартното конфигуриране
+1. _IntelliJ IDEA_ → _Settings..._ → _Tools_ → _Checkstyle_ → _Checkstyle Global_
+2. Прилагате същите стъпки 2–4 от конфигурирането за проект
 
 За да настроите автоматичното форматиране в IDE-то (това, което задействате с Ctrl+Alt+L) да ползва същата custom конфигурация:
 
