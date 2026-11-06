@@ -131,7 +131,6 @@
     <!-- See http://checkstyle.sf.net/config_whitespace.html -->
     <module name="Indentation">
       <property name="basicOffset" value="4"/>
-      <property name="braceAdjustment" value="0"/>
       <property name="caseIndent" value="4"/>
       <message key="indentation.error"
         value="To improve readability, each line of code should be indented under its parent (i.e. methods should be indented under the class, code in methods should be indented under the method, code in if statements should be indented under the if, etc.). This {0} is {1} spaces from the margin and it should be at {2} spaces."/>
