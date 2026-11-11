@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Variance Explorer: List&lt;? ...&gt;</title>
+<style>
+  :root { --bg:#fafafa; --ink:#1e1e1e; --ok:#1f8a4c; --bad:#c0392b; --accent:#007acc; --amber:#d08700; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+         background:var(--bg); color:var(--ink); font-size:14px; }
+  header { background:#1e1e1e; color:#fff; padding:10px 16px; font-weight:700; letter-spacing:.3px; }
+  .wrap { padding:14px 16px; }
+  .row { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:12px; }
+  label { color:#555; }
+  select, button { font-family:inherit; font-size:13px; }
+  select { padding:5px 32px 5px 10px; border:1px solid #bbb; border-radius:5px; background:#fff;
+           -webkit-appearance:none; appearance:none;
+           background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%23666'/></svg>");
+           background-repeat:no-repeat; background-position:right 10px center; }
+  .decl { background:#eef3f7; border-left:5px solid var(--accent); padding:8px 12px; border-radius:6px;
+          margin-bottom:12px; white-space:pre-wrap; }
+  .ops { display:flex; flex-wrap:wrap; gap:8px; }
+  button { padding:6px 10px; border:1px solid #ccc; border-radius:6px; background:#fff; cursor:pointer; }
+  button:hover { border-color:var(--accent); }
+  button.reset { color:#444; }
+  #log { margin-top:14px; border-top:1px dashed #ccc; padding-top:10px; min-height:120px; }
+  .line { display:grid; grid-template-columns:96px minmax(320px, max-content) 1fr;
+          column-gap:16px; align-items:baseline; padding:4px 0; border-bottom:1px solid #eee; }
+  .ok  { color:var(--ok); }   .bad { color:var(--bad); }
+  .tag { font-weight:700; white-space:nowrap; }
+  .code { white-space:pre; }
+  .why { color:#555; white-space:normal; }
+  .hint { color:var(--amber); margin-top:8px; }
+  code { background:#f0f0f0; padding:1px 4px; border-radius:3px; }
+  @media (min-resolution:.001dpcm) { body { -webkit-text-size-adjust:100%; } }
+  @media screen and (max-width:640px){ .ops{flex-direction:column; align-items:stretch;} }
+</style>
+</head>
+<body>
+<header>🍎 Variance Explorer: Fruit &gt; TropicalFruit &gt; Banana</header>
+<div class="wrap">
+  <div class="row">
+    <label for="wc">Декларация:</label>
+    <select id="wc">
+      <option value="inv">List&lt;TropicalFruit&gt; (инвариантен)</option>
+      <option value="ext">List&lt;? extends TropicalFruit&gt; (producer)</option>
+      <option value="sup">List&lt;? super TropicalFruit&gt; (consumer)</option>
+      <option value="any">List&lt;?&gt; (неограничен)</option>
+    </select>
+    <button class="reset" onclick="reset()">⟲ Reset</button>
+  </div>
+
+  <div class="decl" id="decl"></div>
+
+  <div class="ops" id="ops"></div>
+  <div class="hint" id="hint"></div>
+
+  <div id="log"></div>
+</div>
+
+<script>
+// Hierarchy: Fruit > TropicalFruit > Banana ; Apple is Fruit (sibling of TropicalFruit)
+// We model what the COMPILER allows for each wildcard form — not runtime.
+const WC = {
+  inv: {
+    decl: "List<TropicalFruit> basket = new ArrayList<>();",
+    note: "Инвариантен: точно TropicalFruit. Четеш TropicalFruit, пишеш TropicalFruit и наследници.",
+    get: { type:"TropicalFruit", ok:true,  why:"четеш точно TropicalFruit" },
+    put: {
+      Banana:        { ok:true,  why:"Banana is-a TropicalFruit ✔" },
+      TropicalFruit: { ok:true,  why:"точният тип ✔" },
+      Apple:         { ok:false, why:"Apple НЕ е TropicalFruit ✖" },
+      Fruit:         { ok:false, why:"Fruit е родител, не наследник ✖" },
+    }
+  },
+  ext: {
+    decl: "List<? extends TropicalFruit> basket = new ArrayList<Banana>();",
+    note: "PRODUCER (extends): само ЧЕТЕШ. „?“ може да е List<Banana> — затова писането е забранено.",
+    get: { type:"TropicalFruit", ok:true, why:"винаги е поне TropicalFruit ✔" },
+    put: {
+      Banana:        { ok:false, why:"? може да е List<OtherTropical> — не знаем ✖" },
+      TropicalFruit: { ok:false, why:"? може да е List<Banana> — не знаем ✖" },
+      Apple:         { ok:false, why:"не е дори наследник ✖" },
+      Fruit:         { ok:false, why:"producer = read-only ✖" },
+    }
+  },
+  sup: {
+    decl: "List<? super TropicalFruit> basket = new ArrayList<Fruit>();",
+    note: "CONSUMER (super): само ПИШЕШ TropicalFruit и наследници. Четеш само Object.",
+    get: { type:"Object", ok:true, why:"? може да е List<Fruit>/<Object> → четеш само Object" },
+    put: {
+      Banana:        { ok:true,  why:"Banana is-a TropicalFruit → безопасно ✔" },
+      TropicalFruit: { ok:true,  why:"точният долен тип ✔" },
+      Apple:         { ok:false, why:"Apple не е TropicalFruit ✖" },
+      Fruit:         { ok:false, why:"Fruit е НАД долната граница ✖" },
+    }
+  },
+  any: {
+    decl: "List<?> basket = new ArrayList<String>();",
+    note: "Неограничен: нищо не знаем за типа. Четеш Object, не пишеш нищо (освен null).",
+    get: { type:"Object", ok:true, why:"единственото сигурно е Object ✔" },
+    put: {
+      Banana:        { ok:false, why:"не знаем типа — забранено ✖" },
+      TropicalFruit: { ok:false, why:"не знаем типа — забранено ✖" },
+      Apple:         { ok:false, why:"не знаем типа — забранено ✖" },
+      Fruit:         { ok:false, why:"не знаем типа — забранено ✖" },
+    }
+  }
+};
+
+const sel  = document.getElementById('wc');
+const decl = document.getElementById('decl');
+const ops  = document.getElementById('ops');
+const hint = document.getElementById('hint');
+const log  = document.getElementById('log');
+
+function render() {
+  const w = WC[sel.value];
+  decl.textContent = w.decl;
+  hint.textContent = "💡 " + w.note;
+  ops.innerHTML = "";
+  // Get button — title-case label + real method get(0)
+  addBtn("Get → get(0)", () => emit("get", w.get.ok, "basket.get(0)  // " + w.get.type, w.get.why));
+  // Put buttons — title-case label + real method add(...)
+  ["Banana","TropicalFruit","Apple","Fruit"].forEach(t => {
+    addBtn("Put → add(" + t + ")", () => {
+      const r = w.put[t];
+      emit("put", r.ok, "basket.add(new " + t + "())", r.why);
+    });
+  });
+  // Put null — legal in EVERY mode: null is a member of every reference type,
+  // so the compiler has nothing to verify. The proof of why writing is otherwise banned.
+  addBtn("Put → add(null)", () =>
+    emit("put", true, "basket.add(null)", "null е от всеки тип → няма какво да проверява компилаторът ✔"));
+}
+function addBtn(text, fn){ const b=document.createElement('button'); b.textContent=text; b.onclick=fn; ops.appendChild(b); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function emit(kind, ok, code, why){
+  const d = document.createElement('div');
+  d.className = "line";
+  d.innerHTML = '<span class="tag '+(ok?'ok':'bad')+'">'+(ok?'✅ OK':'❌ ГРЕШКА')+'</span>'
+              + '<code class="code">'+esc(code)+'</code>'
+              + '<span class="why">'+esc(why)+'</span>';
+  log.prepend(d);
+}
+function reset(){ log.innerHTML=""; }
+sel.onchange = () => { reset(); render(); };
+render();
+</script>
+</body>
+</html>

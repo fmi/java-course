@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Erasure Visualizer</title>
+<style>
+  :root { --bg:#fafafa; --ink:#1e1e1e; --ok:#1f8a4c; --bad:#c0392b; --accent:#007acc; --amber:#d08700; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+         background:var(--bg); color:var(--ink); font-size:13.5px; }
+  header { background:#1e1e1e; color:#fff; padding:10px 16px; font-weight:700; letter-spacing:.3px; }
+  .wrap { padding:14px 16px; }
+  .row { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:12px; }
+  label { color:#555; }
+  select { font-family:inherit; font-size:13px; padding:5px 32px 5px 10px; border:1px solid #bbb; border-radius:5px; background:#fff;
+           -webkit-appearance:none; appearance:none;
+           background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%23666'/></svg>");
+           background-repeat:no-repeat; background-position:right 10px center; }
+  .cols { display:flex; gap:10px; flex-wrap:wrap; }
+  .pane { flex:1 1 380px; border:1px solid #ddd; border-radius:8px; background:#fff; overflow:hidden; }
+  .pane h3 { margin:0; padding:7px 12px; font-size:12px; letter-spacing:.4px; color:#fff; }
+  .pane.before h3 { background:var(--accent); }
+  .pane.after  h3 { background:#555; }
+  pre { margin:0; padding:12px; white-space:pre-wrap; line-height:1.45; font-size:11px; }
+  .kw { color:#007acc; } .er { color:var(--bad); font-weight:700; } .ty { color:#8a6d00; }
+  .forbidden { margin-top:28px; border-top:1px dashed #ccc; padding-top:18px; }
+  .fb { display:grid; grid-template-columns:28px minmax(300px, max-content) 1fr;
+        column-gap:16px; align-items:baseline; padding:5px 0; border-bottom:1px solid #eee; }
+  .tag { font-weight:700; white-space:nowrap; }
+  .code { white-space:pre; }
+  .bad { color:var(--bad); } .why { color:#555; white-space:normal; }
+  code { background:#f0f0f0; padding:1px 4px; border-radius:3px; }
+  @media screen and (max-width:680px){ .cols{flex-direction:column;} }
+</style>
+</head>
+<body>
+<header>🧽 Erasure Visualizer — какво вижда JVM по време на изпълнение</header>
+<div class="wrap">
+  <div class="row">
+    <label for="ex">Избери конструкция:</label>
+    <select id="ex">
+      <option value="box">class Box&lt;T&gt;  (неограничен)</option>
+      <option value="pair">class Pair&lt;K, V&gt;</option>
+      <option value="draw">&lt;T extends Shape&gt; void draw(T)</option>
+      <option value="max">&lt;T extends Number &amp; Comparable&lt;T&gt;&gt; T max(...)</option>
+    </select>
+  </div>
+
+  <div class="cols">
+    <div class="pane before"><h3>ПРЕДИ (в сорса, който пишеш) — compile time</h3><pre id="before"></pre></div>
+    <div class="pane after"><h3>СЛЕД erasure — това вижда JVM</h3><pre id="after"></pre></div>
+  </div>
+
+  <div class="forbidden">
+    <div style="color:#555; margin-bottom:6px;">Защо тези са <b>невъзможни</b> (няма runtime тип <code>T</code>):</div>
+    <div id="fbs"></div>
+  </div>
+</div>
+
+<script>
+const EX = {
+  box: {
+    before:
+`class Box<T> {
+    private T value;
+    public T getValue() { return value; }
+    public void setValue(T value) { this.value = value; }
+}`,
+    after:
+`class Box {
+    private Object value;   // T -> Object
+    public Object getValue() { return value; }
+    public void setValue(Object value) { this.value = value; }
+}`,
+    map: "Неограничен T → java.lang.Object"
+  },
+  pair: {
+    before:
+`class Pair<K, V> {
+    private K key; private V value;
+    public K getKey() { return key; }
+    public V getValue() { return value; }
+}`,
+    after:
+`class Pair {
+    private Object key; private Object value;   // K,V -> Object
+    public Object getKey() { return key; }
+    public Object getValue() { return value; }
+}`,
+    map: "K и V са неограничени → и двата стават Object"
+  },
+  draw: {
+    before:
+`<T extends Shape> void draw(T shape) {
+    shape.area();
+}`,
+    after:
+`void draw(Shape shape) {   // T -> Shape (горната граница)
+    shape.area();
+}`,
+    map: "Ограничен отгоре T extends Shape → Shape"
+  },
+  max: {
+    before:
+`<T extends Number & Comparable<T>> T max(T a, T b) {
+    return a.compareTo(b) >= 0 ? a : b;
+}`,
+    after:
+`Number max(Number a, Number b) {   // T -> Number (ПЪРВАТА граница)
+    return ((Comparable) a).compareTo(b) >= 0 ? a : b;
+}`,
+    map: "Няколко граници → най-лявата (Number). Comparable се вкарва като cast."
+  }
+};
+
+const FORBIDDEN = [
+  { code:"T obj = new T();",                 why:"няма runtime тип T, който да инстанцираш" },
+  { code:"T[] arr = new T[10];",             why:"масивите искат runtime тип; T е изтрит" },
+  { code:"if (x instanceof List<String>) {}",why:"<String> вече не съществува по време на изпълнение" },
+  { code:"Class<T> c = T.class;",            why:"няма Class обект за тип, който вече е изтрит" },
+  { code:"static T field;",                  why:"статично поле е споделено — няма конкретен T" },
+];
+
+const before = document.getElementById('before');
+const after  = document.getElementById('after');
+const fbs    = document.getElementById('fbs');
+const sel    = document.getElementById('ex');
+
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function render(){
+  const e = EX[sel.value];
+  before.innerHTML = esc(e.before);
+  after.innerHTML  = esc(e.after);
+}
+FORBIDDEN.forEach(f=>{
+  const d=document.createElement('div');
+  d.className='fb';
+  d.innerHTML='<span class="tag bad">❌</span><code class="code">'+esc(f.code)+'</code><span class="why">'+f.why+'</span>';
+  fbs.appendChild(d);
+});
+sel.onchange = render;
+render();
+</script>
+</body>
+</html>
