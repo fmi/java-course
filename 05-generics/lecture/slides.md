@@ -608,7 +608,7 @@ public static <T> void sort(List<T> list, Comparator<? super T> c)
 <br/>
 
 <div style="background:#eef3f7; border-left:5px solid #3b6ea5; padding:10px 16px; border-radius:6px;">
-✋ Защо <code>Comparator&amp;lt;? super T&amp;gt;</code>, а не просто <code>Comparator&amp;lt;T&amp;gt;</code>?<br>
+✋ Защо <code>Comparator&lt;? super T&gt;</code>, а не просто <code>Comparator&lt;T&gt;</code>?<br>
 Кой реален сценарий става възможен заради <code>super</code>?<br>
 </div>
 
