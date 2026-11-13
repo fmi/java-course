@@ -14,6 +14,13 @@
 | 4 | Collections \| Clean Code | [слайдове](https://fmi.github.io/java-course/04-collections-clean-code/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/M_EvGMPNiM0) | 04.11 | [задача](https://github.com/fmi/java-course/tree/master/04-collections-clean-code/lab) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/9HM6B50761s) | 07.11 |
 | 5 | Generics | [слайдове](https://fmi.github.io/java-course/05-generics/lecture/slides.html) | [![Video](web/images/mjt-on-youtube.png)](https://youtu.be/pQxm3FEGbEQ) | 11.11 |  |  |  |
 
+
+### 🎁 Бонус материали
+
+| # | Тема | Лекция | Видео | Дата |
+| - |:---  | :----- | :---- | :--- |
+| 1 | Структури от данни & алгоритми | [слайдове](https://fmi.github.io/java-course/bonus/dsa-crash-course/lecture/slides.html) | <a href="https://youtu.be/35NmOVP74FI"><img src="web/images/mjt-on-youtube.png" width="135"></a> | 07.11 |
+
 ### Материали от предходни издания
 
 - [2025/2026](https://github.com/fmi/java-course/tree/mjt-2025-2026)
