@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java Generics — Седмични задачи</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffe066;
+    --surface: #ffffff;
+    --surface-2: #fff0f3;
+    --ink: #111111;
+    --text: #111111;
+    --text-dim: #444444;
+    --accent: #ff5c8a;
+    --accent-2: #5b8cff;
+    --accent-3: #27d07a;
+    --code-bg: #111111;
+    --code-text: #f6f6f6;
+    --shadow: 6px 6px 0 var(--ink);
+    --shadow-lg: 10px 10px 0 var(--ink);
+    --bw: 3px;
+    --radius: 0px;
+    --sidebar-w: 320px;
+  }
+
+  [data-theme="dark"] {
+    --bg: #1b1b1b;
+    --surface: #262626;
+    --surface-2: #333333;
+    --ink: #000000;
+    --text: #f5f5f5;
+    --text-dim: #b8b8b8;
+    --accent: #ff5c8a;
+    --accent-2: #5b8cff;
+    --accent-3: #27d07a;
+    --code-bg: #0a0a0a;
+    --code-text: #f6f6f6;
+    --shadow: 6px 6px 0 #000000;
+    --shadow-lg: 10px 10px 0 #000000;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; padding: 0; height: 100%; }
+
+  body {
+    font-family: "Rubik", "Arial Black", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  /* ===== Sidebar ===== */
+  aside {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    background: var(--surface);
+    border-right: var(--bw) solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    z-index: 2;
+  }
+
+  .sidebar-head {
+    padding: 22px 20px 18px;
+    border-bottom: var(--bw) solid var(--ink);
+    background: var(--accent);
+    color: #111111;
+  }
+
+  .sidebar-head .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin: 0 0 8px;
+    background: #111111;
+    color: #ffffff;
+    padding: 4px 9px;
+    border: var(--bw) solid var(--ink);
+    box-shadow: 3px 3px 0 #ffffff;
+    transform: rotate(-2deg);
+  }
+
+  .sidebar-head h1 {
+    font-size: 30px;
+    margin: 0;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    line-height: 0.95;
+  }
+
+  nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    background: var(--surface);
+    border: var(--bw) solid var(--ink);
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px 12px;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: var(--shadow);
+    transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.08s ease;
+  }
+
+  .nav-item:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 var(--ink);
+    background: var(--surface-2);
+  }
+
+  .nav-item:active { transform: translate(2px, 2px); box-shadow: 3px 3px 0 var(--ink); }
+
+  .nav-item.active {
+    background: var(--accent-2);
+    color: #ffffff;
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+
+  .nav-num {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    background: #111111;
+    color: #ffffff;
+    border: var(--bw) solid var(--ink);
+    display: grid;
+    place-items: center;
+    font-size: 15px;
+    font-weight: 900;
+  }
+
+  .nav-item.active .nav-num { background: var(--accent-3); color: #111111; }
+
+  .nav-label { line-height: 1.1; }
+
+  .sidebar-foot {
+    padding: 14px 16px;
+    border-top: var(--bw) solid var(--ink);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface-2);
+  }
+
+  .theme-btn {
+    background: var(--accent-3);
+    border: var(--bw) solid var(--ink);
+    color: #111111;
+    padding: 9px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 800;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+  }
+
+  .theme-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); }
+  .theme-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--ink); }
+
+  .zoom-group { display: flex; gap: 8px; }
+
+  .zoom-btn {
+    background: var(--accent);
+    border: var(--bw) solid var(--ink);
+    color: #111111;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 900;
+    font-family: inherit;
+    display: grid;
+    place-items: center;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+  }
+
+  .zoom-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); }
+  .zoom-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--ink); }
+
+  /* ===== Main ===== */
+  main {
+    flex: 1;
+    overflow-y: auto;
+    height: 100%;
+    scroll-behavior: smooth;
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 22px, rgba(0,0,0,0.03) 22px, rgba(0,0,0,0.03) 23px),
+      var(--bg);
+  }
+
+  [data-theme="dark"] main {
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 22px, rgba(255,255,255,0.03) 22px, rgba(255,255,255,0.03) 23px),
+      var(--bg);
+  }
+
+  .content-wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 48px 120px;
+    font-size: var(--content-scale, 19px);
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    background: var(--surface);
+    border-bottom: var(--bw) solid var(--ink);
+  }
+
+  .crumb {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #111111;
+    background: var(--accent-3);
+    border: var(--bw) solid var(--ink);
+    padding: 6px 11px;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+
+  .nav-arrows { display: flex; gap: 10px; }
+
+  .arrow-btn {
+    background: var(--surface);
+    border: var(--bw) solid var(--ink);
+    color: var(--text);
+    padding: 9px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 800;
+    font-family: inherit;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.08s ease;
+  }
+
+  .arrow-btn:hover:not(:disabled) {
+    transform: translate(-2px,-2px);
+    box-shadow: 6px 6px 0 var(--ink);
+    background: var(--accent-2);
+    color: #ffffff;
+  }
+  .arrow-btn:active:not(:disabled) { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--ink); }
+  .arrow-btn:disabled { opacity: 0.4; cursor: default; box-shadow: 2px 2px 0 var(--ink); }
+
+  /* ===== Rendered markdown ===== */
+  .md h1 {
+    font-size: 2.3em;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    line-height: 1.02;
+    margin: 0 0 0.7em;
+    display: inline-block;
+    background: var(--accent);
+    color: #111111;
+    padding: 12px 18px;
+    border: var(--bw) solid var(--ink);
+    box-shadow: var(--shadow-lg);
+  }
+  .md h2 {
+    font-size: 1.4em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin: 1.7em 0 0.6em;
+    display: inline-block;
+    background: var(--accent-2);
+    color: #ffffff;
+    padding: 6px 14px;
+    border: var(--bw) solid var(--ink);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+  .md h3 { font-size: 1.12em; font-weight: 800; margin: 1.3em 0 0.4em; text-transform: uppercase; }
+  .md p { line-height: 1.7; margin: 0.85em 0; font-weight: 500; }
+  .md ul, .md ol { line-height: 1.7; padding-left: 1.3em; margin: 0.85em 0; }
+  .md li { margin: 0.4em 0; font-weight: 500; }
+  .md ul { list-style: none; padding-left: 0; }
+  .md ul > li { position: relative; padding-left: 1.5em; }
+  .md ul > li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border: 2px solid var(--ink);
+  }
+  .md ul ul { padding-left: 1.2em; margin: 0.3em 0; }
+  .md ul ul > li::before { background: var(--accent-2); }
+  .md li > ul, .md li > ol { margin: 0.3em 0; }
+  .md a { color: var(--text); font-weight: 700; text-decoration: none; background: var(--accent-3); padding: 1px 5px; border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+  .md a:hover { background: var(--accent); }
+  .md strong { font-weight: 900; }
+  .md blockquote {
+    margin: 1.1em 0;
+    padding: 14px 18px;
+    border: var(--bw) solid var(--ink);
+    background: var(--accent);
+    color: #111111;
+    box-shadow: var(--shadow);
+    font-weight: 700;
+  }
+  .md blockquote p { margin: 0.2em 0; }
+  .md blockquote code { background: #111111; color: #ffffff; }
+  .md code {
+    font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+    background: var(--surface-2);
+    border: 2px solid var(--ink);
+    padding: 0.08em 0.4em;
+    font-size: 0.84em;
+    font-weight: 700;
+  }
+  .md pre {
+    background: var(--code-bg);
+    color: var(--code-text);
+    border: var(--bw) solid var(--ink);
+    padding: 20px 22px;
+    overflow-x: auto;
+    margin: 1.2em 0;
+    line-height: 1.55;
+    box-shadow: var(--shadow);
+  }
+  .md pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.9em;
+    color: var(--code-text);
+    font-weight: 500;
+  }
+
+  /* chunky scrollbars */
+  nav::-webkit-scrollbar, main::-webkit-scrollbar { width: 14px; }
+  nav::-webkit-scrollbar-track, main::-webkit-scrollbar-track { background: var(--surface-2); border-left: 2px solid var(--ink); }
+  nav::-webkit-scrollbar-thumb, main::-webkit-scrollbar-thumb { background: var(--accent); border: 2px solid var(--ink); }
+
+  @media (max-width: 760px) {
+    :root { --sidebar-w: 100%; }
+    body { flex-direction: column; overflow: auto; }
+    aside { height: auto; border-right: none; border-bottom: var(--bw) solid var(--ink); }
+    nav { flex-direction: row; overflow-x: auto; padding: 12px; }
+    .nav-item { white-space: nowrap; }
+    .nav-label { display: none; }
+    .content-wrap { padding: 28px 20px 80px; }
+    .md h1 { font-size: 1.7em; }
+  }
+
+.code-wrap { position: relative; margin: 1.2em 0; }
+.code-wrap pre { margin: 0; padding-top: 52px; }
+.copy-btn {
+  position: absolute; top: 10px; right: 10px; z-index: 1;
+  border: 2px solid var(--ink); background: var(--accent-3); color: #111;
+  padding: 7px 11px; font: 800 13px inherit; cursor: pointer;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.copy-btn:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--ink); }
+.copy-btn.copied { background: var(--accent); }
+
+/* ===== Collapsible solutions ===== */
+.solution {
+  margin: 1.8em 0 1.2em;
+  background: var(--surface);
+  border: var(--bw) solid var(--ink);
+  box-shadow: var(--shadow);
+}
+.solution > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  background: var(--accent-3);
+  color: #111111;
+  font-weight: 900;
+  font-size: 1.05em;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+.solution > summary::-webkit-details-marker { display: none; }
+.solution > summary::after {
+  content: "Покажи ▾";
+  font-size: 0.7em;
+  font-weight: 800;
+  background: #111111;
+  color: #ffffff;
+  padding: 4px 9px;
+}
+.solution[open] > summary::after { content: "Скрий ▴"; }
+.solution > summary:hover { background: var(--accent); }
+.solution > summary:focus-visible { outline: var(--bw) solid var(--accent-2); outline-offset: 3px; }
+.solution[open] > summary { border-bottom: var(--bw) solid var(--ink); }
+.solution-body { padding: 6px 22px 14px; }
+</style>
+</head>
+<body>
+  <aside>
+    <div class="sidebar-head">
+      <p class="eyebrow">Седмични упражнения</p>
+      <h1>Java Generics</h1>
+    </div>
+    <nav id="nav"></nav>
+    <div class="sidebar-foot">
+      <button class="theme-btn" id="themeBtn" title="Смяна на темата">
+        <span id="themeIcon">🌙</span><span id="themeText">Тъмна</span>
+      </button>
+      <div class="zoom-group">
+        <button class="zoom-btn" id="zoomOut" title="По-малък текст">−</button>
+        <button class="zoom-btn" id="zoomIn" title="По-голям текст">+</button>
+      </div>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="topbar">
+      <span class="crumb" id="crumb"></span>
+      <div class="nav-arrows">
+        <button class="arrow-btn" id="prevBtn">← Назад</button>
+        <button class="arrow-btn" id="nextBtn">Напред →</button>
+      </div>
+    </div>
+    <div class="content-wrap">
+      <article class="md" id="content"></article>
+    </div>
+  </main>
+
+<script>
+const PROBLEMS = [{"id": "01", "title": "Box", "md": "# Задача 1: Box\n\nИмплементирайте клас `Box`, който представя стойност, която може да липсва.\n\nКласът трябва да предоставя следната функционалност:\n\n- `ofNullable` – създава инстанция, съдържаща подадената стойност. Стойността може да бъде `null`.\n- `isEmpty` – проверява дали инстанцията съдържа стойност.\n- `getOrElse` – връща съдържаната стойност или подадена стойност по подразбиране, ако инстанцията е празна.\n\nКласът трябва да запазва типа на съдържаната стойност, така че извличането ѝ да не изисква явни преобразувания (casts).\n\n## Решение\n\nНаправете `Box` генеричен по типа на стойността си: `Box<T>`. Статичният factory метод `ofNullable` декларира собствен типов параметър, така че компилаторът извежда `T` от аргумента, а `getOrElse` връща `T` без нужда от cast.\n\n```java\nclass Box<T> {\n\n    private final T value;\n\n    private Box(T value) {\n        this.value = value;\n    }\n\n    static <T> Box<T> ofNullable(T value) {\n        return new Box<>(value);\n    }\n\n    boolean isEmpty() {\n        return value == null;\n    }\n\n    T getOrElse(T defaultValue) {\n        if (isEmpty()) {\n            return defaultValue;\n        }\n        return value;\n    }\n}\n```"}, {"id": "02", "title": "Трансформиране на Box", "md": "# Задача 2: Трансформиране на Box\n\nРазширете имплементацията на `Box` с операция за трансформация, наречена `transform`.\n\nОперацията приема обект, който отговаря за трансформирането на съдържаната стойност в стойност от друг тип, и връща нов `Box`, съдържащ трансформираната стойност.\n\nАко оригиналният `Box` е празен, резултатът също трябва да бъде празен, а трансформацията не трябва да се изпълнява.\n\n## Пример за използване\n\nСледващият пример показва как трябва да се използва трансформацията. Имплементацията на `StringLengthOperation` е дадена; ваша задача е да проектирате абстракцията, която ѝ позволява да работи с `Box`.\n\n```java\nBox<String> optional = Box.ofNullable(\"hello\");\n\nBox<Number> length = optional.transform(\n        new StringLengthOperation()\n);\n\nSystem.out.println(length.getOrElse(-1)); // 5\n```\n\nПримерната операция:\n\n```java\nclass StringLengthOperation {\n    public Integer transform(CharSequence value) {\n        return value.length();\n    }\n}\n```\n\nНе променяйте примера за използване. Имплементацията ви трябва да го поддържа, като запазва типовата безопасност и не използва явни преобразувания (casts).\n\n## Решение\n\nВъведете генерична абстракция за трансформация и накарайте `StringLengthOperation` да я имплементира.\n\n**Обърнете внимание:** `StringLengthOperation` е `BoxTransformer<CharSequence, Integer>`, но се използва върху `Box<String>`, за да се получи `Box<Number>`. Със сигнатура `BoxTransformer<T, U>` този пример няма да се компилира.\n\n- `? super T` – трансформаторът може да приема всеки супертип на стойността (`CharSequence` за `String`). Той само **консумира** `T`.\n- `? extends U` – трансформаторът може да връща всеки подтип на типа на резултата (`Integer` за `Number`). Той само **произвежда** `U`.\n\n```java\ninterface BoxTransformer<I, O> {\n    O transform(I value);\n}\n\nclass StringLengthOperation implements BoxTransformer<CharSequence, Integer> {\n    public Integer transform(CharSequence value) {\n        return value.length();\n    }\n}\n\nclass Box<T> {\n\n    private final T value;\n\n    private Box(T value) {\n        this.value = value;\n    }\n\n    static <T> Box<T> ofNullable(T value) {\n        return new Box<>(value);\n    }\n\n    boolean isEmpty() {\n        return value == null;\n    }\n\n    T getOrElse(T defaultValue) {\n        if (isEmpty()) {\n            return defaultValue;\n        }\n        return value;\n    }\n\n    <U> Box<U> transform(BoxTransformer<? super T, ? extends U> transformer) {\n        if (isEmpty()) {\n            return empty();\n        }\n        return ofNullable(transformer.transform(value));\n    }\n\n    private static <U> Box<U> empty() {\n        return new Box<>(null);\n    }\n}\n```"}, {"id": "03", "title": "Потребителска кошница", "md": "# Задача 3: Потребителска кошница\n\nПредставете си два магазина: магазин за дрехи и магазин за храна. И двата магазина работят с обща пазарска кошница.\n\nДадени са следните домейн класове:\n\n```java\ninterface Clothes {\n    int size();\n}\n\nrecord Shirt(int size) implements Clothes {}\n\ninterface Food {\n    int calories();\n}\n\nrecord Apple(int calories) implements Food {}\n```\n\nИмплементирайте следната функционалност.\n\n**ClothesStore**\n- `sellShirt` – добавя нова риза в подадената кошница.\n- `printClothesSize` – отпечатва размерите на всички дрехи в подадената кошница.\n\n**FoodStore**\n- `sellApple` – добавя нова ябълка в подадената кошница.\n- `printFoodCalories` – отпечатва калориите на всички храни в подадената кошница.\n\nИмплементацията трябва да бъде типово безопасна и не трябва да използва явни преобразувания (casts).\n\n## Решение\n\nИзползвайте wildcards за параметъра на кошницата според това какво прави всеки метод с нея (PECS: *Producer Extends, Consumer Super*).\n\n- Продажбата **добавя** в кошницата, т.е. кошницата е консуматор: `List<? super Shirt>` / `List<? super Apple>`. Така методът приема `List<Shirt>`, `List<Clothes>` или общия `List<Object>`.\n- Отпечатването **чете** от кошницата, т.е. кошницата е производител: `List<? extends Clothes>` / `List<? extends Food>`.\n\n**Дискусия:** С общ `List<Object>` и двата магазина могат да продават, но нито един от методите за отпечатване не го приема. Защо? Един `List<Object>` може да съдържа `Apple`, така че компилаторът не може да гарантира, че всеки елемент е `Clothes`.\n\n```java\nimport java.util.List;\n\ninterface Clothes {\n    int size();\n}\n\nrecord Shirt(int size) implements Clothes {}\n\ninterface Food {\n    int calories();\n}\n\nrecord Apple(int calories) implements Food {}\n\nclass ClothesStore {\n    static void sellShirt(List<? super Shirt> basket) {\n        basket.add(new Shirt(42));\n    }\n\n    static void printClothesSize(List<? extends Clothes> basket) {\n        for (Clothes clothes : basket) {\n            System.out.println(clothes.size());\n        }\n    }\n}\n\nclass FoodStore {\n    static void sellApple(List<? super Apple> basket) {\n        basket.add(new Apple(25));\n    }\n\n    static void printFoodCalories(List<? extends Food> basket) {\n        for (Food food : basket) {\n            System.out.println(food.calories());\n        }\n    }\n}\n```"}, {"id": "04", "title": "Ресторантски pipeline", "md": "# Задача 4: Ресторантски pipeline\n\nИмплементирайте pipeline за обработка на задачи (jobs), който позволява няколко независими операции да бъдат свързани и изпълнени последователно.\n\nДадени са следните домейн класове:\n\n```java\nclass Order {}\nclass ValidatedOrder extends Order {}\n\nclass Meal {}\nclass Pizza extends Meal {}\nclass Pasta extends Meal {}\n\nclass ServedOrder {}\n```\n\nДадени са и следните конкретни jobs. Имплементациите на методите им са умишлено опростени; съсредоточете се върху проектирането на абстракциите, които позволяват те да бъдат свързвани.\n\n```java\nclass ValidateOrderJob {\n    public ValidatedOrder execute(Order order) {\n        System.out.println(\"Executing \" + getClass().getSimpleName());\n        return new ValidatedOrder();\n    }\n}\n\nclass PreparePizzaJob {\n    public Meal execute(ValidatedOrder order) {\n        System.out.println(\"Executing \" + getClass().getSimpleName());\n        return new Pizza();\n    }\n}\n\nclass ServeMealJob {\n    public ServedOrder execute(Meal meal) {\n        System.out.println(\"Executing \" + getClass().getSimpleName());\n        return new ServedOrder();\n    }\n}\n```\n\nВашият pipeline трябва да поддържа следната функционалност:\n\n- `start` – създава pipeline от начален job.\n- `then` – свързва още един job към съществуващия pipeline.\n- `execute` – изпълнява целия pipeline с подаден начален вход и връща крайния резултат.\n\nPipeline-ът трябва да запазва типа на първоначалния си вход и типа на крайния си изход. Jobs не трябва да се изпълняват, когато се добавят към pipeline-а; те трябва да се изпълняват едва когато се изпълни самият pipeline.\n\n## Очаквано използване\n\nИмплементацията ви трябва да поддържа този пример:\n\n```java\npublic class PipelineMain {\n\n    static void main() {\n        Pipeline<Order, ServedOrder> pipeline =\n                Pipeline.start(new ValidateOrderJob())\n                        .then(new PreparePizzaJob())\n                        .then(new ServeMealJob());\n\n        ServedOrder result = pipeline.execute(new Order());\n    }\n}\n```\n\n## Решение\n\nВъведете генеричен интерфейс `Job<I, O>`, който всеки job имплементира. `Pipeline<I, O>` обвива един-единствен job; `then` свързва текущия job със следващия в нов job `I -> N`. Нищо не се изпълнява, докато не бъде извикан `execute`.\n\n**Обърнете внимание:** `then(Job<O, N> next)` изисква типът на изхода на текущия job да съвпада точно с типа на входа на следващия. Дадените jobs си пасват точно (`Order -> ValidatedOrder -> Meal -> ServedOrder`), затова засега не са нужни wildcards. Задача 5 премахва това ограничение.\n\n```java\ninterface Job<I, O> {\n    O execute(I input);\n}\n\nclass Pipeline<I, O> {\n\n    private final Job<I, O> job;\n\n    private Pipeline(Job<I, O> job) {\n        this.job = job;\n    }\n\n    static <I, O> Pipeline<I, O> start(Job<I, O> job) {\n        return new Pipeline<>(job);\n    }\n\n    <N> Pipeline<I, N> then(Job<O, N> next) {\n        Job<I, N> composedJob = new Job<>() {\n            @Override\n            public N execute(I input) {\n                return next.execute(job.execute(input));\n            }\n        };\n\n        return new Pipeline<>(composedJob);\n    }\n\n    O execute(I input) {\n        return job.execute(input);\n    }\n}\n\nclass ValidateOrderJob implements Job<Order, ValidatedOrder> {\n    public ValidatedOrder execute(Order order) {\n        System.out.println(\"Executing \" + getClass().getSimpleName());\n        return new ValidatedOrder();\n    }\n}\n\nclass PreparePizzaJob implements Job<ValidatedOrder, Meal> {\n    public Meal execute(ValidatedOrder order) {\n        System.out.println(\"Executing \" + getClass().getSimpleName());\n        return new Pizza();\n    }\n}\n\nclass ServeMealJob implements Job<Meal, ServedOrder> {\n    public ServedOrder execute(Meal meal) {\n        System.out.println(\"Executing \" + getClass().getSimpleName());\n        return new ServedOrder();\n    }\n}\n```"}, {"id": "05", "title": "Гъвкав pipeline", "md": "# Задача 5: По-гъвкав pipeline\n\nПродължете работа с имплементацията си от Задача 4.\n\nДадени са следните допълнителни домейн класове и job:\n\n```java\nclass Dessert extends Meal {}\nclass IceCream extends Dessert {}\n\nclass PrepareIceCreamJob {\n    public IceCream execute(ValidatedOrder order) {\n        System.out.println(\"Executing \" + getClass().getSimpleName());\n        return new IceCream();\n    }\n}\n```\n\nТекущата имплементация на pipeline-а изисква типът на изхода на един job да съвпада точно с типа на входа на следващия. Това ограничение не позволява някои напълно валидни комбинации от jobs.\n\nРазширете pipeline-а така, че да поддържа съвместими типове, дори когато декларираните им типове не са еднакви.\n\nНапример:\n\n- Job, който произвежда `IceCream`, трябва да може да бъде последван от job, който приема `Meal`.\n- Job, който произвежда `IceCream`, трябва да бъде съвместим с pipeline, чийто деклариран тип на изхода е `Meal`.\n\nPipeline-ът трябва да остане типово безопасен, да запазва типа на първоначалния си вход и да не използва явни преобразувания (casts).\n\nПримерът от Задача 4 трябва да продължи да работи, а следните допълнителни примери също трябва да се компилират:\n\n```java\nPipeline<Order, Meal> pipeline =\n        Pipeline.start(new ValidateOrderJob())\n                .then(new PrepareIceCreamJob());\n\nPipeline<Order, ServedOrder> dessertPipeline =\n        Pipeline.start(new ValidateOrderJob())\n                .then(new PrepareIceCreamJob())\n                .then(new ServeMealJob());\n```\n\nВие трябва да прецените как да обобщите операцията за свързване, така че да поддържа тези комбинации.\n\n## Решение\n\nОбобщете `then` от `Job<O, N>` до `Job<? super O, ? extends N>`.\n\n- `? super O` – следващият job може да приема супертип на текущия изход (`ServeMealJob` приема `Meal` след job, който произвежда `IceCream`).\n- `? extends N` – следващият job може да произвежда подтип на декларирания изход (`PrepareIceCreamJob` произвежда `IceCream` за `Pipeline<Order, Meal>`).\n\n**Покажете:** със сигнатурата от Задача 4 всеки от новите примери се проваля по различна причина:\n\n- `Pipeline<Order, Meal> pipeline` – `N` се извежда точно като `IceCream`, а `Pipeline<Order, IceCream>` не е `Pipeline<Order, Meal>`: *inference variable N has incompatible equality constraints Meal, IceCream*. Поправя се с `? extends N`.\n- `dessertPipeline` – `ServeMealJob` е `Job<Meal, ServedOrder>`, но `then` очаква `Job<IceCream, N>`: *method then in class Pipeline<I,O> cannot be applied to given types*. Поправя се с `? super O`.\n\n```java\ninterface Job<I, O> {\n    O execute(I input);\n}\n\nclass Pipeline<I, O> {\n\n    private final Job<I, O> job;\n\n    private Pipeline(Job<I, O> job) {\n        this.job = job;\n    }\n\n    static <I, O> Pipeline<I, O> start(Job<I, O> job) {\n        return new Pipeline<>(job);\n    }\n\n    <N> Pipeline<I, N> then(Job<? super O, ? extends N> next) {\n        Job<I, N> composedJob = new Job<>() {\n            @Override\n            public N execute(I input) {\n                return next.execute(job.execute(input));\n            }\n        };\n\n        return new Pipeline<>(composedJob);\n    }\n\n    O execute(I input) {\n        return job.execute(input);\n    }\n}\n\nclass Dessert extends Meal {}\nclass IceCream extends Dessert {}\n\nclass ValidateOrderJob implements Job<Order, ValidatedOrder> {\n    public ValidatedOrder execute(Order order) {\n        System.out.println(\"Executing \" + getClass().getSimpleName());\n        return new ValidatedOrder();\n    }\n}\n\nclass PreparePizzaJob implements Job<ValidatedOrder, Meal> {\n    public Meal execute(ValidatedOrder order) {\n        System.out.println(\"Executing \" + getClass().getSimpleName());\n        return new Pizza();\n    }\n}\n\nclass ServeMealJob implements Job<Meal, ServedOrder> {\n    public ServedOrder execute(Meal meal) {\n        System.out.println(\"Executing \" + getClass().getSimpleName());\n        return new ServedOrder();\n    }\n}\n\nclass PrepareIceCreamJob implements Job<ValidatedOrder, IceCream> {\n    public IceCream execute(ValidatedOrder order) {\n        System.out.println(\"Executing \" + getClass().getSimpleName());\n        return new IceCream();\n    }\n}\n```"}];
+
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function inline(s) {
+  const codes = [];
+  s = s.replace(/`([^`]+)`/g, (_, c) => {
+    codes.push(c);
+    return "\\u0000" + (codes.length - 1) + "\\u0000";
+  });
+  s = escapeHtml(s);
+  s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  s = s.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  s = s.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+  s = s.replace(/\\u0000(\d+)\\u0000/g, (_, i) => "<code>" + escapeHtml(codes[+i]) + "</code>");
+  return s;
+}
+function renderMarkdown(md) {
+  const lines = md.split("\n");
+  let html = "", i = 0, listStack = [];
+  function closeListsTo(indent) {
+    while (listStack.length && listStack[listStack.length - 1].indent >= indent) html += "</" + listStack.pop().type + ">";
+  }
+  function closeAllLists() {
+    while (listStack.length) html += "</" + listStack.pop().type + ">";
+  }
+  while (i < lines.length) {
+    let line = lines[i];
+    const fence = line.match(/^```(\w*)\s*$/);
+    if (fence) {
+      closeAllLists();
+      const language = fence[1] || "text";
+      let code = [];
+      i++;
+      while (i < lines.length && !/^```\s*$/.test(lines[i])) code.push(lines[i++]);
+      i++;
+      html += '<div class="code-wrap"><button class="copy-btn" type="button">Копирай кода</button><pre><code class="language-' + language + '">' + escapeHtml(code.join("\n")) + '</code></pre></div>';
+      continue;
+    }
+    const h = line.match(/^(#{1,4})\s+(.*)$/);
+    if (h) {
+      closeAllLists();
+      const level = h[1].length;
+      html += "<h" + level + ">" + inline(h[2].trim()) + "</h" + level + ">";
+      i++; continue;
+    }
+    const li = line.match(/^(\s*)([-*]|\d+\.)\s+(.*)$/);
+    if (li) {
+      const indent = li[1].length, type = /\d+\./.test(li[2]) ? "ol" : "ul";
+      if (!listStack.length || indent > listStack[listStack.length - 1].indent) {
+        html += "<" + type + ">"; listStack.push({type, indent});
+      } else {
+        closeListsTo(indent + 1);
+        if (!listStack.length || listStack[listStack.length - 1].indent < indent) {
+          html += "<" + type + ">"; listStack.push({type, indent});
+        }
+      }
+      html += "<li>" + inline(li[3].trim()) + "</li>";
+      i++; continue;
+    }
+    if (/^\s*$/.test(line)) { closeAllLists(); i++; continue; }
+    closeAllLists();
+    let para = [line]; i++;
+    while (i < lines.length && !/^\s*$/.test(lines[i]) && !/^(#{1,4})\s/.test(lines[i]) &&
+           !/^```/.test(lines[i]) && !/^(\s*)([-*]|\d+\.)\s+/.test(lines[i])) para.push(lines[i++]);
+    html += "<p>" + para.map(inline).join("<br>") + "</p>";
+  }
+  closeAllLists();
+  return html;
+}
+
+const navEl = document.getElementById("nav");
+const contentEl = document.getElementById("content");
+const crumbEl = document.getElementById("crumb");
+const mainEl = document.getElementById("main");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+let current = 0;
+
+function buildNav() {
+  PROBLEMS.forEach((p, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "nav-item";
+    btn.innerHTML = '<span class="nav-num">' + p.id + '</span><span class="nav-label">' + p.title + '</span>';
+    btn.addEventListener("click", () => show(idx));
+    navEl.appendChild(btn);
+  });
+}
+function show(idx) {
+  current = Math.max(0, Math.min(PROBLEMS.length - 1, idx));
+  const p = PROBLEMS[current];
+  // Everything after a "## Решение" heading is rendered inside a collapsed <details>
+  const parts = p.md.split(/^## Решение[ \t]*$/m);
+  let html = renderMarkdown(parts[0]);
+  if (parts.length > 1) {
+    html += '<details class="solution"><summary>Решение</summary><div class="solution-body">' +
+      renderMarkdown(parts.slice(1).join("")) + '</div></details>';
+  }
+  contentEl.innerHTML = html;
+  crumbEl.textContent = "Задача " + p.id + " от " + PROBLEMS.length + " · " + p.title;
+  [...navEl.children].forEach((c, i) => c.classList.toggle("active", i === current));
+  prevBtn.disabled = current === 0;
+  nextBtn.disabled = current === PROBLEMS.length - 1;
+  mainEl.scrollTop = 0;
+  if (history.replaceState) history.replaceState(null, "", "#" + p.id);
+}
+contentEl.addEventListener("click", async (event) => {
+  const button = event.target.closest(".copy-btn");
+  if (!button) return;
+  const code = button.parentElement.querySelector("pre code").innerText;
+  try {
+    await navigator.clipboard.writeText(code);
+    button.textContent = "Копирано!";
+    button.classList.add("copied");
+    setTimeout(() => { button.textContent = "Копирай кода"; button.classList.remove("copied"); }, 1400);
+  } catch (error) {
+    button.textContent = "Маркирай кода, за да го копираш";
+  }
+});
+prevBtn.addEventListener("click", () => show(current - 1));
+nextBtn.addEventListener("click", () => show(current + 1));
+document.addEventListener("keydown", (e) => {
+  if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+  if (e.key === "ArrowLeft") show(current - 1);
+  else if (e.key === "ArrowRight") show(current + 1);
+  else if (/^[1-5]$/.test(e.key)) show(+e.key - 1);
+});
+
+const themeBtn = document.getElementById("themeBtn");
+const themeIcon = document.getElementById("themeIcon");
+const themeText = document.getElementById("themeText");
+function applyTheme(t) {
+  document.documentElement.setAttribute("data-theme", t);
+  const dark = t === "dark";
+  themeIcon.textContent = dark ? "☀️" : "🌙";
+  themeText.textContent = dark ? "Светла" : "Тъмна";
+  try { localStorage.setItem("weekly-tasks-theme", t); } catch (e) {}
+}
+themeBtn.addEventListener("click", () => {
+  const cur = document.documentElement.getAttribute("data-theme");
+  applyTheme(cur === "dark" ? "light" : "dark");
+});
+let scale = 19;
+function applyScale() {
+  document.documentElement.style.setProperty("--content-scale", scale + "px");
+  try { localStorage.setItem("weekly-tasks-scale", scale); } catch (e) {}
+}
+document.getElementById("zoomIn").addEventListener("click", () => { scale = Math.min(30, scale + 2); applyScale(); });
+document.getElementById("zoomOut").addEventListener("click", () => { scale = Math.max(14, scale - 2); applyScale(); });
+(function init() {
+  let theme = "light";
+  try { theme = localStorage.getItem("weekly-tasks-theme") || "light"; } catch (e) {}
+  applyTheme(theme);
+  try {
+    const savedScale = parseInt(localStorage.getItem("weekly-tasks-scale"), 10);
+    if (!isNaN(savedScale)) scale = savedScale;
+  } catch (e) {}
+  applyScale();
+  buildNav();
+  const hash = (location.hash || "").replace("#", "");
+  const startIdx = PROBLEMS.findIndex((p) => p.id === hash);
+  show(startIdx >= 0 ? startIdx : 0);
+})();
+</script>
+</body>
+</html>
