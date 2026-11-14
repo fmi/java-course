@@ -160,7 +160,8 @@ public class LaundryBasket<G extends Garment> implements Iterable<G> {
     public void addAll(Collection<? extends G> garments);
 
     /**
-     * Moves all garments from this basket on top of the other one, preserving their stack order.
+     * Moves all garments from this basket on top of the other one, preserving their stack order
+     * (this basket's top becomes the other basket's top). After a move, this basket is empty.
      * Either all garments are moved, or none of them.
      *
      * @param other the basket to move the garments to
@@ -186,6 +187,8 @@ public class LaundryBasket<G extends Garment> implements Iterable<G> {
 
 }
 ```
+
+След успешно `moveAllTo` текущият кош остава празен, а дрехите му застават накуп върху целевия, без да се обръща редът им. Например, ако в `a` са добавени `1`, после `2`, а в `b` - `3`, после `4`, след `a.moveAllTo(b)` в `b` отгоре надолу са `2, 1, 4, 3`.
 
 ## Записване за пране
 
@@ -320,7 +323,7 @@ LaundryBasket<TShirt> ivansShirts = new LaundryBasket<>("Иван", 3.0);
 ivansShirts.addAll(List.of(new TShirt("Nike", 0.25), new TShirt("Adidas", 0.25)));
 
 LaundryBasket<Cotton> room412 = new LaundryBasket<>("стая 412", 2.0);
-ivansShirts.moveAllTo(room412); // 2
+ivansShirts.moveAllTo(room412); // 2; ivansShirts вече е празен
 room412.add(new Towel("IKEA", 1.0));
 
 block60.scheduleWash(mariasSweaters, new GentleProgram()); // програмата приема всякакви дрехи
@@ -351,7 +354,8 @@ block60.runNext();
 
 ```java
 room412.takeTop();     // вади изпраната хавлия, която е най-отгоре
-room412.getWeightKg(); // 0.5
+room412.takeTop();     // вади Adidas (редът от ivansShirts се запазва: тениската Adidas е над тази на Nike)
+room412.getWeightKg(); // 0.25
 ```
 
 ---
