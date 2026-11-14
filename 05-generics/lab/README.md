@@ -58,7 +58,7 @@ public abstract class Garment {
 
 ## Програми
 
-Програмите на пералнята имплементират generic интерфейса `WashProgram` в пакета `bg.sofia.uni.fmi.mjt.laundry.program`. Типовият параметър показва какви дрехи програмата може да пере безопасно:
+Програмите на пералнята имплементират интерфейса `WashProgram` в пакета `bg.sofia.uni.fmi.mjt.laundry.program`. Типовият параметър показва какви дрехи програмата може да пере безопасно:
 
 ```java
 package bg.sofia.uni.fmi.mjt.laundry.program;
@@ -95,7 +95,7 @@ public interface WashProgram<G extends Garment> {
 
 ## Кош за пране
 
-Дрехите се носят до пералнята в кош, в който се трупат на стек (LIFO - последно добавената дреха е най-отгоре). Всеки кош има собственик и капацитет в килограми и пази дрехи от определен тип: в `LaundryBasket<Sweater>` има само пуловери, в `LaundryBasket<Cotton>` - всякакви памучни дрехи, а в `LaundryBasket<Garment>` - каквото и да е. Един собственик може да има няколко коша. Всеки от тях се записва за пране поотделно.
+Дрехите се носят до пералнята в кош, в който се трупат под формата на стек (LIFO - последно добавената дреха е най-отгоре). Всеки кош има собственик и капацитет в килограми и пази дрехи от определен тип: в `LaundryBasket<Sweater>` има само пуловери, в `LaundryBasket<Cotton>` - всякакви памучни дрехи, а в `LaundryBasket<Garment>` - каквото и да е. Един собственик може да има няколко коша. Всеки от тях се записва за пране поотделно.
 
 Съквартирантите често изсипват прането си в общ кош, за да платят един жетон вместо два. Внимавайте обаче: типът на общия кош определя на какви програми може да бъде пуснат.
 
@@ -269,7 +269,7 @@ public interface LaundryRoomAPI {
     /**
      * @return an unmodifiable copy of the wash jobs waiting in the queue, in the order in which they will be washed
      */
-    List<WashJob<?>> getQueue();
+    List<WashJob<?>> getScheduledWashes();
 
     /**
      * @param owner the person whose tokens are counted
@@ -327,7 +327,7 @@ block60.scheduleWash(mariasSweaters, new GentleProgram()); // програмат
 block60.scheduleWash(room412, new CottonProgram());       // в общия кош има само памук
 // block60.scheduleWash(mariasSweaters, new CottonProgram()); // не се компилира: пуловерите не са памук
 
-block60.getQueue().size(); // 2
+block60.getScheduledWashes().size(); // 2
 block60.runNext();
 sweater.isClean(); // true
 block60.runNext();
@@ -360,7 +360,7 @@ room412.getWeightKg(); // 0.5
 
 - Защо `scheduleWash` приема `WashProgram<? super G>`? Ако сигнатурата беше `<G extends Garment> WashJob<G> scheduleWash(LaundryBasket<G> basket, WashProgram<G> program)`, щеше ли да се компилира `block60.scheduleWash(mariasSweaters, new GentleProgram())`? Защо?
 - Защо `addAll` приема `Collection<? extends G>`, а `moveAllTo` - `LaundryBasket<? super G>`? Как се прилага **The Get & Put Principle** тук (от коя структура само get-ваме и в коя само put-ваме)?
-- Защо `getQueue()` връща `List<WashJob<?>>`, а не `List<WashJob<Garment>>`?
+- Защо `getScheduledWashes()` връща `List<WashJob<?>>`, а не `List<WashJob<Garment>>`?
 - Защо смесеният кош `LaundryBasket<Garment>` не може да бъде пуснат на `CottonProgram`, а `LaundryBasket<Cotton>` може?
 - В `runNext()` взимате `WashJob<?> next` от опашката и викате `next.wash()`. Защо това се компилира, а следният код - не? Как бихте го написали с помощен метод, ако `WashJob` нямаше `wash()`?
 
