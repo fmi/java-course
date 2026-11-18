@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" width="620" height="359" font-family="'Noto Sans','Roboto',sans-serif">
+  <!-- MJT2027 · Test pyramid. Flat 2D, white bg, palette: slate #222, blue #3b6ea5, amber #d08700. -->
+  <rect width="760" height="460" fill="#ffffff"/>
+
+  <!-- ===== pyramid tiers (apex at top, base at bottom) ===== -->
+  <!-- apex x = 380. base half-width = 300 (so base spans 80..680). 3 equal-height bands of 110px, top margin 40. -->
+
+  <!-- Top tier — End-to-End (narrowest) -->
+  <polygon points="380,40 435,150 325,150" fill="#d08700"/>
+  <text x="380" y="112" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="700">E2E</text>
+
+  <!-- Middle tier — Integration -->
+  <polygon points="325,150 435,150 490,260 270,260" fill="#6f9bc3"/>
+  <text x="380" y="214" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="700">Integration</text>
+
+  <!-- Bottom tier — Unit (widest) -->
+  <polygon points="270,260 490,260 545,370 215,370" fill="#3b6ea5"/>
+  <text x="380" y="322" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="700">Unit</text>
+
+  <!-- tier separators already implied by color; thin white gaps for crispness -->
+  <polyline points="325,150 435,150" stroke="#ffffff" stroke-width="3" fill="none"/>
+  <polyline points="270,260 490,260" stroke="#ffffff" stroke-width="3" fill="none"/>
+
+  <!-- ===== right-side axis: more / faster / cheaper toward the base ===== -->
+  <line x1="620" y1="60" x2="620" y2="360" stroke="#222" stroke-width="2"/>
+  <polygon points="620,360 614,344 626,344" fill="#222"/>
+  <text x="636" y="70"  fill="#222" font-size="14" font-weight="700">по-малко,</text>
+  <text x="636" y="88"  fill="#222" font-size="14" font-weight="700">по-бавни,</text>
+  <text x="636" y="106" fill="#222" font-size="14" font-weight="700">по-скъпи</text>
+  <text x="636" y="330" fill="#222" font-size="14" font-weight="700">повече,</text>
+  <text x="636" y="348" fill="#222" font-size="14" font-weight="700">по-бързи,</text>
+  <text x="636" y="366" fill="#222" font-size="14" font-weight="700">по-евтини</text>
+
+  <!-- ===== left-side labels: scope ===== -->
+  <text x="195" y="100" text-anchor="end" fill="#222" font-size="13">цялата система</text>
+  <text x="195" y="214" text-anchor="end" fill="#222" font-size="13">няколко части</text>
+  <text x="195" y="322" text-anchor="end" fill="#222" font-size="13">един клас / метод</text>
+  <!-- leader lines -->
+  <line x1="200" y1="96"  x2="330" y2="96"  stroke="#bbbbbb" stroke-width="1"/>
+  <line x1="200" y1="210" x2="300" y2="210" stroke="#bbbbbb" stroke-width="1"/>
+  <line x1="200" y1="318" x2="245" y2="318" stroke="#bbbbbb" stroke-width="1"/>
+</svg>
