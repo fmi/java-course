@@ -238,10 +238,10 @@
 	  <property name="tokens" value="LITERAL_CATCH"/>
     </module>
     <module name="LeftCurly"/>
-    <!--  <module name="NeedBraces">
+    <module name="NeedBraces">
       <message key="needBraces"
-        value="Loops, if statements and else blocks should always include '''{ }''' around their statements.  Add braces to the ''{0}'' construct."/> 
-    </module>  -->
+        value="Loops, if statements and else blocks should always include '''{ }''' around their statements.  Add braces to the ''{0}'' construct."/>
+    </module>
     <module name="RightCurly">
       <message key="line.alone" value="This ''{0}'' should be alone on a line (i.e. no other code should be after it on the same line)."/>
       <message key="line.new" value="This ''{0}'' should be on a new line instead of on the same line as other code."/>
@@ -309,7 +309,23 @@
     <!-- <module name="PackageDeclaration"/> -->
     <!-- <module name="JUnitTestCase"/> -->
     <!-- <module name="ReturnCount"/> -->
-    <!-- <module name="IllegalType"/> -->
+    <module name="IllegalType">
+      <property name="tokens"
+                value="VARIABLE_DEF, PARAMETER_DEF, METHOD_DEF"/>
+      <property name="illegalClassNames"
+                value="ArrayList, LinkedList, Vector, Stack,
+                     HashMap, LinkedHashMap, TreeMap, Hashtable,
+                     HashSet, LinkedHashSet, TreeSet,
+                     ArrayDeque, PriorityQueue,
+                     java.util.ArrayList, java.util.LinkedList, java.util.Vector,
+                     java.util.Stack, java.util.HashMap, java.util.LinkedHashMap,
+                     java.util.TreeMap, java.util.Hashtable, java.util.HashSet,
+                     java.util.LinkedHashSet, java.util.TreeSet,
+                     java.util.ArrayDeque, java.util.PriorityQueue"/>
+      <message key="illegal.type"
+               value="Declare the variable/parameter/return type using an interface (e.g. List, Map, Set, Collection, Deque, Queue) instead of the concrete class
+  ''{0}''. Program to an interface, not an implementation."/>
+    </module>
     <!-- <module name="DeclarationOrder"/> -->
     <!-- <module name="ParameterAssignment"/> -->
     <!-- <module name="ExplicitInitialization"/> -->
