@@ -421,8 +421,7 @@ System.out.println(content);   // „Иван Петров"
 <br>
 
 <div style="background:#fff7e6; border-left:5px solid #d08700; padding:8px 16px; border-radius:6px;">
-🪤 Къде фейлва? <br> Няма зададен <b>charset</b> → ползва platform default. Записано UTF-8 на Linux, прочетено
-Windows-1252 → <code>Ð˜Ð²Ð°Ð½</code> (маймуница).<br>Fix: <code>Files.readString(path)</code> (UTF-8 по
+🪤 Къде фейлва? <br> Няма зададен <b>charset</b> → ползва platform default. Записано на Windows-1252, прочетено на Linux (UTF-8) → <code>Ð˜Ð²Ð°Ð½ ÐŸÐµÑ‚Ñ€Ð¾Ð²</code> (маймуница).<br>Fix: <code>Files.readString(path)</code> (UTF-8 по
 подразбиране) или с изрично подаване на конкретен charset.
 </div>
 
